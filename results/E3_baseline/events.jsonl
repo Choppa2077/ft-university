@@ -1,0 +1,30 @@
+{"ts": 1791062295.3352, "inst": "supervisor", "ev": "SPAWN", "name": "bank", "pid": 1684, "t": -6.073}
+{"ts": 1791062295.7877, "inst": "bank", "ev": "STARTED", "pid": 1684, "mode": "baseline", "t": -5.62}
+{"ts": 1791062296.0212, "inst": "supervisor", "ev": "SPAWN", "name": "db-a", "pid": 1693, "t": -5.387}
+{"ts": 1791062296.5284, "inst": "db-a", "ev": "SEEDED", "students": 300, "t": -4.88}
+{"ts": 1791062296.5285, "inst": "db-a", "ev": "ROLE", "role": "primary", "epoch": 1, "lsn": 0, "t": -4.879}
+{"ts": 1791062296.5285, "inst": "db-a", "ev": "STARTED", "pid": 1693, "mode": "baseline", "t": -4.879}
+{"ts": 1791062297.1491, "inst": "supervisor", "ev": "SPAWN", "name": "student-a", "pid": 1698, "t": -4.259}
+{"ts": 1791062297.1568, "inst": "supervisor", "ev": "SPAWN", "name": "payment-a", "pid": 1699, "t": -4.251}
+{"ts": 1791062297.1596, "inst": "supervisor", "ev": "SPAWN", "name": "records-a", "pid": 1700, "t": -4.248}
+{"ts": 1791062297.1717, "inst": "supervisor", "ev": "SPAWN", "name": "timetable-a", "pid": 1701, "t": -4.236}
+{"ts": 1791062297.1728, "inst": "supervisor", "ev": "SPAWN", "name": "gateway", "pid": 1702, "t": -4.235}
+{"ts": 1791062297.1833, "inst": "supervisor", "ev": "SPAWN", "name": "monitor", "pid": 1703, "t": -4.225}
+{"ts": 1791062298.6448, "inst": "monitor", "ev": "STARTED", "pid": 1703, "mode": "baseline", "t": -2.763}
+{"ts": 1791062298.6753, "inst": "records-a", "ev": "STARTED", "pid": 1700, "mode": "baseline", "t": -2.733}
+{"ts": 1791062298.6765, "inst": "monitor", "ev": "FIRST_SEEN", "target": "bank", "kind": "bank", "node": "ext", "down_for": null, "t": -2.731}
+{"ts": 1791062298.6766, "inst": "monitor", "ev": "FIRST_SEEN", "target": "db-a", "kind": "db", "node": "A", "down_for": null, "t": -2.731}
+{"ts": 1791062298.679, "inst": "payment-a", "ev": "STARTED", "pid": 1699, "mode": "baseline", "t": -2.729}
+{"ts": 1791062298.6982, "inst": "gateway", "ev": "STARTED", "pid": 1702, "mode": "baseline", "t": -2.71}
+{"ts": 1791062298.6982, "inst": "student-a", "ev": "STARTED", "pid": 1698, "mode": "baseline", "t": -2.71}
+{"ts": 1791062298.7069, "inst": "timetable-a", "ev": "STARTED", "pid": 1701, "mode": "baseline", "t": -2.701}
+{"ts": 1791062298.9043, "inst": "monitor", "ev": "FIRST_SEEN", "target": "gateway", "kind": "gateway", "node": "ctl", "down_for": 0.25, "t": -2.504}
+{"ts": 1791062298.9044, "inst": "monitor", "ev": "FIRST_SEEN", "target": "student-a", "kind": "student", "node": "A", "down_for": 0.25, "t": -2.504}
+{"ts": 1791062298.9044, "inst": "monitor", "ev": "FIRST_SEEN", "target": "payment-a", "kind": "payment", "node": "A", "down_for": 0.25, "t": -2.504}
+{"ts": 1791062298.9044, "inst": "monitor", "ev": "FIRST_SEEN", "target": "records-a", "kind": "records", "node": "A", "down_for": 0.25, "t": -2.504}
+{"ts": 1791062298.9045, "inst": "monitor", "ev": "FIRST_SEEN", "target": "timetable-a", "kind": "timetable", "node": "A", "down_for": 0.25, "t": -2.503}
+{"ts": 1791062299.0875, "inst": "supervisor", "ev": "CLUSTER_READY", "mode": "baseline", "t": -2.32}
+{"ts": 1791062311.4108, "inst": "bank", "ev": "CHAOS_SET", "latency_ms": 6000, "latency_after": true, "affect_health": true, "t": 10.003}
+{"ts": 1791062312.1558, "inst": "monitor", "ev": "DOWN", "target": "bank", "kind": "bank", "node": "ext", "first_failed_check": 1791062311.6472802, "t": 10.748}
+{"ts": 1791062326.4145, "inst": "bank", "ev": "CHAOS_SET", "t": 25.007}
+{"ts": 1791062326.5741, "inst": "monitor", "ev": "UP", "target": "bank", "kind": "bank", "node": "ext", "down_for": 14.913, "t": 25.166}

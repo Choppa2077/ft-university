@@ -1,0 +1,468 @@
+{"ts": 1791062602.6234, "inst": "supervisor", "ev": "SPAWN", "name": "bank", "pid": 2049, "t": -7.522}
+{"ts": 1791062603.0751, "inst": "bank", "ev": "STARTED", "pid": 2049, "mode": "ft", "t": -7.07}
+{"ts": 1791062603.3155, "inst": "supervisor", "ev": "SPAWN", "name": "db-a", "pid": 2058, "t": -6.83}
+{"ts": 1791062603.7944, "inst": "db-a", "ev": "SEEDED", "students": 300, "t": -6.351}
+{"ts": 1791062603.7945, "inst": "db-a", "ev": "ROLE", "role": "primary", "epoch": 1, "lsn": 0, "t": -6.351}
+{"ts": 1791062603.7946, "inst": "db-a", "ev": "STARTED", "pid": 2058, "mode": "ft", "t": -6.351}
+{"ts": 1791062604.1858, "inst": "supervisor", "ev": "SPAWN", "name": "db-b", "pid": 2063, "t": -5.96}
+{"ts": 1791062604.6479, "inst": "db-b", "ev": "STARTED", "pid": 2063, "mode": "ft", "t": -5.497}
+{"ts": 1791062604.6576, "inst": "db-a", "ev": "SNAPSHOT_SERVED", "lsn": 0, "bytes": 286720, "t": -5.488}
+{"ts": 1791062604.6606, "inst": "db-b", "ev": "RESYNCED", "source": "db-a", "lsn": 0, "epoch": 1, "t": -5.485}
+{"ts": 1791062604.7035, "inst": "db-a", "ev": "REPLICA_IN_SYNC", "lsn": 0, "t": -5.442}
+{"ts": 1791062605.2974, "inst": "supervisor", "ev": "SPAWN", "name": "student-a", "pid": 2068, "t": -4.848}
+{"ts": 1791062605.3021, "inst": "supervisor", "ev": "SPAWN", "name": "student-b", "pid": 2069, "t": -4.843}
+{"ts": 1791062605.3045, "inst": "supervisor", "ev": "SPAWN", "name": "payment-a", "pid": 2070, "t": -4.841}
+{"ts": 1791062605.3153, "inst": "supervisor", "ev": "SPAWN", "name": "payment-b", "pid": 2071, "t": -4.83}
+{"ts": 1791062605.3273, "inst": "supervisor", "ev": "SPAWN", "name": "records-a", "pid": 2072, "t": -4.818}
+{"ts": 1791062605.3283, "inst": "supervisor", "ev": "SPAWN", "name": "records-b", "pid": 2073, "t": -4.817}
+{"ts": 1791062605.3412, "inst": "supervisor", "ev": "SPAWN", "name": "timetable-a", "pid": 2074, "t": -4.804}
+{"ts": 1791062605.3438, "inst": "supervisor", "ev": "SPAWN", "name": "timetable-b", "pid": 2075, "t": -4.802}
+{"ts": 1791062605.3446, "inst": "supervisor", "ev": "SPAWN", "name": "gateway", "pid": 2076, "t": -4.801}
+{"ts": 1791062605.3673, "inst": "supervisor", "ev": "SPAWN", "name": "monitor", "pid": 2077, "t": -4.778}
+{"ts": 1791062607.6499, "inst": "student-b", "ev": "STARTED", "pid": 2069, "mode": "ft", "t": -2.495}
+{"ts": 1791062607.6689, "inst": "monitor", "ev": "STARTED", "pid": 2077, "mode": "ft", "t": -2.476}
+{"ts": 1791062607.6736, "inst": "payment-a", "ev": "STARTED", "pid": 2070, "mode": "ft", "t": -2.472}
+{"ts": 1791062607.723, "inst": "timetable-a", "ev": "STARTED", "pid": 2074, "mode": "ft", "t": -2.422}
+{"ts": 1791062607.7294, "inst": "student-a", "ev": "STARTED", "pid": 2068, "mode": "ft", "t": -2.416}
+{"ts": 1791062607.7423, "inst": "payment-b", "ev": "STARTED", "pid": 2071, "mode": "ft", "t": -2.403}
+{"ts": 1791062607.7451, "inst": "monitor", "ev": "FIRST_SEEN", "target": "bank", "kind": "bank", "node": "ext", "down_for": null, "t": -2.4}
+{"ts": 1791062607.7452, "inst": "monitor", "ev": "FIRST_SEEN", "target": "db-a", "kind": "db", "node": "A", "down_for": null, "t": -2.4}
+{"ts": 1791062607.7452, "inst": "monitor", "ev": "FIRST_SEEN", "target": "payment-a", "kind": "payment", "node": "A", "down_for": null, "t": -2.4}
+{"ts": 1791062607.7452, "inst": "monitor", "ev": "FIRST_SEEN", "target": "db-b", "kind": "db", "node": "B", "down_for": null, "t": -2.4}
+{"ts": 1791062607.7452, "inst": "monitor", "ev": "FIRST_SEEN", "target": "student-b", "kind": "student", "node": "B", "down_for": null, "t": -2.4}
+{"ts": 1791062607.7583, "inst": "records-b", "ev": "STARTED", "pid": 2073, "mode": "ft", "t": -2.387}
+{"ts": 1791062607.7695, "inst": "records-a", "ev": "STARTED", "pid": 2072, "mode": "ft", "t": -2.376}
+{"ts": 1791062607.7858, "inst": "timetable-b", "ev": "STARTED", "pid": 2075, "mode": "ft", "t": -2.36}
+{"ts": 1791062607.7888, "inst": "gateway", "ev": "STARTED", "pid": 2076, "mode": "ft", "t": -2.357}
+{"ts": 1791062607.9355, "inst": "monitor", "ev": "FIRST_SEEN", "target": "gateway", "kind": "gateway", "node": "ctl", "down_for": 0.25, "t": -2.21}
+{"ts": 1791062607.9356, "inst": "monitor", "ev": "FIRST_SEEN", "target": "student-a", "kind": "student", "node": "A", "down_for": 0.25, "t": -2.21}
+{"ts": 1791062607.9356, "inst": "monitor", "ev": "FIRST_SEEN", "target": "records-a", "kind": "records", "node": "A", "down_for": 0.25, "t": -2.21}
+{"ts": 1791062607.9356, "inst": "monitor", "ev": "FIRST_SEEN", "target": "timetable-a", "kind": "timetable", "node": "A", "down_for": 0.25, "t": -2.21}
+{"ts": 1791062607.9356, "inst": "monitor", "ev": "FIRST_SEEN", "target": "payment-b", "kind": "payment", "node": "B", "down_for": 0.25, "t": -2.21}
+{"ts": 1791062607.9356, "inst": "monitor", "ev": "FIRST_SEEN", "target": "records-b", "kind": "records", "node": "B", "down_for": 0.25, "t": -2.21}
+{"ts": 1791062607.9356, "inst": "monitor", "ev": "FIRST_SEEN", "target": "timetable-b", "kind": "timetable", "node": "B", "down_for": 0.25, "t": -2.21}
+{"ts": 1791062608.0437, "inst": "supervisor", "ev": "CLUSTER_READY", "mode": "ft", "t": -2.102}
+{"ts": 1791062610.1769, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "e1a60fa566634266", "origin": "request", "t": 0.032}
+{"ts": 1791062610.2052, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "10a3531a2e7f4a65", "origin": "request", "t": 0.06}
+{"ts": 1791062610.2627, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "9232482c61384a88", "origin": "request", "t": 0.117}
+{"ts": 1791062610.4654, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "3e78ee482d3d42e7", "origin": "request", "t": 0.32}
+{"ts": 1791062610.8648, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "0032681ca0814a5e", "origin": "request", "t": 0.719}
+{"ts": 1791062610.8865, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "0c91565c105241ea", "origin": "request", "t": 0.741}
+{"ts": 1791062610.9129, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "0bb96ce0f2a84016", "origin": "request", "t": 0.768}
+{"ts": 1791062611.0117, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "b369400203314079", "origin": "request", "t": 0.866}
+{"ts": 1791062611.1377, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "21264e4511464420", "origin": "request", "t": 0.992}
+{"ts": 1791062611.2122, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "78e5e73c3a9f488a", "origin": "request", "t": 1.067}
+{"ts": 1791062611.2875, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "f2444ada06f24203", "origin": "request", "t": 1.142}
+{"ts": 1791062611.3118, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "1bc3be675c1f4ae7", "origin": "request", "t": 1.166}
+{"ts": 1791062611.462, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "f86d63cd0ec449a6", "origin": "request", "t": 1.317}
+{"ts": 1791062611.5109, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "5cf71821a5ae4cc1", "origin": "request", "t": 1.366}
+{"ts": 1791062611.5375, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "c6bff6b820364262", "origin": "request", "t": 1.392}
+{"ts": 1791062611.5875, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "6fb5d619697240ec", "origin": "request", "t": 1.442}
+{"ts": 1791062611.7882, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "551dc60b371b460a", "origin": "request", "t": 1.643}
+{"ts": 1791062611.8636, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "eb9c6104bc52446b", "origin": "request", "t": 1.718}
+{"ts": 1791062611.9461, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "bc4e20939a004fae", "origin": "request", "t": 1.801}
+{"ts": 1791062612.015, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "44cf06ebe3194969", "origin": "request", "t": 1.87}
+{"ts": 1791062612.0357, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "6ab95f4e537046f8", "origin": "request", "t": 1.89}
+{"ts": 1791062612.1625, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "09ed176fcbdb4931", "origin": "request", "t": 2.017}
+{"ts": 1791062612.3661, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "1c709a9d1b8c4fc6", "origin": "request", "t": 2.221}
+{"ts": 1791062612.412, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "5306bec34d5e42c8", "origin": "request", "t": 2.267}
+{"ts": 1791062612.564, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "171fb26974e246a6", "origin": "request", "t": 2.419}
+{"ts": 1791062612.8664, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "3b4e60f2f1d84073", "origin": "request", "t": 2.721}
+{"ts": 1791062613.1379, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "b5c9e95f74044737", "origin": "request", "t": 2.993}
+{"ts": 1791062613.2137, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "0d8e45803adb4934", "origin": "request", "t": 3.068}
+{"ts": 1791062613.3125, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "12ddff47621e4872", "origin": "request", "t": 3.167}
+{"ts": 1791062613.3379, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "7bde1e8af63e487a", "origin": "request", "t": 3.193}
+{"ts": 1791062613.3875, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "1d6158b2b7bb4e11", "origin": "request", "t": 3.242}
+{"ts": 1791062613.5148, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "2def40569ebd4235", "origin": "request", "t": 3.369}
+{"ts": 1791062613.7634, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "0a6b3b26e00647ca", "origin": "request", "t": 3.618}
+{"ts": 1791062614.4882, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "8306c32372ad4394", "origin": "request", "t": 4.343}
+{"ts": 1791062614.5372, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "e7cf584a22ca44fd", "origin": "request", "t": 4.392}
+{"ts": 1791062614.5865, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "2a9bedb9dea64bb8", "origin": "request", "t": 4.441}
+{"ts": 1791062614.9448, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "1728145cf1f8487a", "origin": "request", "t": 4.799}
+{"ts": 1791062615.1141, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "1297153ca64d426e", "origin": "request", "t": 4.969}
+{"ts": 1791062615.1962, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "47601279cd734e6d", "origin": "request", "t": 5.051}
+{"ts": 1791062615.2372, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "1ae3454f4add47c3", "origin": "request", "t": 5.092}
+{"ts": 1791062615.62, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "6f99688e993c4746", "origin": "request", "t": 5.475}
+{"ts": 1791062615.8663, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "e87736d11a9d4fb8", "origin": "request", "t": 5.721}
+{"ts": 1791062615.9171, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "b07d702c220f43d3", "origin": "request", "t": 5.772}
+{"ts": 1791062616.0367, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "ae818030198d4863", "origin": "request", "t": 5.891}
+{"ts": 1791062616.1377, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "4704097591f64c22", "origin": "request", "t": 5.992}
+{"ts": 1791062616.2624, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "f323cc6efce74d95", "origin": "request", "t": 6.117}
+{"ts": 1791062616.589, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "73c311a0bea4443c", "origin": "request", "t": 6.444}
+{"ts": 1791062616.7918, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "d257b25e00ef4a6d", "origin": "request", "t": 6.646}
+{"ts": 1791062616.8129, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "4a765b1e7ee9487d", "origin": "request", "t": 6.668}
+{"ts": 1791062616.8363, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "f7cec3b772ad4c88", "origin": "request", "t": 6.691}
+{"ts": 1791062617.0128, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "c613fe259f7746de", "origin": "request", "t": 6.867}
+{"ts": 1791062617.3393, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "663a9e57a31a4a58", "origin": "request", "t": 7.194}
+{"ts": 1791062617.4427, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "e7fd992074e143da", "origin": "request", "t": 7.297}
+{"ts": 1791062617.5883, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "b7126cb9c0614fb4", "origin": "request", "t": 7.443}
+{"ts": 1791062617.6123, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "b61ef07acacf40f3", "origin": "request", "t": 7.467}
+{"ts": 1791062617.703, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "b98bb7f5508549d3", "origin": "request", "t": 7.558}
+{"ts": 1791062617.887, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "595cbcb55c2343cd", "origin": "request", "t": 7.742}
+{"ts": 1791062617.9144, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "e5dd71c364154026", "origin": "request", "t": 7.769}
+{"ts": 1791062618.1162, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "bbb91be968c4462d", "origin": "request", "t": 7.971}
+{"ts": 1791062618.3165, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "7bcaaada8f8f43d9", "origin": "request", "t": 8.171}
+{"ts": 1791062618.514, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "15ec8efd69344d64", "origin": "request", "t": 8.369}
+{"ts": 1791062618.5625, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "fa4fe7593305493c", "origin": "request", "t": 8.417}
+{"ts": 1791062618.5859, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "c40322eb89864c2b", "origin": "request", "t": 8.441}
+{"ts": 1791062618.6365, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "f4a68816f52f45f0", "origin": "request", "t": 8.491}
+{"ts": 1791062618.6949, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "f5618ffbff604dfc", "origin": "request", "t": 8.55}
+{"ts": 1791062618.9473, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "1a7d15c212c34f8d", "origin": "request", "t": 8.802}
+{"ts": 1791062618.9619, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "b8f8f778d4614aff", "origin": "request", "t": 8.817}
+{"ts": 1791062619.0117, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "416c4a0a0d324a3d", "origin": "request", "t": 8.866}
+{"ts": 1791062619.2118, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "52e0b14296194b16", "origin": "request", "t": 9.066}
+{"ts": 1791062619.2364, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "9bd5fa62d2ba40ad", "origin": "request", "t": 9.091}
+{"ts": 1791062619.2623, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "8a19d26fca1d4cc4", "origin": "request", "t": 9.117}
+{"ts": 1791062619.2869, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "2c69b4d6421e4266", "origin": "request", "t": 9.142}
+{"ts": 1791062619.4558, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "7b891475988a4d5f", "origin": "request", "t": 9.31}
+{"ts": 1791062619.5372, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "eaacc7dc039b4b29", "origin": "request", "t": 9.392}
+{"ts": 1791062619.6121, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "9ce27e5e7720499b", "origin": "request", "t": 9.467}
+{"ts": 1791062619.6476, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "24cdca22357c4f49", "origin": "request", "t": 9.502}
+{"ts": 1791062619.6619, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "20b0f320866c4e1a", "origin": "request", "t": 9.517}
+{"ts": 1791062619.9726, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "e84b84ea6af54dd2", "origin": "request", "t": 9.827}
+{"ts": 1791062620.1503, "inst": "payment-a", "ev": "CHAOS_SET", "interrupt_rate": 0.3, "interrupt_at": "after_debit", "t": 10.005}
+{"ts": 1791062620.153, "inst": "payment-b", "ev": "CHAOS_SET", "interrupt_rate": 0.3, "interrupt_at": "after_debit", "t": 10.008}
+{"ts": 1791062620.2077, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "77e73698e4b1499b", "stage": "after_debit", "t": 10.062}
+{"ts": 1791062620.2732, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "de97f17390d94a78", "origin": "request", "t": 10.128}
+{"ts": 1791062620.3633, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "bc7d251d1936489d", "origin": "request", "t": 10.218}
+{"ts": 1791062620.442, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "09740d409b284122", "origin": "request", "t": 10.297}
+{"ts": 1791062620.564, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "59dcde4e98a546be", "origin": "request", "t": 10.419}
+{"ts": 1791062620.5903, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "35dfe9344eb14542", "origin": "request", "t": 10.445}
+{"ts": 1791062620.6081, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "90449b785dd24a70", "stage": "after_debit", "t": 10.463}
+{"ts": 1791062620.7859, "inst": "payment-b", "ev": "TX_INTERRUPTED", "key": "7dc89aa9a01a40fe", "stage": "after_debit", "t": 10.641}
+{"ts": 1791062620.9922, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "f3b74242506348bd", "origin": "request", "t": 10.847}
+{"ts": 1791062621.1126, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "cca8044890ee49c5", "origin": "request", "t": 10.967}
+{"ts": 1791062621.2147, "inst": "payment-b", "ev": "DUPLICATE_REQUEST", "key": "77e73698e4b1499b", "t": 11.069}
+{"ts": 1791062621.2198, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "aceba3abc9fb4229", "origin": "request", "t": 11.074}
+{"ts": 1791062621.2235, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "77e73698e4b1499b", "origin": "client_retry", "t": 11.078}
+{"ts": 1791062621.3098, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "499675d4f6c94541", "stage": "after_debit", "t": 11.164}
+{"ts": 1791062621.3338, "inst": "payment-b", "ev": "TX_INTERRUPTED", "key": "d43b9435150843dc", "stage": "after_debit", "t": 11.188}
+{"ts": 1791062621.5611, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "0fbe4062fbaa4b4a", "origin": "request", "t": 11.416}
+{"ts": 1791062621.6164, "inst": "payment-b", "ev": "DUPLICATE_REQUEST", "key": "90449b785dd24a70", "t": 11.471}
+{"ts": 1791062621.6198, "inst": "payment-b", "ev": "TX_INTERRUPTED", "key": "90449b785dd24a70", "stage": "after_debit", "t": 11.474}
+{"ts": 1791062621.7658, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "4fdf3e2f4ae647a0", "origin": "request", "t": 11.62}
+{"ts": 1791062621.7921, "inst": "payment-b", "ev": "DUPLICATE_REQUEST", "key": "7dc89aa9a01a40fe", "t": 11.647}
+{"ts": 1791062621.798, "inst": "payment-b", "ev": "TX_INTERRUPTED", "key": "7dc89aa9a01a40fe", "stage": "after_debit", "t": 11.653}
+{"ts": 1791062621.8333, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "51bf2a24e9514867", "stage": "after_debit", "t": 11.688}
+{"ts": 1791062621.8822, "inst": "payment-b", "ev": "TX_INTERRUPTED", "key": "99c3d9ca52fa4cdf", "stage": "after_debit", "t": 11.737}
+{"ts": 1791062621.9351, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "86ff11d72e414b93", "origin": "request", "t": 11.79}
+{"ts": 1791062621.9609, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "a58b95899b1a4aed", "origin": "request", "t": 11.816}
+{"ts": 1791062622.0871, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "123e962e8c834281", "origin": "request", "t": 11.942}
+{"ts": 1791062622.1371, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "679eb1a0325645ed", "origin": "request", "t": 11.992}
+{"ts": 1791062622.182, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "7325220ebca04024", "stage": "after_debit", "t": 12.037}
+{"ts": 1791062622.2626, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "cbd417d768124cdb", "origin": "request", "t": 12.117}
+{"ts": 1791062622.317, "inst": "payment-a", "ev": "DUPLICATE_REQUEST", "key": "499675d4f6c94541", "t": 12.172}
+{"ts": 1791062622.3244, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "499675d4f6c94541", "origin": "client_retry", "t": 12.179}
+{"ts": 1791062622.3421, "inst": "payment-b", "ev": "DUPLICATE_REQUEST", "key": "d43b9435150843dc", "t": 12.197}
+{"ts": 1791062622.35, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "d43b9435150843dc", "origin": "client_retry", "t": 12.205}
+{"ts": 1791062622.4081, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "83ce733e3d894140", "stage": "after_debit", "t": 12.263}
+{"ts": 1791062622.514, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "b46e1f433a8f488c", "origin": "request", "t": 12.369}
+{"ts": 1791062622.7347, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "90449b785dd24a70", "origin": "recovery_worker", "t": 12.589}
+{"ts": 1791062622.7348, "inst": "payment-a", "ev": "RECOVERED", "key": "90449b785dd24a70", "action": "roll_forward", "t": 12.589}
+{"ts": 1791062622.7898, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "59c9ec87af124f79", "origin": "request", "t": 12.644}
+{"ts": 1791062622.792, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "7dc89aa9a01a40fe", "origin": "recovery_worker", "t": 12.647}
+{"ts": 1791062622.7921, "inst": "payment-b", "ev": "RECOVERED", "key": "7dc89aa9a01a40fe", "action": "roll_forward", "t": 12.647}
+{"ts": 1791062622.8122, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "6bd49bcadb454d3f", "origin": "request", "t": 12.667}
+{"ts": 1791062622.8359, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "5cf72799c9ad4f43", "origin": "request", "t": 12.691}
+{"ts": 1791062622.8407, "inst": "payment-b", "ev": "DUPLICATE_REQUEST", "key": "51bf2a24e9514867", "t": 12.695}
+{"ts": 1791062622.8438, "inst": "payment-b", "ev": "TX_INTERRUPTED", "key": "51bf2a24e9514867", "stage": "after_debit", "t": 12.698}
+{"ts": 1791062622.8883, "inst": "payment-a", "ev": "DUPLICATE_REQUEST", "key": "99c3d9ca52fa4cdf", "t": 12.743}
+{"ts": 1791062622.8946, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "99c3d9ca52fa4cdf", "origin": "client_retry", "t": 12.749}
+{"ts": 1791062623.0117, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "4080a291a0064c6a", "origin": "request", "t": 12.866}
+{"ts": 1791062623.1954, "inst": "payment-a", "ev": "DUPLICATE_REQUEST", "key": "7325220ebca04024", "t": 13.05}
+{"ts": 1791062623.2082, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "7325220ebca04024", "stage": "after_debit", "t": 13.063}
+{"ts": 1791062623.4143, "inst": "payment-b", "ev": "DUPLICATE_REQUEST", "key": "83ce733e3d894140", "t": 13.269}
+{"ts": 1791062623.4181, "inst": "payment-b", "ev": "TX_INTERRUPTED", "key": "83ce733e3d894140", "stage": "after_debit", "t": 13.273}
+{"ts": 1791062623.6377, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "6730fcf9b4154102", "origin": "request", "t": 13.492}
+{"ts": 1791062623.6582, "inst": "payment-b", "ev": "TX_INTERRUPTED", "key": "13394f97782e4b2c", "stage": "after_debit", "t": 13.513}
+{"ts": 1791062623.6884, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "ddd6c867ec364b55", "stage": "after_debit", "t": 13.543}
+{"ts": 1791062623.735, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "c9fe859a23a04675", "origin": "request", "t": 13.59}
+{"ts": 1791062623.9619, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "d43acfcd2f914eba", "stage": "after_debit", "t": 13.817}
+{"ts": 1791062623.9917, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "ccd895fcf0344087", "origin": "request", "t": 13.846}
+{"ts": 1791062624.2886, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "4df01cf00e4d4ee1", "origin": "request", "t": 14.143}
+{"ts": 1791062624.4073, "inst": "payment-b", "ev": "TX_INTERRUPTED", "key": "22372a6828764363", "stage": "after_debit", "t": 14.262}
+{"ts": 1791062624.5083, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "3ce868811fa541c7", "stage": "after_debit", "t": 14.363}
+{"ts": 1791062624.5333, "inst": "payment-b", "ev": "TX_INTERRUPTED", "key": "e4c492e587504fef", "stage": "after_debit", "t": 14.388}
+{"ts": 1791062624.5888, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "e3c74a82e8f14c90", "origin": "request", "t": 14.443}
+{"ts": 1791062624.6591, "inst": "payment-b", "ev": "TX_INTERRUPTED", "key": "f41b97cda221455c", "stage": "after_debit", "t": 14.514}
+{"ts": 1791062624.6642, "inst": "payment-a", "ev": "DUPLICATE_REQUEST", "key": "13394f97782e4b2c", "t": 14.519}
+{"ts": 1791062624.6706, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "13394f97782e4b2c", "origin": "client_retry", "t": 14.525}
+{"ts": 1791062624.6973, "inst": "payment-b", "ev": "DUPLICATE_REQUEST", "key": "ddd6c867ec364b55", "t": 14.552}
+{"ts": 1791062624.7113, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "ddd6c867ec364b55", "origin": "client_retry", "t": 14.566}
+{"ts": 1791062624.7127, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "c9b897bdcd524f81", "stage": "after_debit", "t": 14.567}
+{"ts": 1791062624.7445, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "51bf2a24e9514867", "origin": "recovery_worker", "t": 14.599}
+{"ts": 1791062624.7445, "inst": "payment-a", "ev": "RECOVERED", "key": "51bf2a24e9514867", "action": "roll_forward", "t": 14.599}
+{"ts": 1791062624.7507, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "7325220ebca04024", "origin": "recovery_worker", "t": 14.605}
+{"ts": 1791062624.7507, "inst": "payment-a", "ev": "RECOVERED", "key": "7325220ebca04024", "action": "roll_forward", "t": 14.605}
+{"ts": 1791062624.7559, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "83ce733e3d894140", "origin": "recovery_worker", "t": 14.611}
+{"ts": 1791062624.756, "inst": "payment-a", "ev": "RECOVERED", "key": "83ce733e3d894140", "action": "roll_forward", "t": 14.611}
+{"ts": 1791062624.9683, "inst": "payment-b", "ev": "DUPLICATE_REQUEST", "key": "d43acfcd2f914eba", "t": 14.823}
+{"ts": 1791062624.983, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "d43acfcd2f914eba", "origin": "client_retry", "t": 14.838}
+{"ts": 1791062625.0594, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "281c0bb5ee9c48f5", "stage": "after_debit", "t": 14.914}
+{"ts": 1791062625.414, "inst": "payment-b", "ev": "DUPLICATE_REQUEST", "key": "22372a6828764363", "t": 15.269}
+{"ts": 1791062625.4217, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "22372a6828764363", "origin": "client_retry", "t": 15.276}
+{"ts": 1791062625.5135, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "ccd0fba9f5e949b3", "origin": "request", "t": 15.368}
+{"ts": 1791062625.5143, "inst": "payment-b", "ev": "DUPLICATE_REQUEST", "key": "3ce868811fa541c7", "t": 15.369}
+{"ts": 1791062625.5213, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "3ce868811fa541c7", "origin": "client_retry", "t": 15.376}
+{"ts": 1791062625.541, "inst": "payment-a", "ev": "DUPLICATE_REQUEST", "key": "e4c492e587504fef", "t": 15.396}
+{"ts": 1791062625.5524, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "e4c492e587504fef", "origin": "client_retry", "t": 15.407}
+{"ts": 1791062625.5843, "inst": "payment-b", "ev": "TX_INTERRUPTED", "key": "22ff6c59b4614e52", "stage": "after_debit", "t": 15.439}
+{"ts": 1791062625.6566, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "2ca2f092d5924d54", "stage": "after_debit", "t": 15.511}
+{"ts": 1791062625.6651, "inst": "payment-b", "ev": "DUPLICATE_REQUEST", "key": "f41b97cda221455c", "t": 15.52}
+{"ts": 1791062625.6683, "inst": "payment-b", "ev": "TX_INTERRUPTED", "key": "f41b97cda221455c", "stage": "after_debit", "t": 15.523}
+{"ts": 1791062625.6853, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "eeb2492ffa934e45", "origin": "request", "t": 15.54}
+{"ts": 1791062625.7184, "inst": "payment-b", "ev": "DUPLICATE_REQUEST", "key": "c9b897bdcd524f81", "t": 15.573}
+{"ts": 1791062625.7247, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "c9b897bdcd524f81", "origin": "client_retry", "t": 15.579}
+{"ts": 1791062625.7629, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "d266ea44c0904c30", "origin": "request", "t": 15.618}
+{"ts": 1791062625.937, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "4c6fe12386184259", "origin": "request", "t": 15.792}
+{"ts": 1791062625.9625, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "04113ce6ab5841aa", "origin": "request", "t": 15.817}
+{"ts": 1791062626.0654, "inst": "payment-b", "ev": "DUPLICATE_REQUEST", "key": "281c0bb5ee9c48f5", "t": 15.92}
+{"ts": 1791062626.072, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "281c0bb5ee9c48f5", "origin": "client_retry", "t": 15.927}
+{"ts": 1791062626.0875, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "f93e22a0c897471e", "origin": "request", "t": 15.942}
+{"ts": 1791062626.1646, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "362951a4a0784971", "origin": "request", "t": 16.019}
+{"ts": 1791062626.2871, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "80e2ed5c893d487a", "origin": "request", "t": 16.142}
+{"ts": 1791062626.311, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "e297a6ef6f6d4f5a", "origin": "request", "t": 16.166}
+{"ts": 1791062626.5336, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "506d40af717d42f7", "stage": "after_debit", "t": 16.388}
+{"ts": 1791062626.5623, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "68541849bad64575", "origin": "request", "t": 16.417}
+{"ts": 1791062626.5854, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "a5e1c02d498c4313", "origin": "request", "t": 16.44}
+{"ts": 1791062626.591, "inst": "payment-b", "ev": "DUPLICATE_REQUEST", "key": "22ff6c59b4614e52", "t": 16.446}
+{"ts": 1791062626.5994, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "22ff6c59b4614e52", "origin": "client_retry", "t": 16.454}
+{"ts": 1791062626.6625, "inst": "payment-a", "ev": "DUPLICATE_REQUEST", "key": "2ca2f092d5924d54", "t": 16.517}
+{"ts": 1791062626.6657, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "2ca2f092d5924d54", "stage": "after_debit", "t": 16.52}
+{"ts": 1791062626.682, "inst": "payment-b", "ev": "TX_INTERRUPTED", "key": "009dbac384e0472d", "stage": "after_debit", "t": 16.537}
+{"ts": 1791062626.7686, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "f41b97cda221455c", "origin": "recovery_worker", "t": 16.623}
+{"ts": 1791062626.7687, "inst": "payment-a", "ev": "RECOVERED", "key": "f41b97cda221455c", "action": "roll_forward", "t": 16.623}
+{"ts": 1791062626.8888, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "26d02032a0554a75", "stage": "after_debit", "t": 16.743}
+{"ts": 1791062627.0122, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "d6291f5600294e9d", "origin": "request", "t": 16.867}
+{"ts": 1791062627.0833, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "23821fbbac9a4a88", "stage": "after_debit", "t": 16.938}
+{"ts": 1791062627.1145, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "6ba2d6fa9dee4a5a", "origin": "request", "t": 16.969}
+{"ts": 1791062627.3123, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "827f2f1e0ba742de", "origin": "request", "t": 17.167}
+{"ts": 1791062627.3369, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "9165ea42581a4800", "origin": "request", "t": 17.192}
+{"ts": 1791062627.5412, "inst": "payment-a", "ev": "DUPLICATE_REQUEST", "key": "506d40af717d42f7", "t": 17.396}
+{"ts": 1791062627.5494, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "506d40af717d42f7", "origin": "client_retry", "t": 17.404}
+{"ts": 1791062627.5877, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "b8066785ec624bef", "origin": "request", "t": 17.442}
+{"ts": 1791062627.6115, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "de82deaac9aa4de6", "origin": "request", "t": 17.466}
+{"ts": 1791062627.6891, "inst": "payment-b", "ev": "DUPLICATE_REQUEST", "key": "009dbac384e0472d", "t": 17.544}
+{"ts": 1791062627.7034, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "009dbac384e0472d", "origin": "client_retry", "t": 17.558}
+{"ts": 1791062627.7407, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "2f53a891e851447b", "origin": "request", "t": 17.595}
+{"ts": 1791062627.7797, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "2ca2f092d5924d54", "origin": "recovery_worker", "t": 17.634}
+{"ts": 1791062627.7797, "inst": "payment-a", "ev": "RECOVERED", "key": "2ca2f092d5924d54", "action": "roll_forward", "t": 17.634}
+{"ts": 1791062627.8956, "inst": "payment-b", "ev": "DUPLICATE_REQUEST", "key": "26d02032a0554a75", "t": 17.75}
+{"ts": 1791062627.906, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "26d02032a0554a75", "origin": "client_retry", "t": 17.761}
+{"ts": 1791062627.9367, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "2e57d772ed724e86", "origin": "request", "t": 17.791}
+{"ts": 1791062628.012, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "88d7010631604db0", "origin": "request", "t": 17.867}
+{"ts": 1791062628.0855, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "c2b0a78869264a19", "origin": "request", "t": 17.94}
+{"ts": 1791062628.0904, "inst": "payment-b", "ev": "DUPLICATE_REQUEST", "key": "23821fbbac9a4a88", "t": 17.945}
+{"ts": 1791062628.0972, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "23821fbbac9a4a88", "origin": "client_retry", "t": 17.952}
+{"ts": 1791062628.263, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "ba2d1c864af14435", "origin": "request", "t": 18.118}
+{"ts": 1791062628.3622, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "223a182eb1db4de5", "origin": "request", "t": 18.217}
+{"ts": 1791062628.7266, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "e23efdeae94e4588", "origin": "request", "t": 18.581}
+{"ts": 1791062628.7881, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "ed9d5634bc424333", "origin": "request", "t": 18.643}
+{"ts": 1791062628.9371, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "2cd7a6ceaf714ce1", "origin": "request", "t": 18.792}
+{"ts": 1791062629.0335, "inst": "payment-b", "ev": "TX_INTERRUPTED", "key": "c4c3efe7eb9b4044", "stage": "after_debit", "t": 18.888}
+{"ts": 1791062629.1624, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "8d5bab23fd7c4a5f", "origin": "request", "t": 19.017}
+{"ts": 1791062629.234, "inst": "payment-b", "ev": "TX_INTERRUPTED", "key": "3ffacc5a98824153", "stage": "after_debit", "t": 19.089}
+{"ts": 1791062629.4636, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "a0b61bdd218a4a75", "stage": "after_debit", "t": 19.318}
+{"ts": 1791062629.4889, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "4d0538dd97184148", "origin": "request", "t": 19.344}
+{"ts": 1791062629.6341, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "1a924e5f352f4eaf", "stage": "after_debit", "t": 19.489}
+{"ts": 1791062629.7474, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "23bb334602a04239", "origin": "request", "t": 19.602}
+{"ts": 1791062629.8356, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "0112920b99e54d79", "stage": "after_debit", "t": 19.69}
+{"ts": 1791062629.8632, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "05b906274de74ab8", "origin": "request", "t": 19.718}
+{"ts": 1791062629.9095, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "b8d3499b2efa44e5", "stage": "after_debit", "t": 19.764}
+{"ts": 1791062629.9644, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "4858ccef568241d3", "origin": "request", "t": 19.819}
+{"ts": 1791062630.0401, "inst": "payment-a", "ev": "DUPLICATE_REQUEST", "key": "c4c3efe7eb9b4044", "t": 19.895}
+{"ts": 1791062630.048, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "c4c3efe7eb9b4044", "origin": "client_retry", "t": 19.903}
+{"ts": 1791062630.2439, "inst": "payment-b", "ev": "DUPLICATE_REQUEST", "key": "3ffacc5a98824153", "t": 20.099}
+{"ts": 1791062630.2542, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "3ffacc5a98824153", "origin": "client_retry", "t": 20.109}
+{"ts": 1791062630.4717, "inst": "payment-a", "ev": "DUPLICATE_REQUEST", "key": "a0b61bdd218a4a75", "t": 20.326}
+{"ts": 1791062630.4814, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "a0b61bdd218a4a75", "origin": "client_retry", "t": 20.336}
+{"ts": 1791062630.4915, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "c5bdec29bb034f28", "origin": "request", "t": 20.346}
+{"ts": 1791062630.6347, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "4ee5c9dc656b4358", "stage": "after_debit", "t": 20.489}
+{"ts": 1791062630.6419, "inst": "payment-b", "ev": "DUPLICATE_REQUEST", "key": "1a924e5f352f4eaf", "t": 20.497}
+{"ts": 1791062630.6517, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "1a924e5f352f4eaf", "origin": "client_retry", "t": 20.506}
+{"ts": 1791062630.6637, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "05cc68a40f8d44f1", "origin": "request", "t": 20.518}
+{"ts": 1791062630.7598, "inst": "payment-b", "ev": "TX_INTERRUPTED", "key": "5fcbcdecaae34f02", "stage": "after_debit", "t": 20.614}
+{"ts": 1791062630.8423, "inst": "payment-a", "ev": "DUPLICATE_REQUEST", "key": "0112920b99e54d79", "t": 20.697}
+{"ts": 1791062630.8514, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "0112920b99e54d79", "origin": "client_retry", "t": 20.706}
+{"ts": 1791062630.9163, "inst": "payment-b", "ev": "DUPLICATE_REQUEST", "key": "b8d3499b2efa44e5", "t": 20.771}
+{"ts": 1791062630.9249, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "b8d3499b2efa44e5", "origin": "client_retry", "t": 20.78}
+{"ts": 1791062630.9698, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "243ca14a72f14982", "origin": "request", "t": 20.824}
+{"ts": 1791062631.0115, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "b23d2cb108384cc7", "origin": "request", "t": 20.866}
+{"ts": 1791062631.0598, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "d66c8e571f254044", "stage": "after_debit", "t": 20.914}
+{"ts": 1791062631.3394, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "c94a10004d70431f", "origin": "request", "t": 21.194}
+{"ts": 1791062631.6427, "inst": "payment-a", "ev": "DUPLICATE_REQUEST", "key": "4ee5c9dc656b4358", "t": 21.497}
+{"ts": 1791062631.6518, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "4ee5c9dc656b4358", "origin": "client_retry", "t": 21.506}
+{"ts": 1791062631.7672, "inst": "payment-b", "ev": "DUPLICATE_REQUEST", "key": "5fcbcdecaae34f02", "t": 21.622}
+{"ts": 1791062631.7769, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "5fcbcdecaae34f02", "origin": "client_retry", "t": 21.632}
+{"ts": 1791062631.7859, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "747f88b3a40a47eb", "stage": "after_debit", "t": 21.641}
+{"ts": 1791062631.8074, "inst": "payment-b", "ev": "TX_INTERRUPTED", "key": "0376210815974e19", "stage": "after_debit", "t": 21.662}
+{"ts": 1791062632.0678, "inst": "payment-b", "ev": "DUPLICATE_REQUEST", "key": "d66c8e571f254044", "t": 21.922}
+{"ts": 1791062632.0803, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "84ce193a5fad4662", "origin": "request", "t": 21.935}
+{"ts": 1791062632.0824, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "d66c8e571f254044", "origin": "client_retry", "t": 21.937}
+{"ts": 1791062632.2662, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "e2b0faa2278a4677", "origin": "request", "t": 22.121}
+{"ts": 1791062632.4381, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "853e7ff171cc4789", "origin": "request", "t": 22.293}
+{"ts": 1791062632.5141, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "e1d45374abf84bd6", "origin": "request", "t": 22.369}
+{"ts": 1791062632.5584, "inst": "payment-b", "ev": "TX_INTERRUPTED", "key": "aa4aa7bb84404cf7", "stage": "after_debit", "t": 22.413}
+{"ts": 1791062632.6426, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "064b903e0d9b4680", "origin": "request", "t": 22.497}
+{"ts": 1791062632.7938, "inst": "payment-b", "ev": "DUPLICATE_REQUEST", "key": "747f88b3a40a47eb", "t": 22.648}
+{"ts": 1791062632.7981, "inst": "payment-b", "ev": "TX_INTERRUPTED", "key": "747f88b3a40a47eb", "stage": "after_debit", "t": 22.653}
+{"ts": 1791062632.8138, "inst": "payment-a", "ev": "DUPLICATE_REQUEST", "key": "0376210815974e19", "t": 22.668}
+{"ts": 1791062632.8213, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "0376210815974e19", "origin": "client_retry", "t": 22.676}
+{"ts": 1791062632.8418, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "fa56527eb8724d57", "origin": "request", "t": 22.696}
+{"ts": 1791062632.9094, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "a746bc29fd734391", "stage": "after_debit", "t": 22.764}
+{"ts": 1791062632.9905, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "ffb7baea13f04fec", "origin": "request", "t": 22.845}
+{"ts": 1791062633.1643, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "503d0e2dcfcb4745", "origin": "request", "t": 23.019}
+{"ts": 1791062633.4127, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "e8d004ee59f84cd3", "origin": "request", "t": 23.267}
+{"ts": 1791062633.4641, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "bd4f89cd756c4989", "origin": "request", "t": 23.319}
+{"ts": 1791062633.5087, "inst": "payment-b", "ev": "TX_INTERRUPTED", "key": "781b4ba9599444c8", "stage": "after_debit", "t": 23.363}
+{"ts": 1791062633.5345, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "671f99f71de1435b", "stage": "after_debit", "t": 23.389}
+{"ts": 1791062633.5647, "inst": "payment-b", "ev": "DUPLICATE_REQUEST", "key": "aa4aa7bb84404cf7", "t": 23.419}
+{"ts": 1791062633.5736, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "aa4aa7bb84404cf7", "origin": "client_retry", "t": 23.428}
+{"ts": 1791062633.5883, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "0cc511d890a847c2", "origin": "request", "t": 23.443}
+{"ts": 1791062633.7381, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "fa84c4f78396421a", "origin": "request", "t": 23.593}
+{"ts": 1791062633.8055, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "747f88b3a40a47eb", "origin": "recovery_worker", "t": 23.66}
+{"ts": 1791062633.8056, "inst": "payment-a", "ev": "RECOVERED", "key": "747f88b3a40a47eb", "action": "roll_forward", "t": 23.66}
+{"ts": 1791062633.8399, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "18c60ed9cc3949f2", "origin": "request", "t": 23.695}
+{"ts": 1791062633.9292, "inst": "payment-b", "ev": "DUPLICATE_REQUEST", "key": "a746bc29fd734391", "t": 23.784}
+{"ts": 1791062633.9402, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "a746bc29fd734391", "origin": "client_retry", "t": 23.795}
+{"ts": 1791062634.0847, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "7a9e4fe07be44a70", "stage": "after_debit", "t": 23.939}
+{"ts": 1791062634.313, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "057631b095cc4b2e", "origin": "request", "t": 24.168}
+{"ts": 1791062634.4101, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "dc8a827927a74873", "stage": "after_debit", "t": 24.265}
+{"ts": 1791062634.5106, "inst": "payment-b", "ev": "TX_INTERRUPTED", "key": "ee0e3f0612dc44f0", "stage": "after_debit", "t": 24.365}
+{"ts": 1791062634.5154, "inst": "payment-a", "ev": "DUPLICATE_REQUEST", "key": "781b4ba9599444c8", "t": 24.37}
+{"ts": 1791062634.5253, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "781b4ba9599444c8", "origin": "client_retry", "t": 24.38}
+{"ts": 1791062634.5379, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "52fc74d06e244af4", "origin": "request", "t": 24.393}
+{"ts": 1791062634.5412, "inst": "payment-a", "ev": "DUPLICATE_REQUEST", "key": "671f99f71de1435b", "t": 24.396}
+{"ts": 1791062634.5442, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "671f99f71de1435b", "stage": "after_debit", "t": 24.399}
+{"ts": 1791062634.5643, "inst": "payment-b", "ev": "TX_INTERRUPTED", "key": "0e1781d433854349", "stage": "after_debit", "t": 24.419}
+{"ts": 1791062634.6103, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "7019711893b542dd", "origin": "request", "t": 24.465}
+{"ts": 1791062634.6862, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "39e6f5cb00864a9a", "origin": "request", "t": 24.541}
+{"ts": 1791062634.787, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "a62b99796b7c491d", "origin": "request", "t": 24.642}
+{"ts": 1791062634.8636, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "721d21e95b3c417c", "origin": "request", "t": 24.718}
+{"ts": 1791062635.0887, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "0a7fc9b889404f04", "origin": "request", "t": 24.943}
+{"ts": 1791062635.0911, "inst": "payment-b", "ev": "DUPLICATE_REQUEST", "key": "7a9e4fe07be44a70", "t": 24.946}
+{"ts": 1791062635.0942, "inst": "payment-b", "ev": "TX_INTERRUPTED", "key": "7a9e4fe07be44a70", "stage": "after_debit", "t": 24.949}
+{"ts": 1791062635.1562, "inst": "payment-a", "ev": "CHAOS_SET", "t": 25.011}
+{"ts": 1791062635.1584, "inst": "payment-b", "ev": "CHAOS_SET", "t": 25.013}
+{"ts": 1791062635.2633, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "dc4ba8fde0104179", "origin": "request", "t": 25.118}
+{"ts": 1791062635.4125, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "78a2ea8aa24448bb", "origin": "request", "t": 25.267}
+{"ts": 1791062635.4181, "inst": "payment-a", "ev": "DUPLICATE_REQUEST", "key": "dc8a827927a74873", "t": 25.273}
+{"ts": 1791062635.4276, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "dc8a827927a74873", "origin": "client_retry", "t": 25.282}
+{"ts": 1791062635.5184, "inst": "payment-b", "ev": "DUPLICATE_REQUEST", "key": "ee0e3f0612dc44f0", "t": 25.373}
+{"ts": 1791062635.5266, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "ee0e3f0612dc44f0", "origin": "client_retry", "t": 25.381}
+{"ts": 1791062635.5612, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "b2ab82b9f5574467", "origin": "request", "t": 25.416}
+{"ts": 1791062635.5704, "inst": "payment-b", "ev": "DUPLICATE_REQUEST", "key": "0e1781d433854349", "t": 25.425}
+{"ts": 1791062635.5813, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "0e1781d433854349", "origin": "client_retry", "t": 25.436}
+{"ts": 1791062635.5863, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "5060dd16013442f8", "origin": "request", "t": 25.441}
+{"ts": 1791062635.8141, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "607e022368d145d1", "origin": "request", "t": 25.669}
+{"ts": 1791062635.8162, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "671f99f71de1435b", "origin": "recovery_worker", "t": 25.671}
+{"ts": 1791062635.8162, "inst": "payment-a", "ev": "RECOVERED", "key": "671f99f71de1435b", "action": "roll_forward", "t": 25.671}
+{"ts": 1791062635.9377, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "94c3610ad08c46c4", "origin": "request", "t": 25.792}
+{"ts": 1791062636.0868, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "8ae8ab17ab8c4cad", "origin": "request", "t": 25.941}
+{"ts": 1791062636.2154, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "30ef136debfc452c", "origin": "request", "t": 26.07}
+{"ts": 1791062636.236, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "b698251d577344c4", "origin": "request", "t": 26.091}
+{"ts": 1791062636.2865, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "53f90e8ad80442fa", "origin": "request", "t": 26.141}
+{"ts": 1791062636.3369, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "fb9a1f9460db4aee", "origin": "request", "t": 26.192}
+{"ts": 1791062636.4676, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "fee9b497909c4d9d", "origin": "request", "t": 26.322}
+{"ts": 1791062636.5044, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "efc58bdb582947c2", "origin": "request", "t": 26.359}
+{"ts": 1791062636.563, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "59bc9141ec8b4c6a", "origin": "request", "t": 26.418}
+{"ts": 1791062636.6622, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "6592ac2511cd4156", "origin": "request", "t": 26.517}
+{"ts": 1791062636.8133, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "e6ad66cfa80f49b0", "origin": "request", "t": 26.668}
+{"ts": 1791062636.8251, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "7a9e4fe07be44a70", "origin": "recovery_worker", "t": 26.68}
+{"ts": 1791062636.8251, "inst": "payment-a", "ev": "RECOVERED", "key": "7a9e4fe07be44a70", "action": "roll_forward", "t": 26.68}
+{"ts": 1791062636.9367, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "22196b2fd0a44b29", "origin": "request", "t": 26.791}
+{"ts": 1791062637.1374, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "434e8f3a6c964b45", "origin": "request", "t": 26.992}
+{"ts": 1791062637.1875, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "7ede46aa8024426f", "origin": "request", "t": 27.042}
+{"ts": 1791062637.3654, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "0e3fcec4b0144861", "origin": "request", "t": 27.22}
+{"ts": 1791062637.3857, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "fd0923e2987c4ab9", "origin": "request", "t": 27.24}
+{"ts": 1791062637.638, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "d0dafe17c0554305", "origin": "request", "t": 27.493}
+{"ts": 1791062637.9969, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "1e64b8a16ff64a00", "origin": "request", "t": 27.852}
+{"ts": 1791062638.4725, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "a53c3881719f4c3a", "origin": "request", "t": 28.327}
+{"ts": 1791062638.6634, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "08d082fcda9a47cd", "origin": "request", "t": 28.518}
+{"ts": 1791062638.6867, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "99a9bd4ff1a840ab", "origin": "request", "t": 28.541}
+{"ts": 1791062638.8148, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "d6e15c214894453e", "origin": "request", "t": 28.669}
+{"ts": 1791062638.9274, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "ab5932770c3b443e", "origin": "request", "t": 28.782}
+{"ts": 1791062639.0378, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "071cf32ae51047f1", "origin": "request", "t": 28.892}
+{"ts": 1791062639.1194, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "2ed4c1b9a44d4df0", "origin": "request", "t": 28.974}
+{"ts": 1791062639.2217, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "5c45cf33b93141e7", "origin": "request", "t": 29.076}
+{"ts": 1791062639.6639, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "3186df81bfdf4e03", "origin": "request", "t": 29.519}
+{"ts": 1791062639.889, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "5c6d04fa25354d19", "origin": "request", "t": 29.744}
+{"ts": 1791062640.0124, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "61c9d6adfbf84ab4", "origin": "request", "t": 29.867}
+{"ts": 1791062640.0618, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "fb5b6b4e180040e5", "origin": "request", "t": 29.916}
+{"ts": 1791062640.1367, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "fc03148b6dcc4836", "origin": "request", "t": 29.991}
+{"ts": 1791062640.1614, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "1e68785eef344118", "origin": "request", "t": 30.016}
+{"ts": 1791062640.2187, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "0cbae8e271ad4242", "origin": "request", "t": 30.073}
+{"ts": 1791062640.2598, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "cb971e9cc3bb4320", "origin": "request", "t": 30.114}
+{"ts": 1791062640.3351, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "f3b9e98d1a6244b2", "origin": "request", "t": 30.19}
+{"ts": 1791062640.3864, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "1112a6ed1e804bfc", "origin": "request", "t": 30.241}
+{"ts": 1791062640.4357, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "bbba395b65134638", "origin": "request", "t": 30.29}
+{"ts": 1791062640.768, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "e5658945d3a14ff1", "origin": "request", "t": 30.623}
+{"ts": 1791062640.7876, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "117793f6117c4e95", "origin": "request", "t": 30.642}
+{"ts": 1791062640.8352, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "6de8e0410db24d63", "origin": "request", "t": 30.69}
+{"ts": 1791062640.8864, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "cc96f6e11f344ebe", "origin": "request", "t": 30.741}
+{"ts": 1791062641.4878, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "74312a272a4447f2", "origin": "request", "t": 31.342}
+{"ts": 1791062641.5116, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "3a369820a5624ede", "origin": "request", "t": 31.366}
+{"ts": 1791062641.6377, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "0c8a4122b7074558", "origin": "request", "t": 31.492}
+{"ts": 1791062641.6609, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "ef77daaf7bab4be8", "origin": "request", "t": 31.516}
+{"ts": 1791062641.7261, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "3f5e4820d89548f5", "origin": "request", "t": 31.581}
+{"ts": 1791062641.9877, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "c134e8e659314287", "origin": "request", "t": 31.842}
+{"ts": 1791062642.1641, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "cfbbfe82a2754ef6", "origin": "request", "t": 32.019}
+{"ts": 1791062642.2207, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "4791a43ab1f24a47", "origin": "request", "t": 32.075}
+{"ts": 1791062642.2369, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "0ffd24c03e274ef9", "origin": "request", "t": 32.092}
+{"ts": 1791062642.3631, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "6fd753e0e4644ca4", "origin": "request", "t": 32.218}
+{"ts": 1791062642.3847, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "10f7d9f1614648c5", "origin": "request", "t": 32.239}
+{"ts": 1791062642.588, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "d9cf17a7e4e54705", "origin": "request", "t": 32.443}
+{"ts": 1791062642.6464, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "795d6b69ecb3422a", "origin": "request", "t": 32.501}
+{"ts": 1791062642.8384, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "3b8c9cb7d80c428d", "origin": "request", "t": 32.693}
+{"ts": 1791062642.9693, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "9af188b5040d4111", "origin": "request", "t": 32.824}
+{"ts": 1791062642.9854, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "b196c3d28e424d05", "origin": "request", "t": 32.84}
+{"ts": 1791062643.0857, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "3d580176198d4826", "origin": "request", "t": 32.94}
+{"ts": 1791062643.2157, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "819a27b1b5d84fd8", "origin": "request", "t": 33.07}
+{"ts": 1791062643.4684, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "34ff777185464ac7", "origin": "request", "t": 33.323}
+{"ts": 1791062643.6363, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "2c853cd993ab49f6", "origin": "request", "t": 33.491}
+{"ts": 1791062643.762, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "9848c8291a494511", "origin": "request", "t": 33.617}
+{"ts": 1791062643.8118, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "5e5e11fa619a4f22", "origin": "request", "t": 33.666}
+{"ts": 1791062643.9114, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "a475319d12ba479c", "origin": "request", "t": 33.766}
+{"ts": 1791062644.0131, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "a08a0d5aa71b449a", "origin": "request", "t": 33.868}
+{"ts": 1791062644.1619, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "516a4129ae6b4b78", "origin": "request", "t": 34.017}
+{"ts": 1791062644.2377, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "0899c9cbf32c4025", "origin": "request", "t": 34.092}
+{"ts": 1791062644.4703, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "8597bdd0158844f6", "origin": "request", "t": 34.325}
+{"ts": 1791062644.5405, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "623fe8b8429349b6", "origin": "request", "t": 34.395}
+{"ts": 1791062644.5638, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "368c0f84b26f4caa", "origin": "request", "t": 34.418}
+{"ts": 1791062644.7229, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "74a87edf57d24678", "origin": "request", "t": 34.578}
+{"ts": 1791062644.8179, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "0d2ccf9121104eed", "origin": "request", "t": 34.673}
+{"ts": 1791062644.8347, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "5f0354fd1e04448e", "origin": "request", "t": 34.689}
+{"ts": 1791062644.9358, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "6d1aafb010a14000", "origin": "request", "t": 34.79}
+{"ts": 1791062644.9907, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "c4b545ce8e364c0a", "origin": "request", "t": 34.845}
+{"ts": 1791062645.0374, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "f123519cce4e40a9", "origin": "request", "t": 34.892}
+{"ts": 1791062645.2885, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "8a4cac62326241dd", "origin": "request", "t": 35.143}
+{"ts": 1791062645.4192, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "8afce46426274a65", "origin": "request", "t": 35.274}
+{"ts": 1791062645.5376, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "97ec3d273cc54446", "origin": "request", "t": 35.392}
+{"ts": 1791062645.5899, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "1c23de7bf79242cf", "origin": "request", "t": 35.445}
+{"ts": 1791062645.7193, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "16cd33a6313147eb", "origin": "request", "t": 35.574}
+{"ts": 1791062645.7888, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "ac8e5611357d4f93", "origin": "request", "t": 35.643}
+{"ts": 1791062645.8114, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "e5ba59cf2ced4437", "origin": "request", "t": 35.666}
+{"ts": 1791062646.0899, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "f6eb20d8ed9343a7", "origin": "request", "t": 35.945}
+{"ts": 1791062646.1116, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "957c769907f94ac3", "origin": "request", "t": 35.966}
+{"ts": 1791062646.138, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "a0e603c8e24c41cd", "origin": "request", "t": 35.993}
+{"ts": 1791062646.4427, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "d4e31ad40a534ebc", "origin": "request", "t": 36.297}
+{"ts": 1791062646.5376, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "94bd159107594bf1", "origin": "request", "t": 36.392}
+{"ts": 1791062646.6132, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "67768681227d481d", "origin": "request", "t": 36.468}
+{"ts": 1791062646.6888, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "566ef8c6816747d8", "origin": "request", "t": 36.543}
+{"ts": 1791062646.7886, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "62af23e167d843de", "origin": "request", "t": 36.643}
+{"ts": 1791062646.8109, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "d9d539500c174b26", "origin": "request", "t": 36.666}
+{"ts": 1791062647.013, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "9294198e0b0d4b21", "origin": "request", "t": 36.868}
+{"ts": 1791062647.4726, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "a63a53b3634c4f46", "origin": "request", "t": 37.327}
+{"ts": 1791062647.6379, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "ddf604b05fb14026", "origin": "request", "t": 37.493}
+{"ts": 1791062647.9737, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "6b9c6a875ade44c8", "origin": "request", "t": 37.828}
+{"ts": 1791062648.5408, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "b0a3120f99f44aca", "origin": "request", "t": 38.395}
+{"ts": 1791062648.562, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "0d2f98085abd4298", "origin": "request", "t": 38.417}
+{"ts": 1791062648.9177, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "50b47c04a1e1443a", "origin": "request", "t": 38.772}
+{"ts": 1791062648.9374, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "a03efbd0d6514b53", "origin": "request", "t": 38.792}
+{"ts": 1791062649.1675, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "2db2f7d4ac6447c7", "origin": "request", "t": 39.022}
+{"ts": 1791062649.2131, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "5bf5ea6540574f22", "origin": "request", "t": 39.068}
+{"ts": 1791062649.3145, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "68e9cd8c2845402d", "origin": "request", "t": 39.169}
+{"ts": 1791062649.3384, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "740a79d7668546d1", "origin": "request", "t": 39.193}
+{"ts": 1791062649.5379, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "7efee6d64a154a09", "origin": "request", "t": 39.393}
+{"ts": 1791062649.7171, "inst": "payment-b", "ev": "PAYMENT_COMPLETED", "key": "766a78ad5f964197", "origin": "request", "t": 39.572}
+{"ts": 1791062649.7891, "inst": "payment-a", "ev": "PAYMENT_COMPLETED", "key": "36e9c6e556084ac5", "origin": "request", "t": 39.644}

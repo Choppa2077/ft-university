@@ -1,0 +1,84 @@
+{
+  "experiment": "E4",
+  "mode": "ft",
+  "title": "Node A failure (20 s)",
+  "t_inject": 10.008,
+  "requests": 1800,
+  "ok": 1800,
+  "failed": 0,
+  "degraded": 0,
+  "recovered_by_retry": 1,
+  "success_rate": 1.0,
+  "latency_p50": 0.009,
+  "latency_p95": 0.038,
+  "latency_p99": 0.38,
+  "failed_by_op": {
+    "enroll": 0,
+    "pay": 0,
+    "student": 0,
+    "timetable": 0,
+    "transcript": 0
+  },
+  "timeouts": 0,
+  "detection_time": 0.436,
+  "redundancy_restored_after": 21.963,
+  "client_visible_recovery": 0.0,
+  "first_failure_after": null,
+  "event_counts": {
+    "DB_FAILOVER": 1,
+    "PROMOTED": 1,
+    "UPSTREAM_DOWN": 4,
+    "UPSTREAM_UP": 4,
+    "RESTART": 5,
+    "NODE_DOWN": 1,
+    "NODE_UP": 1,
+    "RESYNCED": 1,
+    "REPLICA_IN_SYNC": 1
+  },
+  "marks": {
+    "inject": {
+      "t": 10.008,
+      "info": {
+        "node": "A",
+        "killed": [
+          "db-a",
+          "student-a",
+          "payment-a",
+          "records-a",
+          "timetable-a"
+        ]
+      }
+    }
+  },
+  "consistency": {
+    "payments_completed": 388,
+    "payments_failed": 0,
+    "bank_debits": 388,
+    "refunds": 0,
+    "orphan_debits": 0,
+    "orphan_amount": 0,
+    "double_charged_intents": 0,
+    "ledger_mismatch": 0,
+    "stuck_payments": 0,
+    "lost_acked_payments": 0,
+    "lost_acked_enrollments": 0,
+    "replica": {
+      "identical": true,
+      "primary": "db-b",
+      "lsn": 1043,
+      "primary_rows": {
+        "paid": 388,
+        "ledger_sum": 85850000.0,
+        "enrollments": 265,
+        "payments": 388
+      },
+      "replica_rows": {
+        "paid": 388,
+        "ledger_sum": 85850000.0,
+        "enrollments": 265,
+        "payments": 388
+      }
+    },
+    "consistent": true
+  }
+}

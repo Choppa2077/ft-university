@@ -1,0 +1,81 @@
+{"ts": 1791062541.1254, "inst": "supervisor", "ev": "SPAWN", "name": "bank", "pid": 1999, "t": -6.025}
+{"ts": 1791062541.5979, "inst": "bank", "ev": "STARTED", "pid": 1999, "mode": "baseline", "t": -5.553}
+{"ts": 1791062541.8159, "inst": "supervisor", "ev": "SPAWN", "name": "db-a", "pid": 2008, "t": -5.335}
+{"ts": 1791062542.295, "inst": "db-a", "ev": "SEEDED", "students": 300, "t": -4.855}
+{"ts": 1791062542.2951, "inst": "db-a", "ev": "ROLE", "role": "primary", "epoch": 1, "lsn": 0, "t": -4.855}
+{"ts": 1791062542.2951, "inst": "db-a", "ev": "STARTED", "pid": 2008, "mode": "baseline", "t": -4.855}
+{"ts": 1791062542.9446, "inst": "supervisor", "ev": "SPAWN", "name": "student-a", "pid": 2013, "t": -4.206}
+{"ts": 1791062542.9516, "inst": "supervisor", "ev": "SPAWN", "name": "payment-a", "pid": 2014, "t": -4.199}
+{"ts": 1791062542.9553, "inst": "supervisor", "ev": "SPAWN", "name": "records-a", "pid": 2015, "t": -4.195}
+{"ts": 1791062542.9636, "inst": "supervisor", "ev": "SPAWN", "name": "timetable-a", "pid": 2016, "t": -4.187}
+{"ts": 1791062542.9713, "inst": "supervisor", "ev": "SPAWN", "name": "gateway", "pid": 2017, "t": -4.179}
+{"ts": 1791062542.9797, "inst": "supervisor", "ev": "SPAWN", "name": "monitor", "pid": 2018, "t": -4.171}
+{"ts": 1791062544.4034, "inst": "student-a", "ev": "STARTED", "pid": 2013, "mode": "baseline", "t": -2.747}
+{"ts": 1791062544.431, "inst": "payment-a", "ev": "STARTED", "pid": 2014, "mode": "baseline", "t": -2.719}
+{"ts": 1791062544.4324, "inst": "records-a", "ev": "STARTED", "pid": 2015, "mode": "baseline", "t": -2.718}
+{"ts": 1791062544.4456, "inst": "monitor", "ev": "STARTED", "pid": 2018, "mode": "baseline", "t": -2.705}
+{"ts": 1791062544.4849, "inst": "timetable-a", "ev": "STARTED", "pid": 2016, "mode": "baseline", "t": -2.666}
+{"ts": 1791062544.4996, "inst": "gateway", "ev": "STARTED", "pid": 2017, "mode": "baseline", "t": -2.651}
+{"ts": 1791062544.5028, "inst": "monitor", "ev": "FIRST_SEEN", "target": "bank", "kind": "bank", "node": "ext", "down_for": null, "t": -2.648}
+{"ts": 1791062544.5029, "inst": "monitor", "ev": "FIRST_SEEN", "target": "db-a", "kind": "db", "node": "A", "down_for": null, "t": -2.648}
+{"ts": 1791062544.5029, "inst": "monitor", "ev": "FIRST_SEEN", "target": "student-a", "kind": "student", "node": "A", "down_for": null, "t": -2.648}
+{"ts": 1791062544.5029, "inst": "monitor", "ev": "FIRST_SEEN", "target": "payment-a", "kind": "payment", "node": "A", "down_for": null, "t": -2.648}
+{"ts": 1791062544.5029, "inst": "monitor", "ev": "FIRST_SEEN", "target": "records-a", "kind": "records", "node": "A", "down_for": null, "t": -2.648}
+{"ts": 1791062544.7093, "inst": "monitor", "ev": "FIRST_SEEN", "target": "gateway", "kind": "gateway", "node": "ctl", "down_for": 0.25, "t": -2.441}
+{"ts": 1791062544.7094, "inst": "monitor", "ev": "FIRST_SEEN", "target": "timetable-a", "kind": "timetable", "node": "A", "down_for": 0.25, "t": -2.441}
+{"ts": 1791062544.9212, "inst": "supervisor", "ev": "CLUSTER_READY", "mode": "baseline", "t": -2.229}
+{"ts": 1791062557.154, "inst": "payment-a", "ev": "CHAOS_SET", "interrupt_rate": 0.3, "interrupt_at": "after_debit", "t": 10.004}
+{"ts": 1791062557.4319, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "p-06de532096bf44b0a4a0", "stage": "after_debit", "t": 10.281}
+{"ts": 1791062557.6064, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "p-affc6e9395364c29865c", "stage": "after_debit", "t": 10.456}
+{"ts": 1791062557.7827, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "p-b99e2434381041de961e", "stage": "after_debit", "t": 10.632}
+{"ts": 1791062557.9816, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "p-a1667709fbe449509a98", "stage": "after_debit", "t": 10.831}
+{"ts": 1791062558.3079, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "p-f9e78b71d2414e55b3c6", "stage": "after_debit", "t": 11.157}
+{"ts": 1791062558.3315, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "p-e180b68064cf423a83a0", "stage": "after_debit", "t": 11.181}
+{"ts": 1791062558.5569, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "p-f705ae56cd9c498aaab6", "stage": "after_debit", "t": 11.406}
+{"ts": 1791062559.0833, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "p-ca31c9c589af4ec4808d", "stage": "after_debit", "t": 11.933}
+{"ts": 1791062559.1814, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "p-f6e7a00305914846b9dc", "stage": "after_debit", "t": 12.031}
+{"ts": 1791062559.3391, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "p-662f8a1eab7941d5b022", "stage": "after_debit", "t": 12.189}
+{"ts": 1791062559.8065, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "p-fe2db0df316e425daf44", "stage": "after_debit", "t": 12.656}
+{"ts": 1791062560.0905, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "p-c8f3fd6843f34d66b4ee", "stage": "after_debit", "t": 12.94}
+{"ts": 1791062560.6564, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "p-ffdc26c4a7184e37aed4", "stage": "after_debit", "t": 13.506}
+{"ts": 1791062560.6822, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "p-3a05d2b97b624ba5874a", "stage": "after_debit", "t": 13.532}
+{"ts": 1791062560.7314, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "p-108b2a7bf1b542f3b5d3", "stage": "after_debit", "t": 13.581}
+{"ts": 1791062560.9818, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "p-9eb0ea9f4c024e7ebfd0", "stage": "after_debit", "t": 13.831}
+{"ts": 1791062561.5071, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "p-23c84b9e6779464fbb5f", "stage": "after_debit", "t": 14.357}
+{"ts": 1791062561.7072, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "p-a823c915a8b04762a2cd", "stage": "after_debit", "t": 14.557}
+{"ts": 1791062562.5152, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "p-1d5374d5abc848a5a72a", "stage": "after_debit", "t": 15.365}
+{"ts": 1791062562.6573, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "p-e8e56d20bb294ccc8637", "stage": "after_debit", "t": 15.507}
+{"ts": 1791062563.556, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "p-f2fe86786a3e4d528e44", "stage": "after_debit", "t": 16.406}
+{"ts": 1791062563.8826, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "p-047d486be1b949b5ad8e", "stage": "after_debit", "t": 16.732}
+{"ts": 1791062564.1062, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "p-b7c66d1b92bc489fbcc4", "stage": "after_debit", "t": 16.956}
+{"ts": 1791062564.5629, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "p-bc4af749c89d4ac1977b", "stage": "after_debit", "t": 17.412}
+{"ts": 1791062565.0064, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "p-2851d3404e2f41dbaf81", "stage": "after_debit", "t": 17.856}
+{"ts": 1791062565.0811, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "p-f54f16eb48034f32a623", "stage": "after_debit", "t": 17.931}
+{"ts": 1791062565.1127, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "p-112f48fb9a6443a28117", "stage": "after_debit", "t": 17.962}
+{"ts": 1791062566.0136, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "p-909869d77f9f47ba9c73", "stage": "after_debit", "t": 18.863}
+{"ts": 1791062566.4581, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "p-c2567fddddcd429fa6a6", "stage": "after_debit", "t": 19.308}
+{"ts": 1791062566.4825, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "p-ae0fbac26f8948e2a5ef", "stage": "after_debit", "t": 19.332}
+{"ts": 1791062566.7343, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "p-be059c517f2240ac9739", "stage": "after_debit", "t": 19.584}
+{"ts": 1791062567.4893, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "p-3b796d2a3f76474a9097", "stage": "after_debit", "t": 20.339}
+{"ts": 1791062567.6319, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "p-649846add6f04e5b8e48", "stage": "after_debit", "t": 20.481}
+{"ts": 1791062567.6578, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "p-f5d056b9c28c465da5bb", "stage": "after_debit", "t": 20.507}
+{"ts": 1791062567.756, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "p-b2b9321c9e6e4a54a2ea", "stage": "after_debit", "t": 20.606}
+{"ts": 1791062568.332, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "p-6a3f2250478843dc9486", "stage": "after_debit", "t": 21.182}
+{"ts": 1791062568.8065, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "p-c5a2d60958034481832c", "stage": "after_debit", "t": 21.656}
+{"ts": 1791062569.2575, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "p-1e94cdb3b62f4359b02c", "stage": "after_debit", "t": 22.107}
+{"ts": 1791062569.4315, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "p-e31079e833e84722a4ce", "stage": "after_debit", "t": 22.281}
+{"ts": 1791062569.633, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "p-26d800bc8514499b80ac", "stage": "after_debit", "t": 22.483}
+{"ts": 1791062569.8325, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "p-7c6657c7967440f6ab74", "stage": "after_debit", "t": 22.682}
+{"ts": 1791062569.9063, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "p-1b25f5e9dc6c46b8b0fa", "stage": "after_debit", "t": 22.756}
+{"ts": 1791062569.9818, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "p-5f7aae0ffe4744e78aab", "stage": "after_debit", "t": 22.831}
+{"ts": 1791062570.4078, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "p-dfc3068ea8e04762b399", "stage": "after_debit", "t": 23.257}
+{"ts": 1791062570.4556, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "p-b611a2367e994ae7bae1", "stage": "after_debit", "t": 23.305}
+{"ts": 1791062570.5068, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "p-04c8d7f8581d4e86aa94", "stage": "after_debit", "t": 23.356}
+{"ts": 1791062570.989, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "p-c42155f6c44340f2a688", "stage": "after_debit", "t": 23.839}
+{"ts": 1791062571.4126, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "p-243545c1a42f4999ae6b", "stage": "after_debit", "t": 24.262}
+{"ts": 1791062571.5315, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "p-4f0377d6a9cd4a2aa67e", "stage": "after_debit", "t": 24.381}
+{"ts": 1791062571.5573, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "p-c95f38c17e8847f7b2f9", "stage": "after_debit", "t": 24.407}
+{"ts": 1791062571.6818, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "p-8cf6008ce0d74c798ece", "stage": "after_debit", "t": 24.531}
+{"ts": 1791062571.7816, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "p-1fbe5ad2055946488c3a", "stage": "after_debit", "t": 24.631}
+{"ts": 1791062572.0821, "inst": "payment-a", "ev": "TX_INTERRUPTED", "key": "p-eca00fd1dbb242858965", "stage": "after_debit", "t": 24.932}
+{"ts": 1791062572.1588, "inst": "payment-a", "ev": "CHAOS_SET", "t": 25.008}

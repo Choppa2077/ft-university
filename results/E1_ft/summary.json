@@ -1,0 +1,72 @@
+{
+  "experiment": "E1",
+  "mode": "ft",
+  "title": "Application crash (student-a killed)",
+  "t_inject": 10.006,
+  "requests": 1600,
+  "ok": 1600,
+  "failed": 0,
+  "degraded": 0,
+  "recovered_by_retry": 0,
+  "success_rate": 1.0,
+  "latency_p50": 0.008,
+  "latency_p95": 0.035,
+  "latency_p99": 0.056,
+  "failed_by_op": {
+    "enroll": 0,
+    "pay": 0,
+    "student": 0,
+    "timetable": 0,
+    "transcript": 0
+  },
+  "timeouts": 0,
+  "detection_time": 0.412,
+  "redundancy_restored_after": 1.97,
+  "client_visible_recovery": 0.0,
+  "first_failure_after": null,
+  "event_counts": {
+    "UPSTREAM_DOWN": 1,
+    "UPSTREAM_UP": 1,
+    "RESTART": 1
+  },
+  "marks": {
+    "inject": {
+      "t": 10.006,
+      "info": {
+        "name": "student-a",
+        "pid": 1478
+      }
+    }
+  },
+  "consistency": {
+    "payments_completed": 308,
+    "payments_failed": 0,
+    "bank_debits": 308,
+    "refunds": 0,
+    "orphan_debits": 0,
+    "orphan_amount": 0,
+    "double_charged_intents": 0,
+    "ledger_mismatch": 0,
+    "stuck_payments": 0,
+    "lost_acked_payments": 0,
+    "lost_acked_enrollments": 0,
+    "replica": {
+      "identical": true,
+      "primary": "db-a",
+      "lsn": 866,
+      "primary_rows": {
+        "paid": 308,
+        "ledger_sum": 67330000.0,
+        "enrollments": 248,
+        "payments": 308
+      },
+      "replica_rows": {
+        "paid": 308,
+        "ledger_sum": 67330000.0,
+        "enrollments": 248,
+        "payments": 308
+      }
+    },
+    "consistent": true
+  }
+}

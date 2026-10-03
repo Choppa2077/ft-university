@@ -1,0 +1,15 @@
+{
+  "experiment": "E5b",
+  "mode": "ft",
+  "title": "Transcript batch interrupted half-way",
+  "killed_at_index": 150,
+  "total_time": 10.83,
+  "time_lost_to_failure": null,
+  "work_items": 302,
+  "unique_transcripts": 300,
+  "repeated_work": 2,
+  "resumed_from": 150,
+  "resumed_after": 3.55,
+  "resumed_by": "records-a",
+  "operator_rerun_after": null
+}

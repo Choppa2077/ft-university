@@ -1,0 +1,997 @@
+{
+ "experiments": [
+  {
+   "exp": "E1",
+   "mode": "baseline",
+   "title": "Application crash (student-a killed)",
+   "detection": "0.44 s",
+   "recovery": 20.522,
+   "requests": 1600,
+   "failed": 429,
+   "attempt_failures": 429,
+   "degraded": 0,
+   "retried_ok": 0,
+   "p95": 0.032,
+   "consistency": "consistent",
+   "restored": 20.71,
+   "event_counts": {
+    "UPSTREAM_DOWN": 1,
+    "RESTART": 1
+   },
+   "first_failure_after": 0.02,
+   "latency_p50": 0.006,
+   "latency_p99": 0.039,
+   "timeouts": 0,
+   "interrupt": {
+    "interrupted": null,
+    "interrupted_resolved": null,
+    "detection_time": 0.444,
+    "resolution_time_mean": null,
+    "resolution_time_max": null
+   },
+   "cons": {
+    "payments_completed": 308,
+    "payments_failed": 0,
+    "bank_debits": 308,
+    "refunds": 0,
+    "orphan_debits": 0,
+    "orphan_amount": 0,
+    "double_charged_intents": 0,
+    "ledger_mismatch": 0,
+    "stuck_payments": 0,
+    "lost_acked_payments": 0,
+    "lost_acked_enrollments": 0,
+    "consistent": true
+   },
+   "replica": null,
+   "marks": {
+    "inject": 10.006
+   }
+  },
+  {
+   "exp": "E1",
+   "mode": "ft",
+   "title": "Application crash (student-a killed)",
+   "detection": "0.41 s",
+   "recovery": 0.0,
+   "requests": 1600,
+   "failed": 0,
+   "attempt_failures": 0,
+   "degraded": 0,
+   "retried_ok": 0,
+   "p95": 0.035,
+   "consistency": "consistent",
+   "restored": 1.97,
+   "event_counts": {
+    "UPSTREAM_DOWN": 1,
+    "UPSTREAM_UP": 1,
+    "RESTART": 1
+   },
+   "first_failure_after": null,
+   "latency_p50": 0.008,
+   "latency_p99": 0.056,
+   "timeouts": 0,
+   "interrupt": {
+    "interrupted": null,
+    "interrupted_resolved": null,
+    "detection_time": 0.412,
+    "resolution_time_mean": null,
+    "resolution_time_max": null
+   },
+   "cons": {
+    "payments_completed": 308,
+    "payments_failed": 0,
+    "bank_debits": 308,
+    "refunds": 0,
+    "orphan_debits": 0,
+    "orphan_amount": 0,
+    "double_charged_intents": 0,
+    "ledger_mismatch": 0,
+    "stuck_payments": 0,
+    "lost_acked_payments": 0,
+    "lost_acked_enrollments": 0,
+    "consistent": true
+   },
+   "replica": {
+    "identical": true,
+    "primary": "db-a",
+    "lsn": 866,
+    "primary_rows": {
+     "paid": 308,
+     "ledger_sum": 67330000.0,
+     "enrollments": 248,
+     "payments": 308
+    },
+    "replica_rows": {
+     "paid": 308,
+     "ledger_sum": 67330000.0,
+     "enrollments": 248,
+     "payments": 308
+    }
+   },
+   "marks": {
+    "inject": 10.006
+   }
+  },
+  {
+   "exp": "E2",
+   "mode": "baseline",
+   "title": "Database primary failure",
+   "detection": "0.29 s",
+   "recovery": 20.641,
+   "requests": 1600,
+   "failed": 666,
+   "attempt_failures": 799,
+   "degraded": 0,
+   "retried_ok": 7,
+   "p95": 0.033,
+   "consistency": "259 orphan debits; 133 double charges",
+   "restored": 20.822,
+   "event_counts": {
+    "RESTART": 1
+   },
+   "first_failure_after": -0.004,
+   "latency_p50": 0.006,
+   "latency_p99": 0.046,
+   "timeouts": 0,
+   "interrupt": {
+    "interrupted": null,
+    "interrupted_resolved": null,
+    "detection_time": 0.295,
+    "resolution_time_mean": null,
+    "resolution_time_max": null
+   },
+   "cons": {
+    "payments_completed": 149,
+    "payments_failed": 0,
+    "bank_debits": 408,
+    "refunds": 0,
+    "orphan_debits": 259,
+    "orphan_amount": 54890000,
+    "double_charged_intents": 133,
+    "ledger_mismatch": 0,
+    "stuck_payments": 0,
+    "lost_acked_payments": 0,
+    "lost_acked_enrollments": 0,
+    "consistent": false
+   },
+   "replica": null,
+   "marks": {
+    "inject": 10.005
+   }
+  },
+  {
+   "exp": "E2",
+   "mode": "ft",
+   "title": "Database primary failure",
+   "detection": "0.27 s",
+   "recovery": 0.0,
+   "requests": 1600,
+   "failed": 0,
+   "attempt_failures": 0,
+   "degraded": 0,
+   "retried_ok": 0,
+   "p95": 0.035,
+   "consistency": "consistent",
+   "restored": 3.531,
+   "event_counts": {
+    "DB_FAILOVER": 1,
+    "PROMOTED": 1,
+    "RESTART": 1,
+    "RESYNCED": 1,
+    "REPLICA_IN_SYNC": 1
+   },
+   "first_failure_after": null,
+   "latency_p50": 0.008,
+   "latency_p99": 0.046,
+   "timeouts": 0,
+   "interrupt": {
+    "interrupted": null,
+    "interrupted_resolved": null,
+    "detection_time": 0.273,
+    "resolution_time_mean": null,
+    "resolution_time_max": null
+   },
+   "cons": {
+    "payments_completed": 275,
+    "payments_failed": 0,
+    "bank_debits": 275,
+    "refunds": 0,
+    "orphan_debits": 0,
+    "orphan_amount": 0,
+    "double_charged_intents": 0,
+    "ledger_mismatch": 0,
+    "stuck_payments": 0,
+    "lost_acked_payments": 0,
+    "lost_acked_enrollments": 0,
+    "consistent": true
+   },
+   "replica": {
+    "identical": true,
+    "primary": "db-b",
+    "lsn": 784,
+    "primary_rows": {
+     "paid": 275,
+     "ledger_sum": 58790000.0,
+     "enrollments": 232,
+     "payments": 275
+    },
+    "replica_rows": {
+     "paid": 275,
+     "ledger_sum": 58790000.0,
+     "enrollments": 232,
+     "payments": 275
+    }
+   },
+   "marks": {
+    "inject": 10.004
+   }
+  },
+  {
+   "exp": "E3",
+   "mode": "baseline",
+   "title": "Slow external bank (6 s responses for 15 s)",
+   "detection": "0.74 s",
+   "recovery": 19.876,
+   "requests": 1600,
+   "failed": 76,
+   "attempt_failures": 195,
+   "degraded": 0,
+   "retried_ok": 43,
+   "p95": 5.002,
+   "consistency": "119 double charges",
+   "restored": 15.162,
+   "event_counts": {},
+   "first_failure_after": 0.147,
+   "latency_p50": 0.008,
+   "latency_p99": 5.004,
+   "timeouts": 195,
+   "interrupt": {
+    "interrupted": null,
+    "interrupted_resolved": null,
+    "detection_time": 0.744,
+    "resolution_time_mean": null,
+    "resolution_time_max": null
+   },
+   "cons": {
+    "payments_completed": 427,
+    "payments_failed": 0,
+    "bank_debits": 427,
+    "refunds": 0,
+    "orphan_debits": 0,
+    "orphan_amount": 0,
+    "double_charged_intents": 119,
+    "ledger_mismatch": 0,
+    "stuck_payments": 0,
+    "lost_acked_payments": 0,
+    "lost_acked_enrollments": 0,
+    "consistent": false
+   },
+   "replica": null,
+   "marks": {
+    "inject": 10.004,
+    "revert": 25.008
+   }
+  },
+  {
+   "exp": "E3",
+   "mode": "ft",
+   "title": "Slow external bank (6 s responses for 15 s)",
+   "detection": "0.54 s",
+   "recovery": 0.0,
+   "requests": 1600,
+   "failed": 0,
+   "attempt_failures": 0,
+   "degraded": 134,
+   "retried_ok": 0,
+   "p95": 0.039,
+   "consistency": "consistent",
+   "restored": 15.174,
+   "event_counts": {
+    "BREAKER": 18,
+    "PAYMENT_QUEUED": 134
+   },
+   "first_failure_after": null,
+   "latency_p50": 0.009,
+   "latency_p99": 0.818,
+   "timeouts": 0,
+   "interrupt": {
+    "interrupted": null,
+    "interrupted_resolved": null,
+    "detection_time": 0.54,
+    "resolution_time_mean": null,
+    "resolution_time_max": null
+   },
+   "cons": {
+    "payments_completed": 308,
+    "payments_failed": 0,
+    "bank_debits": 308,
+    "refunds": 0,
+    "orphan_debits": 0,
+    "orphan_amount": 0,
+    "double_charged_intents": 0,
+    "ledger_mismatch": 0,
+    "stuck_payments": 0,
+    "lost_acked_payments": 0,
+    "lost_acked_enrollments": 0,
+    "consistent": true
+   },
+   "replica": {
+    "identical": true,
+    "primary": "db-a",
+    "lsn": 2005,
+    "primary_rows": {
+     "paid": 308,
+     "ledger_sum": 67030000.0,
+     "enrollments": 239,
+     "payments": 308
+    },
+    "replica_rows": {
+     "paid": 308,
+     "ledger_sum": 67030000.0,
+     "enrollments": 239,
+     "payments": 308
+    }
+   },
+   "marks": {
+    "inject": 10.005,
+    "revert": 25.008
+   }
+  },
+  {
+   "exp": "E4",
+   "mode": "baseline",
+   "title": "Node A failure (20 s)",
+   "detection": "0.24 s",
+   "recovery": 21.247,
+   "requests": 1800,
+   "failed": 844,
+   "attempt_failures": 1018,
+   "degraded": 0,
+   "retried_ok": 7,
+   "p95": 0.03,
+   "consistency": "consistent",
+   "restored": 21.29,
+   "event_counts": {
+    "UPSTREAM_DOWN": 4,
+    "RESTART": 5,
+    "NODE_DOWN": 1,
+    "NODE_UP": 1
+   },
+   "first_failure_after": -0.038,
+   "latency_p50": 0.005,
+   "latency_p99": 0.039,
+   "timeouts": 0,
+   "interrupt": {
+    "interrupted": null,
+    "interrupted_resolved": null,
+    "detection_time": 0.241,
+    "resolution_time_mean": null,
+    "resolution_time_max": null
+   },
+   "cons": {
+    "payments_completed": 221,
+    "payments_failed": 0,
+    "bank_debits": 221,
+    "refunds": 0,
+    "orphan_debits": 0,
+    "orphan_amount": 0,
+    "double_charged_intents": 0,
+    "ledger_mismatch": 0,
+    "stuck_payments": 0,
+    "lost_acked_payments": 0,
+    "lost_acked_enrollments": 0,
+    "consistent": true
+   },
+   "replica": null,
+   "marks": {
+    "inject": 10.014
+   }
+  },
+  {
+   "exp": "E4",
+   "mode": "ft",
+   "title": "Node A failure (20 s)",
+   "detection": "0.44 s",
+   "recovery": 0.0,
+   "requests": 1800,
+   "failed": 0,
+   "attempt_failures": 0,
+   "degraded": 0,
+   "retried_ok": 1,
+   "p95": 0.038,
+   "consistency": "consistent",
+   "restored": 21.963,
+   "event_counts": {
+    "DB_FAILOVER": 1,
+    "PROMOTED": 1,
+    "UPSTREAM_DOWN": 4,
+    "UPSTREAM_UP": 4,
+    "RESTART": 5,
+    "NODE_DOWN": 1,
+    "NODE_UP": 1,
+    "RESYNCED": 1,
+    "REPLICA_IN_SYNC": 1
+   },
+   "first_failure_after": null,
+   "latency_p50": 0.009,
+   "latency_p99": 0.38,
+   "timeouts": 0,
+   "interrupt": {
+    "interrupted": null,
+    "interrupted_resolved": null,
+    "detection_time": 0.436,
+    "resolution_time_mean": null,
+    "resolution_time_max": null
+   },
+   "cons": {
+    "payments_completed": 388,
+    "payments_failed": 0,
+    "bank_debits": 388,
+    "refunds": 0,
+    "orphan_debits": 0,
+    "orphan_amount": 0,
+    "double_charged_intents": 0,
+    "ledger_mismatch": 0,
+    "stuck_payments": 0,
+    "lost_acked_payments": 0,
+    "lost_acked_enrollments": 0,
+    "consistent": true
+   },
+   "replica": {
+    "identical": true,
+    "primary": "db-b",
+    "lsn": 1043,
+    "primary_rows": {
+     "paid": 388,
+     "ledger_sum": 85850000.0,
+     "enrollments": 265,
+     "payments": 388
+    },
+    "replica_rows": {
+     "paid": 388,
+     "ledger_sum": 85850000.0,
+     "enrollments": 265,
+     "payments": 388
+    }
+   },
+   "marks": {
+    "inject": 10.008
+   }
+  },
+  {
+   "exp": "E5",
+   "mode": "baseline",
+   "title": "Interrupted payment transactions (30% for 15 s)",
+   "detection": "not detected",
+   "recovery": 14.929,
+   "requests": 1600,
+   "failed": 8,
+   "attempt_failures": 53,
+   "degraded": 0,
+   "retried_ok": 37,
+   "p95": 0.032,
+   "consistency": "53 orphan debits; 45 double charges",
+   "restored": null,
+   "event_counts": {
+    "TX_INTERRUPTED": 53
+   },
+   "first_failure_after": 0.272,
+   "latency_p50": 0.006,
+   "latency_p99": 0.042,
+   "timeouts": 0,
+   "interrupt": {
+    "interrupted": 53,
+    "interrupted_resolved": 0,
+    "detection_time": null,
+    "resolution_time_mean": null,
+    "resolution_time_max": null
+   },
+   "cons": {
+    "payments_completed": 306,
+    "payments_failed": 0,
+    "bank_debits": 359,
+    "refunds": 0,
+    "orphan_debits": 53,
+    "orphan_amount": 12830000,
+    "double_charged_intents": 45,
+    "ledger_mismatch": 0,
+    "stuck_payments": 0,
+    "lost_acked_payments": 0,
+    "lost_acked_enrollments": 0,
+    "consistent": false
+   },
+   "replica": null,
+   "marks": {
+    "inject": 10.004,
+    "revert": 25.009
+   }
+  },
+  {
+   "exp": "E5",
+   "mode": "ft",
+   "title": "Interrupted payment transactions (30% for 15 s)",
+   "detection": "1.08 s",
+   "recovery": 14.942,
+   "requests": 1600,
+   "failed": 10,
+   "attempt_failures": 53,
+   "degraded": 0,
+   "retried_ok": 33,
+   "p95": 0.034,
+   "consistency": "consistent",
+   "restored": null,
+   "event_counts": {
+    "TX_INTERRUPTED": 53,
+    "RECOVERED": 10,
+    "DUPLICATE_REQUEST": 43
+   },
+   "first_failure_after": 0.042,
+   "latency_p50": 0.008,
+   "latency_p99": 0.041,
+   "timeouts": 0,
+   "interrupt": {
+    "interrupted": 43,
+    "interrupted_resolved": 43,
+    "detection_time": 1.078,
+    "resolution_time_mean": 1.085,
+    "resolution_time_max": 1.901
+   },
+   "cons": {
+    "payments_completed": 314,
+    "payments_failed": 0,
+    "bank_debits": 314,
+    "refunds": 0,
+    "orphan_debits": 0,
+    "orphan_amount": 0,
+    "double_charged_intents": 0,
+    "ledger_mismatch": 0,
+    "stuck_payments": 0,
+    "lost_acked_payments": 0,
+    "lost_acked_enrollments": 0,
+    "consistent": true
+   },
+   "replica": {
+    "identical": true,
+    "primary": "db-a",
+    "lsn": 852,
+    "primary_rows": {
+     "paid": 314,
+     "ledger_sum": 67780000.0,
+     "enrollments": 224,
+     "payments": 314
+    },
+    "replica_rows": {
+     "paid": 314,
+     "ledger_sum": 67780000.0,
+     "enrollments": 224,
+     "payments": 314
+    }
+   },
+   "marks": {
+    "inject": 10.008,
+    "revert": 25.014
+   }
+  },
+  {
+   "exp": "E6",
+   "mode": "baseline",
+   "title": "High load (+150 timetable req/s for 15 s)",
+   "detection": "not detected",
+   "recovery": 41.642,
+   "requests": 3850,
+   "failed": 3154,
+   "attempt_failures": 3356,
+   "degraded": 0,
+   "retried_ok": 0,
+   "p95": 5.689,
+   "consistency": "16 double charges",
+   "restored": null,
+   "event_counts": {},
+   "first_failure_after": 1.127,
+   "latency_p50": 5.06,
+   "latency_p99": 5.921,
+   "timeouts": 3356,
+   "interrupt": {
+    "interrupted": null,
+    "interrupted_resolved": null,
+    "detection_time": null,
+    "resolution_time_mean": null,
+    "resolution_time_max": null
+   },
+   "cons": {
+    "payments_completed": 189,
+    "payments_failed": 0,
+    "bank_debits": 189,
+    "refunds": 0,
+    "orphan_debits": 0,
+    "orphan_amount": 0,
+    "double_charged_intents": 16,
+    "ledger_mismatch": 0,
+    "stuck_payments": 0,
+    "lost_acked_payments": 0,
+    "lost_acked_enrollments": 0,
+    "consistent": false
+   },
+   "replica": null,
+   "marks": {
+    "inject": 10.0
+   }
+  },
+  {
+   "exp": "E6",
+   "mode": "ft",
+   "title": "High load (+150 timetable req/s for 15 s)",
+   "detection": "0.04 s",
+   "recovery": 4.177,
+   "requests": 3850,
+   "failed": 37,
+   "attempt_failures": 37,
+   "degraded": 1664,
+   "retried_ok": 0,
+   "p95": 0.18,
+   "consistency": "consistent",
+   "restored": null,
+   "event_counts": {
+    "LOAD_SHED": 18
+   },
+   "first_failure_after": 0.047,
+   "latency_p50": 0.008,
+   "latency_p99": 0.254,
+   "timeouts": 0,
+   "interrupt": {
+    "interrupted": null,
+    "interrupted_resolved": null,
+    "detection_time": 0.042,
+    "resolution_time_mean": null,
+    "resolution_time_max": null
+   },
+   "cons": {
+    "payments_completed": 318,
+    "payments_failed": 0,
+    "bank_debits": 318,
+    "refunds": 0,
+    "orphan_debits": 0,
+    "orphan_amount": 0,
+    "double_charged_intents": 0,
+    "ledger_mismatch": 0,
+    "stuck_payments": 0,
+    "lost_acked_payments": 0,
+    "lost_acked_enrollments": 0,
+    "consistent": true
+   },
+   "replica": {
+    "identical": true,
+    "primary": "db-a",
+    "lsn": 883,
+    "primary_rows": {
+     "paid": 318,
+     "ledger_sum": 75050000.0,
+     "enrollments": 242,
+     "payments": 318
+    },
+    "replica_rows": {
+     "paid": 318,
+     "ledger_sum": 75050000.0,
+     "enrollments": 242,
+     "payments": 318
+    }
+   },
+   "marks": {
+    "inject": 10.0
+   }
+  }
+ ],
+ "E5b_baseline": {
+  "experiment": "E5b",
+  "mode": "baseline",
+  "title": "Transcript batch interrupted half-way",
+  "killed_at_index": 151,
+  "total_time": 30.84,
+  "time_lost_to_failure": null,
+  "work_items": 451,
+  "unique_transcripts": 300,
+  "repeated_work": 151,
+  "resumed_from": 0,
+  "resumed_after": 20.63,
+  "resumed_by": "records-a",
+  "operator_rerun_after": 20.62
+ },
+ "E5b_ft": {
+  "experiment": "E5b",
+  "mode": "ft",
+  "title": "Transcript batch interrupted half-way",
+  "killed_at_index": 150,
+  "total_time": 10.83,
+  "time_lost_to_failure": null,
+  "work_items": 302,
+  "unique_transcripts": 300,
+  "repeated_work": 2,
+  "resumed_from": 150,
+  "resumed_after": 3.55,
+  "resumed_by": "records-a",
+  "operator_rerun_after": null
+ },
+ "E7_baseline": {
+  "experiment": "E7",
+  "mode": "baseline",
+  "title": "Silent corruption of stored transcripts",
+  "corrupted_files": 30,
+  "silent": 25,
+  "garbage": 5,
+  "reads": 300,
+  "correct": 270,
+  "wrong_data_served": 25,
+  "errors": 5,
+  "repaired_on_read": 0,
+  "wrong_examples": [
+   {
+    "student": "S0007",
+    "served_gpa": 1.46,
+    "true_gpa": 2.46
+   },
+   {
+    "student": "S0015",
+    "served_gpa": 1.57,
+    "true_gpa": 2.57
+   },
+   {
+    "student": "S0027",
+    "served_gpa": 1.51,
+    "true_gpa": 2.51
+   }
+  ],
+  "scrub_after": null,
+  "repair_events": 0
+ },
+ "E7_ft": {
+  "experiment": "E7",
+  "mode": "ft",
+  "title": "Silent corruption of stored transcripts",
+  "corrupted_files": 30,
+  "silent": 25,
+  "garbage": 5,
+  "reads": 300,
+  "correct": 300,
+  "wrong_data_served": 0,
+  "errors": 0,
+  "repaired_on_read": 30,
+  "wrong_examples": [],
+  "scrub_after": {
+   "checked": 300,
+   "repaired": 0,
+   "unrecoverable": 0
+  },
+  "repair_events": 30
+ },
+ "reliability": {
+  "baseline": {
+   "duration_s": 540,
+   "kills_attempted": 17,
+   "kills_done": 15,
+   "components": {
+    "db": {
+     "replicas": 1,
+     "failures": 2,
+     "downtime_s": 41.32,
+     "MTTF_s": 249.3,
+     "MTTR_s": 20.66,
+     "MTBF_s": 270.0,
+     "availability": 0.92348,
+     "failure_rate_per_h": 14.44
+    },
+    "student": {
+     "replicas": 1,
+     "failures": 5,
+     "downtime_s": 102.87,
+     "MTTF_s": 87.4,
+     "MTTR_s": 20.57,
+     "MTBF_s": 108.0,
+     "availability": 0.8095,
+     "failure_rate_per_h": 41.18
+    },
+    "payment": {
+     "replicas": 1,
+     "failures": 4,
+     "downtime_s": 82.1,
+     "MTTF_s": 114.5,
+     "MTTR_s": 20.52,
+     "MTBF_s": 135.0,
+     "availability": 0.84796,
+     "failure_rate_per_h": 31.45
+    },
+    "records": {
+     "replicas": 1,
+     "failures": 2,
+     "downtime_s": 41.06,
+     "MTTF_s": 249.5,
+     "MTTR_s": 20.53,
+     "MTBF_s": 270.0,
+     "availability": 0.92396,
+     "failure_rate_per_h": 14.43
+    },
+    "timetable": {
+     "replicas": 1,
+     "failures": 2,
+     "downtime_s": 41.05,
+     "MTTF_s": 249.5,
+     "MTTR_s": 20.52,
+     "MTBF_s": 270.0,
+     "availability": 0.92398,
+     "failure_rate_per_h": 14.43
+    }
+   },
+   "system": {
+    "student": {
+     "outages": 6,
+     "downtime_s": 123,
+     "MTTF_s": 69.7,
+     "MTTR_s": 20.5,
+     "availability_time": 0.7726,
+     "availability_requests": 0.7731
+    },
+    "payment": {
+     "outages": 5,
+     "downtime_s": 104,
+     "MTTF_s": 87.4,
+     "MTTR_s": 20.8,
+     "availability_time": 0.8078,
+     "availability_requests": 0.6903
+    },
+    "records": {
+     "outages": 4,
+     "downtime_s": 44,
+     "MTTF_s": 124.2,
+     "MTTR_s": 11.0,
+     "availability_time": 0.9187,
+     "availability_requests": 0.9052
+    },
+    "timetable": {
+     "outages": 2,
+     "downtime_s": 41,
+     "MTTF_s": 250.0,
+     "MTTR_s": 20.5,
+     "availability_time": 0.9242,
+     "availability_requests": 0.9214
+    },
+    "system": {
+     "outages": 9,
+     "downtime_s": 210,
+     "MTTF_s": 36.8,
+     "MTTR_s": 23.33,
+     "availability_time": 0.6118,
+     "availability_requests": 0.7936
+    },
+    "user_level": {
+     "requests": 10800,
+     "failed": 1901,
+     "success": 0.824
+    }
+   },
+   "predicted": {
+    "blocks": {
+     "db": 0.92348,
+     "student": 0.8095,
+     "payment": 0.84796,
+     "records": 0.92396,
+     "timetable": 0.92398
+    },
+    "system": 0.541172
+   }
+  },
+  "ft": {
+   "duration_s": 540,
+   "kills_attempted": 31,
+   "kills_done": 30,
+   "components": {
+    "db": {
+     "replicas": 2,
+     "failures": 2,
+     "downtime_s": 7.03,
+     "MTTF_s": 536.5,
+     "MTTR_s": 3.52,
+     "MTBF_s": 540.0,
+     "availability": 0.99349,
+     "failure_rate_per_h": 6.71
+    },
+    "student": {
+     "replicas": 2,
+     "failures": 12,
+     "downtime_s": 18.75,
+     "MTTF_s": 88.4,
+     "MTTR_s": 1.56,
+     "MTBF_s": 90.0,
+     "availability": 0.98264,
+     "failure_rate_per_h": 40.71
+    },
+    "payment": {
+     "replicas": 2,
+     "failures": 6,
+     "downtime_s": 9.62,
+     "MTTF_s": 178.4,
+     "MTTR_s": 1.6,
+     "MTBF_s": 180.0,
+     "availability": 0.99109,
+     "failure_rate_per_h": 20.18
+    },
+    "records": {
+     "replicas": 2,
+     "failures": 6,
+     "downtime_s": 9.86,
+     "MTTF_s": 178.4,
+     "MTTR_s": 1.64,
+     "MTBF_s": 180.0,
+     "availability": 0.99087,
+     "failure_rate_per_h": 20.18
+    },
+    "timetable": {
+     "replicas": 2,
+     "failures": 4,
+     "downtime_s": 6.08,
+     "MTTF_s": 268.5,
+     "MTTR_s": 1.52,
+     "MTBF_s": 270.0,
+     "availability": 0.99437,
+     "failure_rate_per_h": 13.41
+    }
+   },
+   "system": {
+    "student": {
+     "outages": 1,
+     "downtime_s": 1,
+     "MTTF_s": 540.0,
+     "MTTR_s": 1.0,
+     "availability_time": 0.9982,
+     "availability_requests": 0.9987
+    },
+    "payment": {
+     "outages": 0,
+     "downtime_s": 0,
+     "MTTF_s": null,
+     "MTTR_s": null,
+     "availability_time": 1.0,
+     "availability_requests": 1.0
+    },
+    "records": {
+     "outages": 0,
+     "downtime_s": 0,
+     "MTTF_s": null,
+     "MTTR_s": null,
+     "availability_time": 1.0,
+     "availability_requests": 1.0
+    },
+    "timetable": {
+     "outages": 0,
+     "downtime_s": 0,
+     "MTTF_s": null,
+     "MTTR_s": null,
+     "availability_time": 1.0,
+     "availability_requests": 1.0
+    },
+    "system": {
+     "outages": 1,
+     "downtime_s": 1,
+     "MTTF_s": 540.0,
+     "MTTR_s": 1.0,
+     "availability_time": 0.9982,
+     "availability_requests": 0.9994
+    },
+    "user_level": {
+     "requests": 10800,
+     "failed": 7,
+     "success": 0.9994
+    }
+   },
+   "predicted": {
+    "blocks": {
+     "db": 0.999958,
+     "student": 0.999699,
+     "payment": 0.999921,
+     "records": 0.999917,
+     "timetable": 0.999968
+    },
+    "system": 0.999462
+   }
+  }
+ }
+}

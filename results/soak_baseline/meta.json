@@ -1,0 +1,97 @@
+{
+  "mode": "baseline",
+  "duration": 540,
+  "rate": 20,
+  "mttf_injected": {
+    "service": 240.0,
+    "db": 480.0
+  },
+  "origin": 1791062954.387932,
+  "kills": [
+    {
+      "t": 19.824,
+      "name": "student-a",
+      "killed": true
+    },
+    {
+      "t": 68.807,
+      "name": "payment-a",
+      "killed": true
+    },
+    {
+      "t": 70.573,
+      "name": "student-a",
+      "killed": true
+    },
+    {
+      "t": 102.087,
+      "name": "payment-a",
+      "killed": true
+    },
+    {
+      "t": 105.982,
+      "name": "timetable-a",
+      "killed": true
+    },
+    {
+      "t": 142.374,
+      "name": "student-a",
+      "killed": true
+    },
+    {
+      "t": 143.762,
+      "name": "db-a",
+      "killed": true
+    },
+    {
+      "t": 259.684,
+      "name": "student-a",
+      "killed": true
+    },
+    {
+      "t": 264.124,
+      "name": "student-a",
+      "killed": false
+    },
+    {
+      "t": 264.195,
+      "name": "records-a",
+      "killed": true
+    },
+    {
+      "t": 324.994,
+      "name": "payment-a",
+      "killed": true
+    },
+    {
+      "t": 327.612,
+      "name": "db-a",
+      "killed": true
+    },
+    {
+      "t": 327.903,
+      "name": "db-a",
+      "killed": false
+    },
+    {
+      "t": 353.513,
+      "name": "payment-a",
+      "killed": true
+    },
+    {
+      "t": 389.476,
+      "name": "records-a",
+      "killed": true
+    },
+    {
+      "t": 400.748,
+      "name": "student-a",
+      "killed": true
+    },
+    {
+      "t": 430.124,
+      "name": "timetable-a",
+      "killed": true
+    }
+  ]
+}

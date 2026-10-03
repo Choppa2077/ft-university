@@ -1,0 +1,32 @@
+{
+  "experiment": "E7",
+  "mode": "baseline",
+  "title": "Silent corruption of stored transcripts",
+  "corrupted_files": 30,
+  "silent": 25,
+  "garbage": 5,
+  "reads": 300,
+  "correct": 270,
+  "wrong_data_served": 25,
+  "errors": 5,
+  "repaired_on_read": 0,
+  "wrong_examples": [
+    {
+      "student": "S0007",
+      "served_gpa": 1.46,
+      "true_gpa": 2.46
+    },
+    {
+      "student": "S0015",
+      "served_gpa": 1.57,
+      "true_gpa": 2.57
+    },
+    {
+      "student": "S0027",
+      "served_gpa": 1.51,
+      "true_gpa": 2.51
+    }
+  ],
+  "scrub_after": null,
+  "repair_events": 0
+}

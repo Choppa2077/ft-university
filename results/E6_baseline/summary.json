@@ -1,0 +1,49 @@
+{
+  "experiment": "E6",
+  "mode": "baseline",
+  "title": "High load (+150 timetable req/s for 15 s)",
+  "t_inject": 10.0,
+  "requests": 4052,
+  "ok": 696,
+  "failed": 3356,
+  "degraded": 0,
+  "recovered_by_retry": 0,
+  "success_rate": 0.1718,
+  "latency_p50": 5.06,
+  "latency_p95": 5.689,
+  "latency_p99": 5.921,
+  "failed_by_op": {
+    "enroll": 168,
+    "pay": 404,
+    "student": 359,
+    "timetable": 2261,
+    "transcript": 164
+  },
+  "timeouts": 3356,
+  "detection_time": null,
+  "client_visible_recovery": 41.642,
+  "first_failure_after": 1.127,
+  "event_counts": {},
+  "marks": {
+    "inject": {
+      "t": 10.0,
+      "info": {
+        "burst": "150 req/s timetable for 15 s"
+      }
+    }
+  },
+  "consistency": {
+    "payments_completed": 189,
+    "payments_failed": 0,
+    "bank_debits": 189,
+    "refunds": 0,
+    "orphan_debits": 0,
+    "orphan_amount": 0,
+    "double_charged_intents": 16,
+    "ledger_mismatch": 0,
+    "stuck_payments": 0,
+    "lost_acked_payments": 0,
+    "lost_acked_enrollments": 0,
+    "consistent": false
+  }
+}

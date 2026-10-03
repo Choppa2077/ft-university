@@ -1,0 +1,62 @@
+{
+  "experiment": "E4",
+  "mode": "baseline",
+  "title": "Node A failure (20 s)",
+  "t_inject": 10.014,
+  "requests": 1974,
+  "ok": 956,
+  "failed": 1018,
+  "degraded": 0,
+  "recovered_by_retry": 7,
+  "success_rate": 0.4843,
+  "latency_p50": 0.005,
+  "latency_p95": 0.03,
+  "latency_p99": 0.039,
+  "failed_by_op": {
+    "enroll": 128,
+    "pay": 341,
+    "student": 271,
+    "timetable": 139,
+    "transcript": 139
+  },
+  "timeouts": 0,
+  "detection_time": 0.241,
+  "redundancy_restored_after": 21.29,
+  "client_visible_recovery": 21.247,
+  "first_failure_after": -0.038,
+  "event_counts": {
+    "UPSTREAM_DOWN": 4,
+    "RESTART": 5,
+    "NODE_DOWN": 1,
+    "NODE_UP": 1
+  },
+  "marks": {
+    "inject": {
+      "t": 10.014,
+      "info": {
+        "node": "A",
+        "killed": [
+          "db-a",
+          "student-a",
+          "payment-a",
+          "records-a",
+          "timetable-a"
+        ]
+      }
+    }
+  },
+  "consistency": {
+    "payments_completed": 221,
+    "payments_failed": 0,
+    "bank_debits": 221,
+    "refunds": 0,
+    "orphan_debits": 0,
+    "orphan_amount": 0,
+    "double_charged_intents": 0,
+    "ledger_mismatch": 0,
+    "stuck_payments": 0,
+    "lost_acked_payments": 0,
+    "lost_acked_enrollments": 0,
+    "consistent": true
+  }
+}

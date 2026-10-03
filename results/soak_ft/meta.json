@@ -1,0 +1,167 @@
+{
+  "mode": "ft",
+  "duration": 540,
+  "rate": 20,
+  "mttf_injected": {
+    "service": 240.0,
+    "db": 480.0
+  },
+  "origin": 1791063507.0944645,
+  "kills": [
+    {
+      "t": 19.823,
+      "name": "student-a",
+      "killed": true
+    },
+    {
+      "t": 28.623,
+      "name": "student-b",
+      "killed": true
+    },
+    {
+      "t": 43.457,
+      "name": "student-b",
+      "killed": true
+    },
+    {
+      "t": 48.524,
+      "name": "timetable-b",
+      "killed": true
+    },
+    {
+      "t": 68.807,
+      "name": "payment-a",
+      "killed": true
+    },
+    {
+      "t": 70.576,
+      "name": "student-a",
+      "killed": true
+    },
+    {
+      "t": 99.193,
+      "name": "payment-b",
+      "killed": true
+    },
+    {
+      "t": 102.083,
+      "name": "payment-a",
+      "killed": true
+    },
+    {
+      "t": 105.982,
+      "name": "timetable-a",
+      "killed": true
+    },
+    {
+      "t": 142.374,
+      "name": "student-a",
+      "killed": true
+    },
+    {
+      "t": 142.943,
+      "name": "student-b",
+      "killed": true
+    },
+    {
+      "t": 143.763,
+      "name": "db-a",
+      "killed": true
+    },
+    {
+      "t": 152.263,
+      "name": "payment-b",
+      "killed": true
+    },
+    {
+      "t": 259.685,
+      "name": "student-a",
+      "killed": true
+    },
+    {
+      "t": 264.123,
+      "name": "student-a",
+      "killed": true
+    },
+    {
+      "t": 264.193,
+      "name": "records-a",
+      "killed": true
+    },
+    {
+      "t": 275.056,
+      "name": "records-b",
+      "killed": true
+    },
+    {
+      "t": 315.738,
+      "name": "records-b",
+      "killed": true
+    },
+    {
+      "t": 324.994,
+      "name": "payment-a",
+      "killed": true
+    },
+    {
+      "t": 327.617,
+      "name": "db-a",
+      "killed": true
+    },
+    {
+      "t": 327.903,
+      "name": "db-a",
+      "killed": false
+    },
+    {
+      "t": 351.865,
+      "name": "student-b",
+      "killed": true
+    },
+    {
+      "t": 353.514,
+      "name": "payment-a",
+      "killed": true
+    },
+    {
+      "t": 374.544,
+      "name": "timetable-b",
+      "killed": true
+    },
+    {
+      "t": 389.473,
+      "name": "records-a",
+      "killed": true
+    },
+    {
+      "t": 400.743,
+      "name": "student-a",
+      "killed": true
+    },
+    {
+      "t": 430.124,
+      "name": "timetable-a",
+      "killed": true
+    },
+    {
+      "t": 436.864,
+      "name": "records-b",
+      "killed": true
+    },
+    {
+      "t": 470.695,
+      "name": "student-b",
+      "killed": true
+    },
+    {
+      "t": 474.972,
+      "name": "records-b",
+      "killed": true
+    },
+    {
+      "t": 484.074,
+      "name": "student-b",
+      "killed": true
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "experiment": "E7",
+  "mode": "ft",
+  "title": "Silent corruption of stored transcripts",
+  "corrupted_files": 30,
+  "silent": 25,
+  "garbage": 5,
+  "reads": 300,
+  "correct": 300,
+  "wrong_data_served": 0,
+  "errors": 0,
+  "repaired_on_read": 30,
+  "wrong_examples": [],
+  "scrub_after": {
+    "checked": 300,
+    "repaired": 0,
+    "unrecoverable": 0
+  },
+  "repair_events": 30
+}

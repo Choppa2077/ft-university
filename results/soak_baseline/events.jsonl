@@ -1,0 +1,137 @@
+{"ts": 1791062948.8462, "inst": "supervisor", "ev": "SPAWN", "name": "bank", "pid": 2558, "t": -5.542}
+{"ts": 1791062949.3114, "inst": "bank", "ev": "STARTED", "pid": 2558, "mode": "baseline", "t": -5.077}
+{"ts": 1791062949.537, "inst": "supervisor", "ev": "SPAWN", "name": "db-a", "pid": 2567, "t": -4.851}
+{"ts": 1791062949.9934, "inst": "db-a", "ev": "SEEDED", "students": 300, "t": -4.395}
+{"ts": 1791062949.9935, "inst": "db-a", "ev": "ROLE", "role": "primary", "epoch": 1, "lsn": 0, "t": -4.394}
+{"ts": 1791062949.9935, "inst": "db-a", "ev": "STARTED", "pid": 2567, "mode": "baseline", "t": -4.394}
+{"ts": 1791062950.4684, "inst": "supervisor", "ev": "SPAWN", "name": "student-a", "pid": 2572, "t": -3.92}
+{"ts": 1791062950.4714, "inst": "supervisor", "ev": "SPAWN", "name": "payment-a", "pid": 2573, "t": -3.917}
+{"ts": 1791062950.4793, "inst": "supervisor", "ev": "SPAWN", "name": "records-a", "pid": 2574, "t": -3.909}
+{"ts": 1791062950.4917, "inst": "supervisor", "ev": "SPAWN", "name": "timetable-a", "pid": 2575, "t": -3.896}
+{"ts": 1791062950.4926, "inst": "supervisor", "ev": "SPAWN", "name": "gateway", "pid": 2576, "t": -3.895}
+{"ts": 1791062950.4937, "inst": "supervisor", "ev": "SPAWN", "name": "monitor", "pid": 2577, "t": -3.894}
+{"ts": 1791062951.9826, "inst": "monitor", "ev": "STARTED", "pid": 2577, "mode": "baseline", "t": -2.405}
+{"ts": 1791062951.9897, "inst": "payment-a", "ev": "STARTED", "pid": 2573, "mode": "baseline", "t": -2.398}
+{"ts": 1791062952.0218, "inst": "monitor", "ev": "FIRST_SEEN", "target": "bank", "kind": "bank", "node": "ext", "down_for": null, "t": -2.366}
+{"ts": 1791062952.0219, "inst": "monitor", "ev": "FIRST_SEEN", "target": "db-a", "kind": "db", "node": "A", "down_for": null, "t": -2.366}
+{"ts": 1791062952.0266, "inst": "student-a", "ev": "STARTED", "pid": 2572, "mode": "baseline", "t": -2.361}
+{"ts": 1791062952.0268, "inst": "records-a", "ev": "STARTED", "pid": 2574, "mode": "baseline", "t": -2.361}
+{"ts": 1791062952.0371, "inst": "timetable-a", "ev": "STARTED", "pid": 2575, "mode": "baseline", "t": -2.351}
+{"ts": 1791062952.0399, "inst": "gateway", "ev": "STARTED", "pid": 2576, "mode": "baseline", "t": -2.348}
+{"ts": 1791062952.2437, "inst": "monitor", "ev": "FIRST_SEEN", "target": "gateway", "kind": "gateway", "node": "ctl", "down_for": 0.25, "t": -2.144}
+{"ts": 1791062952.2438, "inst": "monitor", "ev": "FIRST_SEEN", "target": "student-a", "kind": "student", "node": "A", "down_for": 0.25, "t": -2.144}
+{"ts": 1791062952.2438, "inst": "monitor", "ev": "FIRST_SEEN", "target": "payment-a", "kind": "payment", "node": "A", "down_for": 0.25, "t": -2.144}
+{"ts": 1791062952.2438, "inst": "monitor", "ev": "FIRST_SEEN", "target": "records-a", "kind": "records", "node": "A", "down_for": 0.25, "t": -2.144}
+{"ts": 1791062952.2438, "inst": "monitor", "ev": "FIRST_SEEN", "target": "timetable-a", "kind": "timetable", "node": "A", "down_for": 0.25, "t": -2.144}
+{"ts": 1791062952.3808, "inst": "supervisor", "ev": "CLUSTER_READY", "mode": "baseline", "t": -2.007}
+{"ts": 1791062974.2109, "inst": "supervisor", "ev": "SIGNAL", "name": "student-a", "sig": "SIGKILL", "pid": 2572, "t": 19.823}
+{"ts": 1791062974.2415, "inst": "gateway", "ev": "UPSTREAM_DOWN", "upstream": "student-a", "why": "connect", "t": 19.854}
+{"ts": 1791062974.2784, "inst": "supervisor", "ev": "EXITED", "name": "student-a", "code": -9, "t": 19.89}
+{"ts": 1791062974.5034, "inst": "monitor", "ev": "DOWN", "target": "student-a", "kind": "student", "node": "A", "first_failed_check": 1791062974.246472, "t": 20.115}
+{"ts": 1791062994.3348, "inst": "supervisor", "ev": "RESTART", "name": "student-a", "down_for": 20.06, "t": 39.947}
+{"ts": 1791062994.3365, "inst": "supervisor", "ev": "SPAWN", "name": "student-a", "pid": 2607, "t": 39.949}
+{"ts": 1791062994.8088, "inst": "student-a", "ev": "STARTED", "pid": 2607, "mode": "baseline", "t": 40.421}
+{"ts": 1791062995.0117, "inst": "monitor", "ev": "UP", "target": "student-a", "kind": "student", "node": "A", "down_for": 20.758, "t": 40.624}
+{"ts": 1791063023.1943, "inst": "supervisor", "ev": "SIGNAL", "name": "payment-a", "sig": "SIGKILL", "pid": 2573, "t": 68.806}
+{"ts": 1791063023.2265, "inst": "supervisor", "ev": "EXITED", "name": "payment-a", "code": -9, "t": 68.839}
+{"ts": 1791063023.2919, "inst": "gateway", "ev": "UPSTREAM_DOWN", "upstream": "payment-a", "why": "connect", "t": 68.904}
+{"ts": 1791063023.5409, "inst": "monitor", "ev": "DOWN", "target": "payment-a", "kind": "payment", "node": "A", "first_failed_check": 1791063023.282749, "t": 69.153}
+{"ts": 1791063024.9598, "inst": "supervisor", "ev": "SIGNAL", "name": "student-a", "sig": "SIGKILL", "pid": 2607, "t": 70.572}
+{"ts": 1791063025.0323, "inst": "supervisor", "ev": "EXITED", "name": "student-a", "code": -9, "t": 70.644}
+{"ts": 1791063025.2919, "inst": "monitor", "ev": "DOWN", "target": "student-a", "kind": "student", "node": "A", "first_failed_check": 1791063025.0350814, "t": 70.904}
+{"ts": 1791063043.2817, "inst": "supervisor", "ev": "RESTART", "name": "payment-a", "down_for": 20.06, "t": 88.894}
+{"ts": 1791063043.2833, "inst": "supervisor", "ev": "SPAWN", "name": "payment-a", "pid": 2632, "t": 88.895}
+{"ts": 1791063043.7162, "inst": "payment-a", "ev": "STARTED", "pid": 2632, "mode": "baseline", "t": 89.328}
+{"ts": 1791063043.8097, "inst": "monitor", "ev": "UP", "target": "payment-a", "kind": "payment", "node": "A", "down_for": 20.514, "t": 89.422}
+{"ts": 1791063045.0875, "inst": "supervisor", "ev": "RESTART", "name": "student-a", "down_for": 20.06, "t": 90.7}
+{"ts": 1791063045.0925, "inst": "supervisor", "ev": "SPAWN", "name": "student-a", "pid": 2637, "t": 90.705}
+{"ts": 1791063045.519, "inst": "student-a", "ev": "STARTED", "pid": 2637, "mode": "baseline", "t": 91.131}
+{"ts": 1791063045.5575, "inst": "monitor", "ev": "UP", "target": "student-a", "kind": "student", "node": "A", "down_for": 20.511, "t": 91.17}
+{"ts": 1791063056.471, "inst": "supervisor", "ev": "SIGNAL", "name": "payment-a", "sig": "SIGKILL", "pid": 2632, "t": 102.083}
+{"ts": 1791063056.5263, "inst": "supervisor", "ev": "EXITED", "name": "payment-a", "code": -9, "t": 102.138}
+{"ts": 1791063056.8234, "inst": "monitor", "ev": "DOWN", "target": "payment-a", "kind": "payment", "node": "A", "first_failed_check": 1791063056.5617836, "t": 102.435}
+{"ts": 1791063060.3693, "inst": "supervisor", "ev": "SIGNAL", "name": "timetable-a", "sig": "SIGKILL", "pid": 2575, "t": 105.981}
+{"ts": 1791063060.4357, "inst": "supervisor", "ev": "EXITED", "name": "timetable-a", "code": -9, "t": 106.048}
+{"ts": 1791063060.6403, "inst": "gateway", "ev": "UPSTREAM_DOWN", "upstream": "timetable-a", "why": "connect", "t": 106.252}
+{"ts": 1791063060.8195, "inst": "monitor", "ev": "DOWN", "target": "timetable-a", "kind": "timetable", "node": "A", "first_failed_check": 1791063060.5636075, "t": 106.432}
+{"ts": 1791063076.5822, "inst": "supervisor", "ev": "RESTART", "name": "payment-a", "down_for": 20.06, "t": 122.194}
+{"ts": 1791063076.5838, "inst": "supervisor", "ev": "SPAWN", "name": "payment-a", "pid": 2642, "t": 122.196}
+{"ts": 1791063077.0484, "inst": "payment-a", "ev": "STARTED", "pid": 2642, "mode": "baseline", "t": 122.66}
+{"ts": 1791063077.0827, "inst": "monitor", "ev": "UP", "target": "payment-a", "kind": "payment", "node": "A", "down_for": 20.504, "t": 122.695}
+{"ts": 1791063080.4976, "inst": "supervisor", "ev": "RESTART", "name": "timetable-a", "down_for": 20.06, "t": 126.11}
+{"ts": 1791063080.499, "inst": "supervisor", "ev": "SPAWN", "name": "timetable-a", "pid": 2647, "t": 126.111}
+{"ts": 1791063080.9814, "inst": "timetable-a", "ev": "STARTED", "pid": 2647, "mode": "baseline", "t": 126.593}
+{"ts": 1791063081.0819, "inst": "monitor", "ev": "UP", "target": "timetable-a", "kind": "timetable", "node": "A", "down_for": 20.508, "t": 126.694}
+{"ts": 1791063096.7607, "inst": "supervisor", "ev": "SIGNAL", "name": "student-a", "sig": "SIGKILL", "pid": 2637, "t": 142.373}
+{"ts": 1791063096.8374, "inst": "supervisor", "ev": "EXITED", "name": "student-a", "code": -9, "t": 142.449}
+{"ts": 1791063097.0961, "inst": "monitor", "ev": "DOWN", "target": "student-a", "kind": "student", "node": "A", "first_failed_check": 1791063096.8347235, "t": 142.708}
+{"ts": 1791063098.1491, "inst": "supervisor", "ev": "SIGNAL", "name": "db-a", "sig": "SIGKILL", "pid": 2567, "t": 143.761}
+{"ts": 1791063098.2436, "inst": "supervisor", "ev": "EXITED", "name": "db-a", "code": -9, "t": 143.856}
+{"ts": 1791063098.5953, "inst": "monitor", "ev": "DOWN", "target": "db-a", "kind": "db", "node": "A", "first_failed_check": 1791063098.3374443, "t": 144.207}
+{"ts": 1791063116.8977, "inst": "supervisor", "ev": "RESTART", "name": "student-a", "down_for": 20.06, "t": 162.51}
+{"ts": 1791063116.8992, "inst": "supervisor", "ev": "SPAWN", "name": "student-a", "pid": 2665, "t": 162.511}
+{"ts": 1791063117.3395, "inst": "student-a", "ev": "STARTED", "pid": 2665, "mode": "baseline", "t": 162.952}
+{"ts": 1791063117.3668, "inst": "monitor", "ev": "UP", "target": "student-a", "kind": "student", "node": "A", "down_for": 20.52, "t": 162.979}
+{"ts": 1791063118.3067, "inst": "supervisor", "ev": "RESTART", "name": "db-a", "down_for": 20.06, "t": 163.919}
+{"ts": 1791063118.3083, "inst": "supervisor", "ev": "SPAWN", "name": "db-a", "pid": 2670, "t": 163.92}
+{"ts": 1791063118.7563, "inst": "db-a", "ev": "ROLE", "role": "primary", "epoch": 1, "lsn": 728, "t": 164.368}
+{"ts": 1791063118.7564, "inst": "db-a", "ev": "STARTED", "pid": 2670, "mode": "baseline", "t": 164.368}
+{"ts": 1791063118.8759, "inst": "monitor", "ev": "UP", "target": "db-a", "kind": "db", "node": "A", "down_for": 20.516, "t": 164.488}
+{"ts": 1791063214.07, "inst": "supervisor", "ev": "SIGNAL", "name": "student-a", "sig": "SIGKILL", "pid": 2665, "t": 259.682}
+{"ts": 1791063214.1729, "inst": "supervisor", "ev": "EXITED", "name": "student-a", "code": -9, "t": 259.785}
+{"ts": 1791063214.4528, "inst": "monitor", "ev": "DOWN", "target": "student-a", "kind": "student", "node": "A", "first_failed_check": 1791063214.1970525, "t": 260.065}
+{"ts": 1791063218.5792, "inst": "supervisor", "ev": "SIGNAL", "name": "records-a", "sig": "SIGKILL", "pid": 2574, "t": 264.191}
+{"ts": 1791063218.5856, "inst": "supervisor", "ev": "EXITED", "name": "records-a", "code": -9, "t": 264.198}
+{"ts": 1791063218.6909, "inst": "gateway", "ev": "UPSTREAM_DOWN", "upstream": "records-a", "why": "connect", "t": 264.303}
+{"ts": 1791063218.9612, "inst": "monitor", "ev": "DOWN", "target": "records-a", "kind": "records", "node": "A", "first_failed_check": 1791063218.7006547, "t": 264.573}
+{"ts": 1791063234.2371, "inst": "supervisor", "ev": "RESTART", "name": "student-a", "down_for": 20.06, "t": 279.849}
+{"ts": 1791063234.2388, "inst": "supervisor", "ev": "SPAWN", "name": "student-a", "pid": 2713, "t": 279.851}
+{"ts": 1791063234.6887, "inst": "student-a", "ev": "STARTED", "pid": 2713, "mode": "baseline", "t": 280.301}
+{"ts": 1791063234.7219, "inst": "monitor", "ev": "UP", "target": "student-a", "kind": "student", "node": "A", "down_for": 20.512, "t": 280.334}
+{"ts": 1791063238.6528, "inst": "supervisor", "ev": "RESTART", "name": "records-a", "down_for": 20.07, "t": 284.265}
+{"ts": 1791063238.6543, "inst": "supervisor", "ev": "SPAWN", "name": "records-a", "pid": 2718, "t": 284.266}
+{"ts": 1791063239.0766, "inst": "records-a", "ev": "STARTED", "pid": 2718, "mode": "baseline", "t": 284.689}
+{"ts": 1791063239.2232, "inst": "monitor", "ev": "UP", "target": "records-a", "kind": "records", "node": "A", "down_for": 20.51, "t": 284.835}
+{"ts": 1791063279.3813, "inst": "supervisor", "ev": "SIGNAL", "name": "payment-a", "sig": "SIGKILL", "pid": 2642, "t": 324.993}
+{"ts": 1791063279.4669, "inst": "supervisor", "ev": "EXITED", "name": "payment-a", "code": -9, "t": 325.079}
+{"ts": 1791063279.7563, "inst": "monitor", "ev": "DOWN", "target": "payment-a", "kind": "payment", "node": "A", "first_failed_check": 1791063279.4986556, "t": 325.368}
+{"ts": 1791063281.9996, "inst": "supervisor", "ev": "SIGNAL", "name": "db-a", "sig": "SIGKILL", "pid": 2670, "t": 327.612}
+{"ts": 1791063282.0741, "inst": "supervisor", "ev": "EXITED", "name": "db-a", "code": -9, "t": 327.686}
+{"ts": 1791063282.2578, "inst": "monitor", "ev": "DOWN", "target": "db-a", "kind": "db", "node": "A", "first_failed_check": 1791063282.00146, "t": 327.87}
+{"ts": 1791063299.523, "inst": "supervisor", "ev": "RESTART", "name": "payment-a", "down_for": 20.06, "t": 345.135}
+{"ts": 1791063299.5269, "inst": "supervisor", "ev": "SPAWN", "name": "payment-a", "pid": 2742, "t": 345.139}
+{"ts": 1791063299.9571, "inst": "payment-a", "ev": "STARTED", "pid": 2742, "mode": "baseline", "t": 345.569}
+{"ts": 1791063300.0264, "inst": "monitor", "ev": "UP", "target": "payment-a", "kind": "payment", "node": "A", "down_for": 20.521, "t": 345.638}
+{"ts": 1791063302.1336, "inst": "supervisor", "ev": "RESTART", "name": "db-a", "down_for": 20.06, "t": 347.746}
+{"ts": 1791063302.1351, "inst": "supervisor", "ev": "SPAWN", "name": "db-a", "pid": 2748, "t": 347.747}
+{"ts": 1791063302.5914, "inst": "db-a", "ev": "ROLE", "role": "primary", "epoch": 1, "lsn": 1876, "t": 348.203}
+{"ts": 1791063302.5914, "inst": "db-a", "ev": "STARTED", "pid": 2748, "mode": "baseline", "t": 348.203}
+{"ts": 1791063302.7792, "inst": "monitor", "ev": "UP", "target": "db-a", "kind": "db", "node": "A", "down_for": 20.77, "t": 348.391}
+{"ts": 1791063307.9005, "inst": "supervisor", "ev": "SIGNAL", "name": "payment-a", "sig": "SIGKILL", "pid": 2742, "t": 353.513}
+{"ts": 1791063307.9509, "inst": "supervisor", "ev": "EXITED", "name": "payment-a", "code": -9, "t": 353.563}
+{"ts": 1791063308.2845, "inst": "monitor", "ev": "DOWN", "target": "payment-a", "kind": "payment", "node": "A", "first_failed_check": 1791063308.026104, "t": 353.897}
+{"ts": 1791063328.0066, "inst": "supervisor", "ev": "RESTART", "name": "payment-a", "down_for": 20.06, "t": 373.619}
+{"ts": 1791063328.0083, "inst": "supervisor", "ev": "SPAWN", "name": "payment-a", "pid": 2758, "t": 373.62}
+{"ts": 1791063328.4395, "inst": "payment-a", "ev": "STARTED", "pid": 2758, "mode": "baseline", "t": 374.052}
+{"ts": 1791063328.5545, "inst": "monitor", "ev": "UP", "target": "payment-a", "kind": "payment", "node": "A", "down_for": 20.514, "t": 374.167}
+{"ts": 1791063343.8614, "inst": "supervisor", "ev": "SIGNAL", "name": "records-a", "sig": "SIGKILL", "pid": 2718, "t": 389.473}
+{"ts": 1791063343.9489, "inst": "supervisor", "ev": "EXITED", "name": "records-a", "code": -9, "t": 389.561}
+{"ts": 1791063344.3177, "inst": "monitor", "ev": "DOWN", "target": "records-a", "kind": "records", "node": "A", "first_failed_check": 1791063344.0528631, "t": 389.93}
+{"ts": 1791063355.1313, "inst": "supervisor", "ev": "SIGNAL", "name": "student-a", "sig": "SIGKILL", "pid": 2713, "t": 400.743}
+{"ts": 1791063355.1787, "inst": "supervisor", "ev": "EXITED", "name": "student-a", "code": -9, "t": 400.791}
+{"ts": 1791063355.5748, "inst": "monitor", "ev": "DOWN", "target": "student-a", "kind": "student", "node": "A", "first_failed_check": 1791063355.3193521, "t": 401.187}
+{"ts": 1791063363.9996, "inst": "supervisor", "ev": "RESTART", "name": "records-a", "down_for": 20.05, "t": 409.612}
+{"ts": 1791063364.001, "inst": "supervisor", "ev": "SPAWN", "name": "records-a", "pid": 2767, "t": 409.613}
+{"ts": 1791063364.4222, "inst": "records-a", "ev": "STARTED", "pid": 2767, "mode": "baseline", "t": 410.034}
+{"ts": 1791063364.5863, "inst": "monitor", "ev": "UP", "target": "records-a", "kind": "records", "node": "A", "down_for": 20.522, "t": 410.198}
+{"ts": 1791063375.2275, "inst": "supervisor", "ev": "RESTART", "name": "student-a", "down_for": 20.05, "t": 420.84}
+{"ts": 1791063375.229, "inst": "supervisor", "ev": "SPAWN", "name": "student-a", "pid": 2772, "t": 420.841}
+{"ts": 1791063375.6582, "inst": "student-a", "ev": "STARTED", "pid": 2772, "mode": "baseline", "t": 421.27}
+{"ts": 1791063375.8496, "inst": "monitor", "ev": "UP", "target": "student-a", "kind": "student", "node": "A", "down_for": 20.522, "t": 421.462}
+{"ts": 1791063384.5109, "inst": "supervisor", "ev": "SIGNAL", "name": "timetable-a", "sig": "SIGKILL", "pid": 2647, "t": 430.123}
+{"ts": 1791063384.5554, "inst": "supervisor", "ev": "EXITED", "name": "timetable-a", "code": -9, "t": 430.167}
+{"ts": 1791063384.8585, "inst": "monitor", "ev": "DOWN", "target": "timetable-a", "kind": "timetable", "node": "A", "first_failed_check": 1791063384.601493, "t": 430.471}
+{"ts": 1791063404.6111, "inst": "supervisor", "ev": "RESTART", "name": "timetable-a", "down_for": 20.06, "t": 450.223}
+{"ts": 1791063404.6127, "inst": "supervisor", "ev": "SPAWN", "name": "timetable-a", "pid": 2781, "t": 450.225}
+{"ts": 1791063405.0819, "inst": "timetable-a", "ev": "STARTED", "pid": 2781, "mode": "baseline", "t": 450.694}
+{"ts": 1791063405.1296, "inst": "monitor", "ev": "UP", "target": "timetable-a", "kind": "timetable", "node": "A", "down_for": 20.516, "t": 450.742}

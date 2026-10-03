@@ -1,0 +1,86 @@
+{
+  "experiment": "E3",
+  "mode": "ft",
+  "title": "Slow external bank (6 s responses for 15 s)",
+  "t_inject": 10.005,
+  "requests": 1600,
+  "ok": 1600,
+  "failed": 0,
+  "degraded": 134,
+  "recovered_by_retry": 0,
+  "success_rate": 1.0,
+  "latency_p50": 0.009,
+  "latency_p95": 0.039,
+  "latency_p99": 0.818,
+  "failed_by_op": {
+    "enroll": 0,
+    "pay": 0,
+    "student": 0,
+    "timetable": 0,
+    "transcript": 0
+  },
+  "timeouts": 0,
+  "detection_time": 0.54,
+  "redundancy_restored_after": 15.174,
+  "client_visible_recovery": 0.0,
+  "first_failure_after": null,
+  "event_counts": {
+    "BREAKER": 18,
+    "PAYMENT_QUEUED": 134
+  },
+  "marks": {
+    "inject": {
+      "t": 10.005,
+      "info": {
+        "latency_ms": 6000,
+        "latency_after": true,
+        "error_rate": 0.0,
+        "affect_health": true,
+        "interrupt_rate": 0.0,
+        "interrupt_at": "after_debit"
+      }
+    },
+    "revert": {
+      "t": 25.008,
+      "info": {
+        "latency_ms": 0,
+        "latency_after": false,
+        "error_rate": 0.0,
+        "affect_health": false,
+        "interrupt_rate": 0.0,
+        "interrupt_at": "after_debit"
+      }
+    }
+  },
+  "consistency": {
+    "payments_completed": 308,
+    "payments_failed": 0,
+    "bank_debits": 308,
+    "refunds": 0,
+    "orphan_debits": 0,
+    "orphan_amount": 0,
+    "double_charged_intents": 0,
+    "ledger_mismatch": 0,
+    "stuck_payments": 0,
+    "lost_acked_payments": 0,
+    "lost_acked_enrollments": 0,
+    "replica": {
+      "identical": true,
+      "primary": "db-a",
+      "lsn": 2005,
+      "primary_rows": {
+        "paid": 308,
+        "ledger_sum": 67030000.0,
+        "enrollments": 239,
+        "payments": 308
+      },
+      "replica_rows": {
+        "paid": 308,
+        "ledger_sum": 67030000.0,
+        "enrollments": 239,
+        "payments": 308
+      }
+    },
+    "consistent": true
+  }
+}

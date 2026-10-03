@@ -1,0 +1,60 @@
+{
+  "experiment": "E5",
+  "mode": "baseline",
+  "title": "Interrupted payment transactions (30% for 15 s)",
+  "t_inject": 10.004,
+  "requests": 1645,
+  "ok": 1592,
+  "failed": 53,
+  "degraded": 0,
+  "recovered_by_retry": 37,
+  "success_rate": 0.9678,
+  "latency_p50": 0.006,
+  "latency_p95": 0.032,
+  "latency_p99": 0.042,
+  "failed_by_op": {
+    "enroll": 0,
+    "pay": 53,
+    "student": 0,
+    "timetable": 0,
+    "transcript": 0
+  },
+  "timeouts": 0,
+  "client_visible_recovery": 14.929,
+  "first_failure_after": 0.272,
+  "event_counts": {
+    "TX_INTERRUPTED": 53
+  },
+  "interrupted": 53,
+  "interrupted_resolved": 0,
+  "detection_time": null,
+  "resolution_time_mean": null,
+  "resolution_time_max": null,
+  "marks": {
+    "inject": {
+      "t": 10.004,
+      "info": {
+        "interrupt_rate": 0.3,
+        "stage": "after_debit"
+      }
+    },
+    "revert": {
+      "t": 25.009,
+      "info": {}
+    }
+  },
+  "consistency": {
+    "payments_completed": 306,
+    "payments_failed": 0,
+    "bank_debits": 359,
+    "refunds": 0,
+    "orphan_debits": 53,
+    "orphan_amount": 12830000,
+    "double_charged_intents": 45,
+    "ledger_mismatch": 0,
+    "stuck_payments": 0,
+    "lost_acked_payments": 0,
+    "lost_acked_enrollments": 0,
+    "consistent": false
+  }
+}

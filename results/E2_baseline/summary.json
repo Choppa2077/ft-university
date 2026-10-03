@@ -1,0 +1,53 @@
+{
+  "experiment": "E2",
+  "mode": "baseline",
+  "title": "Database primary failure",
+  "t_inject": 10.005,
+  "requests": 1733,
+  "ok": 934,
+  "failed": 799,
+  "degraded": 0,
+  "recovered_by_retry": 7,
+  "success_rate": 0.5389,
+  "latency_p50": 0.006,
+  "latency_p95": 0.033,
+  "latency_p99": 0.046,
+  "failed_by_op": {
+    "enroll": 134,
+    "pay": 259,
+    "student": 305,
+    "timetable": 0,
+    "transcript": 101
+  },
+  "timeouts": 0,
+  "detection_time": 0.295,
+  "redundancy_restored_after": 20.822,
+  "client_visible_recovery": 20.641,
+  "first_failure_after": -0.004,
+  "event_counts": {
+    "RESTART": 1
+  },
+  "marks": {
+    "inject": {
+      "t": 10.005,
+      "info": {
+        "name": "db-a",
+        "pid": 1557
+      }
+    }
+  },
+  "consistency": {
+    "payments_completed": 149,
+    "payments_failed": 0,
+    "bank_debits": 408,
+    "refunds": 0,
+    "orphan_debits": 259,
+    "orphan_amount": 54890000,
+    "double_charged_intents": 133,
+    "ledger_mismatch": 0,
+    "stuck_payments": 0,
+    "lost_acked_payments": 0,
+    "lost_acked_enrollments": 0,
+    "consistent": false
+  }
+}

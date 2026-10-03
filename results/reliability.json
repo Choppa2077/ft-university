@@ -1,0 +1,512 @@
+{
+  "baseline": {
+    "duration_s": 540,
+    "kills_attempted": 17,
+    "kills_done": 15,
+    "components": {
+      "db": {
+        "replicas": 1,
+        "failures": 2,
+        "downtime_s": 41.32,
+        "MTTF_s": 249.3,
+        "MTTR_s": 20.66,
+        "MTBF_s": 270.0,
+        "availability": 0.92348,
+        "failure_rate_per_h": 14.44
+      },
+      "student": {
+        "replicas": 1,
+        "failures": 5,
+        "downtime_s": 102.87,
+        "MTTF_s": 87.4,
+        "MTTR_s": 20.57,
+        "MTBF_s": 108.0,
+        "availability": 0.8095,
+        "failure_rate_per_h": 41.18
+      },
+      "payment": {
+        "replicas": 1,
+        "failures": 4,
+        "downtime_s": 82.1,
+        "MTTF_s": 114.5,
+        "MTTR_s": 20.52,
+        "MTBF_s": 135.0,
+        "availability": 0.84796,
+        "failure_rate_per_h": 31.45
+      },
+      "records": {
+        "replicas": 1,
+        "failures": 2,
+        "downtime_s": 41.06,
+        "MTTF_s": 249.5,
+        "MTTR_s": 20.53,
+        "MTBF_s": 270.0,
+        "availability": 0.92396,
+        "failure_rate_per_h": 14.43
+      },
+      "timetable": {
+        "replicas": 1,
+        "failures": 2,
+        "downtime_s": 41.05,
+        "MTTF_s": 249.5,
+        "MTTR_s": 20.52,
+        "MTBF_s": 270.0,
+        "availability": 0.92398,
+        "failure_rate_per_h": 14.43
+      }
+    },
+    "instances": {
+      "db-a": {
+        "kind": "db",
+        "failures": 2,
+        "downtime": 41.32,
+        "repairs": [
+          20.54,
+          20.78
+        ]
+      },
+      "student-a": {
+        "kind": "student",
+        "failures": 5,
+        "downtime": 102.87,
+        "repairs": [
+          20.77,
+          20.52,
+          20.53,
+          20.52,
+          20.53
+        ]
+      },
+      "payment-a": {
+        "kind": "payment",
+        "failures": 4,
+        "downtime": 82.1,
+        "repairs": [
+          20.53,
+          20.52,
+          20.53,
+          20.53
+        ]
+      },
+      "records-a": {
+        "kind": "records",
+        "failures": 2,
+        "downtime": 41.06,
+        "repairs": [
+          20.52,
+          20.53
+        ]
+      },
+      "timetable-a": {
+        "kind": "timetable",
+        "failures": 2,
+        "downtime": 41.05,
+        "repairs": [
+          20.52,
+          20.53
+        ]
+      }
+    },
+    "system": {
+      "student": {
+        "outages": 6,
+        "downtime_s": 123,
+        "MTTF_s": 69.7,
+        "MTTR_s": 20.5,
+        "availability_time": 0.7726,
+        "availability_requests": 0.7731,
+        "episodes": [
+          [
+            20,
+            40
+          ],
+          [
+            71,
+            91
+          ],
+          [
+            142,
+            165
+          ],
+          [
+            260,
+            280
+          ],
+          [
+            328,
+            348
+          ],
+          [
+            401,
+            421
+          ]
+        ]
+      },
+      "payment": {
+        "outages": 5,
+        "downtime_s": 104,
+        "MTTF_s": 87.4,
+        "MTTR_s": 20.8,
+        "availability_time": 0.8078,
+        "availability_requests": 0.6903,
+        "episodes": [
+          [
+            69,
+            89
+          ],
+          [
+            102,
+            123
+          ],
+          [
+            144,
+            164
+          ],
+          [
+            325,
+            348
+          ],
+          [
+            354,
+            374
+          ]
+        ]
+      },
+      "records": {
+        "outages": 4,
+        "downtime_s": 44,
+        "MTTF_s": 124.2,
+        "MTTR_s": 11.0,
+        "availability_time": 0.9187,
+        "availability_requests": 0.9052,
+        "episodes": [
+          [
+            149,
+            150
+          ],
+          [
+            158,
+            159
+          ],
+          [
+            264,
+            285
+          ],
+          [
+            389,
+            410
+          ]
+        ]
+      },
+      "timetable": {
+        "outages": 2,
+        "downtime_s": 41,
+        "MTTF_s": 250.0,
+        "MTTR_s": 20.5,
+        "availability_time": 0.9242,
+        "availability_requests": 0.9214,
+        "episodes": [
+          [
+            106,
+            126
+          ],
+          [
+            430,
+            451
+          ]
+        ]
+      },
+      "system": {
+        "outages": 9,
+        "downtime_s": 210,
+        "MTTF_s": 36.8,
+        "MTTR_s": 23.33,
+        "availability_time": 0.6118,
+        "availability_requests": 0.7936,
+        "episodes": [
+          [
+            20,
+            40
+          ],
+          [
+            69,
+            91
+          ],
+          [
+            102,
+            126
+          ],
+          [
+            142,
+            165
+          ],
+          [
+            260,
+            285
+          ],
+          [
+            325,
+            348
+          ],
+          [
+            354,
+            374
+          ],
+          [
+            389,
+            421
+          ],
+          [
+            430,
+            451
+          ]
+        ]
+      },
+      "user_level": {
+        "requests": 10800,
+        "failed": 1901,
+        "success": 0.824
+      }
+    },
+    "predicted": {
+      "blocks": {
+        "db": 0.92348,
+        "student": 0.8095,
+        "payment": 0.84796,
+        "records": 0.92396,
+        "timetable": 0.92398
+      },
+      "system": 0.541172
+    }
+  },
+  "ft": {
+    "duration_s": 540,
+    "kills_attempted": 31,
+    "kills_done": 30,
+    "components": {
+      "db": {
+        "replicas": 2,
+        "failures": 2,
+        "downtime_s": 7.03,
+        "MTTF_s": 536.5,
+        "MTTR_s": 3.52,
+        "MTBF_s": 540.0,
+        "availability": 0.99349,
+        "failure_rate_per_h": 6.71
+      },
+      "student": {
+        "replicas": 2,
+        "failures": 12,
+        "downtime_s": 18.75,
+        "MTTF_s": 88.4,
+        "MTTR_s": 1.56,
+        "MTBF_s": 90.0,
+        "availability": 0.98264,
+        "failure_rate_per_h": 40.71
+      },
+      "payment": {
+        "replicas": 2,
+        "failures": 6,
+        "downtime_s": 9.62,
+        "MTTF_s": 178.4,
+        "MTTR_s": 1.6,
+        "MTBF_s": 180.0,
+        "availability": 0.99109,
+        "failure_rate_per_h": 20.18
+      },
+      "records": {
+        "replicas": 2,
+        "failures": 6,
+        "downtime_s": 9.86,
+        "MTTF_s": 178.4,
+        "MTTR_s": 1.64,
+        "MTBF_s": 180.0,
+        "availability": 0.99087,
+        "failure_rate_per_h": 20.18
+      },
+      "timetable": {
+        "replicas": 2,
+        "failures": 4,
+        "downtime_s": 6.08,
+        "MTTF_s": 268.5,
+        "MTTR_s": 1.52,
+        "MTBF_s": 270.0,
+        "availability": 0.99437,
+        "failure_rate_per_h": 13.41
+      }
+    },
+    "instances": {
+      "db-a": {
+        "kind": "db",
+        "failures": 2,
+        "downtime": 7.03,
+        "repairs": [
+          3.52,
+          3.51
+        ]
+      },
+      "student-a": {
+        "kind": "student",
+        "failures": 6,
+        "downtime": 9.37,
+        "repairs": [
+          1.52,
+          1.27,
+          1.52,
+          1.77,
+          1.78,
+          1.52
+        ]
+      },
+      "payment-a": {
+        "kind": "payment",
+        "failures": 4,
+        "downtime": 6.58,
+        "repairs": [
+          1.51,
+          1.52,
+          1.77,
+          1.78
+        ]
+      },
+      "records-a": {
+        "kind": "records",
+        "failures": 2,
+        "downtime": 3.54,
+        "repairs": [
+          1.78,
+          1.77
+        ]
+      },
+      "timetable-a": {
+        "kind": "timetable",
+        "failures": 2,
+        "downtime": 3.04,
+        "repairs": [
+          1.52,
+          1.52
+        ]
+      },
+      "db-b": {
+        "kind": "db",
+        "failures": 0,
+        "downtime": 0,
+        "repairs": []
+      },
+      "student-b": {
+        "kind": "student",
+        "failures": 6,
+        "downtime": 9.38,
+        "repairs": [
+          1.52,
+          1.77,
+          1.52,
+          1.52,
+          1.52,
+          1.53
+        ]
+      },
+      "payment-b": {
+        "kind": "payment",
+        "failures": 2,
+        "downtime": 3.04,
+        "repairs": [
+          1.52,
+          1.52
+        ]
+      },
+      "records-b": {
+        "kind": "records",
+        "failures": 4,
+        "downtime": 6.32,
+        "repairs": [
+          1.52,
+          1.76,
+          1.52,
+          1.52
+        ]
+      },
+      "timetable-b": {
+        "kind": "timetable",
+        "failures": 2,
+        "downtime": 3.04,
+        "repairs": [
+          1.52,
+          1.52
+        ]
+      }
+    },
+    "system": {
+      "student": {
+        "outages": 1,
+        "downtime_s": 1,
+        "MTTF_s": 540.0,
+        "MTTR_s": 1.0,
+        "availability_time": 0.9982,
+        "availability_requests": 0.9987,
+        "episodes": [
+          [
+            143,
+            144
+          ]
+        ]
+      },
+      "payment": {
+        "outages": 0,
+        "downtime_s": 0,
+        "MTTF_s": null,
+        "MTTR_s": null,
+        "availability_time": 1.0,
+        "availability_requests": 1.0,
+        "episodes": []
+      },
+      "records": {
+        "outages": 0,
+        "downtime_s": 0,
+        "MTTF_s": null,
+        "MTTR_s": null,
+        "availability_time": 1.0,
+        "availability_requests": 1.0,
+        "episodes": []
+      },
+      "timetable": {
+        "outages": 0,
+        "downtime_s": 0,
+        "MTTF_s": null,
+        "MTTR_s": null,
+        "availability_time": 1.0,
+        "availability_requests": 1.0,
+        "episodes": []
+      },
+      "system": {
+        "outages": 1,
+        "downtime_s": 1,
+        "MTTF_s": 540.0,
+        "MTTR_s": 1.0,
+        "availability_time": 0.9982,
+        "availability_requests": 0.9994,
+        "episodes": [
+          [
+            143,
+            144
+          ]
+        ]
+      },
+      "user_level": {
+        "requests": 10800,
+        "failed": 7,
+        "success": 0.9994
+      }
+    },
+    "predicted": {
+      "blocks": {
+        "db": 0.999958,
+        "student": 0.999699,
+        "payment": 0.999921,
+        "records": 0.999917,
+        "timetable": 0.999968
+      },
+      "system": 0.999462
+    }
+  }
+}
