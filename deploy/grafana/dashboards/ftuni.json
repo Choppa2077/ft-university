@@ -1,0 +1,901 @@
+{
+ "uid": "ftuni",
+ "title": "FT University - endterm",
+ "tags": [
+  "ftuni"
+ ],
+ "timezone": "browser",
+ "schemaVersion": 39,
+ "version": 1,
+ "refresh": "2s",
+ "time": {
+  "from": "now-5m",
+  "to": "now"
+ },
+ "panels": [
+  {
+   "type": "row",
+   "title": "Users' view (gateway)",
+   "collapsed": false,
+   "gridPos": {
+    "x": 0,
+    "y": 0,
+    "w": 24,
+    "h": 1
+   },
+   "id": 1,
+   "panels": []
+  },
+  {
+   "type": "timeseries",
+   "title": "Requests per second by service",
+   "datasource": {
+    "type": "prometheus",
+    "uid": "prom"
+   },
+   "id": 2,
+   "gridPos": {
+    "x": 0,
+    "y": 1,
+    "w": 8,
+    "h": 7
+   },
+   "targets": [
+    {
+     "datasource": {
+      "type": "prometheus",
+      "uid": "prom"
+     },
+     "expr": "sum by (service) (rate(ftuni_http_requests_total{job=\"gateway\", service!=\"gateway\"}[10s]))",
+     "legendFormat": "{{service}}",
+     "refId": "A",
+     "interval": "1s"
+    }
+   ],
+   "fieldConfig": {
+    "defaults": {
+     "unit": "short",
+     "custom": {
+      "drawStyle": "line",
+      "lineWidth": 2,
+      "fillOpacity": 10,
+      "stacking": {
+       "mode": "none"
+      }
+     }
+    },
+    "overrides": []
+   },
+   "options": {
+    "legend": {
+     "displayMode": "list",
+     "placement": "bottom"
+    },
+    "tooltip": {
+     "mode": "multi"
+    }
+   }
+  },
+  {
+   "type": "timeseries",
+   "title": "Error ratio (5xx) by service",
+   "datasource": {
+    "type": "prometheus",
+    "uid": "prom"
+   },
+   "id": 3,
+   "gridPos": {
+    "x": 8,
+    "y": 1,
+    "w": 8,
+    "h": 7
+   },
+   "targets": [
+    {
+     "datasource": {
+      "type": "prometheus",
+      "uid": "prom"
+     },
+     "expr": "sum by (service) (rate(ftuni_http_requests_total{job=\"gateway\", service!=\"gateway\", status=~\"5..\"}[10s])) / sum by (service) (rate(ftuni_http_requests_total{job=\"gateway\", service!=\"gateway\"}[10s]))",
+     "legendFormat": "{{service}}",
+     "refId": "A",
+     "interval": "1s"
+    }
+   ],
+   "fieldConfig": {
+    "defaults": {
+     "unit": "percentunit",
+     "custom": {
+      "drawStyle": "line",
+      "lineWidth": 2,
+      "fillOpacity": 10,
+      "stacking": {
+       "mode": "none"
+      }
+     },
+     "max": 1,
+     "min": 0
+    },
+    "overrides": []
+   },
+   "options": {
+    "legend": {
+     "displayMode": "list",
+     "placement": "bottom"
+    },
+    "tooltip": {
+     "mode": "multi"
+    }
+   }
+  },
+  {
+   "type": "timeseries",
+   "title": "p95 latency by service",
+   "datasource": {
+    "type": "prometheus",
+    "uid": "prom"
+   },
+   "id": 4,
+   "gridPos": {
+    "x": 16,
+    "y": 1,
+    "w": 8,
+    "h": 7
+   },
+   "targets": [
+    {
+     "datasource": {
+      "type": "prometheus",
+      "uid": "prom"
+     },
+     "expr": "histogram_quantile(0.95, sum by (le, service) (rate(ftuni_http_request_duration_seconds_bucket{job=\"gateway\", service!=\"gateway\"}[10s])))",
+     "legendFormat": "{{service}}",
+     "refId": "A",
+     "interval": "1s"
+    }
+   ],
+   "fieldConfig": {
+    "defaults": {
+     "unit": "s",
+     "custom": {
+      "drawStyle": "line",
+      "lineWidth": 2,
+      "fillOpacity": 10,
+      "stacking": {
+       "mode": "none"
+      }
+     }
+    },
+    "overrides": []
+   },
+   "options": {
+    "legend": {
+     "displayMode": "list",
+     "placement": "bottom"
+    },
+    "tooltip": {
+     "mode": "multi"
+    }
+   }
+  },
+  {
+   "type": "timeseries",
+   "title": "Degraded / shed / retried per second",
+   "datasource": {
+    "type": "prometheus",
+    "uid": "prom"
+   },
+   "id": 5,
+   "gridPos": {
+    "x": 0,
+    "y": 8,
+    "w": 12,
+    "h": 7
+   },
+   "targets": [
+    {
+     "datasource": {
+      "type": "prometheus",
+      "uid": "prom"
+     },
+     "expr": "sum by (service) (rate(ftuni_gateway_degraded_total[10s]))",
+     "legendFormat": "degraded {{service}}",
+     "refId": "A",
+     "interval": "1s"
+    },
+    {
+     "datasource": {
+      "type": "prometheus",
+      "uid": "prom"
+     },
+     "expr": "sum by (service) (rate(ftuni_gateway_shed_total[10s]))",
+     "legendFormat": "shed {{service}}",
+     "refId": "B",
+     "interval": "1s"
+    },
+    {
+     "datasource": {
+      "type": "prometheus",
+      "uid": "prom"
+     },
+     "expr": "sum by (service) (rate(ftuni_gateway_retries_total[10s]))",
+     "legendFormat": "retried {{service}}",
+     "refId": "C",
+     "interval": "1s"
+    }
+   ],
+   "fieldConfig": {
+    "defaults": {
+     "unit": "short",
+     "custom": {
+      "drawStyle": "line",
+      "lineWidth": 2,
+      "fillOpacity": 10,
+      "stacking": {
+       "mode": "none"
+      }
+     }
+    },
+    "overrides": []
+   },
+   "options": {
+    "legend": {
+     "displayMode": "list",
+     "placement": "bottom"
+    },
+    "tooltip": {
+     "mode": "multi"
+    }
+   }
+  },
+  {
+   "type": "timeseries",
+   "title": "Firing alerts",
+   "datasource": {
+    "type": "prometheus",
+    "uid": "prom"
+   },
+   "id": 6,
+   "gridPos": {
+    "x": 12,
+    "y": 8,
+    "w": 12,
+    "h": 7
+   },
+   "targets": [
+    {
+     "datasource": {
+      "type": "prometheus",
+      "uid": "prom"
+     },
+     "expr": "sum by (alertname) (ALERTS{alertstate=\"firing\"})",
+     "legendFormat": "{{alertname}}",
+     "refId": "A",
+     "interval": "1s"
+    }
+   ],
+   "fieldConfig": {
+    "defaults": {
+     "unit": "short",
+     "custom": {
+      "drawStyle": "bars",
+      "lineWidth": 2,
+      "fillOpacity": 10,
+      "stacking": {
+       "mode": "none"
+      }
+     }
+    },
+    "overrides": []
+   },
+   "options": {
+    "legend": {
+     "displayMode": "list",
+     "placement": "bottom"
+    },
+    "tooltip": {
+     "mode": "multi"
+    }
+   }
+  },
+  {
+   "type": "row",
+   "title": "Instances",
+   "collapsed": false,
+   "gridPos": {
+    "x": 0,
+    "y": 15,
+    "w": 24,
+    "h": 1
+   },
+   "id": 7,
+   "panels": []
+  },
+  {
+   "type": "state-timeline",
+   "title": "Scrape status (Prometheus up)",
+   "datasource": {
+    "type": "prometheus",
+    "uid": "prom"
+   },
+   "id": 8,
+   "gridPos": {
+    "x": 0,
+    "y": 16,
+    "w": 12,
+    "h": 8
+   },
+   "targets": [
+    {
+     "datasource": {
+      "type": "prometheus",
+      "uid": "prom"
+     },
+     "expr": "up{job=~\"ftuni|gateway\"}",
+     "legendFormat": "{{name}}",
+     "refId": "A",
+     "interval": "1s"
+    }
+   ],
+   "fieldConfig": {
+    "defaults": {
+     "color": {
+      "mode": "thresholds"
+     },
+     "thresholds": {
+      "mode": "absolute",
+      "steps": [
+       {
+        "color": "red",
+        "value": null
+       },
+       {
+        "color": "green",
+        "value": 1
+       }
+      ]
+     },
+     "mappings": [
+      {
+       "type": "value",
+       "options": {
+        "0": {
+         "text": "DOWN"
+        },
+        "1": {
+         "text": "UP"
+        }
+       }
+      }
+     ]
+    },
+    "overrides": []
+   },
+   "options": {
+    "showValue": "never",
+    "rowHeight": 0.8,
+    "mergeValues": true
+   }
+  },
+  {
+   "type": "state-timeline",
+   "title": "Gateway view of replicas",
+   "datasource": {
+    "type": "prometheus",
+    "uid": "prom"
+   },
+   "id": 9,
+   "gridPos": {
+    "x": 12,
+    "y": 16,
+    "w": 12,
+    "h": 8
+   },
+   "targets": [
+    {
+     "datasource": {
+      "type": "prometheus",
+      "uid": "prom"
+     },
+     "expr": "ftuni_gateway_upstream_up",
+     "legendFormat": "{{upstream}}",
+     "refId": "A",
+     "interval": "1s"
+    }
+   ],
+   "fieldConfig": {
+    "defaults": {
+     "color": {
+      "mode": "thresholds"
+     },
+     "thresholds": {
+      "mode": "absolute",
+      "steps": [
+       {
+        "color": "red",
+        "value": null
+       },
+       {
+        "color": "green",
+        "value": 1
+       }
+      ]
+     },
+     "mappings": [
+      {
+       "type": "value",
+       "options": {
+        "0": {
+         "text": "DOWN"
+        },
+        "1": {
+         "text": "UP"
+        }
+       }
+      }
+     ]
+    },
+    "overrides": []
+   },
+   "options": {
+    "showValue": "never",
+    "rowHeight": 0.8,
+    "mergeValues": true
+   }
+  },
+  {
+   "type": "timeseries",
+   "title": "5xx ratio per replica (masked failures show up here)",
+   "datasource": {
+    "type": "prometheus",
+    "uid": "prom"
+   },
+   "id": 10,
+   "gridPos": {
+    "x": 0,
+    "y": 24,
+    "w": 12,
+    "h": 7
+   },
+   "targets": [
+    {
+     "datasource": {
+      "type": "prometheus",
+      "uid": "prom"
+     },
+     "expr": "sum by (name) (rate(ftuni_http_requests_total{job=\"ftuni\", status=~\"5..\"}[10s])) / sum by (name) (rate(ftuni_http_requests_total{job=\"ftuni\"}[10s]))",
+     "legendFormat": "{{name}}",
+     "refId": "A",
+     "interval": "1s"
+    }
+   ],
+   "fieldConfig": {
+    "defaults": {
+     "unit": "percentunit",
+     "custom": {
+      "drawStyle": "line",
+      "lineWidth": 2,
+      "fillOpacity": 10,
+      "stacking": {
+       "mode": "none"
+      }
+     }
+    },
+    "overrides": []
+   },
+   "options": {
+    "legend": {
+     "displayMode": "list",
+     "placement": "bottom"
+    },
+    "tooltip": {
+     "mode": "multi"
+    }
+   }
+  },
+  {
+   "type": "timeseries",
+   "title": "CPU per instance (cores)",
+   "datasource": {
+    "type": "prometheus",
+    "uid": "prom"
+   },
+   "id": 11,
+   "gridPos": {
+    "x": 12,
+    "y": 24,
+    "w": 12,
+    "h": 7
+   },
+   "targets": [
+    {
+     "datasource": {
+      "type": "prometheus",
+      "uid": "prom"
+     },
+     "expr": "rate(process_cpu_seconds_total{job=~\"ftuni|gateway\"}[10s])",
+     "legendFormat": "{{name}}",
+     "refId": "A",
+     "interval": "1s"
+    }
+   ],
+   "fieldConfig": {
+    "defaults": {
+     "unit": "short",
+     "custom": {
+      "drawStyle": "line",
+      "lineWidth": 2,
+      "fillOpacity": 10,
+      "stacking": {
+       "mode": "none"
+      }
+     }
+    },
+    "overrides": []
+   },
+   "options": {
+    "legend": {
+     "displayMode": "list",
+     "placement": "bottom"
+    },
+    "tooltip": {
+     "mode": "multi"
+    }
+   }
+  },
+  {
+   "type": "row",
+   "title": "Database and payments",
+   "collapsed": false,
+   "gridPos": {
+    "x": 0,
+    "y": 31,
+    "w": 24,
+    "h": 1
+   },
+   "id": 12,
+   "panels": []
+  },
+  {
+   "type": "timeseries",
+   "title": "Database role (1 = primary) and epoch",
+   "datasource": {
+    "type": "prometheus",
+    "uid": "prom"
+   },
+   "id": 13,
+   "gridPos": {
+    "x": 0,
+    "y": 32,
+    "w": 8,
+    "h": 7
+   },
+   "targets": [
+    {
+     "datasource": {
+      "type": "prometheus",
+      "uid": "prom"
+     },
+     "expr": "ftuni_db_is_primary{kind=\"db\"}",
+     "legendFormat": "primary {{name}}",
+     "refId": "A",
+     "interval": "1s"
+    },
+    {
+     "datasource": {
+      "type": "prometheus",
+      "uid": "prom"
+     },
+     "expr": "ftuni_db_epoch{kind=\"db\"}",
+     "legendFormat": "epoch {{name}}",
+     "refId": "B",
+     "interval": "1s"
+    }
+   ],
+   "fieldConfig": {
+    "defaults": {
+     "unit": "short",
+     "custom": {
+      "drawStyle": "line",
+      "lineWidth": 2,
+      "fillOpacity": 10,
+      "stacking": {
+       "mode": "none"
+      }
+     }
+    },
+    "overrides": []
+   },
+   "options": {
+    "legend": {
+     "displayMode": "list",
+     "placement": "bottom"
+    },
+    "tooltip": {
+     "mode": "multi"
+    }
+   }
+  },
+  {
+   "type": "timeseries",
+   "title": "Replication in sync (primary)",
+   "datasource": {
+    "type": "prometheus",
+    "uid": "prom"
+   },
+   "id": 14,
+   "gridPos": {
+    "x": 8,
+    "y": 32,
+    "w": 8,
+    "h": 7
+   },
+   "targets": [
+    {
+     "datasource": {
+      "type": "prometheus",
+      "uid": "prom"
+     },
+     "expr": "ftuni_db_replication_ok{kind=\"db\"}",
+     "legendFormat": "{{name}}",
+     "refId": "A",
+     "interval": "1s"
+    }
+   ],
+   "fieldConfig": {
+    "defaults": {
+     "unit": "short",
+     "custom": {
+      "drawStyle": "line",
+      "lineWidth": 2,
+      "fillOpacity": 10,
+      "stacking": {
+       "mode": "none"
+      }
+     },
+     "max": 1,
+     "min": 0
+    },
+    "overrides": []
+   },
+   "options": {
+    "legend": {
+     "displayMode": "list",
+     "placement": "bottom"
+    },
+    "tooltip": {
+     "mode": "multi"
+    }
+   }
+  },
+  {
+   "type": "timeseries",
+   "title": "Unfinished payments / open breakers",
+   "datasource": {
+    "type": "prometheus",
+    "uid": "prom"
+   },
+   "id": 15,
+   "gridPos": {
+    "x": 16,
+    "y": 32,
+    "w": 8,
+    "h": 7
+   },
+   "targets": [
+    {
+     "datasource": {
+      "type": "prometheus",
+      "uid": "prom"
+     },
+     "expr": "max by (status) (ftuni_payments_unfinished)",
+     "legendFormat": "{{status}}",
+     "refId": "A",
+     "interval": "1s"
+    },
+    {
+     "datasource": {
+      "type": "prometheus",
+      "uid": "prom"
+     },
+     "expr": "ftuni_breaker_open",
+     "legendFormat": "breaker {{name}}->{{target}}",
+     "refId": "B",
+     "interval": "1s"
+    }
+   ],
+   "fieldConfig": {
+    "defaults": {
+     "unit": "short",
+     "custom": {
+      "drawStyle": "line",
+      "lineWidth": 2,
+      "fillOpacity": 10,
+      "stacking": {
+       "mode": "none"
+      }
+     }
+    },
+    "overrides": []
+   },
+   "options": {
+    "legend": {
+     "displayMode": "list",
+     "placement": "bottom"
+    },
+    "tooltip": {
+     "mode": "multi"
+    }
+   }
+  },
+  {
+   "type": "row",
+   "title": "Security",
+   "collapsed": false,
+   "gridPos": {
+    "x": 0,
+    "y": 39,
+    "w": 24,
+    "h": 1
+   },
+   "id": 16,
+   "panels": []
+  },
+  {
+   "type": "timeseries",
+   "title": "Refused requests per second by reason",
+   "datasource": {
+    "type": "prometheus",
+    "uid": "prom"
+   },
+   "id": 17,
+   "gridPos": {
+    "x": 0,
+    "y": 40,
+    "w": 8,
+    "h": 7
+   },
+   "targets": [
+    {
+     "datasource": {
+      "type": "prometheus",
+      "uid": "prom"
+     },
+     "expr": "sum by (reason) (rate(ftuni_auth_denied_total[10s]))",
+     "legendFormat": "{{reason}}",
+     "refId": "A",
+     "interval": "1s"
+    }
+   ],
+   "fieldConfig": {
+    "defaults": {
+     "unit": "short",
+     "custom": {
+      "drawStyle": "line",
+      "lineWidth": 2,
+      "fillOpacity": 10,
+      "stacking": {
+       "mode": "none"
+      }
+     }
+    },
+    "overrides": []
+   },
+   "options": {
+    "legend": {
+     "displayMode": "list",
+     "placement": "bottom"
+    },
+    "tooltip": {
+     "mode": "multi"
+    }
+   }
+  },
+  {
+   "type": "timeseries",
+   "title": "Rate-limited per second",
+   "datasource": {
+    "type": "prometheus",
+    "uid": "prom"
+   },
+   "id": 18,
+   "gridPos": {
+    "x": 8,
+    "y": 40,
+    "w": 8,
+    "h": 7
+   },
+   "targets": [
+    {
+     "datasource": {
+      "type": "prometheus",
+      "uid": "prom"
+     },
+     "expr": "sum by (scope) (rate(ftuni_rate_limited_total[10s]))",
+     "legendFormat": "{{scope}}",
+     "refId": "A",
+     "interval": "1s"
+    }
+   ],
+   "fieldConfig": {
+    "defaults": {
+     "unit": "short",
+     "custom": {
+      "drawStyle": "line",
+      "lineWidth": 2,
+      "fillOpacity": 10,
+      "stacking": {
+       "mode": "none"
+      }
+     }
+    },
+    "overrides": []
+   },
+   "options": {
+    "legend": {
+     "displayMode": "list",
+     "placement": "bottom"
+    },
+    "tooltip": {
+     "mode": "multi"
+    }
+   }
+  },
+  {
+   "type": "timeseries",
+   "title": "Audit records per second",
+   "datasource": {
+    "type": "prometheus",
+    "uid": "prom"
+   },
+   "id": 19,
+   "gridPos": {
+    "x": 16,
+    "y": 40,
+    "w": 8,
+    "h": 7
+   },
+   "targets": [
+    {
+     "datasource": {
+      "type": "prometheus",
+      "uid": "prom"
+     },
+     "expr": "sum by (event) (rate(ftuni_audit_records_total[10s]))",
+     "legendFormat": "{{event}}",
+     "refId": "A",
+     "interval": "1s"
+    }
+   ],
+   "fieldConfig": {
+    "defaults": {
+     "unit": "short",
+     "custom": {
+      "drawStyle": "line",
+      "lineWidth": 2,
+      "fillOpacity": 10,
+      "stacking": {
+       "mode": "none"
+      }
+     }
+    },
+    "overrides": []
+   },
+   "options": {
+    "legend": {
+     "displayMode": "list",
+     "placement": "bottom"
+    },
+    "tooltip": {
+     "mode": "multi"
+    }
+   }
+  }
+ ],
+ "templating": {
+  "list": []
+ },
+ "annotations": {
+  "list": []
+ }
+}

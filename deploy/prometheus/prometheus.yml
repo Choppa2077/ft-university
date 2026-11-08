@@ -1,0 +1,27 @@
+# Short intervals on purpose: the experiments last ~40 s, so scrapes and rule
+# evaluation run every second. Production values would be 15-30 s (see report).
+global:
+  scrape_interval: 1s
+  scrape_timeout: 900ms
+  evaluation_interval: 1s
+
+rule_files: [/etc/prometheus/alerts.yml]
+
+alerting:
+  alertmanagers:
+    - static_configs: [{targets: ["alertmanager:9093"]}]
+
+scrape_configs:
+  # the gateway's /metrics is reachable from outside, so it needs the operator token
+  - job_name: gateway
+    authorization: {type: Bearer, credentials_file: /run/secrets/ops_token}
+    static_configs:
+      - targets: ["gateway:8000"]
+        labels: {name: gateway, kind: gateway, node: ctl}
+
+  # services, database nodes, monitor and bank: file-based discovery written by the init
+  # container for the build that is running (the baseline has no node B)
+  - job_name: ftuni
+    file_sd_configs:
+      - files: [/etc/prometheus/targets/services.json]
+        refresh_interval: 5s

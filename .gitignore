@@ -3,3 +3,7 @@ __pycache__/
 .pytest_cache/
 *.pyc
 run_supervisor.log
+.venv/
+run-docker/
+deploy/secrets/
+.env

@@ -1,0 +1,180 @@
+{
+ "experiment": "X6",
+ "build": "endterm",
+ "title": "Abusive / malformed requests",
+ "cases": [
+  {
+   "case": "negative_amount",
+   "description": "POST /payments",
+   "status": 422,
+   "expected": [
+    400,
+    422
+   ],
+   "ok": true
+  },
+  {
+   "case": "zero_amount",
+   "description": "POST /payments",
+   "status": 422,
+   "expected": [
+    400,
+    422
+   ],
+   "ok": true
+  },
+  {
+   "case": "overflow_amount",
+   "description": "POST /payments",
+   "status": 422,
+   "expected": [
+    400,
+    422
+   ],
+   "ok": true
+  },
+  {
+   "case": "amount_as_string",
+   "description": "POST /payments",
+   "status": 422,
+   "expected": [
+    400,
+    422
+   ],
+   "ok": true
+  },
+  {
+   "case": "sql_in_id",
+   "description": "GET /students/S0001' OR '1'='1",
+   "status": 403,
+   "expected": [
+    403,
+    404,
+    422
+   ],
+   "ok": true
+  },
+  {
+   "case": "sql_in_course",
+   "description": "POST /students/register",
+   "status": 422,
+   "expected": [
+    400,
+    404,
+    422
+   ],
+   "ok": true
+  },
+  {
+   "case": "unknown_field",
+   "description": "POST /payments",
+   "status": 422,
+   "expected": [
+    400,
+    422
+   ],
+   "ok": true
+  },
+  {
+   "case": "bad_group",
+   "description": "GET /timetable/'; DROP TABLE students;--",
+   "status": 422,
+   "expected": [
+    403,
+    404,
+    422
+   ],
+   "ok": true
+  },
+  {
+   "case": "oversize_body",
+   "description": "POST /payments",
+   "status": 413,
+   "expected": [
+    413,
+    422
+   ],
+   "ok": true
+  },
+  {
+   "case": "not_json",
+   "description": "POST /payments",
+   "status": 400,
+   "expected": [
+    400,
+    422
+   ],
+   "ok": true
+  }
+ ],
+ "cases_passed": 10,
+ "cases_total": 10,
+ "extra": {
+  "abuse_flood": {
+   "sent": 400,
+   "seconds": 0.35,
+   "200": 23,
+   "429": 377,
+   "other": 0,
+   "throttled": true
+  }
+ },
+ "data_unchanged": true,
+ "checksum_before": {
+  "students": {
+   "rows": 300,
+   "sha256": "d9c97fa5aae5dd11"
+  },
+  "courses": {
+   "rows": 40,
+   "sha256": "477bb25b50f23026"
+  },
+  "grades": {
+   "rows": 3600,
+   "sha256": "1f0ae83d9cd415bf"
+  },
+  "enrollments": {
+   "rows": 0,
+   "sha256": "4f53cda18c2baa0c"
+  },
+  "payments": {
+   "rows": 0,
+   "sha256": "4f53cda18c2baa0c"
+  },
+  "ledger": {
+   "rows": 0,
+   "sha256": "4f53cda18c2baa0c"
+  }
+ },
+ "checksum_after": {
+  "students": {
+   "rows": 300,
+   "sha256": "d9c97fa5aae5dd11"
+  },
+  "courses": {
+   "rows": 40,
+   "sha256": "477bb25b50f23026"
+  },
+  "grades": {
+   "rows": 3600,
+   "sha256": "1f0ae83d9cd415bf"
+  },
+  "enrollments": {
+   "rows": 0,
+   "sha256": "4f53cda18c2baa0c"
+  },
+  "payments": {
+   "rows": 0,
+   "sha256": "4f53cda18c2baa0c"
+  },
+  "ledger": {
+   "rows": 0,
+   "sha256": "4f53cda18c2baa0c"
+  }
+ },
+ "audit_records_for_denials": 25,
+ "audit_chain_ok": true,
+ "alerts_fired": [],
+ "duration_s": 3.6,
+ "_pass": true
+}

@@ -1,0 +1,59 @@
+{
+ "experiment": "X1",
+ "build": "ft",
+ "rep": 3,
+ "title": "Service instance failure (payment-a killed)",
+ "startup_s": 9.0,
+ "requests": 1600,
+ "ok": 1600,
+ "failed": 0,
+ "degraded": 0,
+ "recovered_by_retry": 1,
+ "success_rate": 1.0,
+ "p50_ms": 8.4,
+ "p95_ms": 19.4,
+ "p99_ms": 24.2,
+ "detect_alert_s": null,
+ "detect_event_s": 0.355,
+ "client_visible_recovery_s": 0.0,
+ "restart_count": {
+  "payment-a": 1
+ },
+ "consistency": {
+  "payments_completed": 308,
+  "payments_failed": 0,
+  "bank_debits": 308,
+  "refunds": 0,
+  "orphan_debits": 0,
+  "orphan_amount": 0,
+  "double_charged_intents": 0,
+  "ledger_mismatch": 0,
+  "stuck_payments": 0,
+  "lost_acked_payments": 0,
+  "lost_acked_enrollments": 0,
+  "replica": {
+   "identical": true,
+   "primary": "db-a",
+   "lsn": 866,
+   "primary_rows": {
+    "paid": 308,
+    "ledger_sum": 67330000.0,
+    "enrollments": 248,
+    "payments": 308
+   },
+   "replica_rows": {
+    "paid": 308,
+    "ledger_sum": 67330000.0,
+    "enrollments": 248,
+    "payments": 308
+   }
+  },
+  "consistent": true
+ },
+ "alerts_fired": [],
+ "inject": {
+  "killed": "payment-a",
+  "t": 1794151496.333005
+ },
+ "core_p95_ms": 22.5
+}

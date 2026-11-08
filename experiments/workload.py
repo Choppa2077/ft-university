@@ -56,6 +56,12 @@ class Workload:
         self.client_retry = client_retry
         self.tag = tag
         self.records: list[Rec] = []
+        self.idem = mode in ("ft", "endterm")     # FT client library sends Idempotency-Keys
+        self.tokens: dict[str, str] = {}          # endterm: student id -> access token
+
+    def auth(self, sid: str) -> dict:
+        tok = self.tokens.get(sid)
+        return {"Authorization": f"Bearer {tok}"} if tok else {}
 
     async def run(self, client: httpx.AsyncClient) -> None:
         rnd = random.Random(self.seed)
@@ -81,23 +87,24 @@ class Workload:
         if op == "pay":
             await self.pay(c, sid, amount)
             return
-        headers = {"Idempotency-Key": uuid.uuid4().hex} if self.mode == "ft" else {}
+        headers = {"Idempotency-Key": uuid.uuid4().hex} if self.idem else {}
+        headers.update(self.auth(sid))
         if op == "student":
-            await self.send(c, op, "GET", f"/students/{sid}")
+            await self.send(c, op, "GET", f"/students/{sid}", headers=self.auth(sid))
         elif op == "enroll":
             rec = await self.send(c, op, "POST", "/students/register",
                                   {"student_id": sid, "course_id": course}, headers)
             rec.detail = f"{sid}:{course}"
         elif op == "transcript":
-            await self.send(c, op, "GET", f"/transcripts/{sid}")
+            await self.send(c, op, "GET", f"/transcripts/{sid}", headers=self.auth(sid))
         elif op == "timetable":
-            await self.send(c, op, "GET", f"/timetable/{group}?week={week}")
+            await self.send(c, op, "GET", f"/timetable/{group}?week={week}", headers=self.auth(sid))
 
     async def pay(self, c: httpx.AsyncClient, sid: str, amount: int) -> None:
         intent = uuid.uuid4().hex[:16]
         for try_no in (1, 2):
-            headers = {"X-Client-Intent": intent}
-            if self.mode == "ft":
+            headers = {"X-Client-Intent": intent, **self.auth(sid)}
+            if self.idem:
                 headers["Idempotency-Key"] = intent
             rec = await self.send(c, "pay", "POST", "/payments", {"student_id": sid, "amount": amount}, headers,
                                   intent=intent, try_no=try_no)
@@ -148,7 +155,25 @@ def load_csv(path) -> list[Rec]:
     return out
 
 
-def client(timeout: float = 5.0) -> httpx.AsyncClient:
+def client(timeout: float = 5.0, base_url: str | None = None) -> httpx.AsyncClient:
+    import os
     from .cluster import GATEWAY
-    return httpx.AsyncClient(base_url=GATEWAY, timeout=timeout,
+    return httpx.AsyncClient(base_url=base_url or os.environ.get("FTUNI_GATEWAY", GATEWAY), timeout=timeout,
                              limits=httpx.Limits(max_connections=2000, max_keepalive_connections=200))
+
+
+async def login_all(c: httpx.AsyncClient, creds: dict[str, str], users: list[str], parallel: int = 16) -> dict:
+    """Log the synthetic users in before the measurement starts (endterm build)."""
+    sem = asyncio.Semaphore(parallel)
+    tokens: dict[str, str] = {}
+
+    async def one(u: str):
+        async with sem:
+            for _ in range(5):
+                r = await c.post("/auth/login", json={"username": u, "password": creds[u]}, timeout=20)
+                if r.status_code == 200:
+                    tokens[u] = r.json()["access_token"]
+                    return
+                await asyncio.sleep(0.5)
+    await asyncio.gather(*(one(u) for u in users))
+    return tokens

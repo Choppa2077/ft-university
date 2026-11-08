@@ -13,6 +13,7 @@ an old epoch can no longer accept writes or replicate into a newer node.
 from __future__ import annotations
 
 import asyncio
+import hmac
 import json
 import os
 import random
@@ -20,11 +21,11 @@ import sqlite3
 import time
 
 import httpx
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import Response
 from pydantic import BaseModel
 
-from . import config
+from . import config, obs
 from .common import make_app
 
 SCHEMA = """
@@ -45,6 +46,59 @@ CREATE TABLE IF NOT EXISTS batch_jobs(term TEXT PRIMARY KEY, total INTEGER, next
 CREATE TABLE IF NOT EXISTS _log(lsn INTEGER PRIMARY KEY, epoch INTEGER, tx_id TEXT UNIQUE,
                                 ops TEXT, result TEXT, ts REAL);
 """
+
+# ---- least privilege (endterm): which tables each service may touch ----
+# Enforced by SQLite itself through an authorizer callback that is installed for the
+# duration of a client request, so it also covers SQL the service never meant to send.
+ALL_TABLES = {"students", "courses", "grades", "enrollments", "payments", "ledger", "batch_jobs"}
+ACL = {
+    "student": {"read": {"students", "enrollments", "courses"}, "insert": {"enrollments"},
+                "update": set(), "delete": set()},
+    "payment": {"read": {"payments", "ledger", "students"}, "insert": {"payments", "ledger"},
+                "update": {"payments"}, "delete": set()},
+    "records": {"read": {"students", "grades", "courses", "batch_jobs"}, "insert": {"batch_jobs"},
+                "update": {"grades", "batch_jobs"}, "delete": {"batch_jobs"}},
+    "monitor": {"read": ALL_TABLES, "insert": set(), "update": set(), "delete": set()},
+}
+# who may call which endpoint; "peer" is the other database node
+ENDPOINTS = {"/tx": {"student", "payment", "records"}, "/query": {"student", "payment", "records", "monitor"},
+             "/replicate": {"peer"}, "/log": {"peer"}, "/snapshot": {"peer"},
+             "/promote": {"monitor"}, "/demote": {"monitor"}, "/resync": {"monitor", "peer"}}
+_ALWAYS_OK = {sqlite3.SQLITE_SELECT, sqlite3.SQLITE_FUNCTION, sqlite3.SQLITE_TRANSACTION,
+              sqlite3.SQLITE_RECURSIVE}
+_ACTION = {sqlite3.SQLITE_READ: "read", sqlite3.SQLITE_INSERT: "insert", sqlite3.SQLITE_UPDATE: "update",
+           sqlite3.SQLITE_DELETE: "delete"}
+
+
+def authorizer(perm: dict):
+    def check(action, arg1, arg2, dbname, source):
+        if action in _ALWAYS_OK:
+            return sqlite3.SQLITE_OK
+        kind = _ACTION.get(action)
+        if kind and arg1 in perm[kind]:
+            return sqlite3.SQLITE_OK
+        return sqlite3.SQLITE_DENY          # DDL, PRAGMA, ATTACH, _log, other tables ...
+    return check
+
+
+class Denied(Exception):
+    pass
+
+
+def run_as(conn: sqlite3.Connection, principal: str | None, fn):
+    """Execute fn() with the principal's authorizer installed (None = trusted, no ACL)."""
+    if principal is None:
+        return fn()
+    conn.set_authorizer(authorizer(ACL[principal]))
+    try:
+        return fn()
+    except sqlite3.DatabaseError as e:
+        if "not authorized" in str(e):
+            raise Denied(str(e))
+        raise
+    finally:
+        conn.set_authorizer(None)
+
 
 N_STUDENTS = 300
 GROUPS = [f"CS-25{n:02d}" for n in range(1, 11)]
@@ -109,11 +163,11 @@ class Node:
         self.resync_task: asyncio.Task | None = None
 
     def open(self) -> None:
-        self.w = sqlite3.connect(self.path, isolation_level=None, check_same_thread=False)
+        self.w = sqlite3.connect(self.path, isolation_level=None, check_same_thread=False, cached_statements=0)
         self.w.execute("PRAGMA journal_mode=WAL")
         self.w.execute("PRAGMA synchronous=NORMAL")
         self.w.executescript(SCHEMA)
-        self.r = sqlite3.connect(self.path, isolation_level=None, check_same_thread=False)
+        self.r = sqlite3.connect(self.path, isolation_level=None, check_same_thread=False, cached_statements=0)
         self.r.execute("PRAGMA query_only=ON")
         self.lsn = self.w.execute("SELECT COALESCE(MAX(lsn), 0) FROM _log").fetchone()[0]
 
@@ -129,6 +183,10 @@ class Node:
         return [{"lsn": a, "tx_id": b, "ops": json.loads(c), "result": json.loads(d)} for a, b, c, d in rows]
 
     def info(self) -> dict:
+        obs.DB_ROLE.set(1 if self.role == "primary" else 0)
+        obs.DB_EPOCH.set(self.epoch)
+        obs.DB_LSN.set(self.lsn)
+        obs.DB_REPLICATION_OK.set(0 if (self.peer and self.role == "primary" and self.peer_state != "sync") else 1)
         return {"role": self.role, "epoch": self.epoch, "lsn": self.lsn,
                 "synced": self.synced, "peer_state": self.peer_state}
 
@@ -136,6 +194,12 @@ class Node:
 def create_app(inst: config.Instance) -> FastAPI:
     node = Node(inst)
     holder: dict = {}
+    P = config.policy()
+    tokens = {}
+    if P.db_acl:
+        tokens = {config.secret(f"db_token_{p}"): p for p in ACL}
+        tokens[config.secret("db_token")] = "peer"
+        tokens.pop("", None)
 
     def ready():
         ok = node.w is not None and (node.role == "primary" or node.synced)
@@ -143,6 +207,8 @@ def create_app(inst: config.Instance) -> FastAPI:
 
     async def startup(app: FastAPI):
         holder["http"] = app.state.http
+        if P.db_acl:     # this client only talks to the peer database node
+            app.state.http.headers["X-DB-Token"] = config.secret("db_token")
         log = app.state.log
         reg = config.read_registry()
         node.epoch = reg["epoch"]
@@ -167,6 +233,31 @@ def create_app(inst: config.Instance) -> FastAPI:
 
     app = make_app(inst, startup=startup, ready=ready)
     log = app.state.log
+    audit = app.state.audit
+
+    def principal(request: Request, endpoint: str) -> str | None:
+        """Endterm: identify the caller by its database token and check the endpoint ACL."""
+        if not P.db_acl:
+            return None
+        given = request.headers.get("x-db-token", "")
+        who = next((p for t, p in tokens.items() if given and hmac.compare_digest(given, t)), None)
+        if who is None:
+            obs.AUTH_DENIED.labels("db_token").inc()
+            audit("DB_DENIED", "denied", endpoint=endpoint, reason="missing or invalid token")
+            log("DB_DENIED", endpoint=endpoint, reason="token")
+            raise HTTPException(401, {"error": "unauthenticated"})
+        if who not in ENDPOINTS[endpoint]:
+            obs.AUTH_DENIED.labels("db_endpoint").inc()
+            audit("DB_DENIED", "denied", endpoint=endpoint, principal=who, reason="endpoint not allowed")
+            log("DB_DENIED", endpoint=endpoint, principal=who, reason="endpoint")
+            raise HTTPException(403, {"error": "forbidden"})
+        return who
+
+    def acl_denied(who: str, endpoint: str, err: Denied):
+        obs.AUTH_DENIED.labels("db_acl").inc()
+        audit("DB_DENIED", "denied", endpoint=endpoint, principal=who, reason=str(err))
+        log("DB_DENIED", endpoint=endpoint, principal=who, reason="acl")
+        return HTTPException(403, {"error": "forbidden", "detail": str(err)})
 
     async def peek() -> dict | None:
         if not node.peer:
@@ -278,7 +369,8 @@ def create_app(inst: config.Instance) -> FastAPI:
         return {"inst": inst.name, **node.info()}
 
     @app.post("/tx")
-    async def tx(req: TxReq):
+    async def tx(req: TxReq, request: Request):
+        who = principal(request, "/tx")
         if node.role != "primary" or node.w is None:
             raise HTTPException(409, {"error": "not_primary", **node.info()})
         if req.min_epoch > node.epoch:
@@ -293,9 +385,13 @@ def create_app(inst: config.Instance) -> FastAPI:
             ops = [o.model_dump() for o in req.ops]
             node.w.execute("BEGIN IMMEDIATE")
             try:
-                result = [node.w.execute(o["sql"], o["params"]).rowcount for o in ops]
+                result = run_as(node.w, who, lambda: [node.w.execute(o["sql"], o["params"]).rowcount
+                                                      for o in ops])
                 node.w.execute("INSERT INTO _log VALUES (?,?,?,?,?,?)",
                                (lsn, node.epoch, req.tx_id, json.dumps(ops), json.dumps(result), time.time()))
+            except Denied as e:
+                node.w.execute("ROLLBACK")
+                raise acl_denied(who, "/tx", e)
             except sqlite3.Error as e:
                 node.w.execute("ROLLBACK")
                 raise HTTPException(400, {"error": "sql", "detail": str(e)})
@@ -316,17 +412,27 @@ def create_app(inst: config.Instance) -> FastAPI:
         return {"lsn": lsn, "result": result}
 
     @app.post("/query")
-    async def query(req: QueryReq):
+    async def query(req: QueryReq, request: Request):
+        who = principal(request, "/query")
         if node.r is None:
             raise HTTPException(503, {"error": "syncing"})
         if node.role != "primary" and not req.allow_stale:
             raise HTTPException(409, {"error": "not_primary", **node.info()})
-        cur = node.r.execute(req.sql, req.params)
-        cols = [d[0] for d in cur.description] if cur.description else []
-        return {"cols": cols, "rows": cur.fetchall()}
+
+        def run():
+            cur = node.r.execute(req.sql, req.params)
+            return [d[0] for d in cur.description] if cur.description else [], cur.fetchall()
+        try:
+            cols, rows = run_as(node.r, who, run)
+        except Denied as e:
+            raise acl_denied(who, "/query", e)
+        except sqlite3.Error as e:
+            raise HTTPException(400, {"error": "sql", "detail": str(e)})
+        return {"cols": cols, "rows": rows}
 
     @app.post("/replicate")
-    async def replicate(req: ReplReq):
+    async def replicate(req: ReplReq, request: Request):
+        principal(request, "/replicate")
         if req.epoch < node.epoch:
             raise HTTPException(409, {"error": "stale_epoch", **node.info()})
         if node.role == "primary":
@@ -352,11 +458,13 @@ def create_app(inst: config.Instance) -> FastAPI:
         return {"lsn": node.lsn}
 
     @app.get("/log")
-    async def get_log(after: int = 0):
+    async def get_log(request: Request, after: int = 0):
+        principal(request, "/log")
         return {"entries": node.entries_after(after, limit=100000)}
 
     @app.get("/snapshot")
-    async def snapshot():
+    async def snapshot(request: Request):
+        principal(request, "/snapshot")
         if node.role != "primary":
             raise HTTPException(409, {"error": "not_primary", **node.info()})
         async with node.lock:
@@ -372,7 +480,8 @@ def create_app(inst: config.Instance) -> FastAPI:
                         headers={"x-lsn": str(lsn), "x-epoch": str(epoch)})
 
     @app.post("/promote")
-    async def promote(req: PromoteReq):
+    async def promote(req: PromoteReq, request: Request):
+        principal(request, "/promote")
         async with node.lock:
             if node.role == "primary" and node.epoch >= req.epoch:
                 return node.info()
@@ -385,14 +494,16 @@ def create_app(inst: config.Instance) -> FastAPI:
         return node.info()
 
     @app.post("/demote")
-    async def demote():
+    async def demote(request: Request):
+        principal(request, "/demote")
         if node.role == "primary":
             log("DEMOTED", epoch=node.epoch)
             step_down()
         return node.info()
 
     @app.post("/resync")
-    async def force_resync():
+    async def force_resync(request: Request):
+        principal(request, "/resync")
         if node.role == "replica":
             node.synced = False
             if node.resync_task is None or node.resync_task.done():

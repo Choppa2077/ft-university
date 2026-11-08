@@ -20,7 +20,7 @@ def main() -> None:
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
     up = sub.add_parser("up")
-    up.add_argument("--mode", choices=["ft", "baseline"], default="ft")
+    up.add_argument("--mode", choices=["ft", "baseline", "endterm"], default="ft")
     up.add_argument("--keep-data", action="store_true", help="do not wipe run/ before starting")
     sub.add_parser("status")
     sub.add_parser("down")

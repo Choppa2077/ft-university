@@ -7,7 +7,7 @@ from __future__ import annotations
 
 import json
 import os
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -16,6 +16,21 @@ MODE = os.environ.get("FTUNI_MODE", "ft")
 HOST = os.environ.get("FTUNI_HOST", "127.0.0.1")
 PORT_OFFSET = int(os.environ.get("FTUNI_PORT_OFFSET", "0"))
 SUPERVISOR_PORT = 8009 + PORT_OFFSET
+# Endterm: every instance runs in its own container and is found by its DNS name
+# (Docker's embedded DNS) instead of 127.0.0.1:<port>.
+DOCKER = os.environ.get("FTUNI_DOCKER") == "1"
+REPLICATED = ("ft", "endterm")
+SECRETS_DIR = Path(os.environ.get("FTUNI_SECRETS_DIR", "/run/secrets"))
+
+
+def secret(name: str) -> str:
+    """Secrets come from files mounted by Docker (/run/secrets/<name>), never from the
+    image or the repository. An environment variable is accepted for local tests."""
+    p = SECRETS_DIR / name
+    try:
+        return p.read_text().strip()
+    except OSError:
+        return os.environ.get("FTUNI_SECRET_" + name.upper(), "")
 
 
 @dataclass(frozen=True)
@@ -27,7 +42,7 @@ class Instance:
 
     @property
     def url(self) -> str:
-        return f"http://127.0.0.1:{self.port}"
+        return f"http://{self.name if DOCKER else '127.0.0.1'}:{self.port}"
 
 
 def topology(mode: str = MODE) -> list[Instance]:
@@ -36,7 +51,7 @@ def topology(mode: str = MODE) -> list[Instance]:
            Instance("monitor", "monitor", "ctl", 8001 + o),
            Instance("bank", "bank", "ext", 8002 + o)]
     # the baseline has one copy of everything, all on node A
-    nodes = ["A", "B"] if mode == "ft" else ["A"]
+    nodes = ["A", "B"] if mode in REPLICATED else ["A"]
     for i, node in enumerate(nodes):
         base = 8100 + 100 * i + o
         s = node.lower()
@@ -98,6 +113,14 @@ class Policy:
     # supervisor: how long until a crashed process is started again
     restart_delay: float = 20.0
     db_restart_delay: float = 20.0
+    # endterm: security controls (all off in the two midterm builds)
+    auth: bool = False              # JWT login, authentication + authorization at the gateway
+    validation: bool = False        # strict input validation in every service
+    rate_limit: bool = False        # per-user token bucket, login lockout, body size limit
+    db_acl: bool = False            # per-service DB tokens + SQLite authorizer (least privilege)
+    protect_ops: bool = False       # /chaos, gateway /metrics and /upstreams need the operator token
+    bind_idempotency: bool = False  # an Idempotency-Key is bound to the payer and the amount
+    audit: bool = False             # hash-chained, append-only audit log
 
     def timeout(self, kind: str) -> float:
         return self.gw_timeout.get(kind, self.gw_timeout.get("*", 30.0))
@@ -129,5 +152,14 @@ FT = Policy(
 )
 
 
+# Endterm: the FT build plus the security controls. Observability (metrics, request IDs,
+# structured logs) is passive instrumentation and is present in all three builds so
+# that they can be measured the same way.
+ENDTERM = replace(FT, name="endterm", auth=True, validation=True, rate_limit=True, db_acl=True,
+                  protect_ops=True, bind_idempotency=True, audit=True)
+
+POLICIES = {"baseline": BASELINE, "ft": FT, "endterm": ENDTERM}
+
+
 def policy(mode: str | None = None) -> Policy:
-    return FT if (mode or MODE) == "ft" else BASELINE
+    return POLICIES.get(mode or MODE, BASELINE)

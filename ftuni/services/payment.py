@@ -21,25 +21,34 @@ from __future__ import annotations
 
 import asyncio
 import random
+import re
 import time
 import uuid
 
 import httpx
 from fastapi import FastAPI, HTTPException, Request, Response
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict, Field
 
-from .. import config
-from ..common import make_app
+from .. import config, obs
+from ..common import identity, make_app
 from ..dbclient import DBUnavailable
 from ..resilience import CircuitBreaker, backoff_delay
 
 PENDING_EXPIRY = 10.0
 RECOVERY_AGE = 2.0
+MAX_AMOUNT = 5_000_000          # KZT; one semester of tuition is well below this
+KEY_FORMAT = re.compile(r"^[A-Za-z0-9_-]{8,64}$")
 
 
-class PayReq(BaseModel):
+class PayReq(BaseModel):                 # midterm builds
     student_id: str
     amount: int
+
+
+class PayStrict(BaseModel):              # endterm: positive integer amount, exact id format
+    model_config = ConfigDict(extra="forbid")
+    student_id: str = Field(pattern=r"^S\d{4}$")
+    amount: int = Field(gt=0, le=MAX_AMOUNT, strict=True)
 
 
 class BankUnavailable(Exception):
@@ -164,14 +173,31 @@ def create_app(inst: config.Instance) -> FastAPI:
             ("INSERT INTO ledger VALUES (?,?,?,?)", (key, req.student_id, req.amount, now)))
         return {"status": "COMPLETED", "key": key, "bank_ref": ref}
 
-    @app.post("/payments", status_code=201)
-    async def pay(req: PayReq, request: Request, response: Response):
-        intent = request.headers.get("x-client-intent", "")
+    audit = app.state.audit
+
+    async def do_pay(req, request: Request, response: Response):
+        intent = request.headers.get("x-client-intent", "")[:64]
         key = request.headers.get("idempotency-key")
+        uid, role = identity(request)
+        if P.auth and (role != "student" or uid != req.student_id):     # defence in depth
+            audit("AUTHZ_DENIED", "denied", service="payment", reason="not_owner", target=req.student_id)
+            raise HTTPException(403, "forbidden")
+        if P.validation and key is not None and not KEY_FORMAT.match(key):
+            raise HTTPException(400, "malformed Idempotency-Key")
         try:
+            if P.validation and not (await db().query("SELECT 1 AS ok FROM students WHERE id=?", req.student_id)):
+                raise HTTPException(404, "no such student")
             if not P.idempotency or not key:
-                return await pay_plain(req, intent)
-            if await get_row(key) is not None:
+                out = await pay_plain(req, intent)
+                audit("PAYMENT", out["status"], key=out["key"], student_id=req.student_id, amount=req.amount)
+                return out
+            row = await get_row(key)
+            if row is not None:
+                if P.bind_idempotency and (row["student_id"] != req.student_id or row["amount"] != req.amount):
+                    # a key is a promise about ONE request; reusing it for another one is refused
+                    audit("IDEMPOTENCY_MISMATCH", "denied", key=key, student_id=req.student_id, amount=req.amount)
+                    log("IDEMPOTENCY_MISMATCH", key=key)
+                    raise HTTPException(422, "Idempotency-Key was already used for a different request")
                 # same key again: the client is retrying. Finish/return the original payment.
                 response.headers["X-Idempotent-Replay"] = "true"
                 log("DUPLICATE_REQUEST", key=key)
@@ -180,16 +206,30 @@ def create_app(inst: config.Instance) -> FastAPI:
             await db().tx(("INSERT OR IGNORE INTO payments(key, student_id, amount, status, intent, created, updated) "
                            "VALUES (?,?,?,'PENDING',?,?,?)", (key, req.student_id, req.amount, intent, now, now)))
             maybe_interrupt("before_debit", key)
-            return await settle(key, "request", response)
+            out = await settle(key, "request", response)
+            audit("PAYMENT", out["status"], key=key, student_id=req.student_id, amount=req.amount)
+            return out
         except DBUnavailable as e:
             raise HTTPException(503, f"database unavailable ({e})")
 
+    if P.validation:
+        @app.post("/payments", status_code=201)
+        async def pay(req: PayStrict, request: Request, response: Response):
+            return await do_pay(req, request, response)
+    else:
+        @app.post("/payments", status_code=201)
+        async def pay_lax(req: PayReq, request: Request, response: Response):
+            return await do_pay(req, request, response)
+
     @app.get("/payments/{key}")
-    async def get_payment(key: str):
+    async def get_payment(key: str, request: Request):
         try:
             row = await get_row(key)
         except DBUnavailable as e:
             raise HTTPException(503, f"database unavailable ({e})")
+        uid, role = identity(request)
+        if row is not None and P.auth and role == "student" and row["student_id"] != uid:
+            row = None              # do not even confirm that someone else's payment exists
         if row is None:
             raise HTTPException(404, "no such payment")
         return row
@@ -228,9 +268,11 @@ def create_app(inst: config.Instance) -> FastAPI:
             await asyncio.sleep(1.0)
             tick += 1
             try:
-                rows = await db().query("SELECT key, status, created FROM payments "
-                                        "WHERE status IN ('PENDING','QUEUED') AND updated < ?",
-                                        time.time() - RECOVERY_AGE)
+                rows = await db().query("SELECT key, status, created, updated FROM payments "
+                                        "WHERE status IN ('PENDING','QUEUED')")
+                for st in ("PENDING", "QUEUED"):
+                    obs.PAYMENTS_UNFINISHED.labels(st).set(sum(r["status"] == st for r in rows))
+                rows = [r for r in rows if r["updated"] < time.time() - RECOVERY_AGE]
                 for row in rows:
                     await recover_one(row)
                 if tick % 5 == 0:

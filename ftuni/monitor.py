@@ -16,7 +16,7 @@ import time
 import httpx
 from fastapi import FastAPI
 
-from . import config
+from . import config, obs
 from .common import make_app
 
 INTERVAL = 0.25
@@ -34,6 +34,8 @@ def create_app(inst: config.Instance) -> FastAPI:
 
     app = make_app(inst, startup=startup)
     log = app.state.log
+    token = config.secret("db_token")
+    dbh = {"X-DB-Token": token} if token else {}     # only sent to the database nodes
 
     async def check(http: httpx.AsyncClient, i: config.Instance) -> tuple[bool, dict]:
         try:
@@ -44,6 +46,7 @@ def create_app(inst: config.Instance) -> FastAPI:
 
     def update(i: config.Instance, ok: bool, info: dict, now: float) -> None:
         s = state[i.name]
+        obs.MONITOR_TARGET_UP.labels(i.name, i.kind, i.node).set(1 if ok else 0)
         if ok:
             if s["up"] is not True:
                 log("UP" if s["up"] is False else "FIRST_SEEN", target=i.name, kind=i.kind, node=i.node,
@@ -67,7 +70,7 @@ def create_app(inst: config.Instance) -> FastAPI:
         sp, so = state[prim], state[other.name]
         # someone still acting as primary with an old epoch? tell it to step down
         if so["up"] and so["info"].get("role") == "primary" and so["info"].get("epoch", 0) < reg["epoch"]:
-            await http.post(other.url + "/demote", timeout=1.0)
+            await http.post(other.url + "/demote", timeout=1.0, headers=dbh)
         if sp["fails"] < FAILOVER_AFTER or not so["up"]:
             return
         if not (so["info"].get("role") == "replica" and so["info"].get("synced")):
@@ -81,7 +84,7 @@ def create_app(inst: config.Instance) -> FastAPI:
         new_epoch = reg["epoch"] + 1
         config.write_registry({"db_primary": other.name, "epoch": new_epoch})
         try:
-            r = await http.post(other.url + "/promote", json={"epoch": new_epoch}, timeout=1.0)
+            r = await http.post(other.url + "/promote", json={"epoch": new_epoch}, timeout=1.0, headers=dbh)
             ok = r.status_code == 200
         except httpx.HTTPError:
             ok = False

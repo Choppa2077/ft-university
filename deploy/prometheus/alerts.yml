@@ -1,0 +1,110 @@
+# Alert rules. For each: what it detects, threshold, and the expected response
+# ("response" annotation). Windows are short (10 s) because experiments are short;
+# production would use 1-5 min windows to avoid paging on blips.
+groups:
+  - name: availability
+    rules:
+      - alert: InstanceDown
+        expr: up{job=~"ftuni|gateway"} == 0
+        for: 2s
+        labels: {severity: critical}
+        annotations:
+          summary: "{{ $labels.name }} does not answer scrapes (crashed, frozen or overloaded)"
+          response: "Automatic: gateway/monitor route around it, Docker restarts a crashed container. Team: if it is not back within 30 s, check `docker logs ftuni-{{ $labels.name }}`."
+
+      - alert: UserFacingErrorRate
+        expr: |
+          sum by (service) (rate(ftuni_http_requests_total{job="gateway", service!="gateway", status=~"5.."}[10s]))
+            / sum by (service) (rate(ftuni_http_requests_total{job="gateway", service!="gateway"}[10s])) > 0.05
+        for: 3s
+        labels: {severity: critical}
+        annotations:
+          summary: "more than 5% of {{ $labels.service }} requests fail for users"
+          response: "Page on-call. Masking has failed: check which replicas are down (InstanceDown) and the dependency alerts."
+
+      - alert: ReplicaErrorRate
+        expr: |
+          sum by (name, kind) (rate(ftuni_http_requests_total{job="ftuni", status=~"5.."}[10s]))
+            / sum by (name, kind) (rate(ftuni_http_requests_total{job="ftuni"}[10s])) > 0.2
+        for: 3s
+        labels: {severity: warning}
+        annotations:
+          summary: "replica {{ $labels.name }} answers more than 20% of requests with 5xx (may be masked by retries)"
+          response: "Users may not notice (gateway retries on the other replica). Team: inspect the replica's logs; restart or drain it."
+
+      - alert: HighLatencyP95
+        expr: |
+          histogram_quantile(0.95, sum by (le, service)
+            (rate(ftuni_http_request_duration_seconds_bucket{job="gateway", service!="gateway"}[10s]))) > 1
+        for: 3s
+        labels: {severity: warning}
+        annotations:
+          summary: "p95 latency of {{ $labels.service }} is above 1 s (requirement R5)"
+          response: "Check load (LoadShedding), slow dependency (CircuitBreakerOpen) and CPU of the instances."
+
+      - alert: LoadShedding
+        expr: sum by (service) (rate(ftuni_gateway_shed_total[10s])) > 1
+        for: 2s
+        labels: {severity: warning}
+        annotations:
+          summary: "gateway is shedding {{ $labels.service }} requests (bulkhead full)"
+          response: "Automatic: stale cache / 503. Team: scale out the service or find the traffic source."
+
+  - name: dependencies
+    rules:
+      - alert: CircuitBreakerOpen
+        expr: max by (name, target) (ftuni_breaker_open) == 1
+        for: 2s
+        labels: {severity: warning}
+        annotations:
+          summary: "circuit breaker of {{ $labels.name }} towards {{ $labels.target }} is open"
+          response: "Automatic: fail fast / degrade (payments are queued). Team: check the dependency."
+
+      - alert: PaymentsUnfinished
+        expr: max by (status) (ftuni_payments_unfinished) > 0
+        for: 15s
+        labels: {severity: warning}
+        annotations:
+          summary: "payments stay {{ $labels.status }} for more than 15 s"
+          response: "Automatic: recovery worker rolls them forward/back. Team: if it does not drain, check the bank and the recovery worker."
+
+      - alert: DatabaseFailover
+        expr: sum(increase(ftuni_events_total{event="DB_FAILOVER"}[1m])) > 0
+        labels: {severity: info}
+        annotations:
+          summary: "the database primary changed in the last minute"
+          response: "Automatic failover done. Team: find out why the old primary failed; check it rejoins as replica."
+
+      - alert: DBReplicationLost
+        expr: max by (name) (ftuni_db_replication_ok{kind="db"} == 0)
+        for: 5s
+        labels: {severity: warning}
+        annotations:
+          summary: "primary {{ $labels.name }} accepts writes without a synchronous replica"
+          response: "Redundancy is gone and automatic failover is blocked. Team: bring the replica back."
+
+  - name: security
+    rules:
+      - alert: AuthFailureSpike
+        expr: sum(rate(ftuni_auth_denied_total{reason!="validation"}[10s])) > 1
+        for: 2s
+        labels: {severity: warning}
+        annotations:
+          summary: "more than 1 refused authentication/authorization per second"
+          response: "Possible credential stuffing, token forgery or scanning. Team: look up actors in the audit log; block the source."
+
+      - alert: RateLimitSpike
+        expr: sum(rate(ftuni_rate_limited_total[10s])) > 5
+        for: 2s
+        labels: {severity: warning}
+        annotations:
+          summary: "rate limiter refuses more than 5 requests per second"
+          response: "Automatic: abusive client throttled, others unaffected. Team: identify the account (audit RATE_LIMITED)."
+
+      - alert: InvalidInputSpike
+        expr: sum(rate(ftuni_auth_denied_total{reason="validation"}[10s])) > 1
+        for: 2s
+        labels: {severity: info}
+        annotations:
+          summary: "more than 1 malformed request per second is rejected"
+          response: "Probably fuzzing or a broken client. Team: check VALIDATION_REJECTED audit records."

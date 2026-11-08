@@ -72,6 +72,12 @@ class Store:
         self.log("STORAGE_UNRECOVERABLE", doc=name)
         raise CorruptedError(f"all copies of {name} are corrupted")
 
+    def delete(self, name: str) -> None:
+        """Invalidate a document on every disk (it will be rebuilt from the database)."""
+        for d in self.disks:
+            for suffix in (".json", ".sha256"):
+                (d / f"{name}{suffix}").unlink(missing_ok=True)
+
     def write_raw(self, disk: Path, name: str, data: bytes) -> None:
         _atomic_write(disk / f"{name}.json", data)
         _atomic_write(disk / f"{name}.sha256", hashlib.sha256(data).hexdigest().encode())

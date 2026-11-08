@@ -1,0 +1,45 @@
+{
+ "experiment": "X1",
+ "build": "baseline",
+ "rep": 1,
+ "title": "Service instance failure (payment-a killed)",
+ "startup_s": 8.8,
+ "requests": 1757,
+ "ok": 1450,
+ "failed": 307,
+ "degraded": 0,
+ "recovered_by_retry": 7,
+ "success_rate": 0.8253,
+ "p50_ms": 6.3,
+ "p95_ms": 20.7,
+ "p99_ms": 24.6,
+ "detect_alert_s": 3.123,
+ "detect_event_s": 0.502,
+ "client_visible_recovery_s": 21.121,
+ "restart_count": {
+  "payment-a": 1
+ },
+ "consistency": {
+  "payments_completed": 158,
+  "payments_failed": 0,
+  "bank_debits": 158,
+  "refunds": 0,
+  "orphan_debits": 0,
+  "orphan_amount": 0,
+  "double_charged_intents": 0,
+  "ledger_mismatch": 0,
+  "stuck_payments": 0,
+  "lost_acked_payments": 0,
+  "lost_acked_enrollments": 0,
+  "consistent": true
+ },
+ "alerts_fired": [
+  "InstanceDown",
+  "UserFacingErrorRate"
+ ],
+ "inject": {
+  "killed": "payment-a",
+  "t": 1794151328.994595
+ },
+ "core_p95_ms": 9.9
+}

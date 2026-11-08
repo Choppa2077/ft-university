@@ -68,6 +68,11 @@ class CircuitBreaker:
 
     def _set(self, new: str) -> None:
         old, self.state = self.state, new
+        try:
+            from .obs import BREAKER_OPEN
+            BREAKER_OPEN.labels(self.name).set(0 if new == "closed" else 1)
+        except ImportError:          # prometheus_client missing (plain unit tests)
+            pass
         if self.on_change and old != new:
             self.on_change(self.name, old, new)
 

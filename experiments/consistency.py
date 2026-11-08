@@ -15,8 +15,13 @@ import httpx
 from ftuni import config
 
 
+def _headers() -> dict:
+    tok = config.secret("db_token")       # the monitor's read-only database credential
+    return {"X-DB-Token": tok} if tok else {}
+
+
 async def _query(http: httpx.AsyncClient, url: str, sql: str, stale: bool = False) -> list[dict]:
-    r = await http.post(url + "/query", json={"sql": sql, "allow_stale": stale}, timeout=5)
+    r = await http.post(url + "/query", json={"sql": sql, "allow_stale": stale}, timeout=5, headers=_headers())
     d = r.json()
     return [dict(zip(d["cols"], row)) for row in d["rows"]]
 
@@ -57,8 +62,8 @@ async def check(mode: str, records: list) -> dict:
             "lost_acked_enrollments": len(acked_enroll - enrolled),
         }
 
-        if mode == "ft":
-            out["replica"] = await replica_check(http, reg)
+        if mode in config.REPLICATED:
+            out["replica"] = await replica_check(http, reg, mode)
         ok = all(out[k] == 0 for k in ("orphan_debits", "double_charged_intents", "ledger_mismatch",
                                        "stuck_payments", "lost_acked_payments", "lost_acked_enrollments"))
         if "replica" in out:
@@ -67,9 +72,9 @@ async def check(mode: str, records: list) -> dict:
         return out
 
 
-async def replica_check(http: httpx.AsyncClient, reg: dict) -> dict:
-    prim = config.get(reg["db_primary"], "ft")
-    other = next(i for i in config.of_kind("db", "ft") if i.name != prim.name)
+async def replica_check(http: httpx.AsyncClient, reg: dict, mode: str = "ft") -> dict:
+    prim = config.get(reg["db_primary"], mode)
+    other = next(i for i in config.of_kind("db", mode) if i.name != prim.name)
     for _ in range(40):                      # give a returning replica time to catch up
         try:
             p = (await http.get(prim.url + "/role", timeout=1)).json()
@@ -87,3 +92,20 @@ async def replica_check(http: httpx.AsyncClient, reg: dict) -> dict:
     a = (await _query(http, prim.url, sql))[0]
     b = (await _query(http, other.url, sql, stale=True))[0]
     return {"identical": a == b, "primary": prim.name, "lsn": p["lsn"], "primary_rows": a, "replica_rows": b}
+
+
+TABLES = ("students", "courses", "grades", "enrollments", "payments", "ledger")
+
+
+async def checksum(mode: str) -> dict:
+    """SHA-256 of every business table: proves an attack did (or did not) change data."""
+    import hashlib
+    import json
+    async with httpx.AsyncClient() as http:
+        prim = config.get(config.read_registry()["db_primary"], mode)
+        out = {}
+        for t in TABLES:
+            rows = await _query(http, prim.url, f"SELECT * FROM {t} ORDER BY 1, 2")
+            out[t] = {"rows": len(rows),
+                      "sha256": hashlib.sha256(json.dumps(rows, sort_keys=True).encode()).hexdigest()[:16]}
+        return out

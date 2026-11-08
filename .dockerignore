@@ -1,0 +1,10 @@
+.git
+.venv
+run
+run-docker
+results
+docs
+deploy/secrets
+**/__pycache__
+.pytest_cache
+*.pyc

@@ -14,7 +14,7 @@ import uuid
 
 import httpx
 
-from . import config
+from . import config, obs
 from .resilience import backoff_delay
 
 
@@ -35,12 +35,16 @@ class DB:
         reg = config.read_registry()
         self.primary = config.get(reg["db_primary"]).url
         self.epoch = reg["epoch"]
+        # least privilege: each service has its own database credential (endterm)
+        token = config.secret("db_token")
+        self.headers = {"X-DB-Token": token} if token else {}
+        obs.DB_PRIMARY_SEEN.set(self.epoch)
 
     async def find_primary(self) -> None:
         best = None
         for url in self.nodes:
             try:
-                d = (await self.http.get(url + "/role", timeout=0.3)).json()
+                d = (await self.http.get(url + "/role", timeout=0.3, headers=self.headers)).json()
             except (httpx.HTTPError, ValueError):
                 continue
             if d.get("role") == "primary" and (best is None or d["epoch"] > best[1]):
@@ -49,13 +53,17 @@ class DB:
             if best[0] != self.primary:
                 self.log("DB_SWITCHED", primary=best[0], epoch=best[1])
             self.primary, self.epoch = best
+            obs.DB_PRIMARY_SEEN.set(self.epoch)
 
     async def _call(self, path: str, payload: dict) -> dict:
         if not self.p.db_failover:
             try:
-                r = await self.http.post(self.primary + path, json=payload, timeout=self.p.db_timeout)
+                r = await self.http.post(self.primary + path, json=payload, timeout=self.p.db_timeout,
+                                         headers=self.headers)
             except httpx.HTTPError as e:
                 raise DBUnavailable(type(e).__name__)
+            if r.status_code in (401, 403):
+                raise DBError(r.text)
             if r.status_code == 400:
                 raise DBError(r.text)
             if r.status_code != 200:
@@ -67,10 +75,11 @@ class DB:
         while True:
             payload["min_epoch"] = self.epoch
             try:
-                r = await self.http.post(self.primary + path, json=payload, timeout=self.p.db_timeout)
+                r = await self.http.post(self.primary + path, json=payload, timeout=self.p.db_timeout,
+                                         headers=self.headers)
                 if r.status_code == 200:
                     return r.json()
-                if r.status_code == 400:
+                if r.status_code in (400, 401, 403):     # not retryable: the request itself is wrong
                     raise DBError(r.text)
                 why = f"http {r.status_code}"
             except httpx.HTTPError as e:

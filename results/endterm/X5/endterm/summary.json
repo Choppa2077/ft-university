@@ -1,0 +1,273 @@
+{
+ "experiment": "X5",
+ "build": "endterm",
+ "title": "Unauthorized access",
+ "cases": [
+  {
+   "case": "no_token",
+   "layer": "gateway",
+   "description": "no credentials",
+   "method": "GET",
+   "path": "/students/S0001",
+   "status": 401,
+   "expected": [
+    401
+   ],
+   "ok": true
+  },
+  {
+   "case": "forged_admin_token",
+   "layer": "gateway",
+   "description": "token with admin claim signed with the wrong key",
+   "method": "GET",
+   "path": "/students/S0002",
+   "status": 401,
+   "expected": [
+    401
+   ],
+   "ok": true
+  },
+  {
+   "case": "alg_none_token",
+   "layer": "gateway",
+   "description": "unsigned 'alg:none' token",
+   "method": "GET",
+   "path": "/students/S0002",
+   "status": 401,
+   "expected": [
+    401
+   ],
+   "ok": true
+  },
+  {
+   "case": "idor_read_other_student",
+   "layer": "gateway",
+   "description": "read another student's profile",
+   "method": "GET",
+   "path": "/students/S0002",
+   "status": 403,
+   "expected": [
+    403
+   ],
+   "ok": true
+  },
+  {
+   "case": "idor_read_other_transcript",
+   "layer": "gateway",
+   "description": "read another student's transcript",
+   "method": "GET",
+   "path": "/transcripts/S0002",
+   "status": 403,
+   "expected": [
+    403
+   ],
+   "ok": true
+  },
+  {
+   "case": "student_changes_grade",
+   "layer": "gateway",
+   "description": "student tries to change a grade (registrar-only)",
+   "method": "POST",
+   "path": "/transcripts/grades",
+   "status": 403,
+   "expected": [
+    403,
+    422
+   ],
+   "ok": true
+  },
+  {
+   "case": "pay_for_other_student",
+   "layer": "gateway",
+   "description": "pay on another student's behalf",
+   "method": "POST",
+   "path": "/payments",
+   "status": 403,
+   "expected": [
+    403,
+    422
+   ],
+   "ok": true
+  },
+  {
+   "case": "student_runs_batch",
+   "layer": "gateway",
+   "description": "student starts the transcript batch (registrar-only)",
+   "method": "POST",
+   "path": "/transcripts/batch/2025F",
+   "status": 403,
+   "expected": [
+    403
+   ],
+   "ok": true
+  },
+  {
+   "case": "header_spoof_identity",
+   "layer": "gateway",
+   "description": "spoof X-User-Id/Role headers to impersonate the victim",
+   "method": "GET",
+   "path": "/students/S0002",
+   "status": 403,
+   "expected": [
+    403
+   ],
+   "ok": true
+  },
+  {
+   "case": "ops_endpoint_as_user",
+   "layer": "gateway",
+   "description": "trigger the fault-injection API as a normal user",
+   "method": "POST",
+   "path": "/chaos",
+   "status": 403,
+   "expected": [
+    403,
+    404
+   ],
+   "ok": true
+  },
+  {
+   "case": "read_metrics_no_ops_token",
+   "layer": "gateway",
+   "description": "scrape the gateway metrics without the ops token",
+   "method": "GET",
+   "path": "/metrics",
+   "status": 403,
+   "expected": [
+    403
+   ],
+   "ok": true
+  },
+  {
+   "case": "sql_no_token",
+   "layer": "database",
+   "description": "direct SQL to the DB with no credential",
+   "status": 401,
+   "expected": [
+    401
+   ],
+   "ok": true,
+   "detail": "{\"detail\":{\"error\":\"unauthenticated\"}}"
+  },
+  {
+   "case": "sql_stolen_token",
+   "layer": "database",
+   "description": "UPDATE grades with the student service's stolen DB token",
+   "status": 403,
+   "expected": [
+    403
+   ],
+   "ok": true,
+   "detail": "{\"detail\":{\"error\":\"forbidden\",\"detail\":\"not authorized\"}}"
+  },
+  {
+   "case": "read_payments_stolen_token",
+   "layer": "database",
+   "description": "read the payments table with the stolen token",
+   "status": 400,
+   "expected": [
+    400,
+    403
+   ],
+   "ok": true,
+   "detail": "{\"detail\":{\"error\":\"sql\",\"detail\":\"access to payments.key is prohibited\"}}"
+  },
+  {
+   "case": "drop_table_stolen_token",
+   "layer": "database",
+   "description": "DROP TABLE with the stolen token",
+   "status": 403,
+   "expected": [
+    403
+   ],
+   "ok": true,
+   "detail": "{\"detail\":{\"error\":\"forbidden\",\"detail\":\"not authorized\"}}"
+  },
+  {
+   "case": "promote_replica",
+   "layer": "database",
+   "description": "force a replica to promote (split brain) with the stolen token",
+   "status": 403,
+   "expected": [
+    401,
+    403
+   ],
+   "ok": true,
+   "detail": "{\"detail\":{\"error\":\"forbidden\"}}"
+  },
+  {
+   "case": "snapshot_dump",
+   "layer": "database",
+   "description": "dump a full database snapshot with the stolen token",
+   "status": 403,
+   "expected": [
+    403
+   ],
+   "ok": true,
+   "detail": ""
+  }
+ ],
+ "cases_passed": 17,
+ "cases_total": 17,
+ "extra": {},
+ "data_unchanged": true,
+ "checksum_before": {
+  "students": {
+   "rows": 300,
+   "sha256": "d9c97fa5aae5dd11"
+  },
+  "courses": {
+   "rows": 40,
+   "sha256": "477bb25b50f23026"
+  },
+  "grades": {
+   "rows": 3600,
+   "sha256": "1f0ae83d9cd415bf"
+  },
+  "enrollments": {
+   "rows": 0,
+   "sha256": "4f53cda18c2baa0c"
+  },
+  "payments": {
+   "rows": 0,
+   "sha256": "4f53cda18c2baa0c"
+  },
+  "ledger": {
+   "rows": 0,
+   "sha256": "4f53cda18c2baa0c"
+  }
+ },
+ "checksum_after": {
+  "students": {
+   "rows": 300,
+   "sha256": "d9c97fa5aae5dd11"
+  },
+  "courses": {
+   "rows": 40,
+   "sha256": "477bb25b50f23026"
+  },
+  "grades": {
+   "rows": 3600,
+   "sha256": "1f0ae83d9cd415bf"
+  },
+  "enrollments": {
+   "rows": 0,
+   "sha256": "4f53cda18c2baa0c"
+  },
+  "payments": {
+   "rows": 0,
+   "sha256": "4f53cda18c2baa0c"
+  },
+  "ledger": {
+   "rows": 0,
+   "sha256": "4f53cda18c2baa0c"
+  }
+ },
+ "audit_records_for_denials": 15,
+ "audit_chain_ok": true,
+ "alerts_fired": [
+  "AuthFailureSpike"
+ ],
+ "duration_s": 6.1,
+ "_pass": true
+}

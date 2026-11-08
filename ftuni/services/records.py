@@ -3,13 +3,26 @@ from __future__ import annotations
 
 import asyncio
 import time
+from typing import Annotated
 
-from fastapi import FastAPI, HTTPException, Response
+from fastapi import FastAPI, HTTPException, Path, Request, Response
+from pydantic import BaseModel, ConfigDict, Field
 
 from .. import config
-from ..common import make_app
+from ..common import identity, make_app
 from ..dbclient import DBUnavailable
 from ..storage import CorruptedError, Store
+
+SID = r"^S\d{4}$"
+
+
+class GradeChange(BaseModel):
+    """Registrar corrects one grade (an academic-record operation)."""
+    model_config = ConfigDict(extra="forbid")
+    student_id: str = Field(pattern=SID)
+    course_id: str = Field(pattern=r"^C\d{3}$")
+    term: str = Field(default="2025F", pattern=r"^\d{4}[FS]$")
+    grade: float = Field(ge=0.0, le=4.0)
 
 LEASE = 3.0               # a batch owner must renew its lease at least this often
 CHECKPOINT_EVERY = 10     # transcripts between two checkpoints
@@ -46,8 +59,14 @@ def create_app(inst: config.Instance) -> FastAPI:
                 "courses": [{"course": r["course_id"], "credits": r["credits"], "grade": r["grade"]} for r in rows],
                 "total_credits": credits, "gpa": gpa}
 
-    @app.get("/transcripts/{sid}")
-    async def transcript(sid: str, response: Response):
+    def owner_only(request: Request, sid: str) -> None:
+        uid, role = identity(request)
+        if P.auth and role == "student" and uid != sid:     # defence in depth (gateway checks first)
+            app.state.audit("AUTHZ_DENIED", "denied", service="records", reason="not_owner", target=sid)
+            raise HTTPException(403, "forbidden")
+
+    async def transcript(sid: str, request: Request, response: Response):
+        owner_only(request, sid)
         try:
             doc, repaired = store.read(sid)
         except CorruptedError:
@@ -63,6 +82,37 @@ def create_app(inst: config.Instance) -> FastAPI:
                 raise HTTPException(503, f"database unavailable ({e})")
             store.write(sid, doc)
         return doc
+
+    if P.validation:
+        @app.get("/transcripts/{sid}")
+        async def get_transcript(sid: Annotated[str, Path(pattern=SID)], request: Request, response: Response):
+            return await transcript(sid, request, response)
+    else:
+        @app.get("/transcripts/{sid}")
+        async def get_transcript_lax(sid: str, request: Request, response: Response):
+            return await transcript(sid, request, response)
+
+    @app.post("/transcripts/grades")
+    async def change_grade(req: GradeChange, request: Request):
+        uid, role = identity(request)
+        if P.auth and role not in ("registrar", "admin"):
+            app.state.audit("AUTHZ_DENIED", "denied", service="records", reason="registrar_only")
+            raise HTTPException(403, "forbidden")
+        try:
+            old = await db().query("SELECT grade FROM grades WHERE student_id=? AND course_id=? AND term=?",
+                                   req.student_id, req.course_id, req.term)
+            if not old:
+                raise HTTPException(404, "no such grade")
+            await db().tx(("UPDATE grades SET grade=? WHERE student_id=? AND course_id=? AND term=?",
+                           (req.grade, req.student_id, req.course_id, req.term)))
+        except DBUnavailable as e:
+            raise HTTPException(503, f"database unavailable ({e})")
+        store.delete(req.student_id)      # the stored transcript is stale now; rebuilt on next read
+        app.state.audit("GRADE_CHANGED", "allowed", student_id=req.student_id, course_id=req.course_id,
+                        term=req.term, old=old[0]["grade"], new=req.grade)
+        log("GRADE_CHANGED", student_id=req.student_id, course_id=req.course_id, old=old[0]["grade"], new=req.grade)
+        return {"status": "updated", "student_id": req.student_id, "course_id": req.course_id,
+                "old": old[0]["grade"], "new": req.grade}
 
     @app.post("/storage/scrub")
     async def scrub():

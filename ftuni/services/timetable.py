@@ -7,7 +7,9 @@ from __future__ import annotations
 
 import random
 
-from fastapi import FastAPI
+from typing import Annotated
+
+from fastapi import FastAPI, Path, Query
 
 from .. import config
 from ..common import make_app
@@ -54,11 +56,20 @@ def solve(group: str, week: int) -> dict:
                         for (d, h), c in lessons]}
 
 
+GROUP = r"^CS-25\d{2}$"
+
+
 def create_app(inst: config.Instance) -> FastAPI:
     app = make_app(inst)
 
-    @app.get("/timetable/{group}")
-    def timetable(group: str, week: int = 1):   # plain def -> runs in the thread pool
-        return solve(group, week)
+    if config.policy().validation:
+        @app.get("/timetable/{group}")
+        def timetable(group: Annotated[str, Path(pattern=GROUP)],
+                      week: Annotated[int, Query(ge=1, le=16)] = 1):
+            return solve(group, week)
+    else:
+        @app.get("/timetable/{group}")
+        def timetable_lax(group: str, week: int = 1):   # plain def -> runs in the thread pool
+            return solve(group, week)
 
     return app
