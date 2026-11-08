@@ -15,3 +15,6 @@ results/endterm/**/requests.csv
 results/endterm/_superseded/
 results/endterm/run*.log
 results/endterm/*.out
+
+docs/endterm/DEMO_SCRIPT.md
+docs/endterm/DEMO_SCRIPT_RU.md
