@@ -1,9 +1,22 @@
 {
- "X1": {
+ "X4": {
+  "baseline": {
+   "pass": "0/3",
+   "failed": 2966.333,
+   "detect_alert_s": 5.429,
+   "client_visible_recovery_s": 30.045
+  },
+  "ft": {
+   "pass": "3/3",
+   "failed": 12.667,
+   "detect_alert_s": 3.916,
+   "client_visible_recovery_s": 0.574
+  },
   "endterm": {
-   "pass": "1/1",
-   "failed": 0,
-   "client_visible_recovery_s": 0.0
+   "pass": "3/3",
+   "failed": 10,
+   "detect_alert_s": 4.028,
+   "client_visible_recovery_s": 0.708
   }
  }
 }

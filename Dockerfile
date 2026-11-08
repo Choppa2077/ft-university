@@ -16,7 +16,8 @@ COPY experiments ./experiments
 COPY deploy/healthcheck.sh ./deploy/healthcheck.sh
 
 # least privilege: no root inside the container
-RUN chmod 0755 deploy/healthcheck.sh && useradd --uid 10001 --no-create-home --shell /usr/sbin/nologin app
+RUN chmod 0755 deploy/healthcheck.sh && useradd --uid 10001 --no-create-home --shell /usr/sbin/nologin app \
+    && mkdir -p /app/run && chown 10001:10001 /app/run
 USER 10001
 
 ENTRYPOINT ["python", "-m", "ftuni.run"]

@@ -1,0 +1,43 @@
+{
+ "experiment": "X4",
+ "build": "baseline",
+ "rep": 1,
+ "title": "Load spike (+180 timetable req/s for 15 s)",
+ "startup_s": 9.0,
+ "requests": 4577,
+ "ok": 1577,
+ "failed": 3000,
+ "degraded": 0,
+ "recovered_by_retry": 44,
+ "success_rate": 0.3445,
+ "p50_ms": 5001.8,
+ "p95_ms": 5004.6,
+ "p99_ms": 5016.1,
+ "detect_alert_s": 5.828,
+ "detect_event_s": null,
+ "client_visible_recovery_s": 30.516,
+ "restart_count": {},
+ "consistency": {
+  "payments_completed": 356,
+  "payments_failed": 0,
+  "bank_debits": 356,
+  "refunds": 0,
+  "orphan_debits": 0,
+  "orphan_amount": 0,
+  "double_charged_intents": 27,
+  "ledger_mismatch": 0,
+  "stuck_payments": 0,
+  "lost_acked_payments": 0,
+  "lost_acked_enrollments": 0,
+  "consistent": false
+ },
+ "alerts_fired": [
+  "HighLatencyP95",
+  "UserFacingErrorRate"
+ ],
+ "inject": {
+  "burst_timetable_rps": 180,
+  "for_s": 15
+ },
+ "core_p95_ms": 3602.0
+}

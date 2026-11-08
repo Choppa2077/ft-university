@@ -1,0 +1,1125 @@
+{
+ "faults": {
+  "X1": {
+   "baseline": {
+    "reps": 1,
+    "failed": 307,
+    "detect_alert_s": 3.123,
+    "detect_event_s": 0.502,
+    "recovery_s": 21.121,
+    "p95_ms": 20.7,
+    "core_p95_ms": 9.9,
+    "consistent_reps": 1,
+    "passed": 0,
+    "degraded": 0,
+    "recovered_by_retry": 7,
+    "alerts": [
+     "InstanceDown",
+     "UserFacingErrorRate"
+    ],
+    "consistency_example": {
+     "payments_completed": 158,
+     "payments_failed": 0,
+     "bank_debits": 158,
+     "refunds": 0,
+     "orphan_debits": 0,
+     "orphan_amount": 0,
+     "double_charged_intents": 0,
+     "ledger_mismatch": 0,
+     "stuck_payments": 0,
+     "lost_acked_payments": 0,
+     "lost_acked_enrollments": 0,
+     "consistent": true
+    }
+   },
+   "ft": {
+    "reps": 3,
+    "failed": 0,
+    "detect_alert_s": null,
+    "detect_event_s": 0.3823333333333333,
+    "recovery_s": 0.0,
+    "p95_ms": 19.233333333333334,
+    "core_p95_ms": 23.166666666666668,
+    "consistent_reps": 3,
+    "passed": 3,
+    "degraded": 0,
+    "recovered_by_retry": 1,
+    "alerts": [],
+    "consistency_example": {
+     "payments_completed": 308,
+     "payments_failed": 0,
+     "bank_debits": 308,
+     "refunds": 0,
+     "orphan_debits": 0,
+     "orphan_amount": 0,
+     "double_charged_intents": 0,
+     "ledger_mismatch": 0,
+     "stuck_payments": 0,
+     "lost_acked_payments": 0,
+     "lost_acked_enrollments": 0,
+     "replica": {
+      "identical": true,
+      "primary": "db-a",
+      "lsn": 866,
+      "primary_rows": {
+       "paid": 308,
+       "ledger_sum": 67330000.0,
+       "enrollments": 248,
+       "payments": 308
+      },
+      "replica_rows": {
+       "paid": 308,
+       "ledger_sum": 67330000.0,
+       "enrollments": 248,
+       "payments": 308
+      }
+     },
+     "consistent": true
+    }
+   },
+   "endterm": {
+    "reps": 3,
+    "failed": 0,
+    "detect_alert_s": null,
+    "detect_event_s": 0.43166666666666664,
+    "recovery_s": 0.0,
+    "p95_ms": 21.6,
+    "core_p95_ms": 50.733333333333334,
+    "consistent_reps": 3,
+    "passed": 3,
+    "degraded": 0,
+    "recovered_by_retry": 0.3333333333333333,
+    "alerts": [],
+    "consistency_example": {
+     "payments_completed": 308,
+     "payments_failed": 0,
+     "bank_debits": 308,
+     "refunds": 0,
+     "orphan_debits": 0,
+     "orphan_amount": 0,
+     "double_charged_intents": 0,
+     "ledger_mismatch": 0,
+     "stuck_payments": 0,
+     "lost_acked_payments": 0,
+     "lost_acked_enrollments": 0,
+     "replica": {
+      "identical": true,
+      "primary": "db-a",
+      "lsn": 866,
+      "primary_rows": {
+       "paid": 308,
+       "ledger_sum": 67330000.0,
+       "enrollments": 248,
+       "payments": 308
+      },
+      "replica_rows": {
+       "paid": 308,
+       "ledger_sum": 67330000.0,
+       "enrollments": 248,
+       "payments": 308
+      }
+     },
+     "consistent": true
+    }
+   }
+  },
+  "X2": {
+   "baseline": {
+    "reps": 3,
+    "failed": 250.66666666666666,
+    "detect_alert_s": 4.050666666666666,
+    "detect_event_s": 0.6586666666666667,
+    "recovery_s": 12.464,
+    "p95_ms": 5003.1,
+    "core_p95_ms": 8000.0,
+    "consistent_reps": 0,
+    "passed": 0,
+    "degraded": 0,
+    "recovered_by_retry": 32,
+    "alerts": [
+     "HighLatencyP95",
+     "InstanceDown",
+     "UserFacingErrorRate"
+    ],
+    "consistency_example": {
+     "payments_completed": 369,
+     "payments_failed": 0,
+     "bank_debits": 385,
+     "refunds": 0,
+     "orphan_debits": 16,
+     "orphan_amount": 3310000,
+     "double_charged_intents": 44,
+     "ledger_mismatch": 0,
+     "stuck_payments": 0,
+     "lost_acked_payments": 0,
+     "lost_acked_enrollments": 0,
+     "consistent": false
+    }
+   },
+   "ft": {
+    "reps": 3,
+    "failed": 0,
+    "detect_alert_s": 1.7663333333333333,
+    "detect_event_s": 0.667,
+    "recovery_s": 0.0,
+    "p95_ms": 21.166666666666668,
+    "core_p95_ms": 1559.5,
+    "consistent_reps": 3,
+    "passed": 3,
+    "degraded": 0,
+    "recovered_by_retry": 0,
+    "alerts": [
+     "DBReplicationLost",
+     "DatabaseFailover",
+     "HighLatencyP95",
+     "InstanceDown"
+    ],
+    "consistency_example": {
+     "payments_completed": 341,
+     "payments_failed": 0,
+     "bank_debits": 341,
+     "refunds": 0,
+     "orphan_debits": 0,
+     "orphan_amount": 0,
+     "double_charged_intents": 0,
+     "ledger_mismatch": 0,
+     "stuck_payments": 0,
+     "lost_acked_payments": 0,
+     "lost_acked_enrollments": 0,
+     "replica": {
+      "identical": true,
+      "primary": "db-b",
+      "lsn": 968,
+      "primary_rows": {
+       "paid": 341,
+       "ledger_sum": 74020000.0,
+       "enrollments": 284,
+       "payments": 341
+      },
+      "replica_rows": {
+       "paid": 341,
+       "ledger_sum": 74020000.0,
+       "enrollments": 284,
+       "payments": 341
+      }
+     },
+     "consistent": true
+    }
+   },
+   "endterm": {
+    "reps": 3,
+    "failed": 0,
+    "detect_alert_s": 1.9533333333333334,
+    "detect_event_s": 0.679,
+    "recovery_s": 0.0,
+    "p95_ms": 41.2,
+    "core_p95_ms": 1563.8666666666666,
+    "consistent_reps": 3,
+    "passed": 3,
+    "degraded": 0,
+    "recovered_by_retry": 0,
+    "alerts": [
+     "DBReplicationLost",
+     "DatabaseFailover",
+     "HighLatencyP95",
+     "InstanceDown"
+    ],
+    "consistency_example": {
+     "payments_completed": 341,
+     "payments_failed": 0,
+     "bank_debits": 341,
+     "refunds": 0,
+     "orphan_debits": 0,
+     "orphan_amount": 0,
+     "double_charged_intents": 0,
+     "ledger_mismatch": 0,
+     "stuck_payments": 0,
+     "lost_acked_payments": 0,
+     "lost_acked_enrollments": 0,
+     "replica": {
+      "identical": true,
+      "primary": "db-b",
+      "lsn": 968,
+      "primary_rows": {
+       "paid": 341,
+       "ledger_sum": 74020000.0,
+       "enrollments": 284,
+       "payments": 341
+      },
+      "replica_rows": {
+       "paid": 341,
+       "ledger_sum": 74020000.0,
+       "enrollments": 284,
+       "payments": 341
+      }
+     },
+     "consistent": true
+    }
+   }
+  },
+  "X3": {
+   "baseline": {
+    "reps": 3,
+    "failed": 165.66666666666666,
+    "detect_alert_s": 4.477666666666667,
+    "detect_event_s": null,
+    "recovery_s": 20.445666666666668,
+    "p95_ms": 5002.666666666667,
+    "core_p95_ms": 7199.2,
+    "consistent_reps": 0,
+    "passed": 0,
+    "degraded": 0,
+    "recovered_by_retry": 48.333333333333336,
+    "alerts": [
+     "HighLatencyP95",
+     "InstanceDown"
+    ],
+    "consistency_example": {
+     "payments_completed": 448,
+     "payments_failed": 0,
+     "bank_debits": 448,
+     "refunds": 0,
+     "orphan_debits": 0,
+     "orphan_amount": 0,
+     "double_charged_intents": 107,
+     "ledger_mismatch": 0,
+     "stuck_payments": 0,
+     "lost_acked_payments": 0,
+     "lost_acked_enrollments": 0,
+     "consistent": false
+    }
+   },
+   "ft": {
+    "reps": 3,
+    "failed": 0,
+    "detect_alert_s": 4.1240000000000006,
+    "detect_event_s": 1.8013333333333332,
+    "recovery_s": 0.0,
+    "p95_ms": 20.633333333333333,
+    "core_p95_ms": 24.4,
+    "consistent_reps": 3,
+    "passed": 3,
+    "degraded": 118.33333333333333,
+    "recovered_by_retry": 0,
+    "alerts": [
+     "CircuitBreakerOpen",
+     "HighLatencyP95",
+     "InstanceDown",
+     "PaymentsUnfinished"
+    ],
+    "consistency_example": {
+     "payments_completed": 341,
+     "payments_failed": 0,
+     "bank_debits": 341,
+     "refunds": 0,
+     "orphan_debits": 0,
+     "orphan_amount": 0,
+     "double_charged_intents": 0,
+     "ledger_mismatch": 0,
+     "stuck_payments": 0,
+     "lost_acked_payments": 0,
+     "lost_acked_enrollments": 0,
+     "replica": {
+      "identical": true,
+      "primary": "db-a",
+      "lsn": 2113,
+      "primary_rows": {
+       "paid": 341,
+       "ledger_sum": 74020000.0,
+       "enrollments": 284,
+       "payments": 341
+      },
+      "replica_rows": {
+       "paid": 341,
+       "ledger_sum": 74020000.0,
+       "enrollments": 284,
+       "payments": 341
+      }
+     },
+     "consistent": true
+    }
+   },
+   "endterm": {
+    "reps": 3,
+    "failed": 0,
+    "detect_alert_s": 4.37,
+    "detect_event_s": 2.166,
+    "recovery_s": 0.0,
+    "p95_ms": 25.5,
+    "core_p95_ms": 25.033333333333335,
+    "consistent_reps": 3,
+    "passed": 3,
+    "degraded": 120,
+    "recovered_by_retry": 0,
+    "alerts": [
+     "CircuitBreakerOpen",
+     "HighLatencyP95",
+     "InstanceDown",
+     "PaymentsUnfinished"
+    ],
+    "consistency_example": {
+     "payments_completed": 341,
+     "payments_failed": 0,
+     "bank_debits": 341,
+     "refunds": 0,
+     "orphan_debits": 0,
+     "orphan_amount": 0,
+     "double_charged_intents": 0,
+     "ledger_mismatch": 0,
+     "stuck_payments": 0,
+     "lost_acked_payments": 0,
+     "lost_acked_enrollments": 0,
+     "replica": {
+      "identical": true,
+      "primary": "db-a",
+      "lsn": 2227,
+      "primary_rows": {
+       "paid": 341,
+       "ledger_sum": 74020000.0,
+       "enrollments": 284,
+       "payments": 341
+      },
+      "replica_rows": {
+       "paid": 341,
+       "ledger_sum": 74020000.0,
+       "enrollments": 284,
+       "payments": 341
+      }
+     },
+     "consistent": true
+    }
+   }
+  },
+  "X4": {
+   "baseline": {
+    "reps": 3,
+    "failed": 2966.3333333333335,
+    "detect_alert_s": 5.429333333333333,
+    "detect_event_s": null,
+    "recovery_s": 30.044666666666664,
+    "p95_ms": 5004.7,
+    "core_p95_ms": 3600.9333333333334,
+    "consistent_reps": 0,
+    "passed": 0,
+    "degraded": 0,
+    "recovered_by_retry": 44.666666666666664,
+    "alerts": [
+     "HighLatencyP95",
+     "UserFacingErrorRate"
+    ],
+    "consistency_example": {
+     "payments_completed": 356,
+     "payments_failed": 0,
+     "bank_debits": 356,
+     "refunds": 0,
+     "orphan_debits": 0,
+     "orphan_amount": 0,
+     "double_charged_intents": 27,
+     "ledger_mismatch": 0,
+     "stuck_payments": 0,
+     "lost_acked_payments": 0,
+     "lost_acked_enrollments": 0,
+     "consistent": false
+    }
+   },
+   "ft": {
+    "reps": 3,
+    "failed": 12.666666666666666,
+    "detect_alert_s": 3.916,
+    "detect_event_s": 0.044333333333333336,
+    "recovery_s": 0.5743333333333334,
+    "p95_ms": 101.93333333333334,
+    "core_p95_ms": 22.466666666666665,
+    "consistent_reps": 3,
+    "passed": 3,
+    "degraded": 1519,
+    "recovered_by_retry": 0,
+    "alerts": [
+     "LoadShedding"
+    ],
+    "consistency_example": {
+     "payments_completed": 341,
+     "payments_failed": 0,
+     "bank_debits": 341,
+     "refunds": 0,
+     "orphan_debits": 0,
+     "orphan_amount": 0,
+     "double_charged_intents": 0,
+     "ledger_mismatch": 0,
+     "stuck_payments": 0,
+     "lost_acked_payments": 0,
+     "lost_acked_enrollments": 0,
+     "replica": {
+      "identical": true,
+      "primary": "db-a",
+      "lsn": 968,
+      "primary_rows": {
+       "paid": 341,
+       "ledger_sum": 74020000.0,
+       "enrollments": 284,
+       "payments": 341
+      },
+      "replica_rows": {
+       "paid": 341,
+       "ledger_sum": 74020000.0,
+       "enrollments": 284,
+       "payments": 341
+      }
+     },
+     "consistent": true
+    }
+   },
+   "endterm": {
+    "reps": 3,
+    "failed": 10,
+    "detect_alert_s": 4.0280000000000005,
+    "detect_event_s": 0.042666666666666665,
+    "recovery_s": 0.708,
+    "p95_ms": 112.83333333333333,
+    "core_p95_ms": 23.4,
+    "consistent_reps": 3,
+    "passed": 3,
+    "degraded": 1521.6666666666667,
+    "recovered_by_retry": 0,
+    "alerts": [
+     "LoadShedding"
+    ],
+    "consistency_example": {
+     "payments_completed": 341,
+     "payments_failed": 0,
+     "bank_debits": 341,
+     "refunds": 0,
+     "orphan_debits": 0,
+     "orphan_amount": 0,
+     "double_charged_intents": 0,
+     "ledger_mismatch": 0,
+     "stuck_payments": 0,
+     "lost_acked_payments": 0,
+     "lost_acked_enrollments": 0,
+     "replica": {
+      "identical": true,
+      "primary": "db-a",
+      "lsn": 968,
+      "primary_rows": {
+       "paid": 341,
+       "ledger_sum": 74020000.0,
+       "enrollments": 284,
+       "payments": 341
+      },
+      "replica_rows": {
+       "paid": 341,
+       "ledger_sum": 74020000.0,
+       "enrollments": 284,
+       "payments": 341
+      }
+     },
+     "consistent": true
+    }
+   }
+  },
+  "X7": {
+   "baseline": {
+    "reps": 3,
+    "failed": 36.666666666666664,
+    "detect_alert_s": null,
+    "detect_event_s": 0.7176666666666667,
+    "recovery_s": 15.070666666666666,
+    "p95_ms": 23.066666666666666,
+    "core_p95_ms": 12.1,
+    "consistent_reps": 0,
+    "passed": 0,
+    "degraded": 0,
+    "recovered_by_retry": 24,
+    "alerts": [
+     "ReplicaErrorRate",
+     "UserFacingErrorRate"
+    ],
+    "consistency_example": {
+     "payments_completed": 302,
+     "payments_failed": 0,
+     "bank_debits": 337,
+     "refunds": 0,
+     "orphan_debits": 35,
+     "orphan_amount": 7950000,
+     "double_charged_intents": 29,
+     "ledger_mismatch": 0,
+     "stuck_payments": 0,
+     "lost_acked_payments": 0,
+     "lost_acked_enrollments": 0,
+     "consistent": false
+    }
+   },
+   "ft": {
+    "reps": 3,
+    "failed": 39.333333333333336,
+    "detect_alert_s": 16.956,
+    "detect_event_s": 1.0043333333333333,
+    "recovery_s": 15.254666666666667,
+    "p95_ms": 27.333333333333336,
+    "core_p95_ms": 40.03333333333333,
+    "consistent_reps": 3,
+    "passed": 3,
+    "degraded": 0,
+    "recovered_by_retry": 22.666666666666668,
+    "alerts": [
+     "PaymentsUnfinished",
+     "ReplicaErrorRate",
+     "UserFacingErrorRate"
+    ],
+    "consistency_example": {
+     "payments_completed": 308,
+     "payments_failed": 0,
+     "bank_debits": 308,
+     "refunds": 0,
+     "orphan_debits": 0,
+     "orphan_amount": 0,
+     "double_charged_intents": 0,
+     "ledger_mismatch": 0,
+     "stuck_payments": 0,
+     "lost_acked_payments": 0,
+     "lost_acked_enrollments": 0,
+     "replica": {
+      "identical": true,
+      "primary": "db-a",
+      "lsn": 866,
+      "primary_rows": {
+       "paid": 308,
+       "ledger_sum": 67330000.0,
+       "enrollments": 248,
+       "payments": 308
+      },
+      "replica_rows": {
+       "paid": 308,
+       "ledger_sum": 67330000.0,
+       "enrollments": 248,
+       "payments": 308
+      }
+     },
+     "consistent": true
+    }
+   },
+   "endterm": {
+    "reps": 3,
+    "failed": 34.333333333333336,
+    "detect_alert_s": null,
+    "detect_event_s": 0.94,
+    "recovery_s": 15.664,
+    "p95_ms": 54.4,
+    "core_p95_ms": 42.1,
+    "consistent_reps": 3,
+    "passed": 3,
+    "degraded": 0.3333333333333333,
+    "recovered_by_retry": 23,
+    "alerts": [
+     "ReplicaErrorRate",
+     "UserFacingErrorRate"
+    ],
+    "consistency_example": {
+     "payments_completed": 308,
+     "payments_failed": 0,
+     "bank_debits": 308,
+     "refunds": 0,
+     "orphan_debits": 0,
+     "orphan_amount": 0,
+     "double_charged_intents": 0,
+     "ledger_mismatch": 0,
+     "stuck_payments": 0,
+     "lost_acked_payments": 0,
+     "lost_acked_enrollments": 0,
+     "replica": {
+      "identical": true,
+      "primary": "db-a",
+      "lsn": 867,
+      "primary_rows": {
+       "paid": 308,
+       "ledger_sum": 67330000.0,
+       "enrollments": 248,
+       "payments": 308
+      },
+      "replica_rows": {
+       "paid": 308,
+       "ledger_sum": 67330000.0,
+       "enrollments": 248,
+       "payments": 308
+      }
+     },
+     "consistent": true
+    }
+   }
+  },
+  "X8": {
+   "baseline": {
+    "reps": 3,
+    "failed": 459.6666666666667,
+    "detect_alert_s": 4.15,
+    "detect_event_s": 0.506,
+    "recovery_s": 12.164666666666667,
+    "p95_ms": 20.666666666666668,
+    "core_p95_ms": 9.566666666666666,
+    "consistent_reps": 0,
+    "passed": 0,
+    "degraded": 0,
+    "recovered_by_retry": 7,
+    "alerts": [
+     "InstanceDown",
+     "ReplicaErrorRate",
+     "UserFacingErrorRate"
+    ],
+    "consistency_example": {
+     "payments_completed": 271,
+     "payments_failed": 0,
+     "bank_debits": 419,
+     "refunds": 0,
+     "orphan_debits": 148,
+     "orphan_amount": 29260000,
+     "double_charged_intents": 78,
+     "ledger_mismatch": 0,
+     "stuck_payments": 0,
+     "lost_acked_payments": 0,
+     "lost_acked_enrollments": 0,
+     "consistent": false
+    }
+   },
+   "ft": {
+    "reps": 3,
+    "failed": 0,
+    "detect_alert_s": 1.7466666666666666,
+    "detect_event_s": 0.5076666666666667,
+    "recovery_s": 0.0,
+    "p95_ms": 20.133333333333333,
+    "core_p95_ms": 336.76666666666665,
+    "consistent_reps": 3,
+    "passed": 3,
+    "degraded": 0,
+    "recovered_by_retry": 0,
+    "alerts": [
+     "DBReplicationLost",
+     "DatabaseFailover",
+     "HighLatencyP95",
+     "InstanceDown"
+    ],
+    "consistency_example": {
+     "payments_completed": 341,
+     "payments_failed": 0,
+     "bank_debits": 341,
+     "refunds": 0,
+     "orphan_debits": 0,
+     "orphan_amount": 0,
+     "double_charged_intents": 0,
+     "ledger_mismatch": 0,
+     "stuck_payments": 0,
+     "lost_acked_payments": 0,
+     "lost_acked_enrollments": 0,
+     "replica": {
+      "identical": true,
+      "primary": "db-b",
+      "lsn": 968,
+      "primary_rows": {
+       "paid": 341,
+       "ledger_sum": 74020000.0,
+       "enrollments": 284,
+       "payments": 341
+      },
+      "replica_rows": {
+       "paid": 341,
+       "ledger_sum": 74020000.0,
+       "enrollments": 284,
+       "payments": 341
+      }
+     },
+     "consistent": true
+    }
+   },
+   "endterm": {
+    "reps": 3,
+    "failed": 0,
+    "detect_alert_s": 1.957,
+    "detect_event_s": 0.491,
+    "recovery_s": 0.0,
+    "p95_ms": 22.1,
+    "core_p95_ms": 274.06666666666666,
+    "consistent_reps": 3,
+    "passed": 3,
+    "degraded": 0,
+    "recovered_by_retry": 0,
+    "alerts": [
+     "DBReplicationLost",
+     "DatabaseFailover",
+     "InstanceDown"
+    ],
+    "consistency_example": {
+     "payments_completed": 341,
+     "payments_failed": 0,
+     "bank_debits": 341,
+     "refunds": 0,
+     "orphan_debits": 0,
+     "orphan_amount": 0,
+     "double_charged_intents": 0,
+     "ledger_mismatch": 0,
+     "stuck_payments": 0,
+     "lost_acked_payments": 0,
+     "lost_acked_enrollments": 0,
+     "replica": {
+      "identical": true,
+      "primary": "db-b",
+      "lsn": 968,
+      "primary_rows": {
+       "paid": 341,
+       "ledger_sum": 74020000.0,
+       "enrollments": 284,
+       "payments": 341
+      },
+      "replica_rows": {
+       "paid": 341,
+       "ledger_sum": 74020000.0,
+       "enrollments": 284,
+       "payments": 341
+      }
+     },
+     "consistent": true
+    }
+   }
+  }
+ },
+ "security": {
+  "X5": {
+   "cases_passed": 17,
+   "cases_total": 17,
+   "data_unchanged": true,
+   "audit_chain_ok": true,
+   "cases": [
+    {
+     "case": "no_token",
+     "layer": "gateway",
+     "description": "no credentials",
+     "method": "GET",
+     "path": "/students/S0001",
+     "status": 401,
+     "expected": [
+      401
+     ],
+     "ok": true
+    },
+    {
+     "case": "forged_admin_token",
+     "layer": "gateway",
+     "description": "token with admin claim signed with the wrong key",
+     "method": "GET",
+     "path": "/students/S0002",
+     "status": 401,
+     "expected": [
+      401
+     ],
+     "ok": true
+    },
+    {
+     "case": "alg_none_token",
+     "layer": "gateway",
+     "description": "unsigned 'alg:none' token",
+     "method": "GET",
+     "path": "/students/S0002",
+     "status": 401,
+     "expected": [
+      401
+     ],
+     "ok": true
+    },
+    {
+     "case": "idor_read_other_student",
+     "layer": "gateway",
+     "description": "read another student's profile",
+     "method": "GET",
+     "path": "/students/S0002",
+     "status": 403,
+     "expected": [
+      403
+     ],
+     "ok": true
+    },
+    {
+     "case": "idor_read_other_transcript",
+     "layer": "gateway",
+     "description": "read another student's transcript",
+     "method": "GET",
+     "path": "/transcripts/S0002",
+     "status": 403,
+     "expected": [
+      403
+     ],
+     "ok": true
+    },
+    {
+     "case": "student_changes_grade",
+     "layer": "gateway",
+     "description": "student tries to change a grade (registrar-only)",
+     "method": "POST",
+     "path": "/transcripts/grades",
+     "status": 403,
+     "expected": [
+      403,
+      422
+     ],
+     "ok": true
+    },
+    {
+     "case": "pay_for_other_student",
+     "layer": "gateway",
+     "description": "pay on another student's behalf",
+     "method": "POST",
+     "path": "/payments",
+     "status": 403,
+     "expected": [
+      403,
+      422
+     ],
+     "ok": true
+    },
+    {
+     "case": "student_runs_batch",
+     "layer": "gateway",
+     "description": "student starts the transcript batch (registrar-only)",
+     "method": "POST",
+     "path": "/transcripts/batch/2025F",
+     "status": 403,
+     "expected": [
+      403
+     ],
+     "ok": true
+    },
+    {
+     "case": "header_spoof_identity",
+     "layer": "gateway",
+     "description": "spoof X-User-Id/Role headers to impersonate the victim",
+     "method": "GET",
+     "path": "/students/S0002",
+     "status": 403,
+     "expected": [
+      403
+     ],
+     "ok": true
+    },
+    {
+     "case": "ops_endpoint_as_user",
+     "layer": "gateway",
+     "description": "trigger the fault-injection API as a normal user",
+     "method": "POST",
+     "path": "/chaos",
+     "status": 403,
+     "expected": [
+      403,
+      404
+     ],
+     "ok": true
+    },
+    {
+     "case": "read_metrics_no_ops_token",
+     "layer": "gateway",
+     "description": "scrape the gateway metrics without the ops token",
+     "method": "GET",
+     "path": "/metrics",
+     "status": 403,
+     "expected": [
+      403
+     ],
+     "ok": true
+    },
+    {
+     "case": "sql_no_token",
+     "layer": "database",
+     "description": "direct SQL to the DB with no credential",
+     "status": 401,
+     "expected": [
+      401
+     ],
+     "ok": true,
+     "detail": "{\"detail\":{\"error\":\"unauthenticated\"}}"
+    },
+    {
+     "case": "sql_stolen_token",
+     "layer": "database",
+     "description": "UPDATE grades with the student service's stolen DB token",
+     "status": 403,
+     "expected": [
+      403
+     ],
+     "ok": true,
+     "detail": "{\"detail\":{\"error\":\"forbidden\",\"detail\":\"not authorized\"}}"
+    },
+    {
+     "case": "read_payments_stolen_token",
+     "layer": "database",
+     "description": "read the payments table with the stolen token",
+     "status": 400,
+     "expected": [
+      400,
+      403
+     ],
+     "ok": true,
+     "detail": "{\"detail\":{\"error\":\"sql\",\"detail\":\"access to payments.key is prohibited\"}}"
+    },
+    {
+     "case": "drop_table_stolen_token",
+     "layer": "database",
+     "description": "DROP TABLE with the stolen token",
+     "status": 403,
+     "expected": [
+      403
+     ],
+     "ok": true,
+     "detail": "{\"detail\":{\"error\":\"forbidden\",\"detail\":\"not authorized\"}}"
+    },
+    {
+     "case": "promote_replica",
+     "layer": "database",
+     "description": "force a replica to promote (split brain) with the stolen token",
+     "status": 403,
+     "expected": [
+      401,
+      403
+     ],
+     "ok": true,
+     "detail": "{\"detail\":{\"error\":\"forbidden\"}}"
+    },
+    {
+     "case": "snapshot_dump",
+     "layer": "database",
+     "description": "dump a full database snapshot with the stolen token",
+     "status": 403,
+     "expected": [
+      403
+     ],
+     "ok": true,
+     "detail": ""
+    }
+   ],
+   "extra": {},
+   "passed": true,
+   "alerts": [
+    "AuthFailureSpike"
+   ]
+  },
+  "X6": {
+   "cases_passed": 10,
+   "cases_total": 10,
+   "data_unchanged": true,
+   "audit_chain_ok": true,
+   "cases": [
+    {
+     "case": "negative_amount",
+     "description": "POST /payments",
+     "status": 422,
+     "expected": [
+      400,
+      422
+     ],
+     "ok": true
+    },
+    {
+     "case": "zero_amount",
+     "description": "POST /payments",
+     "status": 422,
+     "expected": [
+      400,
+      422
+     ],
+     "ok": true
+    },
+    {
+     "case": "overflow_amount",
+     "description": "POST /payments",
+     "status": 422,
+     "expected": [
+      400,
+      422
+     ],
+     "ok": true
+    },
+    {
+     "case": "amount_as_string",
+     "description": "POST /payments",
+     "status": 422,
+     "expected": [
+      400,
+      422
+     ],
+     "ok": true
+    },
+    {
+     "case": "sql_in_id",
+     "description": "GET /students/S0001' OR '1'='1",
+     "status": 403,
+     "expected": [
+      403,
+      404,
+      422
+     ],
+     "ok": true
+    },
+    {
+     "case": "sql_in_course",
+     "description": "POST /students/register",
+     "status": 422,
+     "expected": [
+      400,
+      404,
+      422
+     ],
+     "ok": true
+    },
+    {
+     "case": "unknown_field",
+     "description": "POST /payments",
+     "status": 422,
+     "expected": [
+      400,
+      422
+     ],
+     "ok": true
+    },
+    {
+     "case": "bad_group",
+     "description": "GET /timetable/'; DROP TABLE students;--",
+     "status": 422,
+     "expected": [
+      403,
+      404,
+      422
+     ],
+     "ok": true
+    },
+    {
+     "case": "oversize_body",
+     "description": "POST /payments",
+     "status": 413,
+     "expected": [
+      413,
+      422
+     ],
+     "ok": true
+    },
+    {
+     "case": "not_json",
+     "description": "POST /payments",
+     "status": 400,
+     "expected": [
+      400,
+      422
+     ],
+     "ok": true
+    }
+   ],
+   "extra": {
+    "abuse_flood": {
+     "sent": 400,
+     "seconds": 0.35,
+     "200": 23,
+     "429": 377,
+     "other": 0,
+     "throttled": true
+    }
+   },
+   "passed": true,
+   "alerts": []
+  }
+ }
+}

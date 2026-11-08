@@ -1,0 +1,63 @@
+{
+ "experiment": "X3",
+ "build": "ft",
+ "rep": 2,
+ "title": "Slow external dependency (bank 6 s for 15 s)",
+ "startup_s": 8.9,
+ "requests": 1800,
+ "ok": 1800,
+ "failed": 0,
+ "degraded": 120,
+ "recovered_by_retry": 0,
+ "success_rate": 1.0,
+ "p50_ms": 7.4,
+ "p95_ms": 20.9,
+ "p99_ms": 814.5,
+ "detect_alert_s": 4.405,
+ "detect_event_s": 1.801,
+ "client_visible_recovery_s": 0.0,
+ "restart_count": {},
+ "consistency": {
+  "payments_completed": 341,
+  "payments_failed": 0,
+  "bank_debits": 341,
+  "refunds": 0,
+  "orphan_debits": 0,
+  "orphan_amount": 0,
+  "double_charged_intents": 0,
+  "ledger_mismatch": 0,
+  "stuck_payments": 0,
+  "lost_acked_payments": 0,
+  "lost_acked_enrollments": 0,
+  "replica": {
+   "identical": true,
+   "primary": "db-a",
+   "lsn": 2185,
+   "primary_rows": {
+    "paid": 341,
+    "ledger_sum": 74020000.0,
+    "enrollments": 284,
+    "payments": 341
+   },
+   "replica_rows": {
+    "paid": 341,
+    "ledger_sum": 74020000.0,
+    "enrollments": 284,
+    "payments": 341
+   }
+  },
+  "consistent": true
+ },
+ "alerts_fired": [
+  "CircuitBreakerOpen",
+  "HighLatencyP95",
+  "InstanceDown",
+  "PaymentsUnfinished"
+ ],
+ "inject": {
+  "bank_delay_ms": 6000,
+  "for_s": 15,
+  "t": 1794155302.0610743
+ },
+ "core_p95_ms": 24.4
+}

@@ -23,5 +23,5 @@ scrape_configs:
   # container for the build that is running (the baseline has no node B)
   - job_name: ftuni
     file_sd_configs:
-      - files: [/etc/prometheus/targets/services.json]
+      - files: [/ftuni-run/prometheus/services.json]
         refresh_interval: 5s

@@ -65,7 +65,10 @@ def fault_table() -> str:
                 continue
             titles[exp] = rs[0]["title"]
             cons = sum(r["consistency"].get("consistent", False) for r in rs)
-            passed = sum(bool(r.get("_pass")) for r in rs)
+            # _pass is added to the aggregate by the runner; the per-rep summary.json on disk
+            # may have it null (written before _pass is computed), so read the aggregate.
+            agg = load(RESULTS / exp / build / "aggregate.json")
+            passed = agg["passed"] if agg else sum(bool(r.get("_pass")) for r in rs)
             rows.append("| {} | {} | {} | {} | {} | {} | {} | {} | {}/{} | {}/{} |".format(
                 exp, build, len(rs),
                 cell([r["failed"] for r in rs]),
@@ -117,31 +120,43 @@ def security_table() -> str:
 
 # ----------------------------------------------------------------- requirements
 
+# Each requirement: (id, statement, experiments, per-rep predicate). The verdict is the
+# number of repetitions (over those experiments) that satisfy the predicate.
 REQS = [
-    ("R1", "≤1% requests fail on a single crash (X1)", "X1"),
-    ("R2", "detection ≤1 s, interruption short (X1,X2)", "X2"),
-    ("R4", "money consistent (X2,X3,X7)", "X7"),
-    ("R5", "core p95 < 1 s under load (X4)", "X4"),
-    ("R7", "unauthorized actions denied, data unchanged (X5)", "X5"),
-    ("R8", "malformed/abuse handled, service stays up (X6)", "X6"),
-    ("R9", "every incident detected by an alert (X2,X4)", "X2"),
-    ("R10", "audit trail complete and tamper-evident (X5,X6)", "X5"),
-    ("R12", "network partition: no split-brain, consistent (X8)", "X8"),
+    ("R1", "a single crash fails at most 1% of requests", ["X1"],
+     lambda r: r["failed"] <= 0.01 * max(1, r["requests"])),
+    ("R2", "failure detected within 1 s, user-visible interruption at most 2 s", ["X1", "X2"],
+     lambda r: (r.get("detect_event_s") is not None and r["detect_event_s"] <= 1.0)
+     and r["client_visible_recovery_s"] <= 2.0),
+    ("R4", "money and records stay consistent", ["X2", "X3", "X7"],
+     lambda r: r["consistency"].get("consistent", False)),
+    ("R5", "core p95 below 1 s under the load spike", ["X4"],
+     lambda r: r.get("core_p95_ms") is not None and r["core_p95_ms"] < 1000),
+    ("R9", "an incident that outlasts the alert window raises an alert", ["X2", "X3", "X4", "X8"],
+     lambda r: r.get("detect_alert_s") is not None),
+    ("R12", "network partition: no split brain, data consistent", ["X8"],
+     lambda r: r["consistency"].get("consistent", False)),
+]
+SEC_REQS = [
+    ("R7", "every unauthorized action denied, data unchanged", "X5"),
+    ("R8", "malformed and abusive input rejected, service up, data unchanged", "X6"),
+    ("R10", "audit trail complete and tamper-evident", "X5"),
 ]
 
 
 def requirements_table(fault, sec) -> str:
-    def verdict(exp, build):
-        if exp in fault and build in fault[exp]:
-            d = fault[exp][build]
-            return f"{d['passed']}/{d['reps']}"
-        if exp in sec:
-            return "PASS" if sec[exp]["passed"] else "FAIL"
-        return "-"
-    rows = ["| Req | Statement | baseline | ft | endterm |", "|---|---|---|---|---|"]
-    for rid, text, exp in REQS:
-        rows.append(f"| {rid} | {text} | {verdict(exp,'baseline')} | {verdict(exp,'ft')} | {verdict(exp,'endterm')} |")
-    return "## Requirements verification (passed reps / total)\n\n" + "\n".join(rows) + "\n"
+    rows = ["| Req | Statement | Experiments | baseline | ft | endterm |", "|---|---|---|---|---|---|"]
+    for rid, text, exps, pred in REQS:
+        cells = []
+        for build in BUILDS:
+            rs = [r for e in exps for r in reps(e, build)]
+            cells.append(f"{sum(bool(pred(r)) for r in rs)}/{len(rs)}" if rs else "-")
+        rows.append(f"| {rid} | {text} | {', '.join(exps)} | " + " | ".join(cells) + " |")
+    for rid, text, exp in SEC_REQS:
+        s = sec.get(exp)
+        ok = s and (s["passed"] if rid != "R10" else s["audit_chain_ok"])
+        rows.append(f"| {rid} | {text} | {exp} | n/a (no auth) | n/a (no auth) | {'PASS' if ok else 'FAIL'} |")
+    return "## Requirements verification (repetitions meeting the requirement / total)\n\n" + "\n".join(rows) + "\n"
 
 
 # ----------------------------------------------------------------- figures

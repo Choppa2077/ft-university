@@ -1,0 +1,48 @@
+{
+ "experiment": "X8",
+ "build": "baseline",
+ "rep": 2,
+ "title": "Network partition (primary cut from the data network 12 s)",
+ "startup_s": 8.6,
+ "requests": 1878,
+ "ok": 1419,
+ "failed": 459,
+ "degraded": 0,
+ "recovered_by_retry": 7,
+ "success_rate": 0.7556,
+ "p50_ms": 6.9,
+ "p95_ms": 20.8,
+ "p99_ms": 24.9,
+ "detect_alert_s": 4.875,
+ "detect_event_s": 0.525,
+ "client_visible_recovery_s": 12.125,
+ "restart_count": {
+  "db-a": 0,
+  "db-b": 0
+ },
+ "consistency": {
+  "payments_completed": 271,
+  "payments_failed": 0,
+  "bank_debits": 419,
+  "refunds": 0,
+  "orphan_debits": 148,
+  "orphan_amount": 29260000,
+  "double_charged_intents": 78,
+  "ledger_mismatch": 0,
+  "stuck_payments": 0,
+  "lost_acked_payments": 0,
+  "lost_acked_enrollments": 0,
+  "consistent": false
+ },
+ "alerts_fired": [
+  "InstanceDown",
+  "ReplicaErrorRate",
+  "UserFacingErrorRate"
+ ],
+ "inject": {
+  "partitioned": "db-a",
+  "network": "data",
+  "for_s": 12
+ },
+ "core_p95_ms": 9.5
+}

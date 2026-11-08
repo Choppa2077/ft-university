@@ -41,4 +41,4 @@ def create_app() -> FastAPI:
 
 
 if __name__ == "__main__":
-    uvicorn.run(create_app(), host="0.0.0.0", port=9095, log_level="warning")
+    uvicorn.run(create_app(), host="0.0.0.0", port=9095, log_level="warning")  # nosec B104 - ops network only

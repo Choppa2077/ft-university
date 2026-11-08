@@ -8,6 +8,7 @@
 from __future__ import annotations
 
 import json
+import os
 
 from . import config
 
@@ -21,6 +22,10 @@ def main() -> None:
     targets = [{"targets": [f"{i.name}:{i.port}"], "labels": {"name": i.name, "kind": i.kind, "node": i.node}}
                for i in config.topology() if i.kind != "gateway"]
     (run / "prometheus" / "services.json").write_text(json.dumps(targets, indent=1))
+    if hasattr(os, "geteuid") and os.geteuid() == 0:      # running as root only for this step
+        for dirpath, dirnames, filenames in os.walk(run):
+            for n in [dirpath] + [os.path.join(dirpath, f) for f in filenames]:
+                os.chown(n, 10001, 10001)
     print(json.dumps({"ev": "INIT_DONE", "mode": config.MODE, "targets": len(targets)}), flush=True)
 
 

@@ -21,7 +21,7 @@ def main() -> None:
     if cmd == "checksum":
         print(json.dumps(asyncio.run(consistency.checksum(config.MODE))))
         return
-    acked = json.loads((config.RUN_DIR / "acked.json").read_text()) if (config.RUN_DIR / "acked.json").exists() else []
+    acked = json.loads(sys.stdin.read() or "[]")
     records = [Rec(op=a["op"], t0=0, status=a["status"], ok=a["ok"], intent=a["intent"], detail=a["detail"])
                for a in acked]
     print(json.dumps(asyncio.run(consistency.check(config.MODE, records))))

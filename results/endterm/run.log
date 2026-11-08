@@ -1,0 +1,53 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 203, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/Users/mukanidrissov/Documents/ft-university/experiments/endterm.py", line 308, in <module>
+    asyncio.run(main())
+    ~~~~~~~~~~~^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/runners.py", line 205, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/runners.py", line 128, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/asyncio/base_events.py", line 720, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/Users/mukanidrissov/Documents/ft-university/experiments/endterm.py", line 292, in main
+    r = await run_fault(FAULTS[exp_id], cl, rep)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/mukanidrissov/Documents/ft-university/experiments/endterm.py", line 66, in run_fault
+    cl.fresh()
+    ~~~~~~~~^^
+  File "/Users/mukanidrissov/Documents/ft-university/experiments/dockerctl.py", line 47, in fresh
+    RUN.mkdir()
+    ~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.14/lib/python3.14/pathlib/__init__.py", line 1011, in mkdir
+    os.mkdir(self, mode)
+    ~~~~~~~~^^^^^^^^^^^^
+FileExistsError: [Errno 17] File exists: '/Users/mukanidrissov/Documents/ft-university/run-docker'
+X1 baseline rep1 failed=307 detect_alert=3.123 recov=21.121 consistent=True pass=False
+X1 ft       rep1 failed=0 detect_alert=None recov=0.0 consistent=True pass=True
+X1 ft       rep2 failed=0 detect_alert=None recov=0.0 consistent=True pass=True
+X1 ft       rep3 failed=0 detect_alert=None recov=0.0 consistent=True pass=True
+X1 endterm  rep1 failed=0 detect_alert=None recov=0.0 consistent=True pass=True
+X1 endterm  rep2 failed=0 detect_alert=None recov=0.0 consistent=True pass=True
+X1 endterm  rep3 failed=0 detect_alert=None recov=0.0 consistent=True pass=True
+X2 baseline rep1 failed=249 detect_alert=4.65 recov=12.371 consistent=False pass=False
+X2 baseline rep2 failed=252 detect_alert=3.793 recov=12.524 consistent=False pass=False
+X2 baseline rep3 failed=251 detect_alert=3.709 recov=12.497 consistent=False pass=False
+X2 ft       rep1 failed=0 detect_alert=1.354 recov=0.0 consistent=True pass=True
+X2 ft       rep2 failed=0 detect_alert=2.307 recov=0.0 consistent=True pass=True
+X2 ft       rep3 failed=0 detect_alert=1.638 recov=0.0 consistent=True pass=True
+X2 endterm  rep1 failed=0 detect_alert=2.09 recov=0.0 consistent=True pass=True
+X2 endterm  rep2 failed=0 detect_alert=1.63 recov=0.0 consistent=True pass=True
+X2 endterm  rep3 failed=0 detect_alert=2.14 recov=0.0 consistent=True pass=True
+X3 baseline rep1 failed=166 detect_alert=3.674 recov=20.476 consistent=False pass=False
+X3 baseline rep2 failed=166 detect_alert=4.834 recov=20.471 consistent=False pass=False
+X3 baseline rep3 failed=166 detect_alert=3.982 recov=20.473 consistent=False pass=False
+X3 ft       rep1 failed=0 detect_alert=3.978 recov=0.0 consistent=True pass=True
+X3 ft       rep2 failed=0 detect_alert=4.546 recov=0.0 consistent=True pass=True
+X3 ft       rep3 failed=0 detect_alert=3.883 recov=0.0 consistent=True pass=True
+X3 endterm  rep1 failed=0 detect_alert=4.448 recov=0.0 consistent=True pass=True
+X3 endterm  rep2 failed=0 detect_alert=4.904 recov=0.0 consistent=True pass=True
+X3 endterm  rep3 failed=18 detect_alert=None recov=33.633 consistent=None pass=False

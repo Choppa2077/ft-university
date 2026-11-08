@@ -18,7 +18,10 @@ import httpx
 from ftuni import config
 
 ROOT = Path(__file__).resolve().parent.parent
-RUN = ROOT / "run-docker"
+# The cluster's run directory lives in a named Docker volume (ext4 inside the Docker VM).
+# A host bind mount was used first, but Docker Desktop's file sharing failed under the
+# write load of 17 containers (see the report, X3); evidence is now copied out per run.
+RUN = ROOT / "run-export"
 SECRETS = ROOT / "deploy" / "secrets"
 GATEWAY = "http://127.0.0.1:8000"
 PROM = "http://127.0.0.1:9090"
@@ -42,9 +45,16 @@ class DockerCluster:
         sh("docker", "compose", "down", "-v", "--remove-orphans", "-t", "1", env=env, check=False)
 
     def fresh(self) -> None:
-        self.down()
+        self.down()                       # `down -v` also removes the run volume
         shutil.rmtree(RUN, ignore_errors=True)
-        RUN.mkdir()
+        RUN.mkdir(parents=True, exist_ok=True)
+
+    def export(self) -> Path:
+        """Copy the run directory (events, alerts, audit, registry) out of the volume."""
+        shutil.rmtree(RUN, ignore_errors=True)
+        RUN.mkdir(parents=True, exist_ok=True)
+        sh("docker", "cp", "ftuni-monitor:/app/run/.", str(RUN), check=False, timeout=120)
+        return RUN
 
     def up(self, timeout: float = 120) -> float:
         t0 = time.time()
@@ -143,7 +153,8 @@ class DockerCluster:
 
     # ---------------------------------------------------------------- evidence
     def db_primary(self) -> str:
-        return json.loads((RUN / "registry.json").read_text())["db_primary"]
+        r = sh("docker", "exec", "ftuni-monitor", "cat", "/app/run/registry.json", check=False)
+        return json.loads(r.stdout)["db_primary"]
 
     def events(self, since: float = 0.0) -> list[dict]:
         out = []
@@ -173,8 +184,13 @@ class DockerCluster:
     def consistency(self, records) -> dict:
         acked = [{"op": r.op, "status": r.status, "ok": r.ok, "intent": r.intent, "detail": r.detail}
                  for r in records]
-        (RUN / "acked.json").write_text(json.dumps(acked))
-        return self.exec_json("ftuni-monitor", "python", "-m", "experiments.consistency_cli", "check")
+        r = subprocess.run(["docker", "exec", "-i", "ftuni-monitor", "python", "-m",
+                            "experiments.consistency_cli", "check"], input=json.dumps(acked),
+                           capture_output=True, text=True, timeout=180, cwd=ROOT)
+        try:
+            return json.loads(r.stdout)
+        except ValueError:
+            return {"error": (r.stdout + r.stderr)[-1500:]}
 
     def checksum(self) -> dict:
         return self.exec_json("ftuni-monitor", "python", "-m", "experiments.consistency_cli", "checksum")

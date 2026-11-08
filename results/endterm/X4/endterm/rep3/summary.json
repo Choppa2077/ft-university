@@ -1,0 +1,59 @@
+{
+ "experiment": "X4",
+ "build": "endterm",
+ "rep": 3,
+ "title": "Load spike (+180 timetable req/s for 15 s)",
+ "startup_s": 8.9,
+ "requests": 4500,
+ "ok": 4491,
+ "failed": 9,
+ "degraded": 1526,
+ "recovered_by_retry": 0,
+ "success_rate": 0.998,
+ "p50_ms": 6.4,
+ "p95_ms": 123.1,
+ "p99_ms": 173.3,
+ "detect_alert_s": 4.657,
+ "detect_event_s": 0.041,
+ "client_visible_recovery_s": 0.38,
+ "restart_count": {},
+ "consistency": {
+  "payments_completed": 341,
+  "payments_failed": 0,
+  "bank_debits": 341,
+  "refunds": 0,
+  "orphan_debits": 0,
+  "orphan_amount": 0,
+  "double_charged_intents": 0,
+  "ledger_mismatch": 0,
+  "stuck_payments": 0,
+  "lost_acked_payments": 0,
+  "lost_acked_enrollments": 0,
+  "replica": {
+   "identical": true,
+   "primary": "db-a",
+   "lsn": 968,
+   "primary_rows": {
+    "paid": 341,
+    "ledger_sum": 74020000.0,
+    "enrollments": 284,
+    "payments": 341
+   },
+   "replica_rows": {
+    "paid": 341,
+    "ledger_sum": 74020000.0,
+    "enrollments": 284,
+    "payments": 341
+   }
+  },
+  "consistent": true
+ },
+ "alerts_fired": [
+  "LoadShedding"
+ ],
+ "inject": {
+  "burst_timetable_rps": 180,
+  "for_s": 15
+ },
+ "core_p95_ms": 22.8
+}

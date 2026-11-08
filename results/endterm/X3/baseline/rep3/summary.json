@@ -1,0 +1,44 @@
+{
+ "experiment": "X3",
+ "build": "baseline",
+ "rep": 3,
+ "title": "Slow external dependency (bank 6 s for 15 s)",
+ "startup_s": 8.5,
+ "requests": 1907,
+ "ok": 1741,
+ "failed": 166,
+ "degraded": 0,
+ "recovered_by_retry": 48,
+ "success_rate": 0.913,
+ "p50_ms": 7.2,
+ "p95_ms": 5002.6,
+ "p99_ms": 5005.5,
+ "detect_alert_s": 4.617,
+ "detect_event_s": null,
+ "client_visible_recovery_s": 20.47,
+ "restart_count": {},
+ "consistency": {
+  "payments_completed": 448,
+  "payments_failed": 0,
+  "bank_debits": 448,
+  "refunds": 0,
+  "orphan_debits": 0,
+  "orphan_amount": 0,
+  "double_charged_intents": 107,
+  "ledger_mismatch": 0,
+  "stuck_payments": 0,
+  "lost_acked_payments": 0,
+  "lost_acked_enrollments": 0,
+  "consistent": false
+ },
+ "alerts_fired": [
+  "HighLatencyP95",
+  "InstanceDown"
+ ],
+ "inject": {
+  "bank_delay_ms": 6000,
+  "for_s": 15,
+  "t": 1794155160.9808893
+ },
+ "core_p95_ms": 7200.0
+}

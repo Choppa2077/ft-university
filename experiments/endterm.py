@@ -76,6 +76,10 @@ async def run_fault(exp: dict, cl: DockerCluster, rep: int) -> dict:
     await asyncio.sleep(exp.get("settle", 3))
     await wl._client.aclose()
 
+    if getattr(wl, "_burst", None) is not None:
+        wl.records += wl._burst.records   # fold the burst generator's requests into the totals
+    cons = cl.consistency(wl.records)     # needs the live cluster
+    cl.export()                           # copy events / alerts / audit out of the volume
     events = cl.events(origin)
     alerts = cl.alerts()
     recs = wl.records
@@ -83,7 +87,6 @@ async def run_fault(exp: dict, cl: DockerCluster, rep: int) -> dict:
     after = [r for r in done if not r.ok and r.t0 >= (t_inject - origin) - 0.5]
     detect = detection_from_alerts(alerts, exp.get("alert_names", []), t_inject)
     det_ev = detection_from_events(events, exp["detect_event"], t_inject) if exp.get("detect_event") else None
-    cons = cl.consistency(recs)
     out = {
         "experiment": exp["id"], "build": cl.mode, "rep": rep, "title": exp["title"],
         "startup_s": round(t_up, 1), "requests": len(done), "ok": sum(r.ok for r in done),
@@ -104,8 +107,8 @@ async def run_fault(exp: dict, cl: DockerCluster, rep: int) -> dict:
     outdir.mkdir(parents=True, exist_ok=True)
     save_csv(recs, outdir / "requests.csv")
     (outdir / "events.jsonl").write_text("\n".join(json.dumps(e) for e in events) + "\n")
-    (outdir / "summary.json").write_text(json.dumps(out, indent=1))
     out["_pass"] = exp["accept"](out)
+    (outdir / "summary.json").write_text(json.dumps(out, indent=1))
     return out
 
 
@@ -139,8 +142,23 @@ async def inj_bank(cl, wl):
     asyncio.create_task(heal())
     return {"bank_delay_ms": 6000, "for_s": 15, "t": t}
 
-async def inj_none(cl, wl):
-    return {"note": "load-only experiment; burst is part of the workload mix"}
+async def inj_load(cl, wl):
+    """Add a heavy timetable burst (like the midterm E6's second generator) on top of the
+    steady load, for 15 s. The steady load keeps serving the core services so R5 (their p95
+    under load) is measurable; the burst is what saturates the timetable instance(s)."""
+    burst = Workload(cl.mode, rate=180, duration=15, origin=wl.origin, mix={"timetable": 1.0},
+                     start_at=time.time() - wl.origin, seed=99, client_retry=False, tag="burst")
+    burst.tokens = wl.tokens
+    gw = httpx.AsyncClient(base_url="http://127.0.0.1:8000", timeout=5.0,
+                           limits=httpx.Limits(max_connections=4000, max_keepalive_connections=400))
+    burst._client = gw
+    wl._burst = burst
+
+    async def run_burst():
+        await burst.run(gw)
+        await gw.aclose()
+    asyncio.create_task(run_burst())
+    return {"burst_timetable_rps": 180, "for_s": 15}
 
 async def inj_partition(cl, wl):
     prim = cl.db_primary()
@@ -182,9 +200,8 @@ FAULTS = {
                inject=inj_bank, watch=[], alert_names=["CircuitBreakerOpen", "InstanceDown"],
                detect_event=lambda e: e["ev"] == "BREAKER" and e.get("to") == "open",
                accept=masked_or_recovered),
-    "X4": dict(id="X4", title="Load spike (x5 timetable for 15 s)", duration=45, settle=4, rate=RATE,
-               inject=inj_none, watch=[], alert_names=["LoadShedding", "HighLatencyP95"],
-               mix={"student": 0.1, "enroll": 0.05, "pay": 0.05, "transcript": 0.05, "timetable": 0.75},
+    "X4": dict(id="X4", title="Load spike (+180 timetable req/s for 15 s)", duration=45, settle=4, rate=RATE,
+               inject=inj_load, watch=[], alert_names=["LoadShedding", "HighLatencyP95"],
                detect_event=lambda e: e["ev"] == "LOAD_SHED",
                accept=lambda o: o["core_p95_ms"] is not None and o["core_p95_ms"] < 1000 and consistent_only(o)),
     "X7": dict(id="X7", title="Recovery and consistency (30% payments interrupted 15 s)", duration=40, settle=14,
@@ -217,6 +234,8 @@ async def run_security(exp_id: str, cl: DockerCluster) -> dict:
     await c.aclose()
     after = cl.checksum()
     await asyncio.sleep(2)
+    audit_ok = cl.audit_verify().get("ok")
+    cl.export()
     alerts = cl.alerts()
     audit = cl.audit_records()
     denied_events = {"X5": ("AUTHN_DENIED", "AUTHZ_DENIED", "DB_DENIED", "OPS_DENIED"),
@@ -230,7 +249,7 @@ async def run_security(exp_id: str, cl: DockerCluster) -> dict:
         "extra": extra,
         "data_unchanged": data_unchanged, "checksum_before": before, "checksum_after": after,
         "audit_records_for_denials": sum(a["event"] in denied_events for a in audit),
-        "audit_chain_ok": cl.audit_verify().get("ok"),
+        "audit_chain_ok": audit_ok,
         "alerts_fired": sorted({a["alertname"] for a in alerts if a.get("status") == "firing"}),
         "duration_s": round(time.time() - t0, 1),
     }
@@ -263,6 +282,7 @@ async def main() -> None:
     ap.add_argument("experiments", nargs="*", help="e.g. X1 X5 (default: all)")
     ap.add_argument("--builds", nargs="+", default=None, help="subset of: baseline ft endterm")
     ap.add_argument("--reps", type=int, default=5)
+    ap.add_argument("--rep-start", type=int, default=1, help="number of the first repetition")
     args = ap.parse_args()
 
     all_fault = list(FAULTS)
@@ -288,7 +308,7 @@ async def main() -> None:
                 else:
                     reps = 1 if build == "baseline" and exp_id in ("X1",) else args.reps
                     runs = []
-                    for rep in range(1, reps + 1):
+                    for rep in range(args.rep_start, args.rep_start + reps):
                         r = await run_fault(FAULTS[exp_id], cl, rep)
                         runs.append(r)
                         print(f"{exp_id} {build:8} rep{rep} failed={r['failed']} "

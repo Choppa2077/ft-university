@@ -71,7 +71,7 @@ def main() -> None:
     restart_delay(inst)
     app = importlib.import_module(MODULES[inst.kind]).create_app(inst)
     if config.DOCKER:
-        host = "0.0.0.0"            # reachable on the container networks; only the gateway port is published
+        host = "0.0.0.0"  # nosec B104 - container-internal; isolated Docker nets, only gateway publishes a port
     else:
         host = config.HOST if inst.kind == "gateway" else "127.0.0.1"
     uvicorn.run(app, host=host, port=inst.port, log_level="warning", access_log=False, timeout_keep_alive=30)

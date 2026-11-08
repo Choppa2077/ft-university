@@ -85,7 +85,7 @@ x-app: &app
   tmpfs: [/tmp]
   cap_drop: [ALL]
   security_opt: ["no-new-privileges:true"]
-  volumes: ["./run-docker:/app/run"]
+  volumes: ["run:/app/run"]       # named volume (ext4 in the Docker VM), not a host bind mount
   depends_on:
     init: {condition: service_completed_successfully}
   healthcheck:
@@ -105,9 +105,10 @@ services:
     restart: "no"
     network_mode: none
     read_only: true
+    user: "0:0"                     # only to hand the fresh volume to the app user (uid 10001)
     environment:
 ''' + ENV + '''
-    volumes: ["./run-docker:/app/run"]''']
+    volumes: ["run:/app/run"]''']
     for i in config.topology("ft"):
         out.append(service(i))
     out.append('''
@@ -134,7 +135,7 @@ services:
     volumes:
       - ./deploy/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
       - ./deploy/prometheus/alerts.yml:/etc/prometheus/alerts.yml:ro
-      - ./run-docker/prometheus:/etc/prometheus/targets:ro
+      - run:/ftuni-run:ro           # scrape targets written by the init container
     secrets: [{source: ops_token, target: ops_token}]
     ports: ["127.0.0.1:9090:9090"]
     cpus: 1.0
@@ -170,6 +171,9 @@ services:
     cpus: 0.5
     mem_limit: 256m
     networks: [ops]
+
+volumes:
+  run: {}
 
 networks:
   app: {}

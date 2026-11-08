@@ -1,0 +1,45 @@
+{
+ "experiment": "X7",
+ "build": "baseline",
+ "rep": 2,
+ "title": "Recovery and consistency (30% payments interrupted 15 s)",
+ "startup_s": 8.6,
+ "requests": 1632,
+ "ok": 1594,
+ "failed": 38,
+ "degraded": 0,
+ "recovered_by_retry": 26,
+ "success_rate": 0.9767,
+ "p50_ms": 6.8,
+ "p95_ms": 23.0,
+ "p99_ms": 30.3,
+ "detect_alert_s": null,
+ "detect_event_s": 0.553,
+ "client_visible_recovery_s": 14.901,
+ "restart_count": {},
+ "consistency": {
+  "payments_completed": 302,
+  "payments_failed": 0,
+  "bank_debits": 340,
+  "refunds": 0,
+  "orphan_debits": 38,
+  "orphan_amount": 7770000,
+  "double_charged_intents": 32,
+  "ledger_mismatch": 0,
+  "stuck_payments": 0,
+  "lost_acked_payments": 0,
+  "lost_acked_enrollments": 0,
+  "consistent": false
+ },
+ "alerts_fired": [
+  "ReplicaErrorRate",
+  "UserFacingErrorRate"
+ ],
+ "inject": {
+  "interrupt_rate": 0.3,
+  "stage": "after_debit",
+  "for_s": 15,
+  "t": 1794154496.0096657
+ },
+ "core_p95_ms": 14.1
+}
