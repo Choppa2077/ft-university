@@ -2,9 +2,9 @@
 
 **Fault Tolerance and Dependable Computing**
 
-Team: Mukan Idrissov (255567) · Group: CSE-2501M
-Instructor: Azamat Serek
-Repository: https://github.com/Choppa2077/ft-university (branch `endterm`; midterm tagged `midterm`)
+Team: Mukan Idrissov (255567) · Group: CSE-2501M\
+Instructor: Azamat Serek\
+Repository: https://github.com/Choppa2077/ft-university (branch `endterm`; midterm tagged `midterm`)\
 Astana IT University, November 2026
 
 ---
