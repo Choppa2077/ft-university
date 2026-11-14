@@ -786,6 +786,9 @@ X8, not their average.
 
 <!--TABLE:RESULTS-->
 
+In the X2 and X3 baseline rows the core p95 lies in the histogram's top bucket (4–8 s) and means
+only "more than 4 s"; the client p95 of about 5 s there is the client's own timeout.
+
 ![Figure 4 — Successful requests per second in repetition 1 of every experiment; grey = fault active (X9: until the runbook restarts the replica). ft and endterm overlap almost everywhere.](../../results/final/fig_timelines.png)
 
 - **X1, instance crash.** The baseline lost

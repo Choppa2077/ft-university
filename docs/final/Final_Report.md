@@ -862,32 +862,66 @@ X8, not their average.
 
 ### 9.2 Fault experiments
 
-| Exp | Scenario | Build | Reps | Success % | Failed req. after inj. | Failed user actions | Detect (event) s | First related alert s | Recovery s | p95 ms | Core p95 ms | Orphan debits / double charges per run | Consistent | PASS |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| X0 | steady state, no fault | baseline | 5 | 100.00 | 0 | 0 | – | – | 0.0 | 22 ± 0 | 10 ± 1 | 0 / 0 | 5/5 | 5/5 |
-| X0 | steady state, no fault | ft | 5 | 100.00 | 0 | 0 | – | – | 0.0 | 19 ± 0 | 22 ± 0 | 0 / 0 | 5/5 | 5/5 |
-| X0 | steady state, no fault | endterm | 5 | 100.00 | 0 | 0 | – | – | 0.0 | 20 ± 0 | 27 ± 9 | 0 / 0 | 5/5 | 5/5 |
-| X1 | service instance crash | baseline | 5 | 82.60 ± 0.07 | 305 ± 2 | 150 | 0.40 ± 0.08 | 3.16 ± 0.42 | 21.0 ± 0.1 | 22 ± 1 | 10 ± 1 | 0 / 0 | 5/5 | 0/5 |
-| X1 | service instance crash | ft | 5 | 100.00 | 0 | 0 | 0.51 ± 0.08 | – | 0.0 | 19 ± 0 | 22 ± 0 | 0 / 0 | 5/5 | 5/5 |
-| X1 | service instance crash | endterm | 5 | 100.00 | 0 | 0 | 0.38 ± 0.08 | – | 0.0 | 21 ± 0 | 29 ± 12 | 0 / 0 | 5/5 | 5/5 |
-| X2 | database primary frozen 12 s | baseline | 5 | 86.50 | 249 | 205 | 0.72 ± 0.08 | 4.38 ± 0.32 | 12.4 ± 0.0 | 5003 ± 0 | 8000 | 16 / 44 | 0/5 | 0/5 |
-| X2 | database primary frozen 12 s | ft | 5 | 100.00 | 0 | 0 | 0.73 ± 0.04 | 1.87 ± 0.39 | 0.0 | 22 ± 0 | 1586 ± 13 | 0 / 0 | 5/5 | 5/5 |
-| X2 | database primary frozen 12 s | endterm | 5 | 100.00 | 0 | 0 | 0.69 ± 0.10 | 1.92 ± 0.38 | 0.0 | 46 ± 34 | 1559 ± 23 | 0 / 0 | 5/5 | 5/5 |
-| X3 | bank 6 s slow for 15 s | baseline | 5 | 91.32 ± 0.03 | 166 ± 1 | 59 ± 1 | – | 4.31 ± 0.37 | 20.4 ± 0.0 | 5003 ± 0 | 7200 ± 6 | 0 / 107 | 0/5 | 0/5 |
-| X3 | bank 6 s slow for 15 s | ft | 5 | 100.00 | 0 | 0 | 1.80 ± 0.00 | 4.26 ± 0.39 | 0.0 | 20 ± 0 | 25 ± 2 | 0 / 0 | 5/5 | 5/5 |
-| X3 | bank 6 s slow for 15 s | endterm | 5 | 100.00 | 0 | 0 | 2.10 ± 0.03 | 4.46 ± 0.42 | 0.0 | 25 ± 1 | 34 ± 15 | 0 / 0 | 5/5 | 5/5 |
-| X4 | load spike +180 timetable req/s | baseline | 5 | 34.81 ± 0.57 | 2983 ± 28 | 2908 ± 26 | – | 5.61 ± 0.33 | 30.1 ± 0.2 | 5005 ± 0 | 3640 ± 49 | 0 / 29 ± 2 | 0/5 | 0/5 |
-| X4 | load spike +180 timetable req/s | ft | 5 | 99.74 ± 0.10 | 12 ± 4 | 12 ± 4 | 0.04 ± 0.00 | 4.06 ± 0.50 | 0.9 ± 0.5 | 96 ± 5 | 22 ± 0 | 0 / 0 | 5/5 | 5/5 |
-| X4 | load spike +180 timetable req/s | endterm | 5 | 99.75 ± 0.04 | 11 ± 2 | 11 ± 2 | 0.05 ± 0.00 | 4.13 ± 0.56 | 1.2 ± 0.5 | 101 ± 7 | 23 ± 1 | 0 / 0 | 5/5 | 5/5 |
-| X7 | 30% payments interrupted after debit | baseline | 5 | 97.31 ± 0.51 | 44 ± 8 | 9 ± 3 | 0.51 ± 0.03 | 6.56 ± 1.30 | 15.3 ± 0.1 | 23 ± 0 | 13 ± 1 | 44 ± 8 / 35 ± 6 | 0/5 | 0/5 |
-| X7 | 30% payments interrupted after debit | ft | 5 | 97.68 ± 0.32 | 38 ± 5 | 8 ± 1 | 0.97 ± 0.03 | 6.01 ± 0.57 | 15.5 ± 0.3 | 26 ± 2 | 36 ± 3 | 0 / 0 | 5/5 | 5/5 |
-| X7 | 30% payments interrupted after debit | endterm | 5 | 97.47 ± 0.43 | 41 ± 7 | 7 ± 2 | 0.99 ± 0.05 | 7.45 ± 1.00 | 16.1 ± 0.7 | 56 ± 3 | 41 ± 15 | 0 / 0 | 5/5 | 5/5 |
-| X8 | primary partitioned 12 s | baseline | 5 | 75.53 ± 0.03 | 460 ± 1 | 382 ± 1 | 0.46 ± 0.08 | 4.00 ± 0.26 | 12.1 ± 0.0 | 21 ± 0 | 11 ± 2 | 148 / 78 | 0/5 | 0/5 |
-| X8 | primary partitioned 12 s | ft | 5 | 100.00 | 0 | 0 | 0.48 ± 0.07 | 1.64 ± 0.29 | 0.0 | 20 ± 0 | 281 ± 133 | 0 / 0 | 5/5 | 5/5 |
-| X8 | primary partitioned 12 s | endterm | 5 | 100.00 | 0 | 0 | 0.47 ± 0.09 | 1.82 ± 0.46 | 0.0 | 23 ± 0 | 267 ± 121 | 0 / 0 | 5/5 | 5/5 |
-| X9 | gray failure (replica 50% HTTP 500) | baseline | 5 | 76.90 ± 0.21 | 508 ± 5 | 508 ± 5 | – | 5.69 ± 0.47 | 29.8 ± 0.5 | 22 ± 0 | 12 ± 3 | 0 / 0 | 5/5 | 5/5 |
-| X9 | gray failure (replica 50% HTTP 500) | ft | 5 | 98.13 ± 0.17 | 41 ± 4 | 41 ± 4 | – | 5.81 ± 0.63 | 7.7 ± 0.5 | 20 ± 0 | 23 ± 0 | 0 / 0 | 5/5 | 5/5 |
-| X9 | gray failure (replica 50% HTTP 500) | endterm | 5 | 97.84 ± 0.20 | 48 ± 5 | 48 ± 5 | – | 6.19 ± 0.68 | 8.5 ± 0.7 | 21 ± 0 | 24 ± 1 | 0 / 0 | 5/5 | 5/5 |
+*Availability and latency*
+
+| Exp | Scenario | Build | Reps | Success % | Failed req. after inj. | Failed user actions | Recovery s | p95 ms | Core p95 ms |
+|---|---|---|---|---|---|---|---|---|---|
+| X0 | steady state, no fault | baseline | 5 | 100.00 | 0 | 0 | 0.0 | 22 ± 0 | 10 ± 1 |
+| X0 | steady state, no fault | ft | 5 | 100.00 | 0 | 0 | 0.0 | 19 ± 0 | 22 ± 0 |
+| X0 | steady state, no fault | endterm | 5 | 100.00 | 0 | 0 | 0.0 | 20 ± 0 | 27 ± 9 |
+| X1 | service instance crash | baseline | 5 | 82.60 ± 0.07 | 305 ± 2 | 150 | 21.0 ± 0.1 | 22 ± 1 | 10 ± 1 |
+| X1 | service instance crash | ft | 5 | 100.00 | 0 | 0 | 0.0 | 19 ± 0 | 22 ± 0 |
+| X1 | service instance crash | endterm | 5 | 100.00 | 0 | 0 | 0.0 | 21 ± 0 | 29 ± 12 |
+| X2 | database primary frozen 12 s | baseline | 5 | 86.50 | 249 | 205 | 12.4 ± 0.0 | 5003 ± 0 | 8000 |
+| X2 | database primary frozen 12 s | ft | 5 | 100.00 | 0 | 0 | 0.0 | 22 ± 0 | 1586 ± 13 |
+| X2 | database primary frozen 12 s | endterm | 5 | 100.00 | 0 | 0 | 0.0 | 46 ± 34 | 1559 ± 23 |
+| X3 | bank 6 s slow for 15 s | baseline | 5 | 91.32 ± 0.03 | 166 ± 1 | 59 ± 1 | 20.4 ± 0.0 | 5003 ± 0 | 7200 ± 6 |
+| X3 | bank 6 s slow for 15 s | ft | 5 | 100.00 | 0 | 0 | 0.0 | 20 ± 0 | 25 ± 2 |
+| X3 | bank 6 s slow for 15 s | endterm | 5 | 100.00 | 0 | 0 | 0.0 | 25 ± 1 | 34 ± 15 |
+| X4 | load spike +180 timetable req/s | baseline | 5 | 34.81 ± 0.57 | 2983 ± 28 | 2908 ± 26 | 30.1 ± 0.2 | 5005 ± 0 | 3640 ± 49 |
+| X4 | load spike +180 timetable req/s | ft | 5 | 99.74 ± 0.10 | 12 ± 4 | 12 ± 4 | 0.9 ± 0.5 | 96 ± 5 | 22 ± 0 |
+| X4 | load spike +180 timetable req/s | endterm | 5 | 99.75 ± 0.04 | 11 ± 2 | 11 ± 2 | 1.2 ± 0.5 | 101 ± 7 | 23 ± 1 |
+| X7 | 30% payments interrupted after debit | baseline | 5 | 97.31 ± 0.51 | 44 ± 8 | 9 ± 3 | 15.3 ± 0.1 | 23 ± 0 | 13 ± 1 |
+| X7 | 30% payments interrupted after debit | ft | 5 | 97.68 ± 0.32 | 38 ± 5 | 8 ± 1 | 15.5 ± 0.3 | 26 ± 2 | 36 ± 3 |
+| X7 | 30% payments interrupted after debit | endterm | 5 | 97.47 ± 0.43 | 41 ± 7 | 7 ± 2 | 16.1 ± 0.7 | 56 ± 3 | 41 ± 15 |
+| X8 | primary partitioned 12 s | baseline | 5 | 75.53 ± 0.03 | 460 ± 1 | 382 ± 1 | 12.1 ± 0.0 | 21 ± 0 | 11 ± 2 |
+| X8 | primary partitioned 12 s | ft | 5 | 100.00 | 0 | 0 | 0.0 | 20 ± 0 | 281 ± 133 |
+| X8 | primary partitioned 12 s | endterm | 5 | 100.00 | 0 | 0 | 0.0 | 23 ± 0 | 267 ± 121 |
+| X9 | gray failure (replica 50% HTTP 500) | baseline | 5 | 76.90 ± 0.21 | 508 ± 5 | 508 ± 5 | 29.8 ± 0.5 | 22 ± 0 | 12 ± 3 |
+| X9 | gray failure (replica 50% HTTP 500) | ft | 5 | 98.13 ± 0.17 | 41 ± 4 | 41 ± 4 | 7.7 ± 0.5 | 20 ± 0 | 23 ± 0 |
+| X9 | gray failure (replica 50% HTTP 500) | endterm | 5 | 97.84 ± 0.20 | 48 ± 5 | 48 ± 5 | 8.5 ± 0.7 | 21 ± 0 | 24 ± 1 |
+
+*Detection and integrity*
+
+| Exp | Build | Detect (event) s | First related alert s | Orphan debits / double charges per run | Consistent | PASS |
+|---|---|---|---|---|---|---|
+| X0 | baseline | – | – | 0 / 0 | 5/5 | 5/5 |
+| X0 | ft | – | – | 0 / 0 | 5/5 | 5/5 |
+| X0 | endterm | – | – | 0 / 0 | 5/5 | 5/5 |
+| X1 | baseline | 0.40 ± 0.08 | 3.16 ± 0.42 | 0 / 0 | 5/5 | 0/5 |
+| X1 | ft | 0.51 ± 0.08 | – | 0 / 0 | 5/5 | 5/5 |
+| X1 | endterm | 0.38 ± 0.08 | – | 0 / 0 | 5/5 | 5/5 |
+| X2 | baseline | 0.72 ± 0.08 | 4.38 ± 0.32 | 16 / 44 | 0/5 | 0/5 |
+| X2 | ft | 0.73 ± 0.04 | 1.87 ± 0.39 | 0 / 0 | 5/5 | 5/5 |
+| X2 | endterm | 0.69 ± 0.10 | 1.92 ± 0.38 | 0 / 0 | 5/5 | 5/5 |
+| X3 | baseline | – | 4.31 ± 0.37 | 0 / 107 | 0/5 | 0/5 |
+| X3 | ft | 1.80 ± 0.00 | 4.26 ± 0.39 | 0 / 0 | 5/5 | 5/5 |
+| X3 | endterm | 2.10 ± 0.03 | 4.46 ± 0.42 | 0 / 0 | 5/5 | 5/5 |
+| X4 | baseline | – | 5.61 ± 0.33 | 0 / 29 ± 2 | 0/5 | 0/5 |
+| X4 | ft | 0.04 ± 0.00 | 4.06 ± 0.50 | 0 / 0 | 5/5 | 5/5 |
+| X4 | endterm | 0.05 ± 0.00 | 4.13 ± 0.56 | 0 / 0 | 5/5 | 5/5 |
+| X7 | baseline | 0.51 ± 0.03 | 6.56 ± 1.30 | 44 ± 8 / 35 ± 6 | 0/5 | 0/5 |
+| X7 | ft | 0.97 ± 0.03 | 6.01 ± 0.57 | 0 / 0 | 5/5 | 5/5 |
+| X7 | endterm | 0.99 ± 0.05 | 7.45 ± 1.00 | 0 / 0 | 5/5 | 5/5 |
+| X8 | baseline | 0.46 ± 0.08 | 4.00 ± 0.26 | 148 / 78 | 0/5 | 0/5 |
+| X8 | ft | 0.48 ± 0.07 | 1.64 ± 0.29 | 0 / 0 | 5/5 | 5/5 |
+| X8 | endterm | 0.47 ± 0.09 | 1.82 ± 0.46 | 0 / 0 | 5/5 | 5/5 |
+| X9 | baseline | – | 5.69 ± 0.47 | 0 / 0 | 5/5 | 5/5 |
+| X9 | ft | – | 5.81 ± 0.63 | 0 / 0 | 5/5 | 5/5 |
+| X9 | endterm | – | 6.19 ± 0.68 | 0 / 0 | 5/5 | 5/5 |
+
+In the X2 and X3 baseline rows the core p95 lies in the histogram's top bucket (4–8 s) and means
+only "more than 4 s"; the client p95 of about 5 s there is the client's own timeout.
 
 ![Figure 4 — Successful requests per second in repetition 1 of every experiment; grey = fault active (X9: until the runbook restarts the replica). ft and endterm overlap almost everywhere.](../../results/final/fig_timelines.png)
 
@@ -948,32 +982,63 @@ X8, not their average.
 
 ### 9.3 Mechanism activations
 
-| Exp | Build | GW retries | replica marked down | breaker opened | bank retries | queued (202) | roll fwd | roll back | duplicates caught | DB failovers | old primary stepped down | shed | stale answers | restarts |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| X0 | baseline | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
-| X0 | ft | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
-| X0 | endterm | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
-| X1 | baseline | 0.0 | 1.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 1.0 |
-| X1 | ft | 0.8 ± 0.4 | 1.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 1.0 |
-| X1 | endterm | 0.6 ± 0.5 | 1.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 1.0 |
-| X2 | baseline | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
-| X2 | ft | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 1.0 | 1.0 | 0.0 | 0.0 | 0.0 |
-| X2 | endterm | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 1.0 | 1.0 | 0.0 | 0.0 | 0.0 |
-| X3 | baseline | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
-| X3 | ft | 0.0 | 0.0 | 8.0 | 8.0 | 121.0 ± 1.2 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
-| X3 | endterm | 0.0 | 0.0 | 8.0 | 8.0 | 121.4 ± 1.8 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
-| X4 | baseline | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
-| X4 | ft | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 1521.8 ± 4.7 | 1510.0 ± 8.7 | 0.0 |
-| X4 | endterm | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 1522.8 ± 7.7 | 1511.4 ± 6.8 | 0.0 |
-| X7 | baseline | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
-| X7 | ft | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 9.0 ± 2.3 | 0.0 | 30.2 ± 4.8 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
-| X7 | endterm | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 8.8 ± 5.9 | 0.0 | 34.4 ± 5.3 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
-| X8 | baseline | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
-| X8 | ft | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 1.0 | 1.0 | 0.0 | 0.0 | 0.0 |
-| X8 | endterm | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 1.0 | 1.0 | 0.0 | 0.0 | 0.0 |
-| X9 | baseline | 0.0 | 1.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 1.0 |
-| X9 | ft | 0.6 ± 0.5 | 1.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 1.0 |
-| X9 | endterm | 1.2 ± 0.4 | 1.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 1.0 |
+*Replicas, database and load*
+
+| Exp | Build | GW retries | replica marked down | restarts | DB failovers | old primary stepped down | shed | stale answers |
+|---|---|---|---|---|---|---|---|---|
+| X0 | baseline | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
+| X0 | ft | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
+| X0 | endterm | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
+| X1 | baseline | 0.0 | 1.0 | 1.0 | 0.0 | 0.0 | 0.0 | 0.0 |
+| X1 | ft | 0.8 ± 0.4 | 1.0 | 1.0 | 0.0 | 0.0 | 0.0 | 0.0 |
+| X1 | endterm | 0.6 ± 0.5 | 1.0 | 1.0 | 0.0 | 0.0 | 0.0 | 0.0 |
+| X2 | baseline | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
+| X2 | ft | 0.0 | 0.0 | 0.0 | 1.0 | 1.0 | 0.0 | 0.0 |
+| X2 | endterm | 0.0 | 0.0 | 0.0 | 1.0 | 1.0 | 0.0 | 0.0 |
+| X3 | baseline | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
+| X3 | ft | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
+| X3 | endterm | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
+| X4 | baseline | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
+| X4 | ft | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 1521.8 ± 4.7 | 1510.0 ± 8.7 |
+| X4 | endterm | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 1522.8 ± 7.7 | 1511.4 ± 6.8 |
+| X7 | baseline | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
+| X7 | ft | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
+| X7 | endterm | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
+| X8 | baseline | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
+| X8 | ft | 0.0 | 0.0 | 0.0 | 1.0 | 1.0 | 0.0 | 0.0 |
+| X8 | endterm | 0.0 | 0.0 | 0.0 | 1.0 | 1.0 | 0.0 | 0.0 |
+| X9 | baseline | 0.0 | 1.0 | 1.0 | 0.0 | 0.0 | 0.0 | 0.0 |
+| X9 | ft | 0.6 ± 0.5 | 1.0 | 1.0 | 0.0 | 0.0 | 0.0 | 0.0 |
+| X9 | endterm | 1.2 ± 0.4 | 1.0 | 1.0 | 0.0 | 0.0 | 0.0 | 0.0 |
+
+*Payments*
+
+| Exp | Build | breaker opened | bank retries | queued (202) | roll fwd | roll back | duplicates caught |
+|---|---|---|---|---|---|---|---|
+| X0 | baseline | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
+| X0 | ft | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
+| X0 | endterm | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
+| X1 | baseline | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
+| X1 | ft | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
+| X1 | endterm | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
+| X2 | baseline | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
+| X2 | ft | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
+| X2 | endterm | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
+| X3 | baseline | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
+| X3 | ft | 8.0 | 8.0 | 121.0 ± 1.2 | 0.0 | 0.0 | 0.0 |
+| X3 | endterm | 8.0 | 8.0 | 121.4 ± 1.8 | 0.0 | 0.0 | 0.0 |
+| X4 | baseline | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
+| X4 | ft | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
+| X4 | endterm | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
+| X7 | baseline | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
+| X7 | ft | 0.0 | 0.0 | 0.0 | 9.0 ± 2.3 | 0.0 | 30.2 ± 4.8 |
+| X7 | endterm | 0.0 | 0.0 | 0.0 | 8.8 ± 5.9 | 0.0 | 34.4 ± 5.3 |
+| X8 | baseline | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
+| X8 | ft | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
+| X8 | endterm | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
+| X9 | baseline | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
+| X9 | ft | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
+| X9 | endterm | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 |
 
 The counters show *which* mechanism produced each result, and that mechanisms act only when they
 should. In X0 every counter is zero in every build — no spurious retry, failover or shedding. Each
@@ -1074,11 +1139,21 @@ before service returned after 29.8 s.
 
 ### 9.6 Trade-offs (X0)
 
-| Build | App containers | p50 ms | p95 ms | p99 ms | Payment p50 / p95 ms | Registration p50 / p95 ms | Core p95 ms (histogram) | CPU (cores, avg) | RSS (MB) | Alerts in a fault-free run |
-|---|---|---|---|---|---|---|---|---|---|---|
-| baseline | 8 | 6.9 ± 0.1 | 22.2 ± 0.3 | 25.7 ± 0.3 | 8.9 / 12.2 | 6.4 / 8.8 | 9.9 ± 1.0 | 0.31 ± 0.00 | 459 ± 1 | 0 |
-| ft | 13 | 6.7 ± 0.4 | 19.3 ± 0.4 | 21.8 ± 0.5 | 14.1 / 17.9 | 7.0 / 9.5 | 22.4 ± 0.1 | 0.41 ± 0.00 | 745 ± 1 | 0 |
-| endterm | 13 | 7.8 ± 0.2 | 19.8 ± 0.3 | 25.3 ± 1.7 | 15.3 / 19.2 | 8.7 / 11.8 | 27.0 ± 8.7 | 0.43 ± 0.00 | 745 ± 1 | 0 |
+*Latency (ms)*
+
+| Build | p50 ms | p95 ms | p99 ms | Payment p50 / p95 ms | Registration p50 / p95 ms | Core p95 ms (histogram) |
+|---|---|---|---|---|---|---|
+| baseline | 6.9 ± 0.1 | 22.2 ± 0.3 | 25.7 ± 0.3 | 8.9 / 12.2 | 6.4 / 8.8 | 9.9 ± 1.0 |
+| ft | 6.7 ± 0.4 | 19.3 ± 0.4 | 21.8 ± 0.5 | 14.1 / 17.9 | 7.0 / 9.5 | 22.4 ± 0.1 |
+| endterm | 7.8 ± 0.2 | 19.8 ± 0.3 | 25.3 ± 1.7 | 15.3 / 19.2 | 8.7 / 11.8 | 27.0 ± 8.7 |
+
+*Resources and noise*
+
+| Build | App containers | CPU (cores, avg) | RSS (MB) | Alerts in a fault-free run |
+|---|---|---|---|---|
+| baseline | 8 | 0.31 ± 0.00 | 459 ± 1 | 0 |
+| ft | 13 | 0.41 ± 0.00 | 745 ± 1 | 0 |
+| endterm | 13 | 0.43 ± 0.00 | 745 ± 1 | 0 |
 
 Fault tolerance is not free, and X0 measures the price in the steady state at 40 req/s:
 

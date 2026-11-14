@@ -3,10 +3,14 @@
 # generated from the template Final_Report.src.md by `python docs/final/fill_final.py`.
 # Image paths in the Markdown are relative to docs/final/ (../../results/...), which works both
 # on GitHub and here through --resource-path. No --toc: the report has its own contents list.
+# reference.docx sets A4 pages with narrower margins and the 9 pt "Table Text" style, which
+# docx_tables.py then applies to every table cell.
 set -e
 cd "$(dirname "$0")/../.."
 pandoc docs/final/Final_Report.md \
   --resource-path=docs/final \
+  --reference-doc=docs/final/reference.docx \
   --from gfm --to docx \
   -o docs/final/Final_Report.docx
+python3 docs/final/docx_tables.py docs/final/Final_Report.docx
 echo "wrote docs/final/Final_Report.docx ($(du -h docs/final/Final_Report.docx | cut -f1))"

@@ -22,3 +22,4 @@ docs/endterm/DEMO_SCRIPT_RU.md
 # Final: keep summaries/aggregates/tables/figures; raw per-run logs are packed into results/final/raw/ (phase 5)
 results/final/**/events.jsonl
 results/final/**/requests.csv
+docs/final/DEMO_SCRIPT_RU.md

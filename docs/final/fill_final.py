@@ -94,6 +94,45 @@ def fill_readme(data: dict) -> None:
     print(f"updated {README.relative_to(ROOT)} (results section)")
 
 
+# The three widest tables of tables.md (15, 15 and 11 columns) do not fit a portrait page, so the
+# report shows each as two narrower tables over the same rows; tables.md keeps them whole.
+SPLITS = {
+    "RESULTS": [
+        ("Availability and latency", ["Exp", "Scenario", "Build", "Reps", "Success %", "Failed req. after inj.",
+                                      "Failed user actions", "Recovery s", "p95 ms", "Core p95 ms"]),
+        ("Detection and integrity", ["Exp", "Build", "Detect (event) s", "First related alert s",
+                                     "Orphan debits / double charges per run", "Consistent", "PASS"]),
+    ],
+    "MECH": [
+        ("Replicas, database and load", ["Exp", "Build", "GW retries", "replica marked down", "restarts",
+                                         "DB failovers", "old primary stepped down", "shed", "stale answers"]),
+        ("Payments", ["Exp", "Build", "breaker opened", "bank retries", "queued (202)", "roll fwd", "roll back",
+                      "duplicates caught"]),
+    ],
+    "TRADEOFFS": [
+        ("Latency (ms)", ["Build", "p50 ms", "p95 ms", "p99 ms", "Payment p50 / p95 ms",
+                          "Registration p50 / p95 ms", "Core p95 ms (histogram)"]),
+        ("Resources and noise", ["Build", "App containers", "CPU (cores, avg)", "RSS (MB)",
+                                 "Alerts in a fault-free run"]),
+    ],
+}
+
+
+def split_table(md: str, groups: list[tuple[str, list[str]]]) -> str:
+    rows = [[c.strip() for c in line.strip().strip("|").split("|")] for line in md.splitlines()
+            if line.startswith("|")]
+    header, body = rows[0], rows[2:]
+    parts = []
+    for title, cols in groups:
+        idx = [header.index(c) for c in cols]
+        lines = ["| " + " | ".join(header[i] for i in idx) + " |", "|" + "---|" * len(idx)]
+        lines += ["| " + " | ".join(r[i] for i in idx) + " |" for r in body]
+        parts.append(f"*{title}*\n\n" + "\n".join(lines))
+    if sorted({i for _, cols in groups for i in (header.index(c) for c in cols)}) != list(range(len(header))):
+        raise SystemExit("split leaves out a column")
+    return "\n\n".join(parts)
+
+
 def section(tables: str, title: str) -> str:
     m = re.search(rf"^## {re.escape(title)}\n(.*?)(?=^## |\Z)", tables, re.S | re.M)
     if not m:
@@ -118,7 +157,8 @@ def main() -> None:
     tables = (RESULTS / "tables.md").read_text()
     text = SRC.read_text()
     for key, title in TABLES.items():
-        text = text.replace(f"<!--TABLE:{key}-->", section(tables, title))
+        body = section(tables, title)
+        text = text.replace(f"<!--TABLE:{key}-->", split_table(body, SPLITS[key]) if key in SPLITS else body)
 
     def sub(m: re.Match) -> str:
         path, _, fmt = m.group(1).partition("|")
