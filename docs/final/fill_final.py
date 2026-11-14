@@ -7,7 +7,9 @@ the generated parts comes from results/final/report_data.json or results/final/t
 It also refreshes the results section of the root README (between <!--README_RESULTS--> markers).
 
 Placeholders in the template:
-  <!--TABLE:NAME-->           a table section of results/final/tables.md (see TABLES below)
+  <!--TABLE:NAME-->           a table section of results/final/tables.md (see TABLES below);
+                              MECH_COMPACT and ALERTS_COMPACT condense the full matrices to one
+                              row per experiment (see COMPACT)
   <!--V:dotted.path|fmt-->    one value from report_data.json, e.g.
                               <!--V:faults.X2.baseline.failed.mean|.0f-->
 """
@@ -133,6 +135,63 @@ def split_table(md: str, groups: list[tuple[str, list[str]]]) -> str:
     return "\n\n".join(parts)
 
 
+def md_rows(md: str) -> tuple[list[str], list[list[str]]]:
+    rows = [[c.strip() for c in line.strip().strip("|").split("|")] for line in md.splitlines()
+            if line.startswith("|")]
+    return rows[0], rows[2:]
+
+
+def _mean(cell: str) -> float:
+    return float(cell.split("±")[0])
+
+
+def _num(x: float) -> str:
+    return f"{x:.0f}" if x >= 100 or x == round(x) else f"{x:.1f}"
+
+
+# The full mechanism and alert matrices (24 rows each, mostly zeros) stay in results/final/tables.md;
+# the report shows one row per experiment with only what actually happened.
+def compact_mech(md: str, scenario: dict[str, str]) -> str:
+    header, body = md_rows(md)
+    cols = header[2:]
+    by = {(r[0], r[1]): dict(zip(cols, r[2:])) for r in body}
+    lines = ["| Exp | Scenario | Mechanisms that acted, mean per run: ft / endterm | Baseline |", "|---|---|---|---|"]
+    for exp in dict.fromkeys(r[0] for r in body):
+        ft, et, base = by[(exp, "ft")], by[(exp, "endterm")], by[(exp, "baseline")]
+        acted = []
+        for c in cols:
+            if _mean(ft[c]) or _mean(et[c]):
+                a, b = _num(_mean(ft[c])), _num(_mean(et[c]))
+                acted.append(f"{c} {a}" if a == b else f"{c} {a} / {b}")
+        base_acted = [f"{c} {_num(_mean(base[c]))}" for c in cols if _mean(base[c])]
+        lines.append(f"| {exp} | {scenario[exp]} | {', '.join(acted) or 'none'} | {', '.join(base_acted) or 'none'} |")
+    return "\n".join(lines)
+
+
+def compact_alerts(md: str, scenario: dict[str, str]) -> str:
+    header, body = md_rows(md)
+    col = {name: i for i, name in enumerate(header)}
+    by = {(r[0], r[1]): r for r in body}
+    lines = ["| Exp | Scenario | Runs with a related alert: baseline · ft · endterm | First related alert, s: "
+             "baseline / ft / endterm | Collateral / false positives |", "|---|---|---|---|---|"]
+    for exp in dict.fromkeys(r[0] for r in body):
+        rs = [by[(exp, b)] for b in BUILDS]
+        runs = " · ".join(r[col["Runs detected by a related alert"]] if r[col["Alert required"]] == "yes" else "–"
+                          for r in rs)
+        first = " / ".join(f"{_mean(r[col['First related alert s']]):.1f}"
+                           if r[col["First related alert s"]] != "–" else "–" for r in rs)
+        coll = [(b, r[col["Collateral alerts (symptom confirmed)"]]) for b, r in zip(BUILDS, rs)]
+        n_coll = sum(int(v.split()[0]) for _, v in coll)
+        n_fp = sum(int(r[col["False positives"]]) for r in rs)
+        names = "; ".join(f"{b}: {v.split(' ', 1)[1].strip('()')}" for b, v in coll if v.split()[0] != "0")
+        lines.append(f"| {exp} | {scenario[exp]} | {runs} | {first} | {n_coll} / {n_fp}"
+                     + (f" ({names})" if names else "") + " |")
+    return "\n".join(lines)
+
+
+COMPACT = {"MECH_COMPACT": ("MECH", compact_mech), "ALERTS_COMPACT": ("ALERTS", compact_alerts)}
+
+
 def section(tables: str, title: str) -> str:
     m = re.search(rf"^## {re.escape(title)}\n(.*?)(?=^## |\Z)", tables, re.S | re.M)
     if not m:
@@ -159,6 +218,10 @@ def main() -> None:
     for key, title in TABLES.items():
         body = section(tables, title)
         text = text.replace(f"<!--TABLE:{key}-->", split_table(body, SPLITS[key]) if key in SPLITS else body)
+    _, res = md_rows(section(tables, TABLES["RESULTS"]))
+    scenario = {r[0]: r[1] for r in res}
+    for key, (src, build) in COMPACT.items():
+        text = text.replace(f"<!--TABLE:{key}-->", build(section(tables, TABLES[src]), scenario))
 
     def sub(m: re.Match) -> str:
         path, _, fmt = m.group(1).partition("|")
