@@ -1,5 +1,6 @@
 #!/bin/bash
-# Build docs/final/Final_Report.docx from Final_Report.md (pandoc).
+# Build docs/final/Final_Report.docx from Final_Report.md (pandoc). Final_Report.md itself is
+# generated from the template Final_Report.src.md by `python docs/final/fill_final.py`.
 # Image paths in the Markdown are relative to docs/final/ (../../results/...), which works both
 # on GitHub and here through --resource-path. No --toc: the report has its own contents list.
 set -e
