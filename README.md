@@ -162,6 +162,8 @@ bash docs/final/to_docx.sh
   `docs/final/REQUIREMENTS_AND_SLOS.md`; fault model and FMEA `docs/final/FAULT_MODEL.md`; test plan
   `docs/final/TEST_PLAN.md`; threat model `docs/endterm/THREAT_MODEL.md`.
 - Build the report: `python docs/final/fill_final.py && bash docs/final/to_docx.sh` (needs pandoc).
+- Defense slides: `docs/final/Final_Presentation.pptx` (17 slides, native charts from the campaign
+  data, speaker notes on every slide).
 
 ## Midterm process mode (no Docker)
 
