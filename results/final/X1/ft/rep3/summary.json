@@ -1,0 +1,89 @@
+{
+ "experiment": "X1",
+ "build": "ft",
+ "rep": 3,
+ "title": "Service instance failure (payment-a killed)",
+ "startup_s": 9.0,
+ "requests": 1600,
+ "ok": 1600,
+ "failed": 0,
+ "degraded": 0,
+ "recovered_by_retry": 1,
+ "success_rate": 1.0,
+ "p50_ms": 7.0,
+ "p95_ms": 19.3,
+ "p99_ms": 22.1,
+ "detect_alert_s": null,
+ "detect_event_s": 0.544,
+ "client_visible_recovery_s": 0.0,
+ "restart_count": {
+  "payment-a": 1
+ },
+ "consistency": {
+  "payments_completed": 308,
+  "payments_failed": 0,
+  "bank_debits": 308,
+  "refunds": 0,
+  "orphan_debits": 0,
+  "orphan_amount": 0,
+  "double_charged_intents": 0,
+  "ledger_mismatch": 0,
+  "stuck_payments": 0,
+  "lost_acked_payments": 0,
+  "lost_acked_enrollments": 0,
+  "replica": {
+   "identical": true,
+   "primary": "db-a",
+   "lsn": 866,
+   "primary_rows": {
+    "paid": 308,
+    "ledger_sum": 67330000.0,
+    "enrollments": 248,
+    "payments": 308
+   },
+   "replica_rows": {
+    "paid": 308,
+    "ledger_sum": 67330000.0,
+    "enrollments": 248,
+    "payments": 308
+   }
+  },
+  "consistent": true
+ },
+ "alerts_fired": [],
+ "inject": {
+  "killed": "payment-a",
+  "t": 1794671186.632051
+ },
+ "core_p95_ms": 22.4,
+ "t_inject_rel": 10.008,
+ "duration_s": 40,
+ "mechanisms": {
+  "gateway_retries": 1,
+  "gateway_shed": 0,
+  "gateway_stale_answers": 0,
+  "gateway_fast_fail": 0,
+  "upstream_marked_down": 1,
+  "breaker_opened": 0,
+  "bank_retries": 0,
+  "payments_queued": 0,
+  "recovered_roll_forward": 0,
+  "recovered_roll_back": 0,
+  "compensations": 0,
+  "duplicate_requests": 0,
+  "db_failovers": 0,
+  "db_client_switches": 0,
+  "db_fenced_or_deposed": 0,
+  "db_resyncs": 0,
+  "monitor_down_events": 1,
+  "container_restarts": 1,
+  "db_demoted": 0
+ },
+ "resources": {
+  "cpu_cores": 0.4,
+  "rss_mb": 744.8,
+  "app_containers": 13
+ },
+ "alerts_detail": [],
+ "_pass": true
+}

@@ -1,0 +1,206 @@
+{
+ "experiment": "X2",
+ "build": "baseline",
+ "rep": 1,
+ "title": "Dependency timeout (database primary frozen 12 s)",
+ "startup_s": 8.6,
+ "requests": 1844,
+ "ok": 1595,
+ "failed": 249,
+ "degraded": 0,
+ "recovered_by_retry": 32,
+ "success_rate": 0.865,
+ "p50_ms": 11.3,
+ "p95_ms": 5002.8,
+ "p99_ms": 5003.7,
+ "detect_alert_s": 4.651,
+ "detect_event_s": 0.651,
+ "client_visible_recovery_s": 12.371,
+ "restart_count": {
+  "db-a": 0,
+  "db-b": 0
+ },
+ "consistency": {
+  "payments_completed": 369,
+  "payments_failed": 0,
+  "bank_debits": 385,
+  "refunds": 0,
+  "orphan_debits": 16,
+  "orphan_amount": 3310000,
+  "double_charged_intents": 44,
+  "ledger_mismatch": 0,
+  "stuck_payments": 0,
+  "lost_acked_payments": 0,
+  "lost_acked_enrollments": 0,
+  "consistent": false
+ },
+ "alerts_fired": [
+  "HighLatencyP95",
+  "InstanceDown",
+  "UserFacingErrorRate"
+ ],
+ "inject": {
+  "paused_primary": "db-a",
+  "resume_after_s": 12
+ },
+ "core_p95_ms": 8000.0,
+ "t_inject_rel": 10.01,
+ "duration_s": 45,
+ "mechanisms": {
+  "gateway_retries": 0,
+  "gateway_shed": 0,
+  "gateway_stale_answers": 0,
+  "gateway_fast_fail": 0,
+  "upstream_marked_down": 0,
+  "breaker_opened": 0,
+  "bank_retries": 0,
+  "payments_queued": 0,
+  "recovered_roll_forward": 0,
+  "recovered_roll_back": 0,
+  "compensations": 0,
+  "duplicate_requests": 0,
+  "db_failovers": 0,
+  "db_client_switches": 0,
+  "db_fenced_or_deposed": 0,
+  "db_resyncs": 0,
+  "monitor_down_events": 1,
+  "container_restarts": 0,
+  "db_demoted": 0
+ },
+ "resources": {
+  "cpu_cores": 0.327,
+  "rss_mb": 504.9,
+  "app_containers": 8
+ },
+ "alerts_detail": [
+  {
+   "alertname": "InstanceDown",
+   "status": "firing",
+   "labels": {
+    "name": "db-a"
+   },
+   "t_rel_inject": 4.651
+  },
+  {
+   "alertname": "InstanceDown",
+   "status": "resolved",
+   "labels": {
+    "name": "db-a"
+   },
+   "t_rel_inject": 12.67
+  },
+  {
+   "alertname": "HighLatencyP95",
+   "status": "firing",
+   "labels": {
+    "service": "student"
+   },
+   "t_rel_inject": 13.65
+  },
+  {
+   "alertname": "HighLatencyP95",
+   "status": "firing",
+   "labels": {
+    "service": "timetable"
+   },
+   "t_rel_inject": 13.65
+  },
+  {
+   "alertname": "HighLatencyP95",
+   "status": "firing",
+   "labels": {
+    "service": "payment"
+   },
+   "t_rel_inject": 13.65
+  },
+  {
+   "alertname": "HighLatencyP95",
+   "status": "firing",
+   "labels": {
+    "service": "records"
+   },
+   "t_rel_inject": 13.65
+  },
+  {
+   "alertname": "UserFacingErrorRate",
+   "status": "firing",
+   "labels": {
+    "service": "records"
+   },
+   "t_rel_inject": 14.65
+  },
+  {
+   "alertname": "UserFacingErrorRate",
+   "status": "firing",
+   "labels": {
+    "service": "student"
+   },
+   "t_rel_inject": 14.65
+  },
+  {
+   "alertname": "UserFacingErrorRate",
+   "status": "firing",
+   "labels": {
+    "service": "payment"
+   },
+   "t_rel_inject": 14.65
+  },
+  {
+   "alertname": "UserFacingErrorRate",
+   "status": "resolved",
+   "labels": {
+    "service": "payment"
+   },
+   "t_rel_inject": 19.658
+  },
+  {
+   "alertname": "UserFacingErrorRate",
+   "status": "resolved",
+   "labels": {
+    "service": "records"
+   },
+   "t_rel_inject": 20.66
+  },
+  {
+   "alertname": "UserFacingErrorRate",
+   "status": "resolved",
+   "labels": {
+    "service": "student"
+   },
+   "t_rel_inject": 20.661
+  },
+  {
+   "alertname": "HighLatencyP95",
+   "status": "resolved",
+   "labels": {
+    "service": "timetable"
+   },
+   "t_rel_inject": 21.664
+  },
+  {
+   "alertname": "HighLatencyP95",
+   "status": "resolved",
+   "labels": {
+    "service": "payment"
+   },
+   "t_rel_inject": 21.664
+  },
+  {
+   "alertname": "HighLatencyP95",
+   "status": "resolved",
+   "labels": {
+    "service": "records"
+   },
+   "t_rel_inject": 21.664
+  },
+  {
+   "alertname": "HighLatencyP95",
+   "status": "resolved",
+   "labels": {
+    "service": "student"
+   },
+   "t_rel_inject": 22.667
+  }
+ ],
+ "_pass": false
+}

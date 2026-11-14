@@ -1,0 +1,200 @@
+X0 baseline rep1 failed=0 detect_alert=None recov=0.0 consistent=True pass=True [2 min]
+X0 baseline rep2 failed=0 detect_alert=None recov=0.0 consistent=True pass=True [4 min]
+X0 baseline rep3 failed=0 detect_alert=None recov=0.0 consistent=True pass=True [7 min]
+X0 baseline rep4 failed=0 detect_alert=None recov=0.0 consistent=True pass=True [9 min]
+X0 baseline rep5 failed=0 detect_alert=None recov=0.0 consistent=True pass=True [11 min]
+X0 ft       rep1 failed=0 detect_alert=None recov=0.0 consistent=True pass=True [13 min]
+X0 ft       rep2 failed=0 detect_alert=None recov=0.0 consistent=True pass=True [16 min]
+X0 ft       rep3 failed=0 detect_alert=None recov=0.0 consistent=True pass=True [18 min]
+X0 ft       rep4 failed=0 detect_alert=None recov=0.0 consistent=True pass=True [20 min]
+X0 ft       rep5 failed=0 detect_alert=None recov=0.0 consistent=True pass=True [22 min]
+X0 endterm  rep1 failed=0 detect_alert=None recov=0.0 consistent=True pass=True [25 min]
+X0 endterm  rep2 failed=0 detect_alert=None recov=0.0 consistent=True pass=True [27 min]
+X0 endterm  rep3 failed=0 detect_alert=None recov=0.0 consistent=True pass=True [29 min]
+X0 endterm  rep4 failed=0 detect_alert=None recov=0.0 consistent=True pass=True [31 min]
+X0 endterm  rep5 failed=0 detect_alert=None recov=0.0 consistent=True pass=True [34 min]
+X1 baseline rep1 failed=304 detect_alert=3.188 recov=20.947 consistent=True pass=False [35 min]
+X1 baseline rep2 failed=307 detect_alert=3.292 recov=21.12 consistent=True pass=False [36 min]
+X1 baseline rep3 failed=305 detect_alert=3.409 recov=21.021 consistent=True pass=False [36 min]
+X1 baseline rep4 failed=307 detect_alert=2.44 recov=21.123 consistent=True pass=False [37 min]
+X1 baseline rep5 failed=304 detect_alert=3.487 recov=20.946 consistent=True pass=False [38 min]
+X1 ft       rep1 failed=0 detect_alert=None recov=0.0 consistent=True pass=True [39 min]
+X1 ft       rep2 failed=0 detect_alert=None recov=0.0 consistent=True pass=True [40 min]
+X1 ft       rep3 failed=0 detect_alert=None recov=0.0 consistent=True pass=True [41 min]
+X1 ft       rep4 failed=0 detect_alert=None recov=0.0 consistent=True pass=True [42 min]
+X1 ft       rep5 failed=0 detect_alert=None recov=0.0 consistent=True pass=True [43 min]
+X1 endterm  rep1 failed=0 detect_alert=None recov=0.0 consistent=True pass=True [44 min]
+X1 endterm  rep2 failed=0 detect_alert=None recov=0.0 consistent=True pass=True [45 min]
+X1 endterm  rep3 failed=0 detect_alert=None recov=0.0 consistent=True pass=True [46 min]
+X1 endterm  rep4 failed=0 detect_alert=None recov=0.0 consistent=True pass=True [47 min]
+X1 endterm  rep5 failed=0 detect_alert=None recov=0.0 consistent=True pass=True [48 min]
+X2 baseline rep1 failed=249 detect_alert=4.651 recov=12.371 consistent=False pass=False [49 min]
+X2 baseline rep2 failed=249 detect_alert=4.096 recov=12.371 consistent=False pass=False [50 min]
+X2 baseline rep3 failed=249 detect_alert=4.209 recov=12.37 consistent=False pass=False [51 min]
+X2 baseline rep4 failed=249 detect_alert=4.166 recov=12.37 consistent=False pass=False [52 min]
+X2 baseline rep5 failed=249 detect_alert=4.795 recov=12.371 consistent=False pass=False [53 min]
+X2 ft       rep1 failed=0 detect_alert=2.045 recov=0.0 consistent=True pass=True [54 min]
+X2 ft       rep2 failed=0 detect_alert=1.227 recov=0.0 consistent=True pass=True [55 min]
+X2 ft       rep3 failed=0 detect_alert=2.249 recov=0.0 consistent=True pass=True [56 min]
+X2 ft       rep4 failed=0 detect_alert=1.902 recov=0.0 consistent=True pass=True [57 min]
+X2 ft       rep5 failed=0 detect_alert=1.938 recov=0.0 consistent=True pass=True [58 min]
+X2 endterm  rep1 failed=0 detect_alert=2.307 recov=0.0 consistent=True pass=True [59 min]
+X2 endterm  rep2 failed=0 detect_alert=1.983 recov=0.0 consistent=True pass=True [60 min]
+X2 endterm  rep3 failed=0 detect_alert=1.624 recov=0.0 consistent=True pass=True [61 min]
+X2 endterm  rep4 failed=0 detect_alert=2.265 recov=0.0 consistent=True pass=True [62 min]
+X2 endterm  rep5 failed=0 detect_alert=1.438 recov=0.0 consistent=True pass=True [63 min]
+X3 baseline rep1 failed=166 detect_alert=4.73 recov=20.472 consistent=False pass=False [65 min]
+X3 baseline rep2 failed=165 detect_alert=3.751 recov=20.395 consistent=False pass=False [66 min]
+X3 baseline rep3 failed=166 detect_alert=4.484 recov=20.475 consistent=False pass=False [67 min]
+X3 baseline rep4 failed=166 detect_alert=4.376 recov=20.476 consistent=False pass=False [68 min]
+X3 baseline rep5 failed=165 detect_alert=4.205 recov=20.395 consistent=False pass=False [69 min]
+X3 ft       rep1 failed=0 detect_alert=3.803 recov=0.0 consistent=True pass=True [70 min]
+X3 ft       rep2 failed=0 detect_alert=4.71 recov=0.0 consistent=True pass=True [72 min]
+X3 ft       rep3 failed=0 detect_alert=4.617 recov=0.0 consistent=True pass=True [73 min]
+X3 ft       rep4 failed=0 detect_alert=4.155 recov=0.0 consistent=True pass=True [74 min]
+X3 ft       rep5 failed=0 detect_alert=3.996 recov=0.0 consistent=True pass=True [75 min]
+X3 endterm  rep1 failed=0 detect_alert=4.088 recov=0.0 consistent=True pass=True [76 min]
+X3 endterm  rep2 failed=0 detect_alert=3.931 recov=0.0 consistent=True pass=True [77 min]
+X3 endterm  rep3 failed=0 detect_alert=4.704 recov=0.0 consistent=True pass=True [79 min]
+X3 endterm  rep4 failed=0 detect_alert=4.691 recov=0.0 consistent=True pass=True [80 min]
+X3 endterm  rep5 failed=0 detect_alert=4.872 recov=0.0 consistent=True pass=True [81 min]
+X4 baseline rep1 failed=2974 detect_alert=6.009 recov=29.852 consistent=False pass=False [82 min]
+X4 baseline rep2 failed=2978 detect_alert=5.895 recov=30.072 consistent=False pass=False [83 min]
+X4 baseline rep3 failed=3031 detect_alert=5.532 recov=30.386 consistent=False pass=False [84 min]
+X4 baseline rep4 failed=2963 detect_alert=5.341 recov=29.809 consistent=False pass=False [85 min]
+X4 baseline rep5 failed=2967 detect_alert=5.255 recov=30.137 consistent=False pass=False [86 min]
+X4 ft       rep1 failed=9 detect_alert=3.899 recov=1.003 consistent=True pass=True [87 min]
+X4 ft       rep2 failed=10 detect_alert=3.25 recov=0.768 consistent=True pass=True [88 min]
+X4 ft       rep3 failed=13 detect_alert=4.316 recov=0.697 consistent=True pass=True [89 min]
+X4 ft       rep4 failed=19 detect_alert=4.335 recov=1.708 consistent=True pass=True [90 min]
+X4 ft       rep5 failed=8 detect_alert=4.5 recov=0.424 consistent=True pass=True [91 min]
+X4 endterm  rep1 failed=11 detect_alert=4.815 recov=1.492 consistent=True pass=True [92 min]
+X4 endterm  rep2 failed=10 detect_alert=4.34 recov=0.398 consistent=True pass=True [93 min]
+X4 endterm  rep3 failed=10 detect_alert=3.46 recov=1.064 consistent=True pass=True [94 min]
+X4 endterm  rep4 failed=14 detect_alert=3.666 recov=1.492 consistent=True pass=True [95 min]
+X4 endterm  rep5 failed=12 detect_alert=4.378 recov=1.521 consistent=True pass=True [96 min]
+X7 baseline rep1 failed=41 detect_alert=None recov=15.073 consistent=False pass=False [97 min]
+X7 baseline rep2 failed=55 detect_alert=None recov=15.234 consistent=False pass=False [98 min]
+X7 baseline rep3 failed=47 detect_alert=None recov=15.281 consistent=False pass=False [100 min]
+X7 baseline rep4 failed=32 detect_alert=None recov=15.403 consistent=False pass=False [101 min]
+X7 baseline rep5 failed=45 detect_alert=None recov=15.383 consistent=False pass=False [102 min]
+X7 ft       rep1 failed=33 detect_alert=None recov=15.079 consistent=True pass=True [103 min]
+X7 ft       rep2 failed=43 detect_alert=17.57 recov=15.406 consistent=True pass=True [104 min]
+X7 ft       rep3 failed=41 detect_alert=17.081 recov=15.681 consistent=True pass=True [105 min]
+X7 ft       rep4 failed=41 detect_alert=17.317 recov=15.678 consistent=True pass=True [106 min]
+X7 ft       rep5 failed=31 detect_alert=17.379 recov=15.657 consistent=True pass=True [107 min]
+X7 endterm  rep1 failed=36 detect_alert=17.324 recov=16.812 consistent=True pass=True [108 min]
+X7 endterm  rep2 failed=50 detect_alert=17.193 recov=15.621 consistent=True pass=True [109 min]
+X7 endterm  rep3 failed=33 detect_alert=None recov=15.553 consistent=True pass=True [110 min]
+X7 endterm  rep4 failed=41 detect_alert=17.407 recov=15.589 consistent=True pass=True [112 min]
+X7 endterm  rep5 failed=47 detect_alert=17.731 recov=16.884 consistent=True pass=True [113 min]
+X8 baseline rep1 failed=459 detect_alert=4.137 recov=12.125 consistent=False pass=False [114 min]
+X8 baseline rep2 failed=460 detect_alert=4.178 recov=12.15 consistent=False pass=False [115 min]
+X8 baseline rep3 failed=460 detect_alert=4.184 recov=12.15 consistent=False pass=False [116 min]
+X8 baseline rep4 failed=459 detect_alert=3.914 recov=12.123 consistent=False pass=False [117 min]
+X8 baseline rep5 failed=460 detect_alert=3.568 recov=12.149 consistent=False pass=False [118 min]
+X8 ft       rep1 failed=0 detect_alert=1.954 recov=0.0 consistent=True pass=True [119 min]
+X8 ft       rep2 failed=0 detect_alert=1.185 recov=0.0 consistent=True pass=True [120 min]
+X8 ft       rep3 failed=0 detect_alert=1.585 recov=0.0 consistent=True pass=True [121 min]
+X8 ft       rep4 failed=0 detect_alert=1.758 recov=0.0 consistent=True pass=True [122 min]
+X8 ft       rep5 failed=0 detect_alert=1.738 recov=0.0 consistent=True pass=True [123 min]
+X8 endterm  rep1 failed=0 detect_alert=1.814 recov=0.0 consistent=True pass=True [124 min]
+X8 endterm  rep2 failed=0 detect_alert=1.345 recov=0.0 consistent=True pass=True [126 min]
+X8 endterm  rep3 failed=0 detect_alert=2.504 recov=0.0 consistent=True pass=True [127 min]
+X8 endterm  rep4 failed=0 detect_alert=1.472 recov=0.0 consistent=True pass=True [128 min]
+X8 endterm  rep5 failed=0 detect_alert=1.97 recov=0.0 consistent=True pass=True [129 min]
+X9 baseline rep1 failed=503 detect_alert=6.181 recov=29.567 consistent=True pass=True [130 min]
+X9 baseline rep2 failed=507 detect_alert=5.782 recov=29.046 consistent=True pass=True [131 min]
+X9 baseline rep3 failed=505 detect_alert=5.782 recov=30.196 consistent=True pass=True [132 min]
+X9 baseline rep4 failed=514 detect_alert=5.8 recov=30.071 consistent=True pass=True [134 min]
+X9 baseline rep5 failed=512 detect_alert=4.899 recov=30.147 consistent=True pass=True [135 min]
+X9 ft       rep1 failed=45 detect_alert=6.486 recov=7.647 consistent=True pass=True [136 min]
+X9 ft       rep2 failed=42 detect_alert=4.791 recov=8.147 consistent=True pass=True [137 min]
+X9 ft       rep3 failed=36 detect_alert=5.742 recov=6.969 consistent=True pass=True [138 min]
+X9 ft       rep4 failed=44 detect_alert=5.923 recov=8.024 consistent=True pass=True [139 min]
+X9 ft       rep5 failed=39 detect_alert=6.101 recov=7.872 consistent=True pass=True [141 min]
+X9 endterm  rep1 failed=44 detect_alert=5.228 recov=8.491 consistent=True pass=True [142 min]
+X9 endterm  rep2 failed=44 detect_alert=6.299 recov=7.556 consistent=True pass=True [143 min]
+X9 endterm  rep3 failed=55 detect_alert=6.11 recov=8.415 consistent=True pass=True [144 min]
+X9 endterm  rep4 failed=48 detect_alert=6.19 recov=8.537 consistent=True pass=True [145 min]
+X9 endterm  rep5 failed=47 detect_alert=7.14 recov=9.657 consistent=True pass=True [147 min]
+X5 endterm  rep1 PASS=True cases=17/17 data_unchanged=True
+X5 endterm  rep2 PASS=True cases=17/17 data_unchanged=True
+X5 endterm  rep3 PASS=True cases=17/17 data_unchanged=True
+X6 endterm  rep1 PASS=True cases=10/10 data_unchanged=True
+X6 endterm  rep2 PASS=True cases=10/10 data_unchanged=True
+X6 endterm  rep3 PASS=True cases=10/10 data_unchanged=True
+campaign done in 148.2 min
+=== soak baseline (900 s)
+[baseline] t=  19.8s student-a: crashed
+[baseline] t=  68.8s payment-a: crashed
+[baseline] t=  70.6s student-a: crashed
+[baseline] t= 102.1s payment-a: crashed
+[baseline] t= 106.0s timetable-a: crashed
+[baseline] t= 142.4s student-a: crashed
+[baseline] t= 143.8s db-a: crashed
+[baseline] t= 259.7s student-a: crashed
+[baseline] t= 264.1s student-a: already down, skipped
+[baseline] t= 264.2s records-a: crashed
+[baseline] t= 325.0s payment-a: crashed
+[baseline] t= 327.6s db-a: crashed
+[baseline] t= 327.9s db-a: crashed
+[baseline] t= 353.5s payment-a: crashed
+[baseline] t= 389.5s records-a: crashed
+[baseline] t= 400.7s student-a: crashed
+[baseline] t= 430.1s timetable-a: crashed
+[baseline] t= 540.4s records-a: crashed
+[baseline] t= 562.8s timetable-a: crashed
+[baseline] t= 600.1s payment-a: crashed
+[baseline] t= 697.6s db-a: crashed
+[baseline] t= 764.3s timetable-a: crashed
+[baseline] t= 808.9s payment-a: crashed
+[baseline] t= 829.4s timetable-a: crashed
+=== soak endterm (900 s)
+[endterm] t=  19.8s student-a: crashed
+[endterm] t=  28.6s student-b: crashed
+[endterm] t=  43.5s student-b: crashed
+[endterm] t=  48.5s timetable-b: crashed
+[endterm] t=  68.8s payment-a: crashed
+[endterm] t=  70.6s student-a: crashed
+[endterm] t=  99.2s payment-b: crashed
+[endterm] t= 102.1s payment-a: crashed
+[endterm] t= 106.0s timetable-a: crashed
+[endterm] t= 142.4s student-a: crashed
+[endterm] t= 142.9s student-b: crashed
+[endterm] t= 143.8s db-a: crashed
+[endterm] t= 152.3s payment-b: crashed
+[endterm] t= 259.7s student-a: crashed
+[endterm] t= 264.1s student-a: crashed
+[endterm] t= 264.2s records-a: crashed
+[endterm] t= 275.1s records-b: crashed
+[endterm] t= 315.7s records-b: crashed
+[endterm] t= 325.0s payment-a: crashed
+[endterm] t= 327.6s db-a: crashed
+[endterm] t= 327.9s db-a: crashed
+[endterm] t= 351.9s student-b: crashed
+[endterm] t= 353.5s payment-a: crashed
+[endterm] t= 374.5s timetable-b: crashed
+[endterm] t= 389.5s records-a: crashed
+[endterm] t= 400.7s student-a: crashed
+[endterm] t= 430.1s timetable-a: crashed
+[endterm] t= 436.9s records-b: crashed
+[endterm] t= 470.7s student-b: crashed
+[endterm] t= 475.0s records-b: crashed
+[endterm] t= 484.1s student-b: crashed
+[endterm] t= 531.4s timetable-b: crashed
+[endterm] t= 540.4s records-a: crashed
+[endterm] t= 554.4s payment-b: crashed
+[endterm] t= 562.8s timetable-a: crashed
+[endterm] t= 600.1s payment-a: crashed
+[endterm] t= 633.3s student-b: crashed
+[endterm] t= 662.5s student-b: crashed
+[endterm] t= 697.6s db-a: crashed
+[endterm] t= 738.3s payment-b: crashed
+[endterm] t= 764.3s timetable-a: crashed
+[endterm] t= 766.1s timetable-b: crashed
+[endterm] t= 808.9s payment-a: crashed
+[endterm] t= 829.4s timetable-a: crashed
+[endterm] t= 830.5s records-b: crashed
+[endterm] t= 854.9s timetable-b: crashed
+[endterm] t= 867.0s payment-b: crashed

@@ -68,6 +68,17 @@ An alert is **related** if it concerns the injected component or a direct conseq
 fault; anything else is a **false positive**. An incident that lasts at least one alert window
 (10 s) must raise at least one related alert (R9).
 
+*Amendment after the campaign (2026-11-14).* Exactly one alert outside the table below fired in
+the whole campaign: `HighLatencyP95{timetable}`, in every X2 baseline run. The timetable does not
+use the database, but the client log shows its p95 rising from 25 ms to 1.5 s while the primary was
+frozen: the baseline gateway has no bulkheads, so hung database requests slow everything behind
+them. The alert was true, not a false alarm, so the table was too narrow for the baseline. The
+analysis (`experiments/analyze_final.py`, `symptom_seen`) therefore splits alerts outside the table
+into **collateral** — the client log shows the symptom the alert reports (p95 > 1 s, or > 5 %
+errors, for that service's requests in the 13 s before it fired) — and **false positives** (no such
+symptom). In X0 every alert remains a false positive. The table itself and the PASS criteria are
+unchanged.
+
 | ID | Related alerts | Alert required? |
 |---|---|---|
 | X0 | none (every alert is a false positive) | no |
@@ -87,7 +98,9 @@ and by alert (pager), user-visible recovery time, container restarts, alerts fir
 and timing, **mechanism activations** (gateway retries, load shed, stale answers, fast-fail,
 replicas marked down, breaker openings, bank retries, queued payments, recovery-worker roll
 forward/back, compensations, duplicate requests detected, database failovers, client switches,
-fencing, resyncs), CPU and memory of the application processes, and the consistency check
+the old primary stepping down (demoted by the monitor or self-fenced; the DEMOTED event was added
+to the count after the campaign, from the same event logs: `experiments/backfill_final.py`),
+resyncs), CPU and memory of the application processes, and the consistency check
 (orphan debits, double charges, ledger mismatches, stuck payments, lost acknowledged writes,
 replica identical). Soak: per-component and per-service failures, downtime, MTTF, MTTR, MTBF,
 availability, failure rate, and the RBD prediction from the measured component availabilities.

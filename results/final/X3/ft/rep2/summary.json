@@ -1,0 +1,174 @@
+{
+ "experiment": "X3",
+ "build": "ft",
+ "rep": 2,
+ "title": "Slow external dependency (bank 6 s for 15 s)",
+ "startup_s": 8.9,
+ "requests": 1800,
+ "ok": 1800,
+ "failed": 0,
+ "degraded": 123,
+ "recovered_by_retry": 0,
+ "success_rate": 1.0,
+ "p50_ms": 6.6,
+ "p95_ms": 20.4,
+ "p99_ms": 812.6,
+ "detect_alert_s": 4.71,
+ "detect_event_s": 1.803,
+ "client_visible_recovery_s": 0.0,
+ "restart_count": {},
+ "consistency": {
+  "payments_completed": 341,
+  "payments_failed": 0,
+  "bank_debits": 341,
+  "refunds": 0,
+  "orphan_debits": 0,
+  "orphan_amount": 0,
+  "double_charged_intents": 0,
+  "ledger_mismatch": 0,
+  "stuck_payments": 0,
+  "lost_acked_payments": 0,
+  "lost_acked_enrollments": 0,
+  "replica": {
+   "identical": true,
+   "primary": "db-a",
+   "lsn": 2168,
+   "primary_rows": {
+    "paid": 341,
+    "ledger_sum": 74020000.0,
+    "enrollments": 284,
+    "payments": 341
+   },
+   "replica_rows": {
+    "paid": 341,
+    "ledger_sum": 74020000.0,
+    "enrollments": 284,
+    "payments": 341
+   }
+  },
+  "consistent": true
+ },
+ "alerts_fired": [
+  "CircuitBreakerOpen",
+  "HighLatencyP95",
+  "InstanceDown",
+  "PaymentsUnfinished"
+ ],
+ "inject": {
+  "bank_delay_ms": 6000,
+  "for_s": 15,
+  "t": 1794673001.7832603
+ },
+ "core_p95_ms": 24.4,
+ "t_inject_rel": 10.008,
+ "duration_s": 45,
+ "mechanisms": {
+  "gateway_retries": 0,
+  "gateway_shed": 0,
+  "gateway_stale_answers": 0,
+  "gateway_fast_fail": 0,
+  "upstream_marked_down": 0,
+  "breaker_opened": 8,
+  "bank_retries": 8,
+  "payments_queued": 123,
+  "recovered_roll_forward": 0,
+  "recovered_roll_back": 0,
+  "compensations": 0,
+  "duplicate_requests": 0,
+  "db_failovers": 0,
+  "db_client_switches": 0,
+  "db_fenced_or_deposed": 0,
+  "db_resyncs": 0,
+  "monitor_down_events": 1,
+  "container_restarts": 0,
+  "db_demoted": 0
+ },
+ "resources": {
+  "cpu_cores": 0.415,
+  "rss_mb": 747.0,
+  "app_containers": 13
+ },
+ "alerts_detail": [
+  {
+   "alertname": "CircuitBreakerOpen",
+   "status": "firing",
+   "labels": {
+    "name": "payment-a",
+    "target": "bank"
+   },
+   "t_rel_inject": 4.71
+  },
+  {
+   "alertname": "CircuitBreakerOpen",
+   "status": "firing",
+   "labels": {
+    "name": "payment-b",
+    "target": "bank"
+   },
+   "t_rel_inject": 4.71
+  },
+  {
+   "alertname": "InstanceDown",
+   "status": "firing",
+   "labels": {
+    "name": "bank"
+   },
+   "t_rel_inject": 4.794
+  },
+  {
+   "alertname": "HighLatencyP95",
+   "status": "firing",
+   "labels": {
+    "service": "payment"
+   },
+   "t_rel_inject": 6.793
+  },
+  {
+   "alertname": "HighLatencyP95",
+   "status": "resolved",
+   "labels": {
+    "service": "payment"
+   },
+   "t_rel_inject": 12.799
+  },
+  {
+   "alertname": "InstanceDown",
+   "status": "resolved",
+   "labels": {
+    "name": "bank"
+   },
+   "t_rel_inject": 16.803
+  },
+  {
+   "alertname": "CircuitBreakerOpen",
+   "status": "resolved",
+   "labels": {
+    "name": "payment-b",
+    "target": "bank"
+   },
+   "t_rel_inject": 17.728
+  },
+  {
+   "alertname": "PaymentsUnfinished",
+   "status": "firing",
+   "labels": {},
+   "t_rel_inject": 18.709
+  },
+  {
+   "alertname": "CircuitBreakerOpen",
+   "status": "resolved",
+   "labels": {
+    "name": "payment-a",
+    "target": "bank"
+   },
+   "t_rel_inject": 18.728
+  },
+  {
+   "alertname": "PaymentsUnfinished",
+   "status": "resolved",
+   "labels": {},
+   "t_rel_inject": 21.715
+  }
+ ],
+ "_pass": true
+}

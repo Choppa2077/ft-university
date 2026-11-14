@@ -1,0 +1,107 @@
+{
+ "experiment": "X3",
+ "build": "baseline",
+ "rep": 4,
+ "title": "Slow external dependency (bank 6 s for 15 s)",
+ "startup_s": 8.7,
+ "requests": 1907,
+ "ok": 1741,
+ "failed": 166,
+ "degraded": 0,
+ "recovered_by_retry": 48,
+ "success_rate": 0.913,
+ "p50_ms": 8.0,
+ "p95_ms": 5002.6,
+ "p99_ms": 5005.1,
+ "detect_alert_s": 4.376,
+ "detect_event_s": null,
+ "client_visible_recovery_s": 20.476,
+ "restart_count": {},
+ "consistency": {
+  "payments_completed": 448,
+  "payments_failed": 0,
+  "bank_debits": 448,
+  "refunds": 0,
+  "orphan_debits": 0,
+  "orphan_amount": 0,
+  "double_charged_intents": 107,
+  "ledger_mismatch": 0,
+  "stuck_payments": 0,
+  "lost_acked_payments": 0,
+  "lost_acked_enrollments": 0,
+  "consistent": false
+ },
+ "alerts_fired": [
+  "HighLatencyP95",
+  "InstanceDown"
+ ],
+ "inject": {
+  "bank_delay_ms": 6000,
+  "for_s": 15,
+  "t": 1794672790.2548892
+ },
+ "core_p95_ms": 7203.6,
+ "t_inject_rel": 10.007,
+ "duration_s": 45,
+ "mechanisms": {
+  "gateway_retries": 0,
+  "gateway_shed": 0,
+  "gateway_stale_answers": 0,
+  "gateway_fast_fail": 0,
+  "upstream_marked_down": 0,
+  "breaker_opened": 0,
+  "bank_retries": 0,
+  "payments_queued": 0,
+  "recovered_roll_forward": 0,
+  "recovered_roll_back": 0,
+  "compensations": 0,
+  "duplicate_requests": 0,
+  "db_failovers": 0,
+  "db_client_switches": 0,
+  "db_fenced_or_deposed": 0,
+  "db_resyncs": 0,
+  "monitor_down_events": 1,
+  "container_restarts": 0,
+  "db_demoted": 0
+ },
+ "resources": {
+  "cpu_cores": 0.323,
+  "rss_mb": 473.0,
+  "app_containers": 8
+ },
+ "alerts_detail": [
+  {
+   "alertname": "InstanceDown",
+   "status": "firing",
+   "labels": {
+    "name": "bank"
+   },
+   "t_rel_inject": 4.376
+  },
+  {
+   "alertname": "HighLatencyP95",
+   "status": "firing",
+   "labels": {
+    "service": "payment"
+   },
+   "t_rel_inject": 10.368
+  },
+  {
+   "alertname": "InstanceDown",
+   "status": "resolved",
+   "labels": {
+    "name": "bank"
+   },
+   "t_rel_inject": 17.386
+  },
+  {
+   "alertname": "HighLatencyP95",
+   "status": "resolved",
+   "labels": {
+    "service": "payment"
+   },
+   "t_rel_inject": 31.398
+  }
+ ],
+ "_pass": false
+}

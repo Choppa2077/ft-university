@@ -1,0 +1,8537 @@
+{
+ "faults": {
+  "X0": {
+   "baseline": {
+    "reps": 5,
+    "passed": 5,
+    "consistent": 5,
+    "requests": {
+     "mean": 4800,
+     "sd": 0.0,
+     "min": 4800,
+     "max": 4800,
+     "n": 5
+    },
+    "success_rate": {
+     "mean": 1.0,
+     "sd": 0.0,
+     "min": 1.0,
+     "max": 1.0,
+     "n": 5
+    },
+    "success_pct": {
+     "mean": 100.0,
+     "sd": 0.0,
+     "min": 100.0,
+     "max": 100.0,
+     "n": 5
+    },
+    "failed": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "failed_ratio": {
+     "mean": 0.0,
+     "sd": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n": 5
+    },
+    "user_failed": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "degraded": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "recovered_by_retry": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "p50_ms": {
+     "mean": 6.9,
+     "sd": 0.1225,
+     "min": 6.8,
+     "max": 7.1,
+     "n": 5
+    },
+    "p95_ms": {
+     "mean": 22.16,
+     "sd": 0.2881,
+     "min": 21.8,
+     "max": 22.5,
+     "n": 5
+    },
+    "p99_ms": {
+     "mean": 25.74,
+     "sd": 0.2881,
+     "min": 25.4,
+     "max": 26.1,
+     "n": 5
+    },
+    "core_p95_ms": {
+     "mean": 9.92,
+     "sd": 1.0159,
+     "min": 9.3,
+     "max": 11.7,
+     "n": 5
+    },
+    "p95_after_startup_ms": {
+     "mean": 22.14,
+     "sd": 0.2608,
+     "min": 21.8,
+     "max": 22.4,
+     "n": 5
+    },
+    "startup_delay_s": {
+     "mean": 0.008,
+     "sd": 0.0045,
+     "min": 0.0,
+     "max": 0.01,
+     "n": 5
+    },
+    "t_inject_rel": {
+     "mean": 10.0094,
+     "sd": 0.0025,
+     "min": 10.005,
+     "max": 10.011,
+     "n": 5
+    },
+    "detect_event_s": null,
+    "detect_alert_s": null,
+    "first_related_alert_s": null,
+    "recovery_s": {
+     "mean": 0.0,
+     "sd": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n": 5
+    },
+    "alerts_required": false,
+    "alerts_detected": 0,
+    "collateral_alerts": 0,
+    "collateral_names": [],
+    "false_positive_alerts": 0,
+    "fp_names": [],
+    "wrong_diagnosis": 0,
+    "alerts_fired": [],
+    "mechanisms": {
+     "gateway_retries": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "upstream_marked_down": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "breaker_opened": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "bank_retries": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "payments_queued": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "recovered_roll_forward": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "recovered_roll_back": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "compensations": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "duplicate_requests": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_failovers": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_client_switches": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_fenced_or_deposed": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_demoted": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_stepped_down": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_resyncs": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_shed": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_stale_answers": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_fast_fail": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "container_restarts": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     }
+    },
+    "cpu_cores": {
+     "mean": 0.3138,
+     "sd": 0.0022,
+     "min": 0.311,
+     "max": 0.316,
+     "n": 5
+    },
+    "rss_mb": {
+     "mean": 459.18,
+     "sd": 0.5805,
+     "min": 458.2,
+     "max": 459.6,
+     "n": 5
+    },
+    "app_containers": 8,
+    "orphan_debits": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "double_charged": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "replica_identical": 0,
+    "op_latency_ms": {
+     "student": {
+      "p50": 6.0,
+      "p95": 8.2
+     },
+     "enroll": {
+      "p50": 6.4,
+      "p95": 8.8
+     },
+     "pay": {
+      "p50": 8.9,
+      "p95": 12.2
+     },
+     "transcript": {
+      "p50": 5.3,
+      "p95": 8.3
+     },
+     "timetable": {
+      "p50": 20.6,
+      "p95": 26.0
+     }
+    }
+   },
+   "ft": {
+    "reps": 5,
+    "passed": 5,
+    "consistent": 5,
+    "requests": {
+     "mean": 4800,
+     "sd": 0.0,
+     "min": 4800,
+     "max": 4800,
+     "n": 5
+    },
+    "success_rate": {
+     "mean": 1.0,
+     "sd": 0.0,
+     "min": 1.0,
+     "max": 1.0,
+     "n": 5
+    },
+    "success_pct": {
+     "mean": 100.0,
+     "sd": 0.0,
+     "min": 100.0,
+     "max": 100.0,
+     "n": 5
+    },
+    "failed": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "failed_ratio": {
+     "mean": 0.0,
+     "sd": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n": 5
+    },
+    "user_failed": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "degraded": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "recovered_by_retry": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "p50_ms": {
+     "mean": 6.7,
+     "sd": 0.4183,
+     "min": 6.3,
+     "max": 7.2,
+     "n": 5
+    },
+    "p95_ms": {
+     "mean": 19.3,
+     "sd": 0.3873,
+     "min": 18.9,
+     "max": 19.8,
+     "n": 5
+    },
+    "p99_ms": {
+     "mean": 21.76,
+     "sd": 0.4615,
+     "min": 21.2,
+     "max": 22.3,
+     "n": 5
+    },
+    "core_p95_ms": {
+     "mean": 22.44,
+     "sd": 0.0548,
+     "min": 22.4,
+     "max": 22.5,
+     "n": 5
+    },
+    "p95_after_startup_ms": {
+     "mean": 19.28,
+     "sd": 0.3701,
+     "min": 18.9,
+     "max": 19.8,
+     "n": 5
+    },
+    "startup_delay_s": {
+     "mean": 0.01,
+     "sd": 0.0,
+     "min": 0.01,
+     "max": 0.01,
+     "n": 5
+    },
+    "t_inject_rel": {
+     "mean": 10.009,
+     "sd": 0.0016,
+     "min": 10.007,
+     "max": 10.011,
+     "n": 5
+    },
+    "detect_event_s": null,
+    "detect_alert_s": null,
+    "first_related_alert_s": null,
+    "recovery_s": {
+     "mean": 0.0,
+     "sd": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n": 5
+    },
+    "alerts_required": false,
+    "alerts_detected": 0,
+    "collateral_alerts": 0,
+    "collateral_names": [],
+    "false_positive_alerts": 0,
+    "fp_names": [],
+    "wrong_diagnosis": 0,
+    "alerts_fired": [],
+    "mechanisms": {
+     "gateway_retries": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "upstream_marked_down": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "breaker_opened": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "bank_retries": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "payments_queued": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "recovered_roll_forward": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "recovered_roll_back": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "compensations": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "duplicate_requests": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_failovers": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_client_switches": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_fenced_or_deposed": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_demoted": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_stepped_down": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_resyncs": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_shed": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_stale_answers": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_fast_fail": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "container_restarts": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     }
+    },
+    "cpu_cores": {
+     "mean": 0.4078,
+     "sd": 0.0043,
+     "min": 0.403,
+     "max": 0.413,
+     "n": 5
+    },
+    "rss_mb": {
+     "mean": 745.06,
+     "sd": 0.7335,
+     "min": 743.8,
+     "max": 745.7,
+     "n": 5
+    },
+    "app_containers": 13,
+    "orphan_debits": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "double_charged": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "replica_identical": 5,
+    "op_latency_ms": {
+     "student": {
+      "p50": 5.1,
+      "p95": 7.3
+     },
+     "enroll": {
+      "p50": 7.0,
+      "p95": 9.5
+     },
+     "pay": {
+      "p50": 14.1,
+      "p95": 17.9
+     },
+     "transcript": {
+      "p50": 4.4,
+      "p95": 7.2
+     },
+     "timetable": {
+      "p50": 18.2,
+      "p95": 22.0
+     }
+    }
+   },
+   "endterm": {
+    "reps": 5,
+    "passed": 5,
+    "consistent": 5,
+    "requests": {
+     "mean": 4800,
+     "sd": 0.0,
+     "min": 4800,
+     "max": 4800,
+     "n": 5
+    },
+    "success_rate": {
+     "mean": 1.0,
+     "sd": 0.0,
+     "min": 1.0,
+     "max": 1.0,
+     "n": 5
+    },
+    "success_pct": {
+     "mean": 100.0,
+     "sd": 0.0,
+     "min": 100.0,
+     "max": 100.0,
+     "n": 5
+    },
+    "failed": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "failed_ratio": {
+     "mean": 0.0,
+     "sd": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n": 5
+    },
+    "user_failed": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "degraded": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "recovered_by_retry": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "p50_ms": {
+     "mean": 7.82,
+     "sd": 0.249,
+     "min": 7.5,
+     "max": 8.0,
+     "n": 5
+    },
+    "p95_ms": {
+     "mean": 19.76,
+     "sd": 0.2608,
+     "min": 19.4,
+     "max": 20.0,
+     "n": 5
+    },
+    "p99_ms": {
+     "mean": 25.32,
+     "sd": 1.7108,
+     "min": 24.0,
+     "max": 28.1,
+     "n": 5
+    },
+    "core_p95_ms": {
+     "mean": 26.96,
+     "sd": 8.7477,
+     "min": 22.6,
+     "max": 42.6,
+     "n": 5
+    },
+    "p95_after_startup_ms": {
+     "mean": 19.44,
+     "sd": 0.2966,
+     "min": 19.0,
+     "max": 19.7,
+     "n": 5
+    },
+    "startup_delay_s": {
+     "mean": 1.012,
+     "sd": 0.0712,
+     "min": 0.96,
+     "max": 1.12,
+     "n": 5
+    },
+    "t_inject_rel": {
+     "mean": 11.0158,
+     "sd": 0.0714,
+     "min": 10.961,
+     "max": 11.125,
+     "n": 5
+    },
+    "detect_event_s": null,
+    "detect_alert_s": null,
+    "first_related_alert_s": null,
+    "recovery_s": {
+     "mean": 0.0,
+     "sd": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n": 5
+    },
+    "alerts_required": false,
+    "alerts_detected": 0,
+    "collateral_alerts": 0,
+    "collateral_names": [],
+    "false_positive_alerts": 0,
+    "fp_names": [],
+    "wrong_diagnosis": 0,
+    "alerts_fired": [],
+    "mechanisms": {
+     "gateway_retries": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "upstream_marked_down": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "breaker_opened": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "bank_retries": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "payments_queued": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "recovered_roll_forward": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "recovered_roll_back": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "compensations": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "duplicate_requests": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_failovers": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_client_switches": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_fenced_or_deposed": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_demoted": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_stepped_down": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_resyncs": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_shed": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_stale_answers": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_fast_fail": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "container_restarts": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     }
+    },
+    "cpu_cores": {
+     "mean": 0.4258,
+     "sd": 0.0015,
+     "min": 0.424,
+     "max": 0.428,
+     "n": 5
+    },
+    "rss_mb": {
+     "mean": 745.38,
+     "sd": 0.7497,
+     "min": 744.4,
+     "max": 746.2,
+     "n": 5
+    },
+    "app_containers": 13,
+    "orphan_debits": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "double_charged": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "replica_identical": 5,
+    "op_latency_ms": {
+     "student": {
+      "p50": 5.7,
+      "p95": 7.9
+     },
+     "enroll": {
+      "p50": 8.7,
+      "p95": 11.8
+     },
+     "pay": {
+      "p50": 15.3,
+      "p95": 19.2
+     },
+     "transcript": {
+      "p50": 4.9,
+      "p95": 8.1
+     },
+     "timetable": {
+      "p50": 18.5,
+      "p95": 22.0
+     }
+    }
+   }
+  },
+  "X1": {
+   "baseline": {
+    "reps": 5,
+    "passed": 0,
+    "consistent": 5,
+    "requests": {
+     "mean": 1755.4,
+     "sd": 1.5166,
+     "min": 1754,
+     "max": 1757,
+     "n": 5
+    },
+    "success_rate": {
+     "mean": 0.826,
+     "sd": 0.0007,
+     "min": 0.8253,
+     "max": 0.8267,
+     "n": 5
+    },
+    "success_pct": {
+     "mean": 82.604,
+     "sd": 0.0706,
+     "min": 82.53,
+     "max": 82.67,
+     "n": 5
+    },
+    "failed": {
+     "mean": 305.4,
+     "sd": 1.5166,
+     "min": 304,
+     "max": 307,
+     "n": 5
+    },
+    "failed_ratio": {
+     "mean": 0.174,
+     "sd": 0.0007,
+     "min": 0.1733181299885975,
+     "max": 0.1747296528173022,
+     "n": 5
+    },
+    "user_failed": {
+     "mean": 150,
+     "sd": 0.0,
+     "min": 150,
+     "max": 150,
+     "n": 5
+    },
+    "degraded": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "recovered_by_retry": {
+     "mean": 5.4,
+     "sd": 1.5166,
+     "min": 4,
+     "max": 7,
+     "n": 5
+    },
+    "p50_ms": {
+     "mean": 6.02,
+     "sd": 0.4087,
+     "min": 5.6,
+     "max": 6.5,
+     "n": 5
+    },
+    "p95_ms": {
+     "mean": 21.76,
+     "sd": 0.5079,
+     "min": 21.3,
+     "max": 22.5,
+     "n": 5
+    },
+    "p99_ms": {
+     "mean": 26.16,
+     "sd": 0.4037,
+     "min": 25.8,
+     "max": 26.8,
+     "n": 5
+    },
+    "core_p95_ms": {
+     "mean": 9.88,
+     "sd": 1.0257,
+     "min": 9.3,
+     "max": 11.7,
+     "n": 5
+    },
+    "p95_after_startup_ms": {
+     "mean": 21.52,
+     "sd": 0.5263,
+     "min": 21.0,
+     "max": 22.3,
+     "n": 5
+    },
+    "startup_delay_s": {
+     "mean": 0.01,
+     "sd": 0.0,
+     "min": 0.01,
+     "max": 0.01,
+     "n": 5
+    },
+    "t_inject_rel": {
+     "mean": 10.0092,
+     "sd": 0.0013,
+     "min": 10.008,
+     "max": 10.011,
+     "n": 5
+    },
+    "detect_event_s": {
+     "mean": 0.399,
+     "sd": 0.0769,
+     "min": 0.325,
+     "max": 0.528,
+     "n": 5
+    },
+    "detect_alert_s": {
+     "mean": 3.1632,
+     "sd": 0.42,
+     "min": 2.44,
+     "max": 3.487,
+     "n": 5
+    },
+    "first_related_alert_s": {
+     "mean": 3.1632,
+     "sd": 0.42,
+     "min": 2.44,
+     "max": 3.487,
+     "n": 5
+    },
+    "recovery_s": {
+     "mean": 21.0314,
+     "sd": 0.0877,
+     "min": 20.946,
+     "max": 21.123,
+     "n": 5
+    },
+    "alerts_required": true,
+    "alerts_detected": 5,
+    "collateral_alerts": 0,
+    "collateral_names": [],
+    "false_positive_alerts": 0,
+    "fp_names": [],
+    "wrong_diagnosis": 0,
+    "alerts_fired": [
+     "InstanceDown",
+     "UserFacingErrorRate"
+    ],
+    "mechanisms": {
+     "gateway_retries": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "upstream_marked_down": {
+      "mean": 1,
+      "sd": 0.0,
+      "min": 1,
+      "max": 1,
+      "n": 5
+     },
+     "breaker_opened": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "bank_retries": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "payments_queued": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "recovered_roll_forward": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "recovered_roll_back": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "compensations": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "duplicate_requests": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_failovers": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_client_switches": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_fenced_or_deposed": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_demoted": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_stepped_down": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_resyncs": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_shed": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_stale_answers": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_fast_fail": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "container_restarts": {
+      "mean": 1,
+      "sd": 0.0,
+      "min": 1,
+      "max": 1,
+      "n": 5
+     }
+    },
+    "cpu_cores": {
+     "mean": 0.2968,
+     "sd": 0.003,
+     "min": 0.294,
+     "max": 0.301,
+     "n": 5
+    },
+    "rss_mb": {
+     "mean": 458.42,
+     "sd": 0.507,
+     "min": 458.0,
+     "max": 459.3,
+     "n": 5
+    },
+    "app_containers": 8,
+    "orphan_debits": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "double_charged": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "replica_identical": 0
+   },
+   "ft": {
+    "reps": 5,
+    "passed": 5,
+    "consistent": 5,
+    "requests": {
+     "mean": 1600,
+     "sd": 0.0,
+     "min": 1600,
+     "max": 1600,
+     "n": 5
+    },
+    "success_rate": {
+     "mean": 1.0,
+     "sd": 0.0,
+     "min": 1.0,
+     "max": 1.0,
+     "n": 5
+    },
+    "success_pct": {
+     "mean": 100.0,
+     "sd": 0.0,
+     "min": 100.0,
+     "max": 100.0,
+     "n": 5
+    },
+    "failed": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "failed_ratio": {
+     "mean": 0.0,
+     "sd": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n": 5
+    },
+    "user_failed": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "degraded": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "recovered_by_retry": {
+     "mean": 0.8,
+     "sd": 0.4472,
+     "min": 0,
+     "max": 1,
+     "n": 5
+    },
+    "p50_ms": {
+     "mean": 7.06,
+     "sd": 0.0548,
+     "min": 7.0,
+     "max": 7.1,
+     "n": 5
+    },
+    "p95_ms": {
+     "mean": 19.42,
+     "sd": 0.1095,
+     "min": 19.3,
+     "max": 19.6,
+     "n": 5
+    },
+    "p99_ms": {
+     "mean": 22.08,
+     "sd": 0.1483,
+     "min": 21.9,
+     "max": 22.3,
+     "n": 5
+    },
+    "core_p95_ms": {
+     "mean": 22.42,
+     "sd": 0.0447,
+     "min": 22.4,
+     "max": 22.5,
+     "n": 5
+    },
+    "p95_after_startup_ms": {
+     "mean": 19.32,
+     "sd": 0.1304,
+     "min": 19.2,
+     "max": 19.5,
+     "n": 5
+    },
+    "startup_delay_s": {
+     "mean": 0.01,
+     "sd": 0.0,
+     "min": 0.01,
+     "max": 0.01,
+     "n": 5
+    },
+    "t_inject_rel": {
+     "mean": 10.0088,
+     "sd": 0.0016,
+     "min": 10.007,
+     "max": 10.011,
+     "n": 5
+    },
+    "detect_event_s": {
+     "mean": 0.5062,
+     "sd": 0.0755,
+     "min": 0.373,
+     "max": 0.558,
+     "n": 5
+    },
+    "detect_alert_s": null,
+    "first_related_alert_s": null,
+    "recovery_s": {
+     "mean": 0.0,
+     "sd": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n": 5
+    },
+    "alerts_required": false,
+    "alerts_detected": 0,
+    "collateral_alerts": 0,
+    "collateral_names": [],
+    "false_positive_alerts": 0,
+    "fp_names": [],
+    "wrong_diagnosis": 0,
+    "alerts_fired": [],
+    "mechanisms": {
+     "gateway_retries": {
+      "mean": 0.8,
+      "sd": 0.4472,
+      "min": 0,
+      "max": 1,
+      "n": 5
+     },
+     "upstream_marked_down": {
+      "mean": 1,
+      "sd": 0.0,
+      "min": 1,
+      "max": 1,
+      "n": 5
+     },
+     "breaker_opened": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "bank_retries": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "payments_queued": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "recovered_roll_forward": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "recovered_roll_back": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "compensations": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "duplicate_requests": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_failovers": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_client_switches": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_fenced_or_deposed": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_demoted": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_stepped_down": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_resyncs": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_shed": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_stale_answers": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_fast_fail": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "container_restarts": {
+      "mean": 1,
+      "sd": 0.0,
+      "min": 1,
+      "max": 1,
+      "n": 5
+     }
+    },
+    "cpu_cores": {
+     "mean": 0.4012,
+     "sd": 0.0018,
+     "min": 0.399,
+     "max": 0.403,
+     "n": 5
+    },
+    "rss_mb": {
+     "mean": 745.12,
+     "sd": 0.2387,
+     "min": 744.8,
+     "max": 745.4,
+     "n": 5
+    },
+    "app_containers": 13,
+    "orphan_debits": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "double_charged": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "replica_identical": 5
+   },
+   "endterm": {
+    "reps": 5,
+    "passed": 5,
+    "consistent": 5,
+    "requests": {
+     "mean": 1600,
+     "sd": 0.0,
+     "min": 1600,
+     "max": 1600,
+     "n": 5
+    },
+    "success_rate": {
+     "mean": 1.0,
+     "sd": 0.0,
+     "min": 1.0,
+     "max": 1.0,
+     "n": 5
+    },
+    "success_pct": {
+     "mean": 100.0,
+     "sd": 0.0,
+     "min": 100.0,
+     "max": 100.0,
+     "n": 5
+    },
+    "failed": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "failed_ratio": {
+     "mean": 0.0,
+     "sd": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n": 5
+    },
+    "user_failed": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "degraded": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "recovered_by_retry": {
+     "mean": 0.6,
+     "sd": 0.5477,
+     "min": 0,
+     "max": 1,
+     "n": 5
+    },
+    "p50_ms": {
+     "mean": 7.9,
+     "sd": 0.2345,
+     "min": 7.6,
+     "max": 8.1,
+     "n": 5
+    },
+    "p95_ms": {
+     "mean": 20.82,
+     "sd": 0.2387,
+     "min": 20.5,
+     "max": 21.1,
+     "n": 5
+    },
+    "p99_ms": {
+     "mean": 86.08,
+     "sd": 20.6695,
+     "min": 65.2,
+     "max": 114.7,
+     "n": 5
+    },
+    "core_p95_ms": {
+     "mean": 28.68,
+     "sd": 12.4232,
+     "min": 22.8,
+     "max": 50.9,
+     "n": 5
+    },
+    "p95_after_startup_ms": {
+     "mean": 19.16,
+     "sd": 0.3847,
+     "min": 18.7,
+     "max": 19.6,
+     "n": 5
+    },
+    "startup_delay_s": {
+     "mean": 1.098,
+     "sd": 0.1648,
+     "min": 0.97,
+     "max": 1.34,
+     "n": 5
+    },
+    "t_inject_rel": {
+     "mean": 11.0982,
+     "sd": 0.1644,
+     "min": 10.972,
+     "max": 11.342,
+     "n": 5
+    },
+    "detect_event_s": {
+     "mean": 0.3814,
+     "sd": 0.0802,
+     "min": 0.318,
+     "max": 0.515,
+     "n": 5
+    },
+    "detect_alert_s": null,
+    "first_related_alert_s": null,
+    "recovery_s": {
+     "mean": 0.0,
+     "sd": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n": 5
+    },
+    "alerts_required": false,
+    "alerts_detected": 0,
+    "collateral_alerts": 0,
+    "collateral_names": [],
+    "false_positive_alerts": 0,
+    "fp_names": [],
+    "wrong_diagnosis": 0,
+    "alerts_fired": [],
+    "mechanisms": {
+     "gateway_retries": {
+      "mean": 0.6,
+      "sd": 0.5477,
+      "min": 0,
+      "max": 1,
+      "n": 5
+     },
+     "upstream_marked_down": {
+      "mean": 1,
+      "sd": 0.0,
+      "min": 1,
+      "max": 1,
+      "n": 5
+     },
+     "breaker_opened": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "bank_retries": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "payments_queued": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "recovered_roll_forward": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "recovered_roll_back": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "compensations": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "duplicate_requests": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_failovers": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_client_switches": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_fenced_or_deposed": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_demoted": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_stepped_down": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_resyncs": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_shed": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_stale_answers": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_fast_fail": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "container_restarts": {
+      "mean": 1,
+      "sd": 0.0,
+      "min": 1,
+      "max": 1,
+      "n": 5
+     }
+    },
+    "cpu_cores": {
+     "mean": 0.4306,
+     "sd": 0.0038,
+     "min": 0.425,
+     "max": 0.435,
+     "n": 5
+    },
+    "rss_mb": {
+     "mean": 744.82,
+     "sd": 0.9039,
+     "min": 743.7,
+     "max": 745.9,
+     "n": 5
+    },
+    "app_containers": 13,
+    "orphan_debits": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "double_charged": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "replica_identical": 5
+   }
+  },
+  "X2": {
+   "baseline": {
+    "reps": 5,
+    "passed": 0,
+    "consistent": 0,
+    "requests": {
+     "mean": 1844,
+     "sd": 0.0,
+     "min": 1844,
+     "max": 1844,
+     "n": 5
+    },
+    "success_rate": {
+     "mean": 0.865,
+     "sd": 0.0,
+     "min": 0.865,
+     "max": 0.865,
+     "n": 5
+    },
+    "success_pct": {
+     "mean": 86.5,
+     "sd": 0.0,
+     "min": 86.5,
+     "max": 86.5,
+     "n": 5
+    },
+    "failed": {
+     "mean": 249,
+     "sd": 0.0,
+     "min": 249,
+     "max": 249,
+     "n": 5
+    },
+    "failed_ratio": {
+     "mean": 0.135,
+     "sd": 0.0,
+     "min": 0.13503253796095444,
+     "max": 0.13503253796095444,
+     "n": 5
+    },
+    "user_failed": {
+     "mean": 205,
+     "sd": 0.0,
+     "min": 205,
+     "max": 205,
+     "n": 5
+    },
+    "degraded": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "recovered_by_retry": {
+     "mean": 32,
+     "sd": 0.0,
+     "min": 32,
+     "max": 32,
+     "n": 5
+    },
+    "p50_ms": {
+     "mean": 11.16,
+     "sd": 0.2074,
+     "min": 10.9,
+     "max": 11.4,
+     "n": 5
+    },
+    "p95_ms": {
+     "mean": 5002.96,
+     "sd": 0.251,
+     "min": 5002.8,
+     "max": 5003.4,
+     "n": 5
+    },
+    "p99_ms": {
+     "mean": 5003.88,
+     "sd": 0.3633,
+     "min": 5003.6,
+     "max": 5004.5,
+     "n": 5
+    },
+    "core_p95_ms": {
+     "mean": 8000.0,
+     "sd": 0.0,
+     "min": 8000.0,
+     "max": 8000.0,
+     "n": 5
+    },
+    "p95_after_startup_ms": {
+     "mean": 5002.96,
+     "sd": 0.251,
+     "min": 5002.8,
+     "max": 5003.4,
+     "n": 5
+    },
+    "startup_delay_s": {
+     "mean": 0.01,
+     "sd": 0.0,
+     "min": 0.01,
+     "max": 0.01,
+     "n": 5
+    },
+    "t_inject_rel": {
+     "mean": 10.009,
+     "sd": 0.0007,
+     "min": 10.008,
+     "max": 10.01,
+     "n": 5
+    },
+    "detect_event_s": {
+     "mean": 0.7174,
+     "sd": 0.0789,
+     "min": 0.628,
+     "max": 0.821,
+     "n": 5
+    },
+    "detect_alert_s": {
+     "mean": 4.3834,
+     "sd": 0.3167,
+     "min": 4.096,
+     "max": 4.795,
+     "n": 5
+    },
+    "first_related_alert_s": {
+     "mean": 4.3834,
+     "sd": 0.3167,
+     "min": 4.096,
+     "max": 4.795,
+     "n": 5
+    },
+    "recovery_s": {
+     "mean": 12.3706,
+     "sd": 0.0005,
+     "min": 12.37,
+     "max": 12.371,
+     "n": 5
+    },
+    "alerts_required": true,
+    "alerts_detected": 5,
+    "collateral_alerts": 5,
+    "collateral_names": [
+     "HighLatencyP95{timetable}"
+    ],
+    "false_positive_alerts": 0,
+    "fp_names": [],
+    "wrong_diagnosis": 0,
+    "alerts_fired": [
+     "HighLatencyP95",
+     "InstanceDown",
+     "UserFacingErrorRate"
+    ],
+    "mechanisms": {
+     "gateway_retries": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "upstream_marked_down": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "breaker_opened": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "bank_retries": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "payments_queued": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "recovered_roll_forward": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "recovered_roll_back": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "compensations": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "duplicate_requests": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_failovers": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_client_switches": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_fenced_or_deposed": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_demoted": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_stepped_down": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_resyncs": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_shed": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_stale_answers": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_fast_fail": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "container_restarts": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     }
+    },
+    "cpu_cores": {
+     "mean": 0.3292,
+     "sd": 0.0036,
+     "min": 0.326,
+     "max": 0.335,
+     "n": 5
+    },
+    "rss_mb": {
+     "mean": 505.12,
+     "sd": 0.1789,
+     "min": 504.9,
+     "max": 505.4,
+     "n": 5
+    },
+    "app_containers": 8,
+    "orphan_debits": {
+     "mean": 16,
+     "sd": 0.0,
+     "min": 16,
+     "max": 16,
+     "n": 5
+    },
+    "double_charged": {
+     "mean": 44,
+     "sd": 0.0,
+     "min": 44,
+     "max": 44,
+     "n": 5
+    },
+    "replica_identical": 0
+   },
+   "ft": {
+    "reps": 5,
+    "passed": 5,
+    "consistent": 5,
+    "requests": {
+     "mean": 1800,
+     "sd": 0.0,
+     "min": 1800,
+     "max": 1800,
+     "n": 5
+    },
+    "success_rate": {
+     "mean": 1.0,
+     "sd": 0.0,
+     "min": 1.0,
+     "max": 1.0,
+     "n": 5
+    },
+    "success_pct": {
+     "mean": 100.0,
+     "sd": 0.0,
+     "min": 100.0,
+     "max": 100.0,
+     "n": 5
+    },
+    "failed": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "failed_ratio": {
+     "mean": 0.0,
+     "sd": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n": 5
+    },
+    "user_failed": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "degraded": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "recovered_by_retry": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "p50_ms": {
+     "mean": 7.68,
+     "sd": 0.0447,
+     "min": 7.6,
+     "max": 7.7,
+     "n": 5
+    },
+    "p95_ms": {
+     "mean": 22.04,
+     "sd": 0.2191,
+     "min": 21.7,
+     "max": 22.3,
+     "n": 5
+    },
+    "p99_ms": {
+     "mean": 1348.94,
+     "sd": 4.5676,
+     "min": 1345.3,
+     "max": 1356.4,
+     "n": 5
+    },
+    "core_p95_ms": {
+     "mean": 1585.78,
+     "sd": 13.447,
+     "min": 1562.6,
+     "max": 1594.0,
+     "n": 5
+    },
+    "p95_after_startup_ms": {
+     "mean": 22.12,
+     "sd": 0.2864,
+     "min": 21.7,
+     "max": 22.5,
+     "n": 5
+    },
+    "startup_delay_s": {
+     "mean": 0.01,
+     "sd": 0.0,
+     "min": 0.01,
+     "max": 0.01,
+     "n": 5
+    },
+    "t_inject_rel": {
+     "mean": 10.01,
+     "sd": 0.0039,
+     "min": 10.008,
+     "max": 10.017,
+     "n": 5
+    },
+    "detect_event_s": {
+     "mean": 0.7298,
+     "sd": 0.0394,
+     "min": 0.695,
+     "max": 0.789,
+     "n": 5
+    },
+    "detect_alert_s": {
+     "mean": 1.8722,
+     "sd": 0.3851,
+     "min": 1.227,
+     "max": 2.249,
+     "n": 5
+    },
+    "first_related_alert_s": {
+     "mean": 1.8722,
+     "sd": 0.3851,
+     "min": 1.227,
+     "max": 2.249,
+     "n": 5
+    },
+    "recovery_s": {
+     "mean": 0.0,
+     "sd": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n": 5
+    },
+    "alerts_required": true,
+    "alerts_detected": 5,
+    "collateral_alerts": 0,
+    "collateral_names": [],
+    "false_positive_alerts": 0,
+    "fp_names": [],
+    "wrong_diagnosis": 0,
+    "alerts_fired": [
+     "DBReplicationLost",
+     "DatabaseFailover",
+     "HighLatencyP95",
+     "InstanceDown"
+    ],
+    "mechanisms": {
+     "gateway_retries": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "upstream_marked_down": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "breaker_opened": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "bank_retries": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "payments_queued": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "recovered_roll_forward": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "recovered_roll_back": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "compensations": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "duplicate_requests": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_failovers": {
+      "mean": 1,
+      "sd": 0.0,
+      "min": 1,
+      "max": 1,
+      "n": 5
+     },
+     "db_client_switches": {
+      "mean": 6,
+      "sd": 0.0,
+      "min": 6,
+      "max": 6,
+      "n": 5
+     },
+     "db_fenced_or_deposed": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_demoted": {
+      "mean": 1,
+      "sd": 0.0,
+      "min": 1,
+      "max": 1,
+      "n": 5
+     },
+     "db_stepped_down": {
+      "mean": 1,
+      "sd": 0.0,
+      "min": 1,
+      "max": 1,
+      "n": 5
+     },
+     "db_resyncs": {
+      "mean": 1,
+      "sd": 0.0,
+      "min": 1,
+      "max": 1,
+      "n": 5
+     },
+     "gateway_shed": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_stale_answers": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_fast_fail": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "container_restarts": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     }
+    },
+    "cpu_cores": {
+     "mean": 0.3982,
+     "sd": 0.0011,
+     "min": 0.397,
+     "max": 0.4,
+     "n": 5
+    },
+    "rss_mb": {
+     "mean": 749.32,
+     "sd": 0.7727,
+     "min": 748.5,
+     "max": 750.3,
+     "n": 5
+    },
+    "app_containers": 13,
+    "orphan_debits": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "double_charged": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "replica_identical": 5
+   },
+   "endterm": {
+    "reps": 5,
+    "passed": 5,
+    "consistent": 5,
+    "requests": {
+     "mean": 1800,
+     "sd": 0.0,
+     "min": 1800,
+     "max": 1800,
+     "n": 5
+    },
+    "success_rate": {
+     "mean": 1.0,
+     "sd": 0.0,
+     "min": 1.0,
+     "max": 1.0,
+     "n": 5
+    },
+    "success_pct": {
+     "mean": 100.0,
+     "sd": 0.0,
+     "min": 100.0,
+     "max": 100.0,
+     "n": 5
+    },
+    "failed": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "failed_ratio": {
+     "mean": 0.0,
+     "sd": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n": 5
+    },
+    "user_failed": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "degraded": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "recovered_by_retry": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "p50_ms": {
+     "mean": 8.96,
+     "sd": 0.2702,
+     "min": 8.7,
+     "max": 9.4,
+     "n": 5
+    },
+    "p95_ms": {
+     "mean": 46.0,
+     "sd": 33.5355,
+     "min": 25.7,
+     "max": 105.6,
+     "n": 5
+    },
+    "p99_ms": {
+     "mean": 1346.96,
+     "sd": 4.6063,
+     "min": 1343.1,
+     "max": 1353.5,
+     "n": 5
+    },
+    "core_p95_ms": {
+     "mean": 1559.16,
+     "sd": 22.751,
+     "min": 1530.0,
+     "max": 1593.9,
+     "n": 5
+    },
+    "p95_after_startup_ms": {
+     "mean": 21.5,
+     "sd": 0.2345,
+     "min": 21.3,
+     "max": 21.8,
+     "n": 5
+    },
+    "startup_delay_s": {
+     "mean": 1.08,
+     "sd": 0.0787,
+     "min": 0.96,
+     "max": 1.14,
+     "n": 5
+    },
+    "t_inject_rel": {
+     "mean": 11.0794,
+     "sd": 0.08,
+     "min": 10.959,
+     "max": 11.144,
+     "n": 5
+    },
+    "detect_event_s": {
+     "mean": 0.6944,
+     "sd": 0.0988,
+     "min": 0.608,
+     "max": 0.803,
+     "n": 5
+    },
+    "detect_alert_s": {
+     "mean": 1.9234,
+     "sd": 0.3849,
+     "min": 1.438,
+     "max": 2.307,
+     "n": 5
+    },
+    "first_related_alert_s": {
+     "mean": 1.9234,
+     "sd": 0.3849,
+     "min": 1.438,
+     "max": 2.307,
+     "n": 5
+    },
+    "recovery_s": {
+     "mean": 0.0,
+     "sd": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n": 5
+    },
+    "alerts_required": true,
+    "alerts_detected": 5,
+    "collateral_alerts": 0,
+    "collateral_names": [],
+    "false_positive_alerts": 0,
+    "fp_names": [],
+    "wrong_diagnosis": 0,
+    "alerts_fired": [
+     "DBReplicationLost",
+     "DatabaseFailover",
+     "HighLatencyP95",
+     "InstanceDown"
+    ],
+    "mechanisms": {
+     "gateway_retries": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "upstream_marked_down": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "breaker_opened": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "bank_retries": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "payments_queued": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "recovered_roll_forward": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "recovered_roll_back": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "compensations": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "duplicate_requests": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_failovers": {
+      "mean": 1,
+      "sd": 0.0,
+      "min": 1,
+      "max": 1,
+      "n": 5
+     },
+     "db_client_switches": {
+      "mean": 6,
+      "sd": 0.0,
+      "min": 6,
+      "max": 6,
+      "n": 5
+     },
+     "db_fenced_or_deposed": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_demoted": {
+      "mean": 1,
+      "sd": 0.0,
+      "min": 1,
+      "max": 1,
+      "n": 5
+     },
+     "db_stepped_down": {
+      "mean": 1,
+      "sd": 0.0,
+      "min": 1,
+      "max": 1,
+      "n": 5
+     },
+     "db_resyncs": {
+      "mean": 1,
+      "sd": 0.0,
+      "min": 1,
+      "max": 1,
+      "n": 5
+     },
+     "gateway_shed": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_stale_answers": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_fast_fail": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "container_restarts": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     }
+    },
+    "cpu_cores": {
+     "mean": 0.4202,
+     "sd": 0.0086,
+     "min": 0.41,
+     "max": 0.431,
+     "n": 5
+    },
+    "rss_mb": {
+     "mean": 748.6,
+     "sd": 0.5431,
+     "min": 747.7,
+     "max": 749.0,
+     "n": 5
+    },
+    "app_containers": 13,
+    "orphan_debits": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "double_charged": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "replica_identical": 5
+   }
+  },
+  "X3": {
+   "baseline": {
+    "reps": 5,
+    "passed": 0,
+    "consistent": 0,
+    "requests": {
+     "mean": 1907,
+     "sd": 0.0,
+     "min": 1907,
+     "max": 1907,
+     "n": 5
+    },
+    "success_rate": {
+     "mean": 0.9132,
+     "sd": 0.0003,
+     "min": 0.913,
+     "max": 0.9135,
+     "n": 5
+    },
+    "success_pct": {
+     "mean": 91.32,
+     "sd": 0.0274,
+     "min": 91.3,
+     "max": 91.35,
+     "n": 5
+    },
+    "failed": {
+     "mean": 165.6,
+     "sd": 0.5477,
+     "min": 165,
+     "max": 166,
+     "n": 5
+    },
+    "failed_ratio": {
+     "mean": 0.0868,
+     "sd": 0.0003,
+     "min": 0.08652333508127949,
+     "max": 0.08704771893025695,
+     "n": 5
+    },
+    "user_failed": {
+     "mean": 58.6,
+     "sd": 0.5477,
+     "min": 58,
+     "max": 59,
+     "n": 5
+    },
+    "degraded": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "recovered_by_retry": {
+     "mean": 48.4,
+     "sd": 0.5477,
+     "min": 48,
+     "max": 49,
+     "n": 5
+    },
+    "p50_ms": {
+     "mean": 7.66,
+     "sd": 0.2881,
+     "min": 7.2,
+     "max": 8.0,
+     "n": 5
+    },
+    "p95_ms": {
+     "mean": 5002.78,
+     "sd": 0.2168,
+     "min": 5002.5,
+     "max": 5003.0,
+     "n": 5
+    },
+    "p99_ms": {
+     "mean": 5005.98,
+     "sd": 1.1692,
+     "min": 5005.0,
+     "max": 5007.4,
+     "n": 5
+    },
+    "core_p95_ms": {
+     "mean": 7199.94,
+     "sd": 5.8436,
+     "min": 7191.4,
+     "max": 7204.8,
+     "n": 5
+    },
+    "p95_after_startup_ms": {
+     "mean": 5002.82,
+     "sd": 0.1643,
+     "min": 5002.6,
+     "max": 5003.0,
+     "n": 5
+    },
+    "startup_delay_s": {
+     "mean": 0.01,
+     "sd": 0.0,
+     "min": 0.01,
+     "max": 0.01,
+     "n": 5
+    },
+    "t_inject_rel": {
+     "mean": 10.009,
+     "sd": 0.0012,
+     "min": 10.007,
+     "max": 10.01,
+     "n": 5
+    },
+    "detect_event_s": null,
+    "detect_alert_s": {
+     "mean": 4.3092,
+     "sd": 0.3656,
+     "min": 3.751,
+     "max": 4.73,
+     "n": 5
+    },
+    "first_related_alert_s": {
+     "mean": 4.3092,
+     "sd": 0.3656,
+     "min": 3.751,
+     "max": 4.73,
+     "n": 5
+    },
+    "recovery_s": {
+     "mean": 20.4426,
+     "sd": 0.0435,
+     "min": 20.395,
+     "max": 20.476,
+     "n": 5
+    },
+    "alerts_required": true,
+    "alerts_detected": 5,
+    "collateral_alerts": 0,
+    "collateral_names": [],
+    "false_positive_alerts": 0,
+    "fp_names": [],
+    "wrong_diagnosis": 0,
+    "alerts_fired": [
+     "HighLatencyP95",
+     "InstanceDown"
+    ],
+    "mechanisms": {
+     "gateway_retries": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "upstream_marked_down": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "breaker_opened": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "bank_retries": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "payments_queued": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "recovered_roll_forward": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "recovered_roll_back": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "compensations": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "duplicate_requests": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_failovers": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_client_switches": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_fenced_or_deposed": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_demoted": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_stepped_down": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_resyncs": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_shed": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_stale_answers": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_fast_fail": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "container_restarts": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     }
+    },
+    "cpu_cores": {
+     "mean": 0.2948,
+     "sd": 0.0159,
+     "min": 0.284,
+     "max": 0.323,
+     "n": 5
+    },
+    "rss_mb": {
+     "mean": 473.06,
+     "sd": 0.2966,
+     "min": 472.8,
+     "max": 473.5,
+     "n": 5
+    },
+    "app_containers": 8,
+    "orphan_debits": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "double_charged": {
+     "mean": 107,
+     "sd": 0.0,
+     "min": 107,
+     "max": 107,
+     "n": 5
+    },
+    "replica_identical": 0
+   },
+   "ft": {
+    "reps": 5,
+    "passed": 5,
+    "consistent": 5,
+    "requests": {
+     "mean": 1800,
+     "sd": 0.0,
+     "min": 1800,
+     "max": 1800,
+     "n": 5
+    },
+    "success_rate": {
+     "mean": 1.0,
+     "sd": 0.0,
+     "min": 1.0,
+     "max": 1.0,
+     "n": 5
+    },
+    "success_pct": {
+     "mean": 100.0,
+     "sd": 0.0,
+     "min": 100.0,
+     "max": 100.0,
+     "n": 5
+    },
+    "failed": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "failed_ratio": {
+     "mean": 0.0,
+     "sd": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n": 5
+    },
+    "user_failed": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "degraded": {
+     "mean": 121,
+     "sd": 1.2247,
+     "min": 120,
+     "max": 123,
+     "n": 5
+    },
+    "recovered_by_retry": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "p50_ms": {
+     "mean": 6.76,
+     "sd": 0.114,
+     "min": 6.6,
+     "max": 6.9,
+     "n": 5
+    },
+    "p95_ms": {
+     "mean": 20.3,
+     "sd": 0.2,
+     "min": 20.0,
+     "max": 20.5,
+     "n": 5
+    },
+    "p99_ms": {
+     "mean": 812.7,
+     "sd": 0.8185,
+     "min": 811.4,
+     "max": 813.6,
+     "n": 5
+    },
+    "core_p95_ms": {
+     "mean": 25.04,
+     "sd": 1.5994,
+     "min": 24.3,
+     "max": 27.9,
+     "n": 5
+    },
+    "p95_after_startup_ms": {
+     "mean": 20.34,
+     "sd": 0.1817,
+     "min": 20.1,
+     "max": 20.5,
+     "n": 5
+    },
+    "startup_delay_s": {
+     "mean": 0.01,
+     "sd": 0.0,
+     "min": 0.01,
+     "max": 0.01,
+     "n": 5
+    },
+    "t_inject_rel": {
+     "mean": 10.0082,
+     "sd": 0.0008,
+     "min": 10.007,
+     "max": 10.009,
+     "n": 5
+    },
+    "detect_event_s": {
+     "mean": 1.8046,
+     "sd": 0.0011,
+     "min": 1.803,
+     "max": 1.806,
+     "n": 5
+    },
+    "detect_alert_s": {
+     "mean": 4.2562,
+     "sd": 0.3935,
+     "min": 3.803,
+     "max": 4.71,
+     "n": 5
+    },
+    "first_related_alert_s": {
+     "mean": 4.2562,
+     "sd": 0.3935,
+     "min": 3.803,
+     "max": 4.71,
+     "n": 5
+    },
+    "recovery_s": {
+     "mean": 0.0,
+     "sd": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n": 5
+    },
+    "alerts_required": true,
+    "alerts_detected": 5,
+    "collateral_alerts": 0,
+    "collateral_names": [],
+    "false_positive_alerts": 0,
+    "fp_names": [],
+    "wrong_diagnosis": 0,
+    "alerts_fired": [
+     "CircuitBreakerOpen",
+     "HighLatencyP95",
+     "InstanceDown",
+     "PaymentsUnfinished"
+    ],
+    "mechanisms": {
+     "gateway_retries": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "upstream_marked_down": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "breaker_opened": {
+      "mean": 8,
+      "sd": 0.0,
+      "min": 8,
+      "max": 8,
+      "n": 5
+     },
+     "bank_retries": {
+      "mean": 8,
+      "sd": 0.0,
+      "min": 8,
+      "max": 8,
+      "n": 5
+     },
+     "payments_queued": {
+      "mean": 121,
+      "sd": 1.2247,
+      "min": 120,
+      "max": 123,
+      "n": 5
+     },
+     "recovered_roll_forward": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "recovered_roll_back": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "compensations": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "duplicate_requests": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_failovers": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_client_switches": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_fenced_or_deposed": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_demoted": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_stepped_down": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_resyncs": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_shed": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_stale_answers": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_fast_fail": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "container_restarts": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     }
+    },
+    "cpu_cores": {
+     "mean": 0.419,
+     "sd": 0.0025,
+     "min": 0.415,
+     "max": 0.421,
+     "n": 5
+    },
+    "rss_mb": {
+     "mean": 746.38,
+     "sd": 0.7362,
+     "min": 745.4,
+     "max": 747.0,
+     "n": 5
+    },
+    "app_containers": 13,
+    "orphan_debits": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "double_charged": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "replica_identical": 5
+   },
+   "endterm": {
+    "reps": 5,
+    "passed": 5,
+    "consistent": 5,
+    "requests": {
+     "mean": 1800,
+     "sd": 0.0,
+     "min": 1800,
+     "max": 1800,
+     "n": 5
+    },
+    "success_rate": {
+     "mean": 1.0,
+     "sd": 0.0,
+     "min": 1.0,
+     "max": 1.0,
+     "n": 5
+    },
+    "success_pct": {
+     "mean": 100.0,
+     "sd": 0.0,
+     "min": 100.0,
+     "max": 100.0,
+     "n": 5
+    },
+    "failed": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "failed_ratio": {
+     "mean": 0.0,
+     "sd": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n": 5
+    },
+    "user_failed": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "degraded": {
+     "mean": 121.4,
+     "sd": 1.8166,
+     "min": 119,
+     "max": 123,
+     "n": 5
+    },
+    "recovered_by_retry": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "p50_ms": {
+     "mean": 7.84,
+     "sd": 0.114,
+     "min": 7.7,
+     "max": 8.0,
+     "n": 5
+    },
+    "p95_ms": {
+     "mean": 24.6,
+     "sd": 1.0724,
+     "min": 23.3,
+     "max": 25.9,
+     "n": 5
+    },
+    "p99_ms": {
+     "mean": 536.82,
+     "sd": 379.2804,
+     "min": 117.8,
+     "max": 815.5,
+     "n": 5
+    },
+    "core_p95_ms": {
+     "mean": 34.04,
+     "sd": 14.8626,
+     "min": 24.1,
+     "max": 58.3,
+     "n": 5
+    },
+    "p95_after_startup_ms": {
+     "mean": 20.44,
+     "sd": 0.114,
+     "min": 20.3,
+     "max": 20.6,
+     "n": 5
+    },
+    "startup_delay_s": {
+     "mean": 1.054,
+     "sd": 0.1254,
+     "min": 0.92,
+     "max": 1.22,
+     "n": 5
+    },
+    "t_inject_rel": {
+     "mean": 11.0532,
+     "sd": 0.124,
+     "min": 10.922,
+     "max": 11.217,
+     "n": 5
+    },
+    "detect_event_s": {
+     "mean": 2.1016,
+     "sd": 0.0275,
+     "min": 2.068,
+     "max": 2.137,
+     "n": 5
+    },
+    "detect_alert_s": {
+     "mean": 4.4572,
+     "sd": 0.4186,
+     "min": 3.931,
+     "max": 4.872,
+     "n": 5
+    },
+    "first_related_alert_s": {
+     "mean": 4.4572,
+     "sd": 0.4186,
+     "min": 3.931,
+     "max": 4.872,
+     "n": 5
+    },
+    "recovery_s": {
+     "mean": 0.0,
+     "sd": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n": 5
+    },
+    "alerts_required": true,
+    "alerts_detected": 5,
+    "collateral_alerts": 0,
+    "collateral_names": [],
+    "false_positive_alerts": 0,
+    "fp_names": [],
+    "wrong_diagnosis": 0,
+    "alerts_fired": [
+     "CircuitBreakerOpen",
+     "HighLatencyP95",
+     "InstanceDown",
+     "PaymentsUnfinished"
+    ],
+    "mechanisms": {
+     "gateway_retries": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "upstream_marked_down": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "breaker_opened": {
+      "mean": 8,
+      "sd": 0.0,
+      "min": 8,
+      "max": 8,
+      "n": 5
+     },
+     "bank_retries": {
+      "mean": 8,
+      "sd": 0.0,
+      "min": 8,
+      "max": 8,
+      "n": 5
+     },
+     "payments_queued": {
+      "mean": 121.4,
+      "sd": 1.8166,
+      "min": 119,
+      "max": 123,
+      "n": 5
+     },
+     "recovered_roll_forward": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "recovered_roll_back": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "compensations": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "duplicate_requests": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_failovers": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_client_switches": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_fenced_or_deposed": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_demoted": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_stepped_down": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_resyncs": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_shed": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_stale_answers": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_fast_fail": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "container_restarts": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     }
+    },
+    "cpu_cores": {
+     "mean": 0.4444,
+     "sd": 0.0048,
+     "min": 0.438,
+     "max": 0.45,
+     "n": 5
+    },
+    "rss_mb": {
+     "mean": 746.44,
+     "sd": 0.6309,
+     "min": 745.5,
+     "max": 747.0,
+     "n": 5
+    },
+    "app_containers": 13,
+    "orphan_debits": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "double_charged": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "replica_identical": 5
+   }
+  },
+  "X4": {
+   "baseline": {
+    "reps": 5,
+    "passed": 0,
+    "consistent": 0,
+    "requests": {
+     "mean": 4575,
+     "sd": 3.3912,
+     "min": 4571,
+     "max": 4579,
+     "n": 5
+    },
+    "success_rate": {
+     "mean": 0.3481,
+     "sd": 0.0057,
+     "min": 0.3381,
+     "max": 0.3519,
+     "n": 5
+    },
+    "success_pct": {
+     "mean": 34.808,
+     "sd": 0.5734,
+     "min": 33.81,
+     "max": 35.19,
+     "n": 5
+    },
+    "failed": {
+     "mean": 2982.6,
+     "sd": 27.6821,
+     "min": 2963,
+     "max": 3031,
+     "n": 5
+    },
+    "failed_ratio": {
+     "mean": 0.6519,
+     "sd": 0.0057,
+     "min": 0.6480996068152032,
+     "max": 0.6619349202882725,
+     "n": 5
+    },
+    "user_failed": {
+     "mean": 2907.6,
+     "sd": 25.6184,
+     "min": 2889,
+     "max": 2952,
+     "n": 5
+    },
+    "degraded": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "recovered_by_retry": {
+     "mean": 46.2,
+     "sd": 3.8341,
+     "min": 41,
+     "max": 51,
+     "n": 5
+    },
+    "p50_ms": {
+     "mean": 5002.14,
+     "sd": 0.0548,
+     "min": 5002.1,
+     "max": 5002.2,
+     "n": 5
+    },
+    "p95_ms": {
+     "mean": 5005.0,
+     "sd": 0.0707,
+     "min": 5004.9,
+     "max": 5005.1,
+     "n": 5
+    },
+    "p99_ms": {
+     "mean": 5010.1,
+     "sd": 1.6416,
+     "min": 5009.0,
+     "max": 5013.0,
+     "n": 5
+    },
+    "core_p95_ms": {
+     "mean": 3639.64,
+     "sd": 49.3205,
+     "min": 3554.6,
+     "max": 3677.1,
+     "n": 5
+    },
+    "p95_after_startup_ms": {
+     "mean": 5005.02,
+     "sd": 0.0447,
+     "min": 5005.0,
+     "max": 5005.1,
+     "n": 5
+    },
+    "startup_delay_s": {
+     "mean": 0.01,
+     "sd": 0.0,
+     "min": 0.01,
+     "max": 0.01,
+     "n": 5
+    },
+    "t_inject_rel": {
+     "mean": 10.0086,
+     "sd": 0.0009,
+     "min": 10.008,
+     "max": 10.01,
+     "n": 5
+    },
+    "detect_event_s": null,
+    "detect_alert_s": {
+     "mean": 5.6064,
+     "sd": 0.3335,
+     "min": 5.255,
+     "max": 6.009,
+     "n": 5
+    },
+    "first_related_alert_s": {
+     "mean": 5.6064,
+     "sd": 0.3335,
+     "min": 5.255,
+     "max": 6.009,
+     "n": 5
+    },
+    "recovery_s": {
+     "mean": 30.0512,
+     "sd": 0.2336,
+     "min": 29.809,
+     "max": 30.386,
+     "n": 5
+    },
+    "alerts_required": true,
+    "alerts_detected": 5,
+    "collateral_alerts": 0,
+    "collateral_names": [],
+    "false_positive_alerts": 0,
+    "fp_names": [],
+    "wrong_diagnosis": 0,
+    "alerts_fired": [
+     "HighLatencyP95",
+     "UserFacingErrorRate"
+    ],
+    "mechanisms": {
+     "gateway_retries": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "upstream_marked_down": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "breaker_opened": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "bank_retries": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "payments_queued": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "recovered_roll_forward": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "recovered_roll_back": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "compensations": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "duplicate_requests": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_failovers": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_client_switches": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_fenced_or_deposed": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_demoted": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_stepped_down": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_resyncs": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_shed": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_stale_answers": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_fast_fail": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "container_restarts": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     }
+    },
+    "cpu_cores": {
+     "mean": 0.9484,
+     "sd": 0.0058,
+     "min": 0.941,
+     "max": 0.957,
+     "n": 5
+    },
+    "rss_mb": {
+     "mean": 494.02,
+     "sd": 0.3347,
+     "min": 493.5,
+     "max": 494.3,
+     "n": 5
+    },
+    "app_containers": 8,
+    "orphan_debits": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "double_charged": {
+     "mean": 28.8,
+     "sd": 1.6432,
+     "min": 27,
+     "max": 30,
+     "n": 5
+    },
+    "replica_identical": 0
+   },
+   "ft": {
+    "reps": 5,
+    "passed": 5,
+    "consistent": 5,
+    "requests": {
+     "mean": 4500,
+     "sd": 0.0,
+     "min": 4500,
+     "max": 4500,
+     "n": 5
+    },
+    "success_rate": {
+     "mean": 0.9974,
+     "sd": 0.001,
+     "min": 0.9958,
+     "max": 0.9982,
+     "n": 5
+    },
+    "success_pct": {
+     "mean": 99.738,
+     "sd": 0.0976,
+     "min": 99.58,
+     "max": 99.82,
+     "n": 5
+    },
+    "failed": {
+     "mean": 11.8,
+     "sd": 4.4385,
+     "min": 8,
+     "max": 19,
+     "n": 5
+    },
+    "failed_ratio": {
+     "mean": 0.0026,
+     "sd": 0.001,
+     "min": 0.0017777777777777779,
+     "max": 0.004222222222222222,
+     "n": 5
+    },
+    "user_failed": {
+     "mean": 11.8,
+     "sd": 4.4385,
+     "min": 8,
+     "max": 19,
+     "n": 5
+    },
+    "degraded": {
+     "mean": 1510,
+     "sd": 8.6891,
+     "min": 1495,
+     "max": 1516,
+     "n": 5
+    },
+    "recovered_by_retry": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "p50_ms": {
+     "mean": 5.58,
+     "sd": 0.0447,
+     "min": 5.5,
+     "max": 5.6,
+     "n": 5
+    },
+    "p95_ms": {
+     "mean": 95.74,
+     "sd": 4.9268,
+     "min": 90.4,
+     "max": 103.4,
+     "n": 5
+    },
+    "p99_ms": {
+     "mean": 135.04,
+     "sd": 24.0569,
+     "min": 105.7,
+     "max": 159.6,
+     "n": 5
+    },
+    "core_p95_ms": {
+     "mean": 22.32,
+     "sd": 0.0447,
+     "min": 22.3,
+     "max": 22.4,
+     "n": 5
+    },
+    "p95_after_startup_ms": {
+     "mean": 96.0,
+     "sd": 5.0289,
+     "min": 90.5,
+     "max": 103.7,
+     "n": 5
+    },
+    "startup_delay_s": {
+     "mean": 0.01,
+     "sd": 0.0,
+     "min": 0.01,
+     "max": 0.01,
+     "n": 5
+    },
+    "t_inject_rel": {
+     "mean": 10.0086,
+     "sd": 0.0009,
+     "min": 10.008,
+     "max": 10.01,
+     "n": 5
+    },
+    "detect_event_s": {
+     "mean": 0.0416,
+     "sd": 0.0041,
+     "min": 0.035,
+     "max": 0.046,
+     "n": 5
+    },
+    "detect_alert_s": {
+     "mean": 4.06,
+     "sd": 0.5042,
+     "min": 3.25,
+     "max": 4.5,
+     "n": 5
+    },
+    "first_related_alert_s": {
+     "mean": 4.06,
+     "sd": 0.5042,
+     "min": 3.25,
+     "max": 4.5,
+     "n": 5
+    },
+    "recovery_s": {
+     "mean": 0.92,
+     "sd": 0.4865,
+     "min": 0.424,
+     "max": 1.708,
+     "n": 5
+    },
+    "alerts_required": true,
+    "alerts_detected": 5,
+    "collateral_alerts": 0,
+    "collateral_names": [],
+    "false_positive_alerts": 0,
+    "fp_names": [],
+    "wrong_diagnosis": 0,
+    "alerts_fired": [
+     "LoadShedding"
+    ],
+    "mechanisms": {
+     "gateway_retries": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "upstream_marked_down": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "breaker_opened": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "bank_retries": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "payments_queued": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "recovered_roll_forward": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "recovered_roll_back": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "compensations": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "duplicate_requests": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_failovers": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_client_switches": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_fenced_or_deposed": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_demoted": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_stepped_down": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_resyncs": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_shed": {
+      "mean": 1521.8,
+      "sd": 4.7117,
+      "min": 1514,
+      "max": 1526,
+      "n": 5
+     },
+     "gateway_stale_answers": {
+      "mean": 1510,
+      "sd": 8.6891,
+      "min": 1495,
+      "max": 1516,
+      "n": 5
+     },
+     "gateway_fast_fail": {
+      "mean": 11.8,
+      "sd": 4.4385,
+      "min": 8,
+      "max": 19,
+      "n": 5
+     },
+     "container_restarts": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     }
+    },
+    "cpu_cores": {
+     "mean": 0.6934,
+     "sd": 0.0021,
+     "min": 0.691,
+     "max": 0.696,
+     "n": 5
+    },
+    "rss_mb": {
+     "mean": 744.72,
+     "sd": 0.6686,
+     "min": 743.9,
+     "max": 745.4,
+     "n": 5
+    },
+    "app_containers": 13,
+    "orphan_debits": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "double_charged": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "replica_identical": 5
+   },
+   "endterm": {
+    "reps": 5,
+    "passed": 5,
+    "consistent": 5,
+    "requests": {
+     "mean": 4500,
+     "sd": 0.0,
+     "min": 4500,
+     "max": 4500,
+     "n": 5
+    },
+    "success_rate": {
+     "mean": 0.9975,
+     "sd": 0.0004,
+     "min": 0.9969,
+     "max": 0.9978,
+     "n": 5
+    },
+    "success_pct": {
+     "mean": 99.748,
+     "sd": 0.0383,
+     "min": 99.69,
+     "max": 99.78,
+     "n": 5
+    },
+    "failed": {
+     "mean": 11.4,
+     "sd": 1.6733,
+     "min": 10,
+     "max": 14,
+     "n": 5
+    },
+    "failed_ratio": {
+     "mean": 0.0025,
+     "sd": 0.0004,
+     "min": 0.0022222222222222222,
+     "max": 0.003111111111111111,
+     "n": 5
+    },
+    "user_failed": {
+     "mean": 11.4,
+     "sd": 1.6733,
+     "min": 10,
+     "max": 14,
+     "n": 5
+    },
+    "degraded": {
+     "mean": 1511.4,
+     "sd": 6.7676,
+     "min": 1502,
+     "max": 1518,
+     "n": 5
+    },
+    "recovered_by_retry": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "p50_ms": {
+     "mean": 5.94,
+     "sd": 0.0894,
+     "min": 5.8,
+     "max": 6.0,
+     "n": 5
+    },
+    "p95_ms": {
+     "mean": 101.38,
+     "sd": 6.5113,
+     "min": 91.4,
+     "max": 107.9,
+     "n": 5
+    },
+    "p99_ms": {
+     "mean": 148.98,
+     "sd": 23.404,
+     "min": 108.8,
+     "max": 167.7,
+     "n": 5
+    },
+    "core_p95_ms": {
+     "mean": 23.2,
+     "sd": 0.8689,
+     "min": 22.6,
+     "max": 24.7,
+     "n": 5
+    },
+    "p95_after_startup_ms": {
+     "mean": 101.44,
+     "sd": 6.695,
+     "min": 91.4,
+     "max": 108.5,
+     "n": 5
+    },
+    "startup_delay_s": {
+     "mean": 1.07,
+     "sd": 0.1056,
+     "min": 0.97,
+     "max": 1.23,
+     "n": 5
+    },
+    "t_inject_rel": {
+     "mean": 11.0694,
+     "sd": 0.1045,
+     "min": 10.968,
+     "max": 11.227,
+     "n": 5
+    },
+    "detect_event_s": {
+     "mean": 0.0476,
+     "sd": 0.0037,
+     "min": 0.042,
+     "max": 0.051,
+     "n": 5
+    },
+    "detect_alert_s": {
+     "mean": 4.1318,
+     "sd": 0.5566,
+     "min": 3.46,
+     "max": 4.815,
+     "n": 5
+    },
+    "first_related_alert_s": {
+     "mean": 4.1318,
+     "sd": 0.5566,
+     "min": 3.46,
+     "max": 4.815,
+     "n": 5
+    },
+    "recovery_s": {
+     "mean": 1.1934,
+     "sd": 0.4835,
+     "min": 0.398,
+     "max": 1.521,
+     "n": 5
+    },
+    "alerts_required": true,
+    "alerts_detected": 5,
+    "collateral_alerts": 0,
+    "collateral_names": [],
+    "false_positive_alerts": 0,
+    "fp_names": [],
+    "wrong_diagnosis": 0,
+    "alerts_fired": [
+     "LoadShedding"
+    ],
+    "mechanisms": {
+     "gateway_retries": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "upstream_marked_down": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "breaker_opened": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "bank_retries": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "payments_queued": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "recovered_roll_forward": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "recovered_roll_back": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "compensations": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "duplicate_requests": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_failovers": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_client_switches": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_fenced_or_deposed": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_demoted": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_stepped_down": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_resyncs": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_shed": {
+      "mean": 1522.8,
+      "sd": 7.6616,
+      "min": 1512,
+      "max": 1532,
+      "n": 5
+     },
+     "gateway_stale_answers": {
+      "mean": 1511.4,
+      "sd": 6.7676,
+      "min": 1502,
+      "max": 1518,
+      "n": 5
+     },
+     "gateway_fast_fail": {
+      "mean": 11.4,
+      "sd": 1.6733,
+      "min": 10,
+      "max": 14,
+      "n": 5
+     },
+     "container_restarts": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     }
+    },
+    "cpu_cores": {
+     "mean": 0.7236,
+     "sd": 0.0075,
+     "min": 0.714,
+     "max": 0.732,
+     "n": 5
+    },
+    "rss_mb": {
+     "mean": 744.16,
+     "sd": 0.5941,
+     "min": 743.5,
+     "max": 745.0,
+     "n": 5
+    },
+    "app_containers": 13,
+    "orphan_debits": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "double_charged": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "replica_identical": 5
+   }
+  },
+  "X7": {
+   "baseline": {
+    "reps": 5,
+    "passed": 0,
+    "consistent": 0,
+    "requests": {
+     "mean": 1635.4,
+     "sd": 6.0663,
+     "min": 1628,
+     "max": 1644,
+     "n": 5
+    },
+    "success_rate": {
+     "mean": 0.9731,
+     "sd": 0.0051,
+     "min": 0.9665,
+     "max": 0.9803,
+     "n": 5
+    },
+    "success_pct": {
+     "mean": 97.31,
+     "sd": 0.5056,
+     "min": 96.65,
+     "max": 98.03,
+     "n": 5
+    },
+    "failed": {
+     "mean": 44,
+     "sd": 8.4261,
+     "min": 32,
+     "max": 55,
+     "n": 5
+    },
+    "failed_ratio": {
+     "mean": 0.0269,
+     "sd": 0.0051,
+     "min": 0.019656019656019656,
+     "max": 0.03345498783454988,
+     "n": 5
+    },
+    "user_failed": {
+     "mean": 8.6,
+     "sd": 2.7019,
+     "min": 4,
+     "max": 11,
+     "n": 5
+    },
+    "degraded": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "recovered_by_retry": {
+     "mean": 26.8,
+     "sd": 4.1473,
+     "min": 23,
+     "max": 33,
+     "n": 5
+    },
+    "p50_ms": {
+     "mean": 6.74,
+     "sd": 0.114,
+     "min": 6.6,
+     "max": 6.9,
+     "n": 5
+    },
+    "p95_ms": {
+     "mean": 22.96,
+     "sd": 0.3782,
+     "min": 22.6,
+     "max": 23.5,
+     "n": 5
+    },
+    "p99_ms": {
+     "mean": 29.34,
+     "sd": 2.3512,
+     "min": 26.8,
+     "max": 32.2,
+     "n": 5
+    },
+    "core_p95_ms": {
+     "mean": 12.6,
+     "sd": 0.7616,
+     "min": 11.8,
+     "max": 13.4,
+     "n": 5
+    },
+    "p95_after_startup_ms": {
+     "mean": 22.96,
+     "sd": 0.4037,
+     "min": 22.6,
+     "max": 23.6,
+     "n": 5
+    },
+    "startup_delay_s": {
+     "mean": 0.01,
+     "sd": 0.0,
+     "min": 0.01,
+     "max": 0.01,
+     "n": 5
+    },
+    "t_inject_rel": {
+     "mean": 10.0084,
+     "sd": 0.0009,
+     "min": 10.008,
+     "max": 10.01,
+     "n": 5
+    },
+    "detect_event_s": {
+     "mean": 0.5098,
+     "sd": 0.0254,
+     "min": 0.48,
+     "max": 0.53,
+     "n": 5
+    },
+    "detect_alert_s": null,
+    "first_related_alert_s": {
+     "mean": 6.556,
+     "sd": 1.2958,
+     "min": 5.748,
+     "max": 8.755,
+     "n": 5
+    },
+    "recovery_s": {
+     "mean": 15.2748,
+     "sd": 0.1328,
+     "min": 15.073,
+     "max": 15.403,
+     "n": 5
+    },
+    "alerts_required": true,
+    "alerts_detected": 5,
+    "collateral_alerts": 0,
+    "collateral_names": [],
+    "false_positive_alerts": 0,
+    "fp_names": [],
+    "wrong_diagnosis": 0,
+    "alerts_fired": [
+     "ReplicaErrorRate",
+     "UserFacingErrorRate"
+    ],
+    "mechanisms": {
+     "gateway_retries": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "upstream_marked_down": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "breaker_opened": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "bank_retries": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "payments_queued": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "recovered_roll_forward": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "recovered_roll_back": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "compensations": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "duplicate_requests": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_failovers": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_client_switches": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_fenced_or_deposed": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_demoted": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_stepped_down": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_resyncs": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_shed": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_stale_answers": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_fast_fail": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "container_restarts": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     }
+    },
+    "cpu_cores": {
+     "mean": 0.261,
+     "sd": 0.0012,
+     "min": 0.26,
+     "max": 0.263,
+     "n": 5
+    },
+    "rss_mb": {
+     "mean": 459.58,
+     "sd": 0.3271,
+     "min": 459.3,
+     "max": 460.1,
+     "n": 5
+    },
+    "app_containers": 8,
+    "orphan_debits": {
+     "mean": 44,
+     "sd": 8.4261,
+     "min": 32,
+     "max": 55,
+     "n": 5
+    },
+    "double_charged": {
+     "mean": 35.4,
+     "sd": 6.0663,
+     "min": 28,
+     "max": 44,
+     "n": 5
+    },
+    "replica_identical": 0
+   },
+   "ft": {
+    "reps": 5,
+    "passed": 5,
+    "consistent": 5,
+    "requests": {
+     "mean": 1630.2,
+     "sd": 4.8166,
+     "min": 1624,
+     "max": 1634,
+     "n": 5
+    },
+    "success_rate": {
+     "mean": 0.9768,
+     "sd": 0.0032,
+     "min": 0.9737,
+     "max": 0.9809,
+     "n": 5
+    },
+    "success_pct": {
+     "mean": 97.682,
+     "sd": 0.3242,
+     "min": 97.37,
+     "max": 98.09,
+     "n": 5
+    },
+    "failed": {
+     "mean": 37.8,
+     "sd": 5.4037,
+     "min": 31,
+     "max": 43,
+     "n": 5
+    },
+    "failed_ratio": {
+     "mean": 0.0232,
+     "sd": 0.0033,
+     "min": 0.019088669950738917,
+     "max": 0.02631578947368421,
+     "n": 5
+    },
+    "user_failed": {
+     "mean": 7.6,
+     "sd": 0.8944,
+     "min": 7,
+     "max": 9,
+     "n": 5
+    },
+    "degraded": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "recovered_by_retry": {
+     "mean": 22.6,
+     "sd": 4.3359,
+     "min": 17,
+     "max": 27,
+     "n": 5
+    },
+    "p50_ms": {
+     "mean": 7.84,
+     "sd": 0.0894,
+     "min": 7.7,
+     "max": 7.9,
+     "n": 5
+    },
+    "p95_ms": {
+     "mean": 26.46,
+     "sd": 2.4419,
+     "min": 24.0,
+     "max": 30.0,
+     "n": 5
+    },
+    "p99_ms": {
+     "mean": 71.7,
+     "sd": 3.3369,
+     "min": 68.1,
+     "max": 75.3,
+     "n": 5
+    },
+    "core_p95_ms": {
+     "mean": 35.98,
+     "sd": 3.0302,
+     "min": 32.2,
+     "max": 40.0,
+     "n": 5
+    },
+    "p95_after_startup_ms": {
+     "mean": 31.22,
+     "sd": 5.0246,
+     "min": 26.5,
+     "max": 36.8,
+     "n": 5
+    },
+    "startup_delay_s": {
+     "mean": 0.01,
+     "sd": 0.0,
+     "min": 0.01,
+     "max": 0.01,
+     "n": 5
+    },
+    "t_inject_rel": {
+     "mean": 10.0086,
+     "sd": 0.0009,
+     "min": 10.008,
+     "max": 10.01,
+     "n": 5
+    },
+    "detect_event_s": {
+     "mean": 0.972,
+     "sd": 0.0344,
+     "min": 0.933,
+     "max": 1.004,
+     "n": 5
+    },
+    "detect_alert_s": {
+     "mean": 17.3368,
+     "sd": 0.2017,
+     "min": 17.081,
+     "max": 17.57,
+     "n": 4
+    },
+    "first_related_alert_s": {
+     "mean": 6.0096,
+     "sd": 0.5747,
+     "min": 5.166,
+     "max": 6.463,
+     "n": 5
+    },
+    "recovery_s": {
+     "mean": 15.5002,
+     "sd": 0.2623,
+     "min": 15.079,
+     "max": 15.681,
+     "n": 5
+    },
+    "alerts_required": true,
+    "alerts_detected": 5,
+    "collateral_alerts": 0,
+    "collateral_names": [],
+    "false_positive_alerts": 0,
+    "fp_names": [],
+    "wrong_diagnosis": 0,
+    "alerts_fired": [
+     "PaymentsUnfinished",
+     "ReplicaErrorRate",
+     "UserFacingErrorRate"
+    ],
+    "mechanisms": {
+     "gateway_retries": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "upstream_marked_down": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "breaker_opened": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "bank_retries": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "payments_queued": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "recovered_roll_forward": {
+      "mean": 9,
+      "sd": 2.3452,
+      "min": 7,
+      "max": 13,
+      "n": 5
+     },
+     "recovered_roll_back": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "compensations": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "duplicate_requests": {
+      "mean": 30.2,
+      "sd": 4.8166,
+      "min": 24,
+      "max": 34,
+      "n": 5
+     },
+     "db_failovers": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_client_switches": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_fenced_or_deposed": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_demoted": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_stepped_down": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_resyncs": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_shed": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_stale_answers": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_fast_fail": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "container_restarts": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     }
+    },
+    "cpu_cores": {
+     "mean": 0.3642,
+     "sd": 0.0008,
+     "min": 0.363,
+     "max": 0.365,
+     "n": 5
+    },
+    "rss_mb": {
+     "mean": 746.48,
+     "sd": 0.455,
+     "min": 746.0,
+     "max": 747.0,
+     "n": 5
+    },
+    "app_containers": 13,
+    "orphan_debits": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "double_charged": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "replica_identical": 5
+   },
+   "endterm": {
+    "reps": 5,
+    "passed": 5,
+    "consistent": 5,
+    "requests": {
+     "mean": 1634.4,
+     "sd": 5.3198,
+     "min": 1627,
+     "max": 1640,
+     "n": 5
+    },
+    "success_rate": {
+     "mean": 0.9747,
+     "sd": 0.0043,
+     "min": 0.9695,
+     "max": 0.9797,
+     "n": 5
+    },
+    "success_pct": {
+     "mean": 97.466,
+     "sd": 0.4297,
+     "min": 96.95,
+     "max": 97.97,
+     "n": 5
+    },
+    "failed": {
+     "mean": 41.4,
+     "sd": 7.1624,
+     "min": 33,
+     "max": 50,
+     "n": 5
+    },
+    "failed_ratio": {
+     "mean": 0.0253,
+     "sd": 0.0043,
+     "min": 0.020282728948985862,
+     "max": 0.03048780487804878,
+     "n": 5
+    },
+    "user_failed": {
+     "mean": 7,
+     "sd": 2.3452,
+     "min": 5,
+     "max": 10,
+     "n": 5
+    },
+    "degraded": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "recovered_by_retry": {
+     "mean": 27.4,
+     "sd": 4.0373,
+     "min": 21,
+     "max": 31,
+     "n": 5
+    },
+    "p50_ms": {
+     "mean": 8.9,
+     "sd": 0.1414,
+     "min": 8.8,
+     "max": 9.1,
+     "n": 5
+    },
+    "p95_ms": {
+     "mean": 56.34,
+     "sd": 3.3857,
+     "min": 53.5,
+     "max": 62.2,
+     "n": 5
+    },
+    "p99_ms": {
+     "mean": 109.24,
+     "sd": 22.4846,
+     "min": 87.5,
+     "max": 141.8,
+     "n": 5
+    },
+    "core_p95_ms": {
+     "mean": 40.9,
+     "sd": 14.9486,
+     "min": 31.6,
+     "max": 67.5,
+     "n": 5
+    },
+    "p95_after_startup_ms": {
+     "mean": 37.64,
+     "sd": 9.287,
+     "min": 27.1,
+     "max": 49.7,
+     "n": 5
+    },
+    "startup_delay_s": {
+     "mean": 1.074,
+     "sd": 0.0658,
+     "min": 0.98,
+     "max": 1.15,
+     "n": 5
+    },
+    "t_inject_rel": {
+     "mean": 11.0722,
+     "sd": 0.0668,
+     "min": 10.977,
+     "max": 11.148,
+     "n": 5
+    },
+    "detect_event_s": {
+     "mean": 0.9856,
+     "sd": 0.0498,
+     "min": 0.949,
+     "max": 1.073,
+     "n": 5
+    },
+    "detect_alert_s": {
+     "mean": 17.4138,
+     "sd": 0.2291,
+     "min": 17.193,
+     "max": 17.731,
+     "n": 4
+    },
+    "first_related_alert_s": {
+     "mean": 7.4474,
+     "sd": 0.9956,
+     "min": 6.282,
+     "max": 8.417,
+     "n": 5
+    },
+    "recovery_s": {
+     "mean": 16.0918,
+     "sd": 0.6912,
+     "min": 15.553,
+     "max": 16.884,
+     "n": 5
+    },
+    "alerts_required": true,
+    "alerts_detected": 5,
+    "collateral_alerts": 0,
+    "collateral_names": [],
+    "false_positive_alerts": 0,
+    "fp_names": [],
+    "wrong_diagnosis": 0,
+    "alerts_fired": [
+     "PaymentsUnfinished",
+     "ReplicaErrorRate",
+     "UserFacingErrorRate"
+    ],
+    "mechanisms": {
+     "gateway_retries": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "upstream_marked_down": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "breaker_opened": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "bank_retries": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "payments_queued": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "recovered_roll_forward": {
+      "mean": 8.8,
+      "sd": 5.933,
+      "min": 5,
+      "max": 19,
+      "n": 5
+     },
+     "recovered_roll_back": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "compensations": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "duplicate_requests": {
+      "mean": 34.4,
+      "sd": 5.3198,
+      "min": 27,
+      "max": 40,
+      "n": 5
+     },
+     "db_failovers": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_client_switches": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_fenced_or_deposed": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_demoted": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_stepped_down": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_resyncs": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_shed": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_stale_answers": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_fast_fail": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "container_restarts": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     }
+    },
+    "cpu_cores": {
+     "mean": 0.3836,
+     "sd": 0.0055,
+     "min": 0.377,
+     "max": 0.392,
+     "n": 5
+    },
+    "rss_mb": {
+     "mean": 746.3,
+     "sd": 1.0607,
+     "min": 745.1,
+     "max": 747.8,
+     "n": 5
+    },
+    "app_containers": 13,
+    "orphan_debits": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "double_charged": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "replica_identical": 5
+   }
+  },
+  "X8": {
+   "baseline": {
+    "reps": 5,
+    "passed": 0,
+    "consistent": 0,
+    "requests": {
+     "mean": 1878,
+     "sd": 0.0,
+     "min": 1878,
+     "max": 1878,
+     "n": 5
+    },
+    "success_rate": {
+     "mean": 0.7553,
+     "sd": 0.0003,
+     "min": 0.7551,
+     "max": 0.7556,
+     "n": 5
+    },
+    "success_pct": {
+     "mean": 75.53,
+     "sd": 0.0274,
+     "min": 75.51,
+     "max": 75.56,
+     "n": 5
+    },
+    "failed": {
+     "mean": 459.6,
+     "sd": 0.5477,
+     "min": 459,
+     "max": 460,
+     "n": 5
+    },
+    "failed_ratio": {
+     "mean": 0.2447,
+     "sd": 0.0003,
+     "min": 0.24440894568690097,
+     "max": 0.24494142705005326,
+     "n": 5
+    },
+    "user_failed": {
+     "mean": 381.6,
+     "sd": 0.5477,
+     "min": 381,
+     "max": 382,
+     "n": 5
+    },
+    "degraded": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "recovered_by_retry": {
+     "mean": 7,
+     "sd": 0.0,
+     "min": 7,
+     "max": 7,
+     "n": 5
+    },
+    "p50_ms": {
+     "mean": 6.66,
+     "sd": 0.0548,
+     "min": 6.6,
+     "max": 6.7,
+     "n": 5
+    },
+    "p95_ms": {
+     "mean": 20.68,
+     "sd": 0.1924,
+     "min": 20.4,
+     "max": 20.9,
+     "n": 5
+    },
+    "p99_ms": {
+     "mean": 25.06,
+     "sd": 0.1949,
+     "min": 24.8,
+     "max": 25.3,
+     "n": 5
+    },
+    "core_p95_ms": {
+     "mean": 10.7,
+     "sd": 1.554,
+     "min": 9.5,
+     "max": 12.5,
+     "n": 5
+    },
+    "p95_after_startup_ms": {
+     "mean": 20.44,
+     "sd": 0.2302,
+     "min": 20.2,
+     "max": 20.7,
+     "n": 5
+    },
+    "startup_delay_s": {
+     "mean": 0.01,
+     "sd": 0.0,
+     "min": 0.01,
+     "max": 0.01,
+     "n": 5
+    },
+    "t_inject_rel": {
+     "mean": 10.0084,
+     "sd": 0.0009,
+     "min": 10.008,
+     "max": 10.01,
+     "n": 5
+    },
+    "detect_event_s": {
+     "mean": 0.4618,
+     "sd": 0.0801,
+     "min": 0.383,
+     "max": 0.573,
+     "n": 5
+    },
+    "detect_alert_s": {
+     "mean": 3.9962,
+     "sd": 0.2638,
+     "min": 3.568,
+     "max": 4.184,
+     "n": 5
+    },
+    "first_related_alert_s": {
+     "mean": 3.9962,
+     "sd": 0.2638,
+     "min": 3.568,
+     "max": 4.184,
+     "n": 5
+    },
+    "recovery_s": {
+     "mean": 12.1394,
+     "sd": 0.0141,
+     "min": 12.123,
+     "max": 12.15,
+     "n": 5
+    },
+    "alerts_required": true,
+    "alerts_detected": 5,
+    "collateral_alerts": 0,
+    "collateral_names": [],
+    "false_positive_alerts": 0,
+    "fp_names": [],
+    "wrong_diagnosis": 0,
+    "alerts_fired": [
+     "InstanceDown",
+     "ReplicaErrorRate",
+     "UserFacingErrorRate"
+    ],
+    "mechanisms": {
+     "gateway_retries": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "upstream_marked_down": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "breaker_opened": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "bank_retries": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "payments_queued": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "recovered_roll_forward": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "recovered_roll_back": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "compensations": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "duplicate_requests": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_failovers": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_client_switches": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_fenced_or_deposed": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_demoted": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_stepped_down": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_resyncs": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_shed": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_stale_answers": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_fast_fail": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "container_restarts": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     }
+    },
+    "cpu_cores": {
+     "mean": 0.2792,
+     "sd": 0.0008,
+     "min": 0.278,
+     "max": 0.28,
+     "n": 5
+    },
+    "rss_mb": {
+     "mean": 458.2,
+     "sd": 0.3391,
+     "min": 457.8,
+     "max": 458.7,
+     "n": 5
+    },
+    "app_containers": 8,
+    "orphan_debits": {
+     "mean": 148,
+     "sd": 0.0,
+     "min": 148,
+     "max": 148,
+     "n": 5
+    },
+    "double_charged": {
+     "mean": 78,
+     "sd": 0.0,
+     "min": 78,
+     "max": 78,
+     "n": 5
+    },
+    "replica_identical": 0
+   },
+   "ft": {
+    "reps": 5,
+    "passed": 5,
+    "consistent": 5,
+    "requests": {
+     "mean": 1800,
+     "sd": 0.0,
+     "min": 1800,
+     "max": 1800,
+     "n": 5
+    },
+    "success_rate": {
+     "mean": 1.0,
+     "sd": 0.0,
+     "min": 1.0,
+     "max": 1.0,
+     "n": 5
+    },
+    "success_pct": {
+     "mean": 100.0,
+     "sd": 0.0,
+     "min": 100.0,
+     "max": 100.0,
+     "n": 5
+    },
+    "failed": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "failed_ratio": {
+     "mean": 0.0,
+     "sd": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n": 5
+    },
+    "user_failed": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "degraded": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "recovered_by_retry": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "p50_ms": {
+     "mean": 6.68,
+     "sd": 0.0837,
+     "min": 6.6,
+     "max": 6.8,
+     "n": 5
+    },
+    "p95_ms": {
+     "mean": 20.12,
+     "sd": 0.3114,
+     "min": 19.7,
+     "max": 20.4,
+     "n": 5
+    },
+    "p99_ms": {
+     "mean": 353.02,
+     "sd": 131.7356,
+     "min": 214.1,
+     "max": 530.9,
+     "n": 5
+    },
+    "core_p95_ms": {
+     "mean": 281.46,
+     "sd": 132.5341,
+     "min": 107.0,
+     "max": 452.0,
+     "n": 5
+    },
+    "p95_after_startup_ms": {
+     "mean": 20.08,
+     "sd": 0.2864,
+     "min": 19.7,
+     "max": 20.4,
+     "n": 5
+    },
+    "startup_delay_s": {
+     "mean": 0.01,
+     "sd": 0.0,
+     "min": 0.01,
+     "max": 0.01,
+     "n": 5
+    },
+    "t_inject_rel": {
+     "mean": 10.008,
+     "sd": 0.0007,
+     "min": 10.007,
+     "max": 10.009,
+     "n": 5
+    },
+    "detect_event_s": {
+     "mean": 0.4786,
+     "sd": 0.0714,
+     "min": 0.387,
+     "max": 0.561,
+     "n": 5
+    },
+    "detect_alert_s": {
+     "mean": 1.644,
+     "sd": 0.2881,
+     "min": 1.185,
+     "max": 1.954,
+     "n": 5
+    },
+    "first_related_alert_s": {
+     "mean": 1.644,
+     "sd": 0.2881,
+     "min": 1.185,
+     "max": 1.954,
+     "n": 5
+    },
+    "recovery_s": {
+     "mean": 0.0,
+     "sd": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n": 5
+    },
+    "alerts_required": true,
+    "alerts_detected": 5,
+    "collateral_alerts": 0,
+    "collateral_names": [],
+    "false_positive_alerts": 0,
+    "fp_names": [],
+    "wrong_diagnosis": 0,
+    "alerts_fired": [
+     "DBReplicationLost",
+     "DatabaseFailover",
+     "HighLatencyP95",
+     "InstanceDown"
+    ],
+    "mechanisms": {
+     "gateway_retries": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "upstream_marked_down": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "breaker_opened": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "bank_retries": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "payments_queued": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "recovered_roll_forward": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "recovered_roll_back": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "compensations": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "duplicate_requests": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_failovers": {
+      "mean": 1,
+      "sd": 0.0,
+      "min": 1,
+      "max": 1,
+      "n": 5
+     },
+     "db_client_switches": {
+      "mean": 6,
+      "sd": 0.0,
+      "min": 6,
+      "max": 6,
+      "n": 5
+     },
+     "db_fenced_or_deposed": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_demoted": {
+      "mean": 1,
+      "sd": 0.0,
+      "min": 1,
+      "max": 1,
+      "n": 5
+     },
+     "db_stepped_down": {
+      "mean": 1,
+      "sd": 0.0,
+      "min": 1,
+      "max": 1,
+      "n": 5
+     },
+     "db_resyncs": {
+      "mean": 1,
+      "sd": 0.0,
+      "min": 1,
+      "max": 1,
+      "n": 5
+     },
+     "gateway_shed": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_stale_answers": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_fast_fail": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "container_restarts": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     }
+    },
+    "cpu_cores": {
+     "mean": 0.3828,
+     "sd": 0.0008,
+     "min": 0.382,
+     "max": 0.384,
+     "n": 5
+    },
+    "rss_mb": {
+     "mean": 746.28,
+     "sd": 1.0521,
+     "min": 745.2,
+     "max": 747.4,
+     "n": 5
+    },
+    "app_containers": 13,
+    "orphan_debits": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "double_charged": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "replica_identical": 5
+   },
+   "endterm": {
+    "reps": 5,
+    "passed": 5,
+    "consistent": 5,
+    "requests": {
+     "mean": 1800,
+     "sd": 0.0,
+     "min": 1800,
+     "max": 1800,
+     "n": 5
+    },
+    "success_rate": {
+     "mean": 1.0,
+     "sd": 0.0,
+     "min": 1.0,
+     "max": 1.0,
+     "n": 5
+    },
+    "success_pct": {
+     "mean": 100.0,
+     "sd": 0.0,
+     "min": 100.0,
+     "max": 100.0,
+     "n": 5
+    },
+    "failed": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "failed_ratio": {
+     "mean": 0.0,
+     "sd": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n": 5
+    },
+    "user_failed": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "degraded": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "recovered_by_retry": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "p50_ms": {
+     "mean": 7.78,
+     "sd": 0.1643,
+     "min": 7.6,
+     "max": 8.0,
+     "n": 5
+    },
+    "p95_ms": {
+     "mean": 22.56,
+     "sd": 0.251,
+     "min": 22.2,
+     "max": 22.8,
+     "n": 5
+    },
+    "p99_ms": {
+     "mean": 362.8,
+     "sd": 130.2019,
+     "min": 219.0,
+     "max": 510.7,
+     "n": 5
+    },
+    "core_p95_ms": {
+     "mean": 266.64,
+     "sd": 121.4301,
+     "min": 118.8,
+     "max": 403.6,
+     "n": 5
+    },
+    "p95_after_startup_ms": {
+     "mean": 20.04,
+     "sd": 0.1817,
+     "min": 19.8,
+     "max": 20.3,
+     "n": 5
+    },
+    "startup_delay_s": {
+     "mean": 1.052,
+     "sd": 0.0687,
+     "min": 0.97,
+     "max": 1.13,
+     "n": 5
+    },
+    "t_inject_rel": {
+     "mean": 11.0516,
+     "sd": 0.0694,
+     "min": 10.969,
+     "max": 11.131,
+     "n": 5
+    },
+    "detect_event_s": {
+     "mean": 0.4662,
+     "sd": 0.0879,
+     "min": 0.336,
+     "max": 0.554,
+     "n": 5
+    },
+    "detect_alert_s": {
+     "mean": 1.821,
+     "sd": 0.4575,
+     "min": 1.345,
+     "max": 2.504,
+     "n": 5
+    },
+    "first_related_alert_s": {
+     "mean": 1.821,
+     "sd": 0.4575,
+     "min": 1.345,
+     "max": 2.504,
+     "n": 5
+    },
+    "recovery_s": {
+     "mean": 0.0,
+     "sd": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n": 5
+    },
+    "alerts_required": true,
+    "alerts_detected": 5,
+    "collateral_alerts": 0,
+    "collateral_names": [],
+    "false_positive_alerts": 0,
+    "fp_names": [],
+    "wrong_diagnosis": 0,
+    "alerts_fired": [
+     "DBReplicationLost",
+     "DatabaseFailover",
+     "InstanceDown"
+    ],
+    "mechanisms": {
+     "gateway_retries": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "upstream_marked_down": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "breaker_opened": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "bank_retries": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "payments_queued": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "recovered_roll_forward": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "recovered_roll_back": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "compensations": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "duplicate_requests": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_failovers": {
+      "mean": 1,
+      "sd": 0.0,
+      "min": 1,
+      "max": 1,
+      "n": 5
+     },
+     "db_client_switches": {
+      "mean": 6,
+      "sd": 0.0,
+      "min": 6,
+      "max": 6,
+      "n": 5
+     },
+     "db_fenced_or_deposed": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_demoted": {
+      "mean": 1,
+      "sd": 0.0,
+      "min": 1,
+      "max": 1,
+      "n": 5
+     },
+     "db_stepped_down": {
+      "mean": 1,
+      "sd": 0.0,
+      "min": 1,
+      "max": 1,
+      "n": 5
+     },
+     "db_resyncs": {
+      "mean": 1,
+      "sd": 0.0,
+      "min": 1,
+      "max": 1,
+      "n": 5
+     },
+     "gateway_shed": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_stale_answers": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_fast_fail": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "container_restarts": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     }
+    },
+    "cpu_cores": {
+     "mean": 0.408,
+     "sd": 0.0039,
+     "min": 0.402,
+     "max": 0.413,
+     "n": 5
+    },
+    "rss_mb": {
+     "mean": 745.78,
+     "sd": 1.1628,
+     "min": 744.4,
+     "max": 747.2,
+     "n": 5
+    },
+    "app_containers": 13,
+    "orphan_debits": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "double_charged": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "replica_identical": 5
+   }
+  },
+  "X9": {
+   "baseline": {
+    "reps": 5,
+    "passed": 5,
+    "consistent": 5,
+    "requests": {
+     "mean": 2200,
+     "sd": 0.0,
+     "min": 2200,
+     "max": 2200,
+     "n": 5
+    },
+    "success_rate": {
+     "mean": 0.769,
+     "sd": 0.0021,
+     "min": 0.7664,
+     "max": 0.7714,
+     "n": 5
+    },
+    "success_pct": {
+     "mean": 76.902,
+     "sd": 0.2116,
+     "min": 76.64,
+     "max": 77.14,
+     "n": 5
+    },
+    "failed": {
+     "mean": 508.2,
+     "sd": 4.6583,
+     "min": 503,
+     "max": 514,
+     "n": 5
+    },
+    "failed_ratio": {
+     "mean": 0.231,
+     "sd": 0.0021,
+     "min": 0.22863636363636364,
+     "max": 0.23363636363636364,
+     "n": 5
+    },
+    "user_failed": {
+     "mean": 508.2,
+     "sd": 4.6583,
+     "min": 503,
+     "max": 514,
+     "n": 5
+    },
+    "degraded": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "recovered_by_retry": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "p50_ms": {
+     "mean": 6.06,
+     "sd": 0.0894,
+     "min": 6.0,
+     "max": 6.2,
+     "n": 5
+    },
+    "p95_ms": {
+     "mean": 22.34,
+     "sd": 0.0894,
+     "min": 22.3,
+     "max": 22.5,
+     "n": 5
+    },
+    "p99_ms": {
+     "mean": 27.14,
+     "sd": 0.3912,
+     "min": 26.8,
+     "max": 27.7,
+     "n": 5
+    },
+    "core_p95_ms": {
+     "mean": 11.76,
+     "sd": 2.7826,
+     "min": 9.9,
+     "max": 16.6,
+     "n": 5
+    },
+    "p95_after_startup_ms": {
+     "mean": 22.3,
+     "sd": 0.0707,
+     "min": 22.2,
+     "max": 22.4,
+     "n": 5
+    },
+    "startup_delay_s": {
+     "mean": 0.01,
+     "sd": 0.0,
+     "min": 0.01,
+     "max": 0.01,
+     "n": 5
+    },
+    "t_inject_rel": {
+     "mean": 10.009,
+     "sd": 0.0022,
+     "min": 10.008,
+     "max": 10.013,
+     "n": 5
+    },
+    "detect_event_s": null,
+    "detect_alert_s": {
+     "mean": 5.6888,
+     "sd": 0.4732,
+     "min": 4.899,
+     "max": 6.181,
+     "n": 5
+    },
+    "first_related_alert_s": {
+     "mean": 5.6888,
+     "sd": 0.4732,
+     "min": 4.899,
+     "max": 6.181,
+     "n": 5
+    },
+    "recovery_s": {
+     "mean": 29.8054,
+     "sd": 0.4933,
+     "min": 29.046,
+     "max": 30.196,
+     "n": 5
+    },
+    "alerts_required": true,
+    "alerts_detected": 5,
+    "collateral_alerts": 0,
+    "collateral_names": [],
+    "false_positive_alerts": 0,
+    "fp_names": [],
+    "wrong_diagnosis": 0,
+    "alerts_fired": [
+     "InstanceDown",
+     "ReplicaErrorRate",
+     "UserFacingErrorRate"
+    ],
+    "mechanisms": {
+     "gateway_retries": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "upstream_marked_down": {
+      "mean": 1,
+      "sd": 0.0,
+      "min": 1,
+      "max": 1,
+      "n": 5
+     },
+     "breaker_opened": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "bank_retries": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "payments_queued": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "recovered_roll_forward": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "recovered_roll_back": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "compensations": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "duplicate_requests": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_failovers": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_client_switches": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_fenced_or_deposed": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_demoted": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_stepped_down": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_resyncs": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_shed": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_stale_answers": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_fast_fail": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "container_restarts": {
+      "mean": 1,
+      "sd": 0.0,
+      "min": 1,
+      "max": 1,
+      "n": 5
+     }
+    },
+    "cpu_cores": {
+     "mean": 0.2936,
+     "sd": 0.0013,
+     "min": 0.293,
+     "max": 0.296,
+     "n": 5
+    },
+    "rss_mb": {
+     "mean": 459.22,
+     "sd": 0.563,
+     "min": 458.5,
+     "max": 459.8,
+     "n": 5
+    },
+    "app_containers": 8,
+    "orphan_debits": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "double_charged": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "replica_identical": 0,
+    "diagnosed_correctly": 5,
+    "diagnosed_after_s": {
+     "mean": 8.3948,
+     "sd": 0.4653,
+     "min": 7.668,
+     "max": 8.736,
+     "n": 5
+    },
+    "mitigated_after_s": {
+     "mean": 8.4584,
+     "sd": 0.4633,
+     "min": 7.736,
+     "max": 8.798,
+     "n": 5
+    }
+   },
+   "ft": {
+    "reps": 5,
+    "passed": 5,
+    "consistent": 5,
+    "requests": {
+     "mean": 2200,
+     "sd": 0.0,
+     "min": 2200,
+     "max": 2200,
+     "n": 5
+    },
+    "success_rate": {
+     "mean": 0.9813,
+     "sd": 0.0017,
+     "min": 0.9795,
+     "max": 0.9836,
+     "n": 5
+    },
+    "success_pct": {
+     "mean": 98.126,
+     "sd": 0.1686,
+     "min": 97.95,
+     "max": 98.36,
+     "n": 5
+    },
+    "failed": {
+     "mean": 41.2,
+     "sd": 3.7014,
+     "min": 36,
+     "max": 45,
+     "n": 5
+    },
+    "failed_ratio": {
+     "mean": 0.0187,
+     "sd": 0.0017,
+     "min": 0.016363636363636365,
+     "max": 0.020454545454545454,
+     "n": 5
+    },
+    "user_failed": {
+     "mean": 41.2,
+     "sd": 3.7014,
+     "min": 36,
+     "max": 45,
+     "n": 5
+    },
+    "degraded": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "recovered_by_retry": {
+     "mean": 0.6,
+     "sd": 0.5477,
+     "min": 0,
+     "max": 1,
+     "n": 5
+    },
+    "p50_ms": {
+     "mean": 6.64,
+     "sd": 0.0548,
+     "min": 6.6,
+     "max": 6.7,
+     "n": 5
+    },
+    "p95_ms": {
+     "mean": 19.52,
+     "sd": 0.0837,
+     "min": 19.4,
+     "max": 19.6,
+     "n": 5
+    },
+    "p99_ms": {
+     "mean": 24.46,
+     "sd": 1.6056,
+     "min": 23.4,
+     "max": 27.2,
+     "n": 5
+    },
+    "core_p95_ms": {
+     "mean": 23.24,
+     "sd": 0.1342,
+     "min": 23.1,
+     "max": 23.4,
+     "n": 5
+    },
+    "p95_after_startup_ms": {
+     "mean": 19.48,
+     "sd": 0.0837,
+     "min": 19.4,
+     "max": 19.6,
+     "n": 5
+    },
+    "startup_delay_s": {
+     "mean": 0.01,
+     "sd": 0.0,
+     "min": 0.01,
+     "max": 0.01,
+     "n": 5
+    },
+    "t_inject_rel": {
+     "mean": 10.0094,
+     "sd": 0.0011,
+     "min": 10.008,
+     "max": 10.011,
+     "n": 5
+    },
+    "detect_event_s": null,
+    "detect_alert_s": {
+     "mean": 5.8086,
+     "sd": 0.6319,
+     "min": 4.791,
+     "max": 6.486,
+     "n": 5
+    },
+    "first_related_alert_s": {
+     "mean": 5.8086,
+     "sd": 0.6319,
+     "min": 4.791,
+     "max": 6.486,
+     "n": 5
+    },
+    "recovery_s": {
+     "mean": 7.7318,
+     "sd": 0.4654,
+     "min": 6.969,
+     "max": 8.147,
+     "n": 5
+    },
+    "alerts_required": true,
+    "alerts_detected": 5,
+    "collateral_alerts": 0,
+    "collateral_names": [],
+    "false_positive_alerts": 0,
+    "fp_names": [],
+    "wrong_diagnosis": 0,
+    "alerts_fired": [
+     "ReplicaErrorRate",
+     "UserFacingErrorRate"
+    ],
+    "mechanisms": {
+     "gateway_retries": {
+      "mean": 0.6,
+      "sd": 0.5477,
+      "min": 0,
+      "max": 1,
+      "n": 5
+     },
+     "upstream_marked_down": {
+      "mean": 1,
+      "sd": 0.0,
+      "min": 1,
+      "max": 1,
+      "n": 5
+     },
+     "breaker_opened": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "bank_retries": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "payments_queued": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "recovered_roll_forward": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "recovered_roll_back": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "compensations": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "duplicate_requests": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_failovers": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_client_switches": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_fenced_or_deposed": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_demoted": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_stepped_down": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_resyncs": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_shed": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_stale_answers": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_fast_fail": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "container_restarts": {
+      "mean": 1,
+      "sd": 0.0,
+      "min": 1,
+      "max": 1,
+      "n": 5
+     }
+    },
+    "cpu_cores": {
+     "mean": 0.4054,
+     "sd": 0.0005,
+     "min": 0.405,
+     "max": 0.406,
+     "n": 5
+    },
+    "rss_mb": {
+     "mean": 745.26,
+     "sd": 0.8204,
+     "min": 744.3,
+     "max": 746.2,
+     "n": 5
+    },
+    "app_containers": 13,
+    "orphan_debits": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "double_charged": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "replica_identical": 5,
+    "diagnosed_correctly": 5,
+    "diagnosed_after_s": {
+     "mean": 7.3766,
+     "sd": 0.4557,
+     "min": 6.648,
+     "max": 7.683,
+     "n": 5
+    },
+    "mitigated_after_s": {
+     "mean": 7.429,
+     "sd": 0.4557,
+     "min": 6.709,
+     "max": 7.745,
+     "n": 5
+    }
+   },
+   "endterm": {
+    "reps": 5,
+    "passed": 5,
+    "consistent": 5,
+    "requests": {
+     "mean": 2200,
+     "sd": 0.0,
+     "min": 2200,
+     "max": 2200,
+     "n": 5
+    },
+    "success_rate": {
+     "mean": 0.9784,
+     "sd": 0.002,
+     "min": 0.975,
+     "max": 0.98,
+     "n": 5
+    },
+    "success_pct": {
+     "mean": 97.836,
+     "sd": 0.2046,
+     "min": 97.5,
+     "max": 98.0,
+     "n": 5
+    },
+    "failed": {
+     "mean": 47.6,
+     "sd": 4.5056,
+     "min": 44,
+     "max": 55,
+     "n": 5
+    },
+    "failed_ratio": {
+     "mean": 0.0216,
+     "sd": 0.002,
+     "min": 0.02,
+     "max": 0.025,
+     "n": 5
+    },
+    "user_failed": {
+     "mean": 47.6,
+     "sd": 4.5056,
+     "min": 44,
+     "max": 55,
+     "n": 5
+    },
+    "degraded": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "recovered_by_retry": {
+     "mean": 1.2,
+     "sd": 0.4472,
+     "min": 1,
+     "max": 2,
+     "n": 5
+    },
+    "p50_ms": {
+     "mean": 7.68,
+     "sd": 0.0837,
+     "min": 7.6,
+     "max": 7.8,
+     "n": 5
+    },
+    "p95_ms": {
+     "mean": 20.64,
+     "sd": 0.3435,
+     "min": 20.3,
+     "max": 21.1,
+     "n": 5
+    },
+    "p99_ms": {
+     "mean": 80.74,
+     "sd": 15.2339,
+     "min": 67.1,
+     "max": 106.6,
+     "n": 5
+    },
+    "core_p95_ms": {
+     "mean": 23.72,
+     "sd": 0.7918,
+     "min": 22.9,
+     "max": 24.8,
+     "n": 5
+    },
+    "p95_after_startup_ms": {
+     "mean": 19.52,
+     "sd": 0.2168,
+     "min": 19.3,
+     "max": 19.8,
+     "n": 5
+    },
+    "startup_delay_s": {
+     "mean": 1.094,
+     "sd": 0.106,
+     "min": 0.96,
+     "max": 1.25,
+     "n": 5
+    },
+    "t_inject_rel": {
+     "mean": 11.0938,
+     "sd": 0.1035,
+     "min": 10.964,
+     "max": 11.247,
+     "n": 5
+    },
+    "detect_event_s": null,
+    "detect_alert_s": {
+     "mean": 6.1934,
+     "sd": 0.6794,
+     "min": 5.228,
+     "max": 7.14,
+     "n": 5
+    },
+    "first_related_alert_s": {
+     "mean": 6.1934,
+     "sd": 0.6794,
+     "min": 5.228,
+     "max": 7.14,
+     "n": 5
+    },
+    "recovery_s": {
+     "mean": 8.5312,
+     "sd": 0.7473,
+     "min": 7.556,
+     "max": 9.657,
+     "n": 5
+    },
+    "alerts_required": true,
+    "alerts_detected": 5,
+    "collateral_alerts": 0,
+    "collateral_names": [],
+    "false_positive_alerts": 0,
+    "fp_names": [],
+    "wrong_diagnosis": 0,
+    "alerts_fired": [
+     "ReplicaErrorRate",
+     "UserFacingErrorRate"
+    ],
+    "mechanisms": {
+     "gateway_retries": {
+      "mean": 1.2,
+      "sd": 0.4472,
+      "min": 1,
+      "max": 2,
+      "n": 5
+     },
+     "upstream_marked_down": {
+      "mean": 1,
+      "sd": 0.0,
+      "min": 1,
+      "max": 1,
+      "n": 5
+     },
+     "breaker_opened": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "bank_retries": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "payments_queued": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "recovered_roll_forward": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "recovered_roll_back": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "compensations": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "duplicate_requests": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_failovers": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_client_switches": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_fenced_or_deposed": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_demoted": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_stepped_down": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "db_resyncs": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_shed": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_stale_answers": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "gateway_fast_fail": {
+      "mean": 0,
+      "sd": 0.0,
+      "min": 0,
+      "max": 0,
+      "n": 5
+     },
+     "container_restarts": {
+      "mean": 1,
+      "sd": 0.0,
+      "min": 1,
+      "max": 1,
+      "n": 5
+     }
+    },
+    "cpu_cores": {
+     "mean": 0.428,
+     "sd": 0.0032,
+     "min": 0.423,
+     "max": 0.431,
+     "n": 5
+    },
+    "rss_mb": {
+     "mean": 744.56,
+     "sd": 0.7765,
+     "min": 743.2,
+     "max": 745.1,
+     "n": 5
+    },
+    "app_containers": 13,
+    "orphan_debits": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "double_charged": {
+     "mean": 0,
+     "sd": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 5
+    },
+    "replica_identical": 5,
+    "diagnosed_correctly": 5,
+    "diagnosed_after_s": {
+     "mean": 8.175,
+     "sd": 0.7209,
+     "min": 7.152,
+     "max": 9.191,
+     "n": 5
+    },
+    "mitigated_after_s": {
+     "mean": 8.2302,
+     "sd": 0.7191,
+     "min": 7.217,
+     "max": 9.251,
+     "n": 5
+    }
+   }
+  }
+ },
+ "security": {
+  "X5": {
+   "reps": 3,
+   "passed": 3,
+   "cases": "17/17",
+   "cases_all_reps": true,
+   "data_unchanged": 3,
+   "audit_ok": 3,
+   "audit_records": {
+    "mean": 15,
+    "sd": 0.0,
+    "min": 15,
+    "max": 15,
+    "n": 3
+   },
+   "alerts": [
+    "AuthFailureSpike"
+   ],
+   "alert_runs": {
+    "AuthFailureSpike": 3
+   },
+   "flood": null
+  },
+  "X6": {
+   "reps": 3,
+   "passed": 3,
+   "cases": "10/10",
+   "cases_all_reps": true,
+   "data_unchanged": 3,
+   "audit_ok": 3,
+   "audit_records": {
+    "mean": 25,
+    "sd": 0.0,
+    "min": 25,
+    "max": 25,
+    "n": 3
+   },
+   "alerts": [
+    "RateLimitSpike"
+   ],
+   "alert_runs": {
+    "RateLimitSpike": 2
+   },
+   "flood": {
+    "sent": 400,
+    "seconds": 0.3,
+    "200": 22,
+    "429": 378,
+    "other": 0,
+    "throttled": true
+   }
+  }
+ },
+ "reliability": {
+  "baseline": {
+   "duration_s": 900.0,
+   "rate": 20,
+   "mttf_injected_s": {
+    "service": 240.0,
+    "db": 480.0
+   },
+   "kills_planned": 24,
+   "kills_done": 23,
+   "components": {
+    "db": {
+     "replicas": 1,
+     "failures": 3,
+     "downtime_s": 62.04,
+     "MTTF_s": 279.3,
+     "MTTR_s": 20.68,
+     "MTBF_s": 300.0,
+     "availability": 0.93107,
+     "failure_rate_per_h": 12.89
+    },
+    "student": {
+     "replicas": 1,
+     "failures": 5,
+     "downtime_s": 104.82,
+     "MTTF_s": 159.0,
+     "MTTR_s": 20.96,
+     "MTBF_s": 180.0,
+     "availability": 0.88353,
+     "failure_rate_per_h": 22.64
+    },
+    "payment": {
+     "replicas": 1,
+     "failures": 6,
+     "downtime_s": 125.97,
+     "MTTF_s": 129.0,
+     "MTTR_s": 21.0,
+     "MTBF_s": 150.0,
+     "availability": 0.86003,
+     "failure_rate_per_h": 27.91
+    },
+    "records": {
+     "replicas": 1,
+     "failures": 3,
+     "downtime_s": 63.14,
+     "MTTF_s": 279.0,
+     "MTTR_s": 21.05,
+     "MTBF_s": 300.0,
+     "availability": 0.92984,
+     "failure_rate_per_h": 12.91
+    },
+    "timetable": {
+     "replicas": 1,
+     "failures": 5,
+     "downtime_s": 104.91,
+     "MTTF_s": 159.0,
+     "MTTR_s": 20.98,
+     "MTBF_s": 180.0,
+     "availability": 0.88343,
+     "failure_rate_per_h": 22.64
+    }
+   },
+   "instances": {
+    "db-a": {
+     "kind": "db",
+     "failures": 3,
+     "downtime": 62.04,
+     "repairs": [
+      20.63,
+      20.98,
+      20.43
+     ]
+    },
+    "student-a": {
+     "kind": "student",
+     "failures": 5,
+     "downtime": 104.82,
+     "repairs": [
+      20.98,
+      21.0,
+      20.91,
+      20.94,
+      20.99
+     ]
+    },
+    "payment-a": {
+     "kind": "payment",
+     "failures": 6,
+     "downtime": 125.97,
+     "repairs": [
+      21.01,
+      20.94,
+      20.96,
+      21.17,
+      20.93,
+      20.96
+     ]
+    },
+    "records-a": {
+     "kind": "records",
+     "failures": 3,
+     "downtime": 63.14,
+     "repairs": [
+      20.93,
+      20.97,
+      21.23
+     ]
+    },
+    "timetable-a": {
+     "kind": "timetable",
+     "failures": 5,
+     "downtime": 104.91,
+     "repairs": [
+      20.96,
+      20.96,
+      21.01,
+      20.96,
+      21.01
+     ]
+    }
+   },
+   "services": {
+    "student": {
+     "outages": 7,
+     "downtime_s": 148,
+     "MTTF_s": 107.6,
+     "MTTR_s": 21.14,
+     "availability_time": 0.8357,
+     "availability_requests": 0.8395,
+     "episodes": [
+      [
+       20,
+       41
+      ],
+      [
+       71,
+       92
+      ],
+      [
+       142,
+       165
+      ],
+      [
+       260,
+       281
+      ],
+      [
+       328,
+       349
+      ],
+      [
+       401,
+       422
+      ],
+      [
+       698,
+       718
+      ]
+     ]
+    },
+    "payment": {
+     "outages": 8,
+     "downtime_s": 168,
+     "MTTF_s": 91.6,
+     "MTTR_s": 21.0,
+     "availability_time": 0.8135,
+     "availability_requests": 0.692,
+     "episodes": [
+      [
+       69,
+       90
+      ],
+      [
+       102,
+       123
+      ],
+      [
+       144,
+       164
+      ],
+      [
+       325,
+       349
+      ],
+      [
+       354,
+       374
+      ],
+      [
+       600,
+       621
+      ],
+      [
+       698,
+       718
+      ],
+      [
+       809,
+       830
+      ]
+     ]
+    },
+    "records": {
+     "outages": 5,
+     "downtime_s": 64,
+     "MTTF_s": 167.4,
+     "MTTR_s": 12.8,
+     "availability_time": 0.929,
+     "availability_requests": 0.9199,
+     "episodes": [
+      [
+       149,
+       150
+      ],
+      [
+       158,
+       159
+      ],
+      [
+       264,
+       285
+      ],
+      [
+       389,
+       410
+      ],
+      [
+       541,
+       561
+      ]
+     ]
+    },
+    "timetable": {
+     "outages": 5,
+     "downtime_s": 104,
+     "MTTF_s": 159.4,
+     "MTTR_s": 20.8,
+     "availability_time": 0.8846,
+     "availability_requests": 0.8835,
+     "episodes": [
+      [
+       106,
+       127
+      ],
+      [
+       430,
+       451
+      ],
+      [
+       563,
+       584
+      ],
+      [
+       764,
+       785
+      ],
+      [
+       830,
+       850
+      ]
+     ]
+    },
+    "system": {
+     "outages": 15,
+     "downtime_s": 359,
+     "MTTF_s": 36.1,
+     "MTTR_s": 23.93,
+     "availability_time": 0.6016,
+     "availability_requests": 0.8235,
+     "episodes": [
+      [
+       20,
+       41
+      ],
+      [
+       69,
+       92
+      ],
+      [
+       102,
+       127
+      ],
+      [
+       142,
+       165
+      ],
+      [
+       260,
+       285
+      ],
+      [
+       325,
+       349
+      ],
+      [
+       354,
+       374
+      ],
+      [
+       389,
+       422
+      ],
+      [
+       430,
+       451
+      ],
+      [
+       541,
+       561
+      ],
+      [
+       563,
+       584
+      ],
+      [
+       600,
+       621
+      ],
+      [
+       698,
+       718
+      ],
+      [
+       764,
+       785
+      ],
+      [
+       809,
+       850
+      ]
+     ]
+    },
+    "user_level": {
+     "requests": 18000,
+     "failed": 2619,
+     "success": 0.8545
+    }
+   },
+   "system_failure_rate_per_h": 99.82,
+   "predicted": {
+    "blocks": {
+     "db": 0.93107,
+     "student": 0.88353,
+     "payment": 0.86003,
+     "records": 0.92984,
+     "timetable": 0.88343
+    },
+    "system": 0.581163
+   },
+   "double_faults": [],
+   "double_fault_log": [],
+   "merged_kills": [
+    {
+     "name": "db-a",
+     "t1": 327.69,
+     "t2": 327.966,
+     "gap_s": 0.28
+    }
+   ]
+  },
+  "endterm": {
+   "duration_s": 900.0,
+   "rate": 20,
+   "mttf_injected_s": {
+    "service": 240.0,
+    "db": 480.0
+   },
+   "kills_planned": 47,
+   "kills_done": 47,
+   "components": {
+    "db": {
+     "replicas": 2,
+     "failures": 3,
+     "downtime_s": 11.37,
+     "MTTF_s": 596.2,
+     "MTTR_s": 3.79,
+     "MTBF_s": 600.0,
+     "availability": 0.99368,
+     "failure_rate_per_h": 6.04
+    },
+    "student": {
+     "replicas": 2,
+     "failures": 14,
+     "downtime_s": 14.23,
+     "MTTF_s": 127.6,
+     "MTTR_s": 1.02,
+     "MTBF_s": 128.6,
+     "availability": 0.99209,
+     "failure_rate_per_h": 28.22
+    },
+    "payment": {
+     "replicas": 2,
+     "failures": 11,
+     "downtime_s": 11.71,
+     "MTTF_s": 162.6,
+     "MTTR_s": 1.06,
+     "MTBF_s": 163.6,
+     "availability": 0.99349,
+     "failure_rate_per_h": 22.14
+    },
+    "records": {
+     "replicas": 2,
+     "failures": 8,
+     "downtime_s": 7.89,
+     "MTTF_s": 224.0,
+     "MTTR_s": 0.99,
+     "MTBF_s": 225.0,
+     "availability": 0.99562,
+     "failure_rate_per_h": 16.07
+    },
+    "timetable": {
+     "replicas": 2,
+     "failures": 10,
+     "downtime_s": 9.94,
+     "MTTF_s": 179.0,
+     "MTTR_s": 0.99,
+     "MTBF_s": 180.0,
+     "availability": 0.99448,
+     "failure_rate_per_h": 20.11
+    }
+   },
+   "instances": {
+    "db-a": {
+     "kind": "db",
+     "failures": 3,
+     "downtime": 11.37,
+     "repairs": [
+      3.79,
+      3.79,
+      3.78
+     ]
+    },
+    "student-a": {
+     "kind": "student",
+     "failures": 6,
+     "downtime": 5.86,
+     "repairs": [
+      0.77,
+      1.02,
+      1.02,
+      1.01,
+      1.02,
+      1.02
+     ]
+    },
+    "payment-a": {
+     "kind": "payment",
+     "failures": 6,
+     "downtime": 6.62,
+     "repairs": [
+      1.01,
+      1.27,
+      1.27,
+      1.02,
+      1.02,
+      1.02
+     ]
+    },
+    "records-a": {
+     "kind": "records",
+     "failures": 3,
+     "downtime": 3.05,
+     "repairs": [
+      1.02,
+      1.01,
+      1.02
+     ]
+    },
+    "timetable-a": {
+     "kind": "timetable",
+     "failures": 5,
+     "downtime": 5.1,
+     "repairs": [
+      1.02,
+      1.03,
+      1.01,
+      1.02,
+      1.02
+     ]
+    },
+    "db-b": {
+     "kind": "db",
+     "failures": 0,
+     "downtime": 0,
+     "repairs": []
+    },
+    "student-b": {
+     "kind": "student",
+     "failures": 8,
+     "downtime": 8.37,
+     "repairs": [
+      1.01,
+      1.26,
+      1.02,
+      1.02,
+      1.02,
+      1.01,
+      1.02,
+      1.01
+     ]
+    },
+    "payment-b": {
+     "kind": "payment",
+     "failures": 5,
+     "downtime": 5.09,
+     "repairs": [
+      1.01,
+      1.01,
+      1.02,
+      1.01,
+      1.04
+     ]
+    },
+    "records-b": {
+     "kind": "records",
+     "failures": 5,
+     "downtime": 4.84,
+     "repairs": [
+      1.01,
+      1.02,
+      0.76,
+      1.02,
+      1.02
+     ]
+    },
+    "timetable-b": {
+     "kind": "timetable",
+     "failures": 5,
+     "downtime": 4.84,
+     "repairs": [
+      0.77,
+      1.01,
+      1.02,
+      1.03,
+      1.01
+     ]
+    }
+   },
+   "services": {
+    "student": {
+     "outages": 0,
+     "downtime_s": 0,
+     "MTTF_s": null,
+     "MTTR_s": null,
+     "availability_time": 1.0,
+     "availability_requests": 0.9997,
+     "episodes": []
+    },
+    "payment": {
+     "outages": 0,
+     "downtime_s": 0,
+     "MTTF_s": null,
+     "MTTR_s": null,
+     "availability_time": 1.0,
+     "availability_requests": 1.0,
+     "episodes": []
+    },
+    "records": {
+     "outages": 0,
+     "downtime_s": 0,
+     "MTTF_s": null,
+     "MTTR_s": null,
+     "availability_time": 1.0,
+     "availability_requests": 1.0,
+     "episodes": []
+    },
+    "timetable": {
+     "outages": 0,
+     "downtime_s": 0,
+     "MTTF_s": null,
+     "MTTR_s": null,
+     "availability_time": 1.0,
+     "availability_requests": 1.0,
+     "episodes": []
+    },
+    "system": {
+     "outages": 0,
+     "downtime_s": 0,
+     "MTTF_s": null,
+     "MTTR_s": null,
+     "availability_time": 1.0,
+     "availability_requests": 0.9998,
+     "episodes": []
+    },
+    "user_level": {
+     "requests": 18000,
+     "failed": 3,
+     "success": 0.9998
+    }
+   },
+   "system_failure_rate_per_h": 0.0,
+   "predicted": {
+    "blocks": {
+     "db": 0.99996,
+     "student": 0.999937,
+     "payment": 0.999958,
+     "records": 0.999981,
+     "timetable": 0.99997
+    },
+    "system": 0.999805
+   },
+   "double_faults": [
+    {
+     "service": "student",
+     "start_s": 143.06,
+     "end_s": 143.53,
+     "duration_s": 0.47,
+     "failed_requests": 3
+    }
+   ],
+   "double_fault_log": [
+    "t= 142.454  harness    kill -9        student-a",
+    "t= 142.507  gateway    UPSTREAM_DOWN  student-a",
+    "t= 142.809  monitor    DOWN           student-a",
+    "t= 142.999  harness    kill -9        student-b",
+    "t= 143.058  gateway    UPSTREAM_DOWN  student-b",
+    "t= 143.320  monitor    DOWN           student-b",
+    "t= 143.427  student-a  STARTED",
+    "t= 143.530  gateway    UPSTREAM_UP    student-a",
+    "t= 143.571  monitor    UP             student-a",
+    "t= 143.817  harness    kill -9        db-a",
+    "t= 144.012  student-b  STARTED",
+    "t= 144.077  monitor    DOWN           db-a",
+    "t= 144.077  monitor    UP             student-b",
+    "t= 144.138  gateway    UPSTREAM_UP    student-b",
+    "t= 144.327  db-b       PROMOTED",
+    "t= 144.328  monitor    DB_FAILOVER",
+    "t= 144.346  payment-a  DB_SWITCHED",
+    "t= 144.358  student-b  DB_SWITCHED",
+    "t= 144.372  student-a  DB_SWITCHED",
+    "t= 144.502  payment-b  DB_SWITCHED",
+    "t= 144.607  records-a  DB_SWITCHED",
+    "t= 144.639  records-b  DB_SWITCHED"
+   ],
+   "merged_kills": [
+    {
+     "name": "db-a",
+     "t1": 327.673,
+     "t2": 327.957,
+     "gap_s": 0.28
+    }
+   ]
+  }
+ },
+ "slos": {
+  "baseline": {
+   "SLO-1": {
+    "value": 1.0,
+    "met": true,
+    "target": "min success ratio \u2265 0.999"
+   },
+   "SLO-2": {
+    "value": 0.24494142705005326,
+    "met": false,
+    "target": "max failed ratio \u2264 1 %"
+   },
+   "SLO-3": {
+    "value": [
+     11.7,
+     3677.1
+    ],
+    "met": false,
+    "target": "steady core p95 \u2264 100 ms and spike core p95 < 1000 ms"
+   },
+   "SLO-4a": {
+    "value": 0.821,
+    "met": true,
+    "target": "max \u2264 1 s"
+   },
+   "SLO-4b": {
+    "value": [
+     true,
+     6.181
+    ],
+    "met": true,
+    "target": "every run alerted, max \u2264 10 s"
+   },
+   "SLO-5": {
+    "value": 21.123,
+    "met": false,
+    "target": "max \u2264 2 s"
+   },
+   "SLO-6": {
+    "value": [
+     15,
+     40
+    ],
+    "met": false,
+    "target": "100 % of runs consistent"
+   },
+   "SLO-7": {
+    "value": "n/a (no authentication)",
+    "met": null,
+    "target": ""
+   },
+   "SLO-8": {
+    "value": 0.6016,
+    "met": false,
+    "target": "system availability \u2265 0.995"
+   },
+   "SLO-9": {
+    "value": [
+     0,
+     [
+      5,
+      5
+     ],
+     8.736
+    ],
+    "met": true,
+    "target": "0 false positives in X0; gray failure attributed correctly within 15 s in every run"
+   }
+  },
+  "ft": {
+   "SLO-1": {
+    "value": 1.0,
+    "met": true,
+    "target": "min success ratio \u2265 0.999"
+   },
+   "SLO-2": {
+    "value": 0.0,
+    "met": true,
+    "target": "max failed ratio \u2264 1 %"
+   },
+   "SLO-3": {
+    "value": [
+     22.5,
+     22.4
+    ],
+    "met": true,
+    "target": "steady core p95 \u2264 100 ms and spike core p95 < 1000 ms"
+   },
+   "SLO-4a": {
+    "value": 0.789,
+    "met": true,
+    "target": "max \u2264 1 s"
+   },
+   "SLO-4b": {
+    "value": [
+     true,
+     6.486
+    ],
+    "met": true,
+    "target": "every run alerted, max \u2264 10 s"
+   },
+   "SLO-5": {
+    "value": 0.0,
+    "met": true,
+    "target": "max \u2264 2 s"
+   },
+   "SLO-6": {
+    "value": [
+     40,
+     40
+    ],
+    "met": true,
+    "target": "100 % of runs consistent"
+   },
+   "SLO-7": {
+    "value": "n/a (no authentication)",
+    "met": null,
+    "target": ""
+   },
+   "SLO-8": {
+    "value": null,
+    "met": null,
+    "target": "system availability \u2265 0.995"
+   },
+   "SLO-9": {
+    "value": [
+     0,
+     [
+      5,
+      5
+     ],
+     7.683
+    ],
+    "met": true,
+    "target": "0 false positives in X0; gray failure attributed correctly within 15 s in every run"
+   }
+  },
+  "endterm": {
+   "SLO-1": {
+    "value": 1.0,
+    "met": true,
+    "target": "min success ratio \u2265 0.999"
+   },
+   "SLO-2": {
+    "value": 0.0,
+    "met": true,
+    "target": "max failed ratio \u2264 1 %"
+   },
+   "SLO-3": {
+    "value": [
+     42.6,
+     24.7
+    ],
+    "met": true,
+    "target": "steady core p95 \u2264 100 ms and spike core p95 < 1000 ms"
+   },
+   "SLO-4a": {
+    "value": 0.803,
+    "met": true,
+    "target": "max \u2264 1 s"
+   },
+   "SLO-4b": {
+    "value": [
+     true,
+     7.14
+    ],
+    "met": true,
+    "target": "every run alerted, max \u2264 10 s"
+   },
+   "SLO-5": {
+    "value": 0.0,
+    "met": true,
+    "target": "max \u2264 2 s"
+   },
+   "SLO-6": {
+    "value": [
+     40,
+     40
+    ],
+    "met": true,
+    "target": "100 % of runs consistent"
+   },
+   "SLO-7": {
+    "value": [
+     6,
+     6
+    ],
+    "met": true,
+    "target": "all security runs pass"
+   },
+   "SLO-8": {
+    "value": 1.0,
+    "met": true,
+    "target": "system availability \u2265 0.995"
+   },
+   "SLO-9": {
+    "value": [
+     0,
+     [
+      5,
+      5
+     ],
+     9.191
+    ],
+    "met": true,
+    "target": "0 false positives in X0; gray failure attributed correctly within 15 s in every run"
+   }
+  }
+ },
+ "extrapolation": {
+  "assumed_mttf_days": {
+   "service": 30.0,
+   "db": 60.0
+  },
+  "manual_repair_s": 1800,
+  "baseline_measured_repair": {
+   "availability": 0.9999636080544948,
+   "downtime_min_per_year": 19.128,
+   "downtime_h_per_year": 0.3,
+   "downtime_ms_per_year": 1147656.393
+  },
+  "baseline_manual_repair": {
+   "availability": 0.9968808988622638,
+   "downtime_min_per_year": 1639.4,
+   "downtime_h_per_year": 27.3,
+   "downtime_ms_per_year": 98363973.48
+  },
+  "endterm_measured_repair": {
+   "availability": 0.9999999999988517,
+   "downtime_min_per_year": 0.0,
+   "downtime_h_per_year": 0.0,
+   "downtime_ms_per_year": 0.036
+  }
+ },
+ "harness_retries": [],
+ "derived": {
+  "fault_runs": 120,
+  "security_runs": 6,
+  "harness_retries": 0,
+  "total_runs": 126,
+  "baseline": {
+   "passed": 10,
+   "runs": 40,
+   "consistent": 15,
+   "max_orphans": 148,
+   "max_double": 107,
+   "false_positives": 0,
+   "collateral": 5
+  },
+  "ft": {
+   "passed": 40,
+   "runs": 40,
+   "consistent": 40,
+   "max_orphans": 0,
+   "max_double": 0,
+   "false_positives": 0,
+   "collateral": 0
+  },
+  "endterm": {
+   "passed": 40,
+   "runs": 40,
+   "consistent": 40,
+   "max_orphans": 0,
+   "max_double": 0,
+   "false_positives": 0,
+   "collateral": 0
+  },
+  "alerts_required_runs": 95,
+  "alerts_detected_runs": 95,
+  "baseline_max_failed_pct": 24.5,
+  "x9_correct": 15,
+  "x9_runs": 15,
+  "soak_expected_system_down_s": {
+   "baseline": 376.95,
+   "endterm": 0.18
+  },
+  "alert_gap_x7_s": 1.44,
+  "diag_gap_x9_s": 0.8,
+  "x0": {
+   "rss_increase_pct": 62,
+   "cpu_increase_pct": 36,
+   "pay_p50_delta_ms": 6.4,
+   "pay_p50_repl_delta_ms": 5.2,
+   "pay_p50_sec_delta_ms": 1.2
+  }
+ }
+}

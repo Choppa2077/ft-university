@@ -1,0 +1,54 @@
+{
+ "failed": {
+  "mean": 249,
+  "min": 249,
+  "max": 249,
+  "stdev": 0.0,
+  "n": 5
+ },
+ "success_rate": {
+  "mean": 0.865,
+  "min": 0.865,
+  "max": 0.865,
+  "stdev": 0.0,
+  "n": 5
+ },
+ "p95_ms": {
+  "mean": 5002.96,
+  "min": 5002.8,
+  "max": 5003.4,
+  "stdev": 0.251,
+  "n": 5
+ },
+ "detect_alert_s": {
+  "mean": 4.383,
+  "min": 4.096,
+  "max": 4.795,
+  "stdev": 0.317,
+  "n": 5
+ },
+ "detect_event_s": {
+  "mean": 0.717,
+  "min": 0.628,
+  "max": 0.821,
+  "stdev": 0.079,
+  "n": 5
+ },
+ "client_visible_recovery_s": {
+  "mean": 12.371,
+  "min": 12.37,
+  "max": 12.371,
+  "stdev": 0.001,
+  "n": 5
+ },
+ "core_p95_ms": {
+  "mean": 8000.0,
+  "min": 8000.0,
+  "max": 8000.0,
+  "stdev": 0.0,
+  "n": 5
+ },
+ "passed": 0,
+ "reps": 5,
+ "consistent_reps": 0
+}

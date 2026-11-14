@@ -1,0 +1,40 @@
+{
+ "failed": {
+  "mean": 0,
+  "min": 0,
+  "max": 0,
+  "stdev": 0.0,
+  "n": 5
+ },
+ "success_rate": {
+  "mean": 1.0,
+  "min": 1.0,
+  "max": 1.0,
+  "stdev": 0.0,
+  "n": 5
+ },
+ "p95_ms": {
+  "mean": 19.3,
+  "min": 18.9,
+  "max": 19.8,
+  "stdev": 0.387,
+  "n": 5
+ },
+ "client_visible_recovery_s": {
+  "mean": 0.0,
+  "min": 0.0,
+  "max": 0.0,
+  "stdev": 0.0,
+  "n": 5
+ },
+ "core_p95_ms": {
+  "mean": 22.44,
+  "min": 22.4,
+  "max": 22.5,
+  "stdev": 0.055,
+  "n": 5
+ },
+ "passed": 5,
+ "reps": 5,
+ "consistent_reps": 5
+}

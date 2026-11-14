@@ -1,0 +1,129 @@
+{
+ "experiment": "X9",
+ "build": "endterm",
+ "rep": 4,
+ "title": "Gray failure: one student replica answers 50% with HTTP 500, health stays green",
+ "startup_s": 8.9,
+ "requests": 2200,
+ "ok": 2152,
+ "failed": 48,
+ "degraded": 0,
+ "recovered_by_retry": 1,
+ "success_rate": 0.9782,
+ "p50_ms": 7.8,
+ "p95_ms": 20.9,
+ "p99_ms": 72.7,
+ "detect_alert_s": 6.19,
+ "detect_event_s": null,
+ "client_visible_recovery_s": 8.537,
+ "restart_count": {
+  "student-a": 1
+ },
+ "consistency": {
+  "payments_completed": 418,
+  "payments_failed": 0,
+  "bank_debits": 418,
+  "refunds": 0,
+  "orphan_debits": 0,
+  "orphan_amount": 0,
+  "double_charged_intents": 0,
+  "ledger_mismatch": 0,
+  "stuck_payments": 0,
+  "lost_acked_payments": 0,
+  "lost_acked_enrollments": 0,
+  "replica": {
+   "identical": true,
+   "primary": "db-a",
+   "lsn": 1163,
+   "primary_rows": {
+    "paid": 418,
+    "ledger_sum": 93390000.0,
+    "enrollments": 323,
+    "payments": 418
+   },
+   "replica_rows": {
+    "paid": 418,
+    "ledger_sum": 93390000.0,
+    "enrollments": 323,
+    "payments": 418
+   }
+  },
+  "consistent": true
+ },
+ "alerts_fired": [
+  "ReplicaErrorRate",
+  "UserFacingErrorRate"
+ ],
+ "inject": {
+  "faulty": "student-a",
+  "error_rate": 0.5,
+  "t": 1794677428.3505545,
+  "diagnosed": "student-a",
+  "diagnosed_after_s": 8.177,
+  "mitigated_after_s": 8.228
+ },
+ "core_p95_ms": 23.8,
+ "t_inject_rel": 11.093,
+ "duration_s": 55,
+ "mechanisms": {
+  "gateway_retries": 1,
+  "gateway_shed": 0,
+  "gateway_stale_answers": 0,
+  "gateway_fast_fail": 0,
+  "upstream_marked_down": 1,
+  "breaker_opened": 0,
+  "bank_retries": 0,
+  "payments_queued": 0,
+  "recovered_roll_forward": 0,
+  "recovered_roll_back": 0,
+  "compensations": 0,
+  "duplicate_requests": 0,
+  "db_failovers": 0,
+  "db_client_switches": 0,
+  "db_fenced_or_deposed": 0,
+  "db_resyncs": 0,
+  "monitor_down_events": 1,
+  "container_restarts": 1,
+  "db_demoted": 0
+ },
+ "resources": {
+  "cpu_cores": 0.427,
+  "rss_mb": 744.8,
+  "app_containers": 13
+ },
+ "alerts_detail": [
+  {
+   "alertname": "UserFacingErrorRate",
+   "status": "firing",
+   "labels": {
+    "service": "student"
+   },
+   "t_rel_inject": 6.19
+  },
+  {
+   "alertname": "ReplicaErrorRate",
+   "status": "firing",
+   "labels": {
+    "name": "student-a"
+   },
+   "t_rel_inject": 8.19
+  },
+  {
+   "alertname": "ReplicaErrorRate",
+   "status": "resolved",
+   "labels": {
+    "name": "student-a"
+   },
+   "t_rel_inject": 16.198
+  },
+  {
+   "alertname": "UserFacingErrorRate",
+   "status": "resolved",
+   "labels": {
+    "service": "student"
+   },
+   "t_rel_inject": 17.197
+  }
+ ],
+ "_pass": true
+}

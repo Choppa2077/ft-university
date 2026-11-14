@@ -1,0 +1,297 @@
+{
+ "mode": "endterm",
+ "duration": 900.0,
+ "rate": 20,
+ "mttf_injected_s": {
+  "service": 240.0,
+  "db": 480.0
+ },
+ "origin": 1794678573.083987,
+ "kills": [
+  {
+   "t": 19.885,
+   "planned_t": 19.82,
+   "name": "student-a",
+   "killed": true
+  },
+  {
+   "t": 28.701,
+   "planned_t": 28.62,
+   "name": "student-b",
+   "killed": true
+  },
+  {
+   "t": 43.517,
+   "planned_t": 43.45,
+   "name": "student-b",
+   "killed": true
+  },
+  {
+   "t": 48.598,
+   "planned_t": 48.52,
+   "name": "timetable-b",
+   "killed": true
+  },
+  {
+   "t": 68.874,
+   "planned_t": 68.8,
+   "name": "payment-a",
+   "killed": true
+  },
+  {
+   "t": 70.64,
+   "planned_t": 70.57,
+   "name": "student-a",
+   "killed": true
+  },
+  {
+   "t": 99.253,
+   "planned_t": 99.19,
+   "name": "payment-b",
+   "killed": true
+  },
+  {
+   "t": 102.156,
+   "planned_t": 102.08,
+   "name": "payment-a",
+   "killed": true
+  },
+  {
+   "t": 106.048,
+   "planned_t": 105.98,
+   "name": "timetable-a",
+   "killed": true
+  },
+  {
+   "t": 142.454,
+   "planned_t": 142.37,
+   "name": "student-a",
+   "killed": true
+  },
+  {
+   "t": 142.999,
+   "planned_t": 142.94,
+   "name": "student-b",
+   "killed": true
+  },
+  {
+   "t": 143.817,
+   "planned_t": 143.76,
+   "name": "db-a",
+   "killed": true
+  },
+  {
+   "t": 152.339,
+   "planned_t": 152.26,
+   "name": "payment-b",
+   "killed": true
+  },
+  {
+   "t": 259.752,
+   "planned_t": 259.68,
+   "name": "student-a",
+   "killed": true
+  },
+  {
+   "t": 264.192,
+   "planned_t": 264.12,
+   "name": "student-a",
+   "killed": true
+  },
+  {
+   "t": 264.239,
+   "planned_t": 264.19,
+   "name": "records-a",
+   "killed": true
+  },
+  {
+   "t": 275.123,
+   "planned_t": 275.05,
+   "name": "records-b",
+   "killed": true
+  },
+  {
+   "t": 315.811,
+   "planned_t": 315.73,
+   "name": "records-b",
+   "killed": true
+  },
+  {
+   "t": 325.06,
+   "planned_t": 324.99,
+   "name": "payment-a",
+   "killed": true
+  },
+  {
+   "t": 327.673,
+   "planned_t": 327.61,
+   "name": "db-a",
+   "killed": true
+  },
+  {
+   "t": 327.957,
+   "planned_t": 327.9,
+   "name": "db-a",
+   "killed": true
+  },
+  {
+   "t": 351.928,
+   "planned_t": 351.86,
+   "name": "student-b",
+   "killed": true
+  },
+  {
+   "t": 353.586,
+   "planned_t": 353.51,
+   "name": "payment-a",
+   "killed": true
+  },
+  {
+   "t": 374.609,
+   "planned_t": 374.54,
+   "name": "timetable-b",
+   "killed": true
+  },
+  {
+   "t": 389.53,
+   "planned_t": 389.47,
+   "name": "records-a",
+   "killed": true
+  },
+  {
+   "t": 400.816,
+   "planned_t": 400.74,
+   "name": "student-a",
+   "killed": true
+  },
+  {
+   "t": 430.177,
+   "planned_t": 430.12,
+   "name": "timetable-a",
+   "killed": true
+  },
+  {
+   "t": 436.918,
+   "planned_t": 436.86,
+   "name": "records-b",
+   "killed": true
+  },
+  {
+   "t": 470.759,
+   "planned_t": 470.69,
+   "name": "student-b",
+   "killed": true
+  },
+  {
+   "t": 475.019,
+   "planned_t": 474.97,
+   "name": "records-b",
+   "killed": true
+  },
+  {
+   "t": 484.14,
+   "planned_t": 484.07,
+   "name": "student-b",
+   "killed": true
+  },
+  {
+   "t": 531.478,
+   "planned_t": 531.4,
+   "name": "timetable-b",
+   "killed": true
+  },
+  {
+   "t": 540.461,
+   "planned_t": 540.41,
+   "name": "records-a",
+   "killed": true
+  },
+  {
+   "t": 554.443,
+   "planned_t": 554.37,
+   "name": "payment-b",
+   "killed": true
+  },
+  {
+   "t": 562.858,
+   "planned_t": 562.79,
+   "name": "timetable-a",
+   "killed": true
+  },
+  {
+   "t": 600.139,
+   "planned_t": 600.07,
+   "name": "payment-a",
+   "killed": true
+  },
+  {
+   "t": 633.343,
+   "planned_t": 633.27,
+   "name": "student-b",
+   "killed": true
+  },
+  {
+   "t": 662.599,
+   "planned_t": 662.55,
+   "name": "student-b",
+   "killed": true
+  },
+  {
+   "t": 697.69,
+   "planned_t": 697.62,
+   "name": "db-a",
+   "killed": true
+  },
+  {
+   "t": 738.386,
+   "planned_t": 738.32,
+   "name": "payment-b",
+   "killed": true
+  },
+  {
+   "t": 764.368,
+   "planned_t": 764.3,
+   "name": "timetable-a",
+   "killed": true
+  },
+  {
+   "t": 766.207,
+   "planned_t": 766.14,
+   "name": "timetable-b",
+   "killed": true
+  },
+  {
+   "t": 808.979,
+   "planned_t": 808.9,
+   "name": "payment-a",
+   "killed": true
+  },
+  {
+   "t": 829.41,
+   "planned_t": 829.35,
+   "name": "timetable-a",
+   "killed": true
+  },
+  {
+   "t": 830.583,
+   "planned_t": 830.53,
+   "name": "records-b",
+   "killed": true
+  },
+  {
+   "t": 854.972,
+   "planned_t": 854.9,
+   "name": "timetable-b",
+   "killed": true
+  },
+  {
+   "t": 867.043,
+   "planned_t": 866.97,
+   "name": "payment-b",
+   "killed": true
+  }
+ ],
+ "kills_planned": 47,
+ "kills_done": 47,
+ "requests": 18000
+}

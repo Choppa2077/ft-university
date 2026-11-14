@@ -94,6 +94,7 @@ def mechanism_counts(cl: DockerCluster, events: list[dict]) -> dict:
         "db_failovers": ev["DB_FAILOVER"],
         "db_client_switches": ev["DB_SWITCHED"],
         "db_fenced_or_deposed": ev["FENCED"] + ev["DEPOSED"] + ev["STARTUP_DEPOSED"],
+        "db_demoted": ev["DEMOTED"],      # returning old primary told to step down by the monitor
         "db_resyncs": ev["RESYNCED"],
         "monitor_down_events": ev["DOWN"],
         "container_restarts": sum(cl.inspect(n)["RestartCount"] for n in cl.names),

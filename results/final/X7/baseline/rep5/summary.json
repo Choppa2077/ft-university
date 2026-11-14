@@ -1,0 +1,108 @@
+{
+ "experiment": "X7",
+ "build": "baseline",
+ "rep": 5,
+ "title": "Recovery and consistency (30% payments interrupted 15 s)",
+ "startup_s": 8.5,
+ "requests": 1635,
+ "ok": 1590,
+ "failed": 45,
+ "degraded": 0,
+ "recovered_by_retry": 25,
+ "success_rate": 0.9725,
+ "p50_ms": 6.7,
+ "p95_ms": 22.8,
+ "p99_ms": 28.6,
+ "detect_alert_s": null,
+ "detect_event_s": 0.527,
+ "client_visible_recovery_s": 15.383,
+ "restart_count": {},
+ "consistency": {
+  "payments_completed": 298,
+  "payments_failed": 0,
+  "bank_debits": 343,
+  "refunds": 0,
+  "orphan_debits": 45,
+  "orphan_amount": 10100000,
+  "double_charged_intents": 35,
+  "ledger_mismatch": 0,
+  "stuck_payments": 0,
+  "lost_acked_payments": 0,
+  "lost_acked_enrollments": 0,
+  "consistent": false
+ },
+ "alerts_fired": [
+  "ReplicaErrorRate",
+  "UserFacingErrorRate"
+ ],
+ "inject": {
+  "interrupt_rate": 0.3,
+  "stage": "after_debit",
+  "for_s": 15,
+  "t": 1794674813.793542
+ },
+ "core_p95_ms": 12.0,
+ "t_inject_rel": 10.01,
+ "duration_s": 40,
+ "mechanisms": {
+  "gateway_retries": 0,
+  "gateway_shed": 0,
+  "gateway_stale_answers": 0,
+  "gateway_fast_fail": 0,
+  "upstream_marked_down": 0,
+  "breaker_opened": 0,
+  "bank_retries": 0,
+  "payments_queued": 0,
+  "recovered_roll_forward": 0,
+  "recovered_roll_back": 0,
+  "compensations": 0,
+  "duplicate_requests": 0,
+  "db_failovers": 0,
+  "db_client_switches": 0,
+  "db_fenced_or_deposed": 0,
+  "db_resyncs": 0,
+  "monitor_down_events": 0,
+  "container_restarts": 0,
+  "db_demoted": 0
+ },
+ "resources": {
+  "cpu_cores": 0.261,
+  "rss_mb": 460.1,
+  "app_containers": 8
+ },
+ "alerts_detail": [
+  {
+   "alertname": "UserFacingErrorRate",
+   "status": "firing",
+   "labels": {
+    "service": "payment"
+   },
+   "t_rel_inject": 5.808
+  },
+  {
+   "alertname": "ReplicaErrorRate",
+   "status": "firing",
+   "labels": {
+    "name": "payment-a"
+   },
+   "t_rel_inject": 10.809
+  },
+  {
+   "alertname": "ReplicaErrorRate",
+   "status": "resolved",
+   "labels": {
+    "name": "payment-a"
+   },
+   "t_rel_inject": 19.833
+  },
+  {
+   "alertname": "UserFacingErrorRate",
+   "status": "resolved",
+   "labels": {
+    "service": "payment"
+   },
+   "t_rel_inject": 24.845
+  }
+ ],
+ "_pass": false
+}

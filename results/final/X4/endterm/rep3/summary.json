@@ -1,0 +1,106 @@
+{
+ "experiment": "X4",
+ "build": "endterm",
+ "rep": 3,
+ "title": "Load spike (+180 timetable req/s for 15 s)",
+ "startup_s": 8.9,
+ "requests": 4500,
+ "ok": 4490,
+ "failed": 10,
+ "degraded": 1502,
+ "recovered_by_retry": 0,
+ "success_rate": 0.9978,
+ "p50_ms": 6.0,
+ "p95_ms": 98.7,
+ "p99_ms": 149.2,
+ "detect_alert_s": 3.46,
+ "detect_event_s": 0.051,
+ "client_visible_recovery_s": 1.064,
+ "restart_count": {},
+ "consistency": {
+  "payments_completed": 341,
+  "payments_failed": 0,
+  "bank_debits": 341,
+  "refunds": 0,
+  "orphan_debits": 0,
+  "orphan_amount": 0,
+  "double_charged_intents": 0,
+  "ledger_mismatch": 0,
+  "stuck_payments": 0,
+  "lost_acked_payments": 0,
+  "lost_acked_enrollments": 0,
+  "replica": {
+   "identical": true,
+   "primary": "db-a",
+   "lsn": 968,
+   "primary_rows": {
+    "paid": 341,
+    "ledger_sum": 74020000.0,
+    "enrollments": 284,
+    "payments": 341
+   },
+   "replica_rows": {
+    "paid": 341,
+    "ledger_sum": 74020000.0,
+    "enrollments": 284,
+    "payments": 341
+   }
+  },
+  "consistent": true
+ },
+ "alerts_fired": [
+  "LoadShedding"
+ ],
+ "inject": {
+  "burst_timetable_rps": 180,
+  "for_s": 15
+ },
+ "core_p95_ms": 23.0,
+ "t_inject_rel": 11.102,
+ "duration_s": 45,
+ "mechanisms": {
+  "gateway_retries": 0,
+  "gateway_shed": 1512,
+  "gateway_stale_answers": 1502,
+  "gateway_fast_fail": 10,
+  "upstream_marked_down": 0,
+  "breaker_opened": 0,
+  "bank_retries": 0,
+  "payments_queued": 0,
+  "recovered_roll_forward": 0,
+  "recovered_roll_back": 0,
+  "compensations": 0,
+  "duplicate_requests": 0,
+  "db_failovers": 0,
+  "db_client_switches": 0,
+  "db_fenced_or_deposed": 0,
+  "db_resyncs": 0,
+  "monitor_down_events": 0,
+  "container_restarts": 0,
+  "db_demoted": 0
+ },
+ "resources": {
+  "cpu_cores": 0.732,
+  "rss_mb": 744.4,
+  "app_containers": 13
+ },
+ "alerts_detail": [
+  {
+   "alertname": "LoadShedding",
+   "status": "firing",
+   "labels": {
+    "service": "timetable"
+   },
+   "t_rel_inject": 3.46
+  },
+  {
+   "alertname": "LoadShedding",
+   "status": "resolved",
+   "labels": {
+    "service": "timetable"
+   },
+   "t_rel_inject": 24.489
+  }
+ ],
+ "_pass": true
+}

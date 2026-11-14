@@ -1,0 +1,154 @@
+{
+ "experiment": "X7",
+ "build": "endterm",
+ "rep": 4,
+ "title": "Recovery and consistency (30% payments interrupted 15 s)",
+ "startup_s": 8.8,
+ "requests": 1636,
+ "ok": 1595,
+ "failed": 41,
+ "degraded": 0,
+ "recovered_by_retry": 31,
+ "success_rate": 0.9749,
+ "p50_ms": 9.0,
+ "p95_ms": 54.9,
+ "p99_ms": 107.7,
+ "detect_alert_s": 17.407,
+ "detect_event_s": 0.964,
+ "client_visible_recovery_s": 15.589,
+ "restart_count": {},
+ "consistency": {
+  "payments_completed": 308,
+  "payments_failed": 0,
+  "bank_debits": 308,
+  "refunds": 0,
+  "orphan_debits": 0,
+  "orphan_amount": 0,
+  "double_charged_intents": 0,
+  "ledger_mismatch": 0,
+  "stuck_payments": 0,
+  "lost_acked_payments": 0,
+  "lost_acked_enrollments": 0,
+  "replica": {
+   "identical": true,
+   "primary": "db-a",
+   "lsn": 866,
+   "primary_rows": {
+    "paid": 308,
+    "ledger_sum": 67330000.0,
+    "enrollments": 248,
+    "payments": 308
+   },
+   "replica_rows": {
+    "paid": 308,
+    "ledger_sum": 67330000.0,
+    "enrollments": 248,
+    "payments": 308
+   }
+  },
+  "consistent": true
+ },
+ "alerts_fired": [
+  "PaymentsUnfinished",
+  "ReplicaErrorRate",
+  "UserFacingErrorRate"
+ ],
+ "inject": {
+  "interrupt_rate": 0.3,
+  "stage": "after_debit",
+  "for_s": 15,
+  "t": 1794675408.0918076
+ },
+ "core_p95_ms": 35.2,
+ "t_inject_rel": 11.148,
+ "duration_s": 40,
+ "mechanisms": {
+  "gateway_retries": 0,
+  "gateway_shed": 0,
+  "gateway_stale_answers": 0,
+  "gateway_fast_fail": 0,
+  "upstream_marked_down": 0,
+  "breaker_opened": 0,
+  "bank_retries": 0,
+  "payments_queued": 0,
+  "recovered_roll_forward": 5,
+  "recovered_roll_back": 0,
+  "compensations": 0,
+  "duplicate_requests": 36,
+  "db_failovers": 0,
+  "db_client_switches": 0,
+  "db_fenced_or_deposed": 0,
+  "db_resyncs": 0,
+  "monitor_down_events": 0,
+  "container_restarts": 0,
+  "db_demoted": 0
+ },
+ "resources": {
+  "cpu_cores": 0.381,
+  "rss_mb": 745.1,
+  "app_containers": 13
+ },
+ "alerts_detail": [
+  {
+   "alertname": "UserFacingErrorRate",
+   "status": "firing",
+   "labels": {
+    "service": "payment"
+   },
+   "t_rel_inject": 6.488
+  },
+  {
+   "alertname": "ReplicaErrorRate",
+   "status": "firing",
+   "labels": {
+    "name": "payment-b"
+   },
+   "t_rel_inject": 8.487
+  },
+  {
+   "alertname": "ReplicaErrorRate",
+   "status": "firing",
+   "labels": {
+    "name": "payment-a"
+   },
+   "t_rel_inject": 14.486
+  },
+  {
+   "alertname": "ReplicaErrorRate",
+   "status": "resolved",
+   "labels": {
+    "name": "payment-a"
+   },
+   "t_rel_inject": 16.487
+  },
+  {
+   "alertname": "PaymentsUnfinished",
+   "status": "firing",
+   "labels": {},
+   "t_rel_inject": 17.407
+  },
+  {
+   "alertname": "PaymentsUnfinished",
+   "status": "resolved",
+   "labels": {},
+   "t_rel_inject": 18.408
+  },
+  {
+   "alertname": "ReplicaErrorRate",
+   "status": "resolved",
+   "labels": {
+    "name": "payment-b"
+   },
+   "t_rel_inject": 19.496
+  },
+  {
+   "alertname": "UserFacingErrorRate",
+   "status": "resolved",
+   "labels": {
+    "service": "payment"
+   },
+   "t_rel_inject": 25.504
+  }
+ ],
+ "_pass": true
+}

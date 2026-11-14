@@ -1,0 +1,10 @@
+{
+ "git_commit": "7e19710b61ce04b1a61913cc02828ba322171ffb",
+ "git_branch": "final",
+ "image_id": "sha256:47b3dca80af09a72bc58005e04fe934142714a6a9a0202bcde33289ef1694391",
+ "docker": "28.5.1 cpus=12 mem_bytes=8217620480 os=Docker Desktop",
+ "host": "Darwin 27.2.0 arm64",
+ "host_python": "3.14.7",
+ "container_python": "3.12 (python:3.12-slim)",
+ "started_utc": "2026-11-14T15:05:49Z"
+}
