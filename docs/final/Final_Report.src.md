@@ -11,7 +11,35 @@ Astana IT University, November 2026
 
 ## Abstract
 
-<!--ABSTRACT-->
+This report completes a three-stage course project: a small university information system — a
+gateway, four services, a replicated SQLite database and an external bank, one container per
+instance — built from one code base as a *baseline*, a fault-tolerant build (*ft*) and an improved
+build (*endterm*: ft plus seven security controls). Nine service-level objectives were fixed before
+the final campaign and each was checked against measured evidence. The campaign ran
+<!--V:derived.total_runs--> repetitions, each on a fresh cluster, without a single harness retry:
+eight scenarios (a crashed instance, a frozen and a partitioned database primary, a slow bank, a
+five-fold load spike, interrupted payments, a gray failure and a fault-free steady state), five
+times per build, two security suites, and a 900 s soak test with random crashes per build. The
+improved build passed <!--V:derived.endterm.passed-->/<!--V:derived.endterm.runs--> fault runs and
+all security runs and met every objective. When a component crashed, froze, was cut off or slowed
+down, it failed no request, where the baseline failed up to
+<!--V:derived.baseline_max_failed_pct--> % of them; money stayed
+consistent in every run, whereas the baseline left up to <!--V:derived.baseline.max_orphans--> bank
+debits without a payment record and <!--V:derived.baseline.max_double--> double charges per run.
+Under <!--V:reliability.endterm.kills_done--> random crashes the improved system had no outage
+(availability <!--V:reliability.endterm.services.system.availability_time|.4f-->; baseline
+<!--V:reliability.baseline.services.system.availability_time|.4f-->), in line with the
+reliability-block-diagram prediction (<!--V:reliability.endterm.predicted.system|.4f--> and
+<!--V:reliability.baseline.predicted.system|.4f-->). Two experiments mark the limits of redundancy:
+an interrupted payment still shows the student an error although the payment completes, and a
+replica that answers half of its requests with errors is not masked at all — only telemetry
+revealed it, naming the right replica in <!--V:derived.x9_correct-->/<!--V:derived.x9_runs--> runs
+within <!--V:faults.X9.endterm.diagnosed_after_s.max|.1f--> s. The protection costs
+<!--V:faults.X0.endterm.app_containers--> instead of <!--V:faults.X0.baseline.app_containers-->
+containers, <!--V:derived.x0.rss_increase_pct--> % more memory, <!--V:derived.x0.cpu_increase_pct--> %
+more CPU and <!--V:derived.x0.pay_p50_delta_ms--> ms of median payment latency; no alert fired in a
+fault-free run. The gateway, the failover monitor and the single host remain single points of
+failure.
 
 **Keywords:** dependability, fault tolerance, microservices, database failover, idempotency,
 circuit breaker, graceful degradation, observability, gray failure, fault injection, reliability
@@ -123,7 +151,8 @@ trail is complete and tamper-evident · **R11** no service runs with a missing o
 ### 2.4 Service-level objectives
 
 The requirements are turned into objectives with an indicator (SLI), a target, a measurement
-window and a data source. "Core" means registration and payment, the workflows that change state.
+window and a data source. "Core" means the student and payment services, which carry the
+workflows that change state (registration, payment).
 The targets apply to the improved build (`endterm`); the `baseline` and `ft` builds are measured
 against the same targets for comparison. **These targets were fixed before the final campaign was
 run** (`docs/final/REQUIREMENTS_AND_SLOS.md`, commit `7e19710`).
@@ -282,13 +311,98 @@ part.
 
 ### 4.3 Results
 
-<!--SECTION4_RESULTS-->
+<!--TABLE:RELIABILITY-->
+
+![Figure 2 — Soak test: share of successful requests in 5 s bins; the ticks mark the injected crashes. Node-A instances crash at the same moments in both builds; the improved build additionally loses node-B instances.](../../results/final/fig_soak.png)
+
+**Baseline.** <!--V:reliability.baseline.kills_done--> crashes caused
+<!--V:reliability.baseline.services.system.outages--> system outages, together
+<!--V:reliability.baseline.services.system.downtime_s--> s of the 900 s: system availability
+<!--V:reliability.baseline.services.system.availability_time|.4f-->, and
+<!--V:reliability.baseline.services.user_level.failed--> of
+<!--V:reliability.baseline.services.user_level.requests--> user actions failed. Every component
+outage lasted about the emulated 20 s repair (MTTR ≈ 21 s). The student and payment services were
+down longer than their own processes
+(<!--V:reliability.baseline.services.student.downtime_s--> and
+<!--V:reliability.baseline.services.payment.downtime_s--> s against
+<!--V:reliability.baseline.components.student.downtime_s--> and
+<!--V:reliability.baseline.components.payment.downtime_s--> s), because they also stop whenever the
+single database is down — the series structure of the block diagram, visible in the data.
+
+**Improved build.** <!--V:reliability.endterm.kills_done--> crashes, now on both nodes, caused no
+outage: every service and the system were up in every 1 s window, and
+<!--V:reliability.endterm.services.user_level.failed--> of
+<!--V:reliability.endterm.services.user_level.requests--> user actions failed (success
+<!--V:reliability.endterm.services.user_level.success|.4f-->). A service replica was back after
+about <!--V:reliability.endterm.components.student.MTTR_s--> s, a database node after
+<!--V:reliability.endterm.components.db.MTTR_s--> s (including its deliberate 3 s delay), while the
+other replica served. Even a single copy was available far more of the time than in the baseline
+(payment <!--V:reliability.endterm.components.payment.availability|.4f--> against
+<!--V:reliability.baseline.components.payment.availability|.4f-->) although it crashed as often,
+because a repair takes about a second instead of twenty.
+
+**Prediction versus measurement.** The block diagram built from the measured component
+availabilities predicts <!--V:reliability.baseline.predicted.system|.4f--> for the baseline
+(measured <!--V:reliability.baseline.services.system.availability_time|.4f-->) and
+<!--V:reliability.endterm.predicted.system|.4f--> for the improved build (measured
+<!--V:reliability.endterm.services.system.availability_time|.4f--> by time and
+<!--V:reliability.endterm.services.system.availability_requests|.4f--> by requests). For the
+baseline the measurement is slightly better than the prediction: several crashes overlapped in
+time, and overlapping outages cost the system less than the independence assumption of the
+diagram expects; with fifteen outages in one run the difference is within the uncertainty. For the
+improved build the diagram predicts about
+<!--V:derived.soak_expected_system_down_s.endterm|.2f--> s of system downtime in 900 s — the time
+during which both replicas of some service are down together. Exactly one such moment occurred: the
+schedule crashed `student-a` and, half a second later, `student-b` — the minimal cut set
+{student-a, student-b} of Section 3.4, for real. The event log (verbatim, times in seconds since
+the start of the soak):
+
+<!--TABLE:DOUBLEFAULT-->
+
+Between the gateway marking `student-b` down and `student-a` returning, no student replica existed
+for <!--V:reliability.endterm.double_faults.0.duration_s--> s, and the
+<!--V:reliability.endterm.double_faults.0.failed_requests--> requests that arrived in that gap were
+answered with a fast 503 — the only failed requests of the improved soak. That is below the 1 s
+resolution of the time-based measure, which is why availability by requests is reported as well.
+The same excerpt shows a database failover a moment later: the primary was killed, the replica was
+promoted about half a second later, and all six service instances had switched to it within another
+third of a second, without a failed request. Two planned crashes of `db-a` only
+<!--V:reliability.endterm.merged_kills.0.gap_s--> s apart reached the same dying process and count as
+one failure, in both builds (noted under the tables).
+
+**Worked example (payment, improved build).** Two copies observed for 900 s give a window
+*k·T* = <!--V:reliability.endterm.components.payment.replicas--> × 900 s = 1800 s. With
+*n* = <!--V:reliability.endterm.components.payment.failures--> failures and
+*D* = <!--V:reliability.endterm.components.payment.downtime_s--> s of down time:
+MTTF = (1800 − *D*) / *n* = <!--V:reliability.endterm.components.payment.MTTF_s--> s,
+MTTR = *D* / *n* = <!--V:reliability.endterm.components.payment.MTTR_s--> s,
+MTBF = MTTF + MTTR = <!--V:reliability.endterm.components.payment.MTBF_s--> s,
+*A* = MTTF / MTBF = <!--V:reliability.endterm.components.payment.availability|.5f-->, and
+λ = *n* / *U* = <!--V:reliability.endterm.components.payment.failure_rate_per_h--> failures per hour
+of up time (compressed time). As a parallel pair, *A_pair* = 1 − (1 − *A*)² =
+<!--V:reliability.endterm.predicted.blocks.payment|.6f-->; in series with the other four kinds,
+*A_system* = <!--V:reliability.endterm.predicted.system|.6f-->.
+
+**Illustrative extrapolation — assumptions, not measurements.** The soak compresses time: its crash
+rates are thousands of times higher than real ones. Suppose instead that each service process
+crashes once every <!--V:extrapolation.assumed_mttf_days.service|.0f--> days and each database node
+once every <!--V:extrapolation.assumed_mttf_days.db|.0f--> days (assumed rates), and that repairs take
+what we measured. The series baseline would then be down about
+<!--V:extrapolation.baseline_measured_repair.downtime_min_per_year|.0f--> minutes a year with the
+emulated 20 s repair, and about <!--V:extrapolation.baseline_manual_repair.downtime_h_per_year|.0f-->
+hours a year (availability
+<!--V:extrapolation.baseline_manual_repair.availability|.4f-->) with a realistic 30-minute manual
+repair. The replicated services, repaired in about a second, would contribute
+<!--V:extrapolation.endterm_measured_repair.downtime_ms_per_year|.2f--> ms a year. The availability
+of the improved system is then bounded entirely by what the model leaves out — the gateway, the
+monitor, the host and correlated failures (Section 3.4) — which is where the future work of
+Section 10 begins.
 
 ## 5. System architecture and resilience design
 
 ### 5.1 Service boundaries and deployment
 
-![Figure 2 — Architecture: one container per instance, segmented Docker networks, the gateway as the single published entry point and policy-enforcement point.](../../results/endterm/fig_arch.png)
+![Figure 3 — Architecture: one container per instance, segmented Docker networks, the gateway as the single published entry point and policy-enforcement point.](../../results/endterm/fig_arch.png)
 
 Every instance is a container built from one image; the container's command selects which
 instance it is (`payment-a`, `db-b`, …). The topology is defined once in `ftuni/config.py`, and
@@ -612,17 +726,22 @@ retried. The environment of the campaign (code commit, image id, Docker version)
   a breaker opening, the first shed request); **detection (alert)** — injection → the first *related*
   alert at the pager.
 - **Recovery** — injection → end of the last failed request (0 if nothing failed).
-- **Core p95** — p95 of registration and payment latency at the gateway (Prometheus histogram, 20 s
-  windows), the maximum over the run.
+- **Core p95** — p95 latency of the student and payment services (profile reads, registrations,
+  payments) at the gateway, from the Prometheus histogram in 20 s windows, the maximum over the run.
+  The histogram's buckets (5, 10, 25, 50, 100 ms, …) make values inside a bucket an interpolation;
+  for the steady state the exact per-operation latencies from the client log are reported as well.
 - **Mechanism activations** — gateway counters from Prometheus (a fresh cluster, so totals = this
   run) and counts of structured events (breaker openings, bank retries, queued payments, roll
-  forward / back, compensations, duplicates caught, failovers, client switches, fencing, resyncs,
-  container restarts).
+  forward / back, compensations, duplicates caught, failovers, client switches, the old primary
+  stepping down — demoted by the monitor or self-fenced — resyncs, container restarts).
 - **Alert correctness** — an alert is *related* if it concerns the injected component or a direct
-  consequence of the fault (the rules per experiment are listed in `docs/final/TEST_PLAN.md`);
-  anything else is a **false positive**. An incident that lasts at least one alert window must raise a
-  related alert (R9); in the replicated builds a single crash is masked within about a second and
-  requires none.
+  consequence of the fault (the rules per experiment are listed in `docs/final/TEST_PLAN.md`).
+  An alert outside these rules is **collateral** if the client log shows the symptom it reports
+  (p95 above 1 s or more than 5 % errors for that service in the 13 s before it fired), otherwise a
+  **false positive**; in X0 every alert is a false positive. (The collateral class was added after
+  the campaign, for the one case it covers — see Section 10.) An incident that lasts at least one
+  alert window must raise a related alert (R9); in the replicated builds a single crash is masked
+  within about a second and requires none.
 - **Consistency** — orphan debits (money without a completed payment), double-charged intents,
   ledger mismatches, stuck payments, lost acknowledged payments and enrollments, and in the
   replicated builds a primary/replica comparison.
@@ -641,7 +760,372 @@ retried. The environment of the campaign (code commit, image id, Docker version)
 | 7 | unauthorized or invalid operation | X5, X6 |
 | 8 | recovery / rollback or failover verification | X2, X8 (failover), X7 (roll forward / back) |
 
-<!--RESULTS_SECTIONS-->
+## 9. Results and baseline-versus-improved comparison
+
+The campaign ran on 14 November 2026: <!--V:derived.fault_runs--> fault-experiment repetitions and
+<!--V:derived.security_runs--> security repetitions, every one on a fresh cluster, and
+<!--V:derived.harness_retries--> harness retries; then one 900 s soak per build. Code commit, image
+id and Docker version are in `results/final/environment.json`. All tables in this section are
+generated by `experiments/analyze_final.py` from the per-run summaries and inserted into this
+report by `docs/final/fill_final.py`; no number in them was typed by hand. Values are the mean ±
+standard deviation over five repetitions unless stated otherwise.
+
+### 9.1 Service-level objectives
+
+<!--TABLE:SLOS-->
+
+The improved build (`endterm`) meets all nine objectives. The `ft` build meets every objective that
+applies to it (it has no authentication, and the soak was run for the baseline and the improved
+build only). The baseline misses SLO-2, SLO-3, SLO-5, SLO-6 and SLO-8 — availability, latency under
+overload, recovery, integrity and long-run availability — and meets the steady-state and the
+detection objectives, because observability is the same in all three builds. Every objective is
+backed by every repetition: for example, SLO-2 is the *worst* of the twenty runs of X1, X2, X3 and
+X8, not their average.
+
+### 9.2 Fault experiments
+
+<!--TABLE:RESULTS-->
+
+![Figure 4 — Successful requests per second in repetition 1 of every experiment; grey = fault active (X9: until the runbook restarts the replica). ft and endterm overlap almost everywhere.](../../results/final/fig_timelines.png)
+
+- **X1, instance crash.** The baseline lost
+  <!--V:faults.X1.baseline.failed.mean|.0f--> requests per run and was interrupted for
+  <!--V:faults.X1.baseline.recovery_s.mean|.1f--> s, until the emulated operator restarted the
+  process. In `ft` and `endterm` no request failed: the first request routed to the dead replica got
+  a refused connection, the gateway marked the replica down at once and sent that request to the
+  other replica, and Docker restarted the container; the monitor reported the crash after
+  <!--V:faults.X1.endterm.detect_event_s.mean|.2f--> s.
+- **X2 and X8, database primary frozen or partitioned.** The baseline failed
+  <!--V:faults.X2.baseline.failed.mean|.0f--> and <!--V:faults.X8.baseline.failed.mean|.0f-->
+  requests per run and, worse, left <!--V:faults.X2.baseline.orphan_debits.mean|.0f--> and
+  <!--V:faults.X8.baseline.orphan_debits.mean|.0f--> bank debits without a payment record and
+  <!--V:faults.X2.baseline.double_charged.mean|.0f--> and
+  <!--V:faults.X8.baseline.double_charged.mean|.0f--> double charges per run — the midterm's
+  headline result, reproduced on containers in every repetition. The improved builds failed no
+  request: the monitor noticed the silent primary after
+  <!--V:faults.X2.endterm.detect_event_s.mean|.2f--> s (frozen) and
+  <!--V:faults.X8.endterm.detect_event_s.mean|.2f--> s (partitioned), promoted the replica, and the
+  database clients retried until it answered. Requests waited instead of failing, so the core p95
+  rose to <!--V:faults.X2.endterm.core_p95_ms.mean|.0f--> ms during a freeze (a frozen node holds a
+  request until its 1 s timeout) and to <!--V:faults.X8.endterm.core_p95_ms.mean|.0f--> ms during a
+  partition (a cut connection fails at once). When the old primary came back it was demoted and
+  resynchronised; both nodes were identical at the end of every run — no split brain.
+- **X3, slow bank.** The baseline failed <!--V:faults.X3.baseline.failed.mean|.0f--> requests per
+  run, and because the client gave up after 5 s while the bank still debited, its retries charged
+  <!--V:faults.X3.baseline.double_charged.mean|.0f--> students twice. The improved builds failed no
+  request and charged nobody twice: the bank calls timed out after 0.8 s, the retries (with the same
+  idempotency key) timed out too, the breakers opened, about
+  <!--V:faults.X3.endterm.mechanisms.payments_queued.mean|.0f--> payments per run were accepted as
+  QUEUED (202), and the recovery worker completed every one once the bank was healthy again.
+- **X4, load spike.** The baseline collapsed: <!--V:faults.X4.baseline.success_pct.mean|.1f--> % of
+  requests succeeded, the core p95 reached <!--V:faults.X4.baseline.core_p95_ms.mean|.0f--> ms,
+  failures went on for <!--V:faults.X4.baseline.recovery_s.mean|.0f--> s — well past the end of the
+  15 s spike, while the backlog drained — and timed-out payments that were retried produced
+  <!--V:faults.X4.baseline.double_charged.mean|.0f--> double charges per run. In the improved builds
+  <!--V:faults.X4.endterm.success_pct.mean|.2f--> % succeeded and the core p95 stayed at
+  <!--V:faults.X4.endterm.core_p95_ms.mean|.0f--> ms: the timetable bulkhead shed about
+  <!--V:faults.X4.endterm.mechanisms.gateway_shed.mean|.0f--> requests per run and answered
+  <!--V:faults.X4.endterm.mechanisms.gateway_stale_answers.mean|.0f--> of them from the stale
+  cache. The <!--V:faults.X4.endterm.failed.mean|.0f--> failed requests per run were all timetable
+  requests for a group that had no cached answer yet (fast 503); no core request failed.
+- **X7, interrupted payments.** This is the one fault where all three builds look alike to the
+  user: <!--V:faults.X7.baseline.success_pct.mean|.1f-->, <!--V:faults.X7.ft.success_pct.mean|.1f-->
+  and <!--V:faults.X7.endterm.success_pct.mean|.1f--> % of requests succeeded, and
+  <!--V:faults.X7.baseline.user_failed.mean|.1f-->, <!--V:faults.X7.ft.user_failed.mean|.1f--> and
+  <!--V:faults.X7.endterm.user_failed.mean|.1f--> user actions per run failed even after the
+  student's retry. The abort happens *after* the bank debit, so no build can hide it from the
+  request that was running. The difference is in the money: the baseline left
+  <!--V:faults.X7.baseline.orphan_debits.mean|.0f--> orphan debits and
+  <!--V:faults.X7.baseline.double_charged.mean|.0f--> double charges per run; the improved builds
+  none, because the retry with the same idempotency key finished the original payment and the
+  recovery worker rolled forward the rest.
+- **X9, gray failure.** Section 9.5.
+- **X0, steady state.** Every request of every run succeeded in all builds, with no alert and no
+  mechanism activation — the reference for the trade-offs in Section 9.6.
+
+### 9.3 Mechanism activations
+
+<!--TABLE:MECH-->
+
+The counters show *which* mechanism produced each result, and that mechanisms act only when they
+should. In X0 every counter is zero in every build — no spurious retry, failover or shedding. Each
+fault activates exactly the mechanisms designed for it: in X1 the crashed replica is marked down and
+restarted once, and the request in flight is retried (<!--V:faults.X1.ft.mechanisms.gateway_retries.mean-->
+retries per run in `ft`); in X2 and X8 there is exactly one failover per run, the old primary steps
+down once, and all <!--V:faults.X2.ft.mechanisms.db_client_switches.mean|.0f--> database clients
+switch to the new primary; in X3 the bank breaker opened
+<!--V:faults.X3.endterm.mechanisms.breaker_opened.mean|.0f--> times per run — four times in each
+payment replica, because every trial call after 3 s found the bank still slow — after
+<!--V:faults.X3.endterm.mechanisms.bank_retries.mean|.0f--> bank retries; in X4 the bulkhead shed
+the spike and the stale cache answered almost all of it; in X7 the recovery worker rolled forward
+<!--V:faults.X7.endterm.mechanisms.recovered_roll_forward.mean|.1f--> payments per run and the
+payment service recognised <!--V:faults.X7.endterm.mechanisms.duplicate_requests.mean|.1f-->
+retried requests as duplicates and finished the original payment instead of charging again. No
+payment was rolled back and nothing was compensated, because every interrupted payment in X7 had
+its debit; those branches are covered by the unit tests of `recovery_action()`. In the baseline the
+gateway still notices a dead replica (X1, X9), but with no second replica there is nowhere to send
+the request.
+
+### 9.4 Alert correctness and detection
+
+<!--TABLE:ALERTS-->
+
+Every incident that required an alert raised a related one, in
+<!--V:derived.alerts_detected_runs--> of <!--V:derived.alerts_required_runs--> runs, and no false
+positive fired in any of the <!--V:derived.fault_runs--> runs, including the fifteen fault-free
+ones. The only alerts outside the expected list were
+<!--V:derived.baseline.collateral--> `HighLatencyP95{timetable}` alerts in the X2 baseline runs:
+the timetable does not use the database, yet its p95 rose from 25 ms to 1.5 s while the primary was
+frozen, because the baseline gateway has no bulkheads and the hung database requests slowed
+everything behind them. The alert was true, and in the improved builds it did not fire, because
+there the bulkheads kept the timetable isolated. In `ft` and `endterm`, X1 raised no alert, and
+correctly so: the crash was masked and the replica was back within about a second, so there was
+nothing for a person to do; the restart remains visible on the dashboard and in the restart counter.
+
+The two detection layers behave as designed: the automatic layer reacted within
+<!--V:faults.X4.endterm.detect_event_s.mean|.2f--> s (first shed request, X4) to
+<!--V:faults.X3.endterm.detect_event_s.mean|.1f--> s (bank breaker, X3), the alerts — which wait
+for a 10 s rate window and a 2–3 s persistence condition and are then delivered through
+Alertmanager — after <!--V:faults.X8.ft.first_related_alert_s.mean|.1f--> s (X8) to
+<!--V:faults.X7.endterm.first_related_alert_s.mean|.1f--> s (X7) on average. The slowest run of the
+improved build took <!--V:slos.endterm.SLO-4b.value.1|.1f--> s over the experiments of SLO-4b and
+<!--V:faults.X7.endterm.first_related_alert_s.max|.1f--> s in X7, which SLO-4b does not cover;
+both are within its 10 s target. Alerts are for people and are allowed to be slower; the
+mechanisms do not wait for them.
+
+### 9.5 Gray failure (X9)
+
+In X9, `student-a` answers half of its requests with HTTP 500 while it stays alive, ready and
+scraped — the kind of failure that health checks are blind to [13]. No component noticed: the
+monitor recorded no DOWN event until the runbook itself restarted the replica, the gateway kept
+routing to it, and the
+gateway's breaker for the student service did not open, because the failures were interleaved with
+successes. The gateway retries only refused connections, timeouts and 502–504 answers, so the
+failures went straight to the users. **Redundancy did not mask this fault at all.**
+
+Telemetry did. The first related alert (`UserFacingErrorRate{student}`) fired after
+<!--V:faults.X9.endterm.first_related_alert_s.mean|.1f--> s; `ReplicaErrorRate`, computed per
+replica, named `student-a` in every run of every build
+(<!--V:derived.x9_correct-->/<!--V:derived.x9_runs-->, no wrong diagnosis), after
+<!--V:faults.X9.ft.diagnosed_after_s.mean|.1f--> s in `ft` and
+<!--V:faults.X9.endterm.diagnosed_after_s.mean|.1f--> s in `endterm` (at most
+<!--V:faults.X9.endterm.diagnosed_after_s.max|.1f--> s; SLO-9: ≤ 15 s). The runbook then restarted
+the named replica, and the errors ended
+<!--V:faults.X9.endterm.recovery_s.mean|.1f--> s after the injection. The same runbook had very
+different results depending on redundancy: in the improved builds the restart sent all traffic to
+the healthy `student-b`, and only <!--V:faults.X9.ft.failed.mean|.0f--> and
+<!--V:faults.X9.endterm.failed.mean|.0f--> requests failed per run; in the baseline the restart
+took down the only student replica for the 20 s repair, so the "fix" turned half the requests
+failing into all of them failing, and <!--V:faults.X9.baseline.failed.mean|.0f--> requests failed
+before service returned after <!--V:faults.X9.baseline.recovery_s.mean|.1f--> s.
+
+### 9.6 Trade-offs (X0)
+
+<!--TABLE:TRADEOFFS-->
+
+Fault tolerance is not free, and X0 measures the price in the steady state at 40 req/s:
+
+- **Latency of writes.** The median payment takes
+  <!--V:faults.X0.baseline.op_latency_ms.pay.p50--> ms in the baseline,
+  <!--V:faults.X0.ft.op_latency_ms.pay.p50--> ms in `ft` and
+  <!--V:faults.X0.endterm.op_latency_ms.pay.p50--> ms in `endterm`. Synchronous replication adds
+  <!--V:derived.x0.pay_p50_repl_delta_ms--> ms (a payment is two replicated transactions: the PENDING
+  row and the final row with its ledger entry), the security controls another
+  <!--V:derived.x0.pay_p50_sec_delta_ms--> ms (token verification, authorization, an audit record).
+  Reads are not slower: the overall p50 and p95 of the replicated builds are about the same or
+  lower, because two replicas share the read load and the CPU-heavy timetable.
+- **Resources.** <!--V:faults.X0.endterm.app_containers--> application containers instead of
+  <!--V:faults.X0.baseline.app_containers-->, <!--V:faults.X0.endterm.rss_mb.mean|.0f--> MB of
+  memory instead of <!--V:faults.X0.baseline.rss_mb.mean|.0f--> (+<!--V:derived.x0.rss_increase_pct--> %)
+  and <!--V:faults.X0.endterm.cpu_cores.mean|.2f--> CPU cores instead of
+  <!--V:faults.X0.baseline.cpu_cores.mean|.2f--> (+<!--V:derived.x0.cpu_increase_pct--> %), mostly the
+  second copy of every process.
+- **The core p95 from the histogram** looks worse
+  (<!--V:faults.X0.ft.core_p95_ms.mean|.0f--> and <!--V:faults.X0.endterm.core_p95_ms.mean|.0f--> ms
+  against <!--V:faults.X0.baseline.core_p95_ms.mean|.0f--> ms) than it is: these values are
+  interpolations inside the 10–25 ms bucket. The client log gives the exact figures in the payment
+  and registration columns.
+- **Costs the table does not show:** more code paths (recovery worker, fencing, resynchronisation)
+  that must themselves be correct; eventual consistency of queued payments (a student may see
+  "queued" for some seconds); stale timetables, marked `X-Degraded`; and an operating burden of
+  secrets, alert rules and runbooks.
+
+None of the fifteen fault-free runs raised an alert or activated a mechanism, so the protection does
+not add noise either.
+
+### 9.7 Security experiments
+
+<!--TABLE:SECURITY-->
+
+In every X5 run all unauthorized and privilege-escalation probes were refused
+(<!--V:security.X5.cases-->), including the insider cases executed from inside a compromised
+service container; in every X6 run all malformed and abusive probes were rejected
+(<!--V:security.X6.cases-->), and the flood of
+<!--V:security.X6.flood.sent--> requests in <!--V:security.X6.flood.seconds--> s was throttled
+(<!--V:security.X6.flood.429--> answered 429, <!--V:security.X6.flood.200--> served, none failed
+otherwise). The business data's checksum was unchanged and the hash chain of the audit log verified
+after every run, with <!--V:security.X5.audit_records.mean|.0f--> and
+<!--V:security.X6.audit_records.mean|.0f--> denial records per run. `AuthFailureSpike` fired in
+every X5 run; `RateLimitSpike` in <!--V:security.X6.alert_runs.RateLimitSpike--> of the three X6 runs
+(Section 10.4). The security controls changed no PASS or SLO verdict, and the `ft` and `endterm`
+rows of the fault tables are close throughout. Where the whole-run p95 of `endterm` is clearly
+higher (X2, X7), most of the difference is a start-up artefact of the harness (Section 10.4):
+without the first 2 s of the workload the X2 p95 is
+<!--V:faults.X2.endterm.p95_after_startup_ms.mean|.0f--> ms in `endterm` and
+<!--V:faults.X2.ft.p95_after_startup_ms.mean|.0f--> ms in `ft`. What remains are later alerts in
+`endterm` (about <!--V:derived.alert_gap_x7_s|.1f--> s in X7, <!--V:derived.diag_gap_x9_s|.1f--> s
+for the X9 diagnosis), at the edge of what five runs can distinguish.
+
+### 9.8 Requirements
+
+| Req. | Evidence (improved build) | Verdict |
+|---|---|---|
+| R1 single crash fails ≤ 1 % | 0 failed requests in all runs of X1, X2, X3, X8 (SLO-2) | met |
+| R2 detection ≤ 1 s, short interruption | automatic detection ≤ <!--V:slos.endterm.SLO-4a.value|.2f--> s; no user-visible interruption in X1, X2, X8 (SLO-4a, SLO-5) | met |
+| R3 no acknowledged write lost | consistency check, <!--V:derived.endterm.consistent-->/<!--V:derived.endterm.runs--> runs (SLO-6) | met |
+| R4 money consistent | 0 orphan debits and 0 double charges in every run, including X3, X4 and X7 (SLO-6) | met |
+| R5 core p95 < 1 s at 5× load | worst X4 run <!--V:slos.endterm.SLO-3.value.1--> ms (SLO-3) | met |
+| R6 corrupted transcript never shown | not re-run in the final campaign; midterm E7 (30/30 corruptions detected and repaired) and `test_storage` | met (earlier evidence) |
+| R7 unauthorized actions denied, data unchanged | X5, 3 of 3 runs (SLO-7) | met |
+| R8 malformed or abusive input rejected, service up | X6, 3 of 3 runs (SLO-7) | met |
+| R9 every lasting incident alerts | <!--V:derived.alerts_detected_runs-->/<!--V:derived.alerts_required_runs--> runs, max <!--V:slos.endterm.SLO-4b.value.1|.1f--> s (SLO-4b) | met |
+| R10 audit trail complete, tamper-evident | chain verified after 6 of 6 security runs; tamper detection shown in the endterm | met |
+| R11 no start with a missing secret | `check_secrets` in `ftuni/run.py` (exit 78), shown in the endterm; not re-tested here | met (earlier evidence) |
+| R12 partition without split brain | X8: one failover, old primary demoted, replicas identical, 5 of 5 runs per build | met |
+
+## 10. Discussion, limitations, and future work
+
+### 10.1 What the evidence shows
+
+The integration argument of this report holds up against the data. Every requirement became an
+objective with a number, every objective was checked by every repetition of the experiments that
+target it, and the counters show which mechanism produced each outcome. When a component stops or
+slows down — a crash, a frozen or partitioned database, a slow bank — the improved build failed no
+request at all, and under overload only timetable requests without a cached answer failed. More
+importantly, money and records stayed consistent under every fault, including the faults the
+mechanisms cannot hide. The reliability analysis agrees with the
+measurement: the block diagram predicts the baseline's poor availability and the improved build's
+near-perfect one, and its one assumption that matters — that both replicas are rarely down together —
+was observed once and cost three requests.
+
+### 10.2 What redundancy does not fix
+
+**Gray failure.** Replication masks a replica that is *absent*, not one that is *wrong*. In X9 every
+mechanism of the improved build was blind; telemetry plus a runbook limited the damage, but users
+still saw errors for about <!--V:faults.X9.endterm.recovery_s.mean|.0f--> seconds. Two changes would mask it automatically: *outlier
+ejection* at the gateway (take a replica out of rotation when its error ratio is far above its
+peer's, as service meshes do), and retrying idempotent reads on an HTTP 500 at the other replica,
+within a retry budget.
+
+**Interrupted payments.** In X7 the improved build keeps the money right, but the student whose
+request was interrupted still sees an error, although the payment completes a moment later. The fix
+is in the interface rather than in the mechanisms: answer "accepted, being processed" (202 with a
+status link), as the build already does for queued payments, instead of an error whenever the debit
+may have happened.
+
+### 10.3 Detection by people and by mechanisms
+
+Alerts arrived after <!--V:faults.X8.ft.first_related_alert_s.mean|.1f-->–<!--V:faults.X7.endterm.first_related_alert_s.mean|.1f--> s
+on average, the mechanisms within <!--V:faults.X4.endterm.detect_event_s.mean|.2f-->–<!--V:faults.X3.endterm.detect_event_s.mean|.1f--> s.
+That is intended:
+pages must not fire on blips, and the 10 s windows are already compressed. In production the windows
+would be minutes and alerts would follow SLO burn rates [7]. Detection was not perfect either: ten
+malformed probes in under a second never triggered `InvalidInputSpike` (threshold: more than one
+per second for 2 s), so low-volume probing is recorded in the audit log and on the dashboard but
+does not page anyone.
+
+### 10.4 Findings and corrections during the project
+
+We list these because a dependability report should show how its own evidence was checked.
+
+1. **Endterm report.** The submitted endterm report showed 0/3 PASS for `ft` and `endterm` in its
+   fault table, because the table had been filled in before a fix in the analysis; the data said
+   3/3. It was corrected in commit `4e4ef59`. Since then the report's numbers are generated from the
+   data (`fill_final.py`), not copied.
+2. **The consistency check is itself a distributed read.** During the endterm demonstration the
+   check, run under live traffic, reported one debit without a payment. It read the payments first
+   and the bank's debits second, and a payment that completed in between looked broken; read in the
+   opposite order, nothing was wrong. The procedure therefore runs the check on a quiet system
+   (Section 8.3); a check under load would need a consistent snapshot.
+3. **Timeouts are not strictly nested.** The endterm report claimed they were. The database client's
+   4 s deadline is longer than the gateway's 2.5 s (student) and 3.0 s (records), so during a long
+   database outage the gateway can give up while the service is still retrying, and a registration
+   may complete after the student was told it failed. Registrations are idempotent per student and
+   course, and no lost or duplicated registration appeared in any run, but the right fix is deadline
+   propagation: the gateway sends its remaining budget and the database client never waits longer.
+   The unit tests now assert only the relations that do hold (Section 6.2).
+4. **Two corrections of the final analysis**, both made after inspecting the data, both documented,
+   neither changing a PASS verdict or an SLO verdict. (a) The mechanism counter counted the old
+   primary stepping down only through the fencing events and missed `DEMOTED`, the event with which
+   the monitor demotes a returning old primary, so the column read 0 in X2 and X8; the count was
+   added from the same event logs (`experiments/backfill_final.py`). (b) The alert classification
+   gained the *collateral* class for the baseline's timetable latency alert (Section 9.4,
+   `docs/final/TEST_PLAN.md`).
+5. **Harness.** No repetition needed a harness retry. The soak schedule placed two crashes of the
+   same database node 0.28 s apart, which merged into one failure (Section 4.3). `RateLimitSpike`
+   was recorded in only two of the three X6 runs: the harness reads the alert log about 3.5 s after
+   the flood, while the rule needs 2 s of persistence plus evaluation and delivery, so the wait was
+   too short to observe it reliably — a limitation of the harness, not evidence about the rule.
+   Finally, in `endterm` the 300 logins take about
+   <!--V:faults.X2.endterm.startup_delay_s.mean|.1f--> s *after* the run's clock has started; the
+   open-loop client then sends the overdue requests in one burst, and the fault is injected about a
+   second later than in the other builds (t ≈ <!--V:faults.X2.endterm.t_inject_rel.mean|.1f--> s).
+   Detection and recovery are measured from the actual injection and are unaffected, but the burst
+   raises the whole-run p95 of the short `endterm` runs (X2:
+   <!--V:faults.X2.endterm.p95_ms.mean|.0f--> ms, without the first 2 s
+   <!--V:faults.X2.endterm.p95_after_startup_ms.mean|.0f--> ms) and may set the maximum of the
+   steady-state core p95 window. The fix is to start the clock after the logins; the runs were not
+   repeated, since no verdict depends on it.
+
+### 10.5 Limitations
+
+- **One host.** Nodes A and B are containers on the same VM; partitions are emulated by
+  disconnecting a container from a Docker network; host failure and correlated failures were not
+  tested.
+- **Compressed time and a laptop.** Absolute numbers (latency, alert delays, availability) are
+  specific to this setup; the comparison between builds, which share the workload and the fault
+  schedule, is the robust result.
+- **Statistics.** Five repetitions per experiment and build, one soak run per build; the soak
+  estimates rest on 3–15 failures per component and would need longer runs for tight intervals. The
+  `ft` build was not soaked (its fault-tolerance settings are identical to `endterm`'s).
+- **Scope.** The control plane was not failed; the workload is synthetic (open loop, fixed mix,
+  300 users); the security tests cover the cases of the threat model, not an open-ended
+  penetration test; corrupted storage (R6) was tested in the midterm, not again here.
+- **Who tests whom.** The same author designed the system, the faults and the checks. Fixing the
+  SLOs and PASS criteria before the campaign, and the baseline as a control, reduce but do not
+  remove that bias.
+
+### 10.6 Future work
+
+1. **Remove the control-plane single points of failure:** a second gateway behind a virtual IP; a
+   three-member consensus-based failover controller (etcd- or Patroni-style) instead of the single
+   monitor; two hosts, or Kubernetes with anti-affinity and disruption budgets.
+2. **Mask gray failures:** outlier ejection and retries of idempotent reads on HTTP 500 (10.2); X9
+   would then become a masking test.
+3. **Deadline propagation** from the gateway to the database client (10.4, item 3).
+4. **A clearer answer for interrupted payments** (202 with a status link instead of an error).
+5. **Off-host backups and a tested restore** — the optional backup-restore experiment, not done
+   here.
+6. **Production-style alerting:** burn-rate alerts with minute-scale windows; per-actor thresholds
+   for invalid input.
+7. **Longer soaks** with confidence intervals, and fault injection in continuous integration.
+
+## 11. Conclusion
+
+The project set out to show, with evidence, that a small service-based system can be engineered to
+be dependable, and to show where that dependability ends. Starting from twelve requirements, it
+fixed nine measurable objectives, analysed the failure modes and cut sets, predicted availability
+with a block diagram, implemented the mechanisms of the course and the security controls in one
+code base, and checked everything in <!--V:derived.total_runs--> repetitions against a baseline built
+from the same code. The improved build met every objective: no failed request under a crash, a
+frozen or partitioned database or a slow bank, consistent money in every run, a core p95 of tens of
+milliseconds under a five-fold spike, no outage under <!--V:reliability.endterm.kills_done--> random
+crashes, no false alert, and every attack refused. Its costs are measured, not assumed:
+<!--V:derived.x0.rss_increase_pct--> % more memory, <!--V:derived.x0.cpu_increase_pct--> % more CPU
+and a few milliseconds per write. Two results matter as much as the successes: an
+interrupted payment still shows the student an error, and a gray failure passes straight through
+redundancy and is caught only by telemetry. The remaining weaknesses — the gateway, the failover
+monitor and the single host — are known, documented, and the first item of the future work.
 
 ## 12. References
 
@@ -685,4 +1169,81 @@ matplotlib, pytest, pandoc.\
 software fault-tolerant design); M. Idrissov, Midterm report (October 2026) and Endterm report
 (November 2026), Fault Tolerance and Dependable Computing, AITU.
 
-<!--APPENDIX-->
+## 13. Appendix
+
+### A. Reproducing the results
+
+Requirements: Docker Desktop with Compose v2, Python 3.11+ on the host, pandoc for the report. From
+the repository root, on branch `final`:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python deploy/gen_secrets.py
+docker build -t ftuni:endterm .
+python -m pytest -q tests
+python -m experiments.final
+python -m experiments.soak_docker
+python -m experiments.analyze_final
+python docs/final/fill_final.py
+bash docs/final/to_docx.sh
+```
+
+`experiments.final` takes about two and a half hours and can be stopped and restarted (repetitions that
+already have a `summary.json` are skipped); `experiments.soak_docker` takes about 35 minutes. Keep
+the machine awake and run no other Docker workload meanwhile. To recompute the tables and this
+report from the published data without running anything, unpack the raw logs and run the analysis:
+
+```bash
+tar -xzf results/final/raw/requests_all.tar.gz -C results/final
+tar -xzf results/final/raw/events_rep1.tar.gz -C results/final
+python -m experiments.analyze_final
+python docs/final/fill_final.py
+```
+
+### B. Configuration difference between the builds
+
+Generated from the `Policy` objects in `ftuni/config.py`; settings that are equal in all three builds
+are omitted. `tests/test_mechanisms.py` asserts exactly this difference.
+
+<!--TABLE:CONFIG-->
+
+### C. Dashboard screenshots (endterm runs)
+
+![Figure 5 — Grafana during an endterm demonstration run in which a payment replica crashed and then the database primary was frozen. Users' view: request rate, 5xx ratio ("No data" = no errors reached the users) and p95 per service with the failover spike; degraded, shed and retried requests; firing alerts. Instances: Prometheus scrape status and the gateway's view of every replica (red = down).](../../results/endterm/fig_grafana_top.jpg)
+
+![Figure 6 — The same run, lower rows: 5xx ratio per replica and CPU per instance; database role and epoch (db-b promoted, epoch 2), replication in sync, unfinished payments and open breakers; refused requests by reason (a burst of forged tokens), rate limiting, and audit records by type.](../../results/endterm/fig_grafana_db_security.jpg)
+
+### D. Raw data and evidence
+
+```
+results/final/
+  environment.json                        commit, image id, Docker version, start time of the campaign
+  campaign.log                            console output of the whole campaign
+  <X0…X9>/<build>/rep<N>/summary.json     one run: requests, latency, detection, recovery, alerts with
+                                          labels and times, mechanism counts, resources, consistency
+  <X0…X9>/<build>/aggregate.json          per experiment and build, written by the driver
+  soak/<build>/meta.json                  soak parameters and every crash as executed
+  raw/requests_all.tar.gz                 every client request of every run and of the soak (requests.csv)
+  raw/events_rep1.tar.gz                  every structured event of repetition 1 and of the soak (events.jsonl)
+  tables.md, report_data.json             analysis output: the source of every table and number above
+  fig_payment_flow.png, fig_timelines.png, fig_soak.png
+docs/final/REQUIREMENTS_AND_SLOS.md       objectives, fixed before the campaign
+docs/final/FAULT_MODEL.md                 failure scenarios, FMEA, cut sets
+docs/final/TEST_PLAN.md                   experiments, PASS criteria, alert expectations (with the amendment)
+```
+
+The midterm and endterm results remain in `results/` (`E*`, `soak_*`) and `results/endterm/`.
+
+### E. Contribution and use of AI assistance
+
+This is an individual project (Mukan Idrissov). Assignments 1 and 2, on which it builds, were joint
+work with A. Yeraliyev [23].
+
+An AI coding assistant (Claude Code, Anthropic) was used throughout all three stages, under the
+author's direction: to write and refactor code and tests, to run the experiment campaigns, to
+analyse the data and to draft the reports. The results do not depend on trusting that process:
+every table and number in Sections 4 and 9 is generated from the published raw data by the scripts
+in the repository and can be recomputed (Appendix A), and the objectives and PASS criteria were
+fixed in the repository before the campaign that tested them.

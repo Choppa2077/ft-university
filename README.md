@@ -98,15 +98,23 @@ Without a running cluster this runs the 58 unit tests (the integration tests are
 python -m experiments.final
 python -m experiments.soak_docker
 python -m experiments.analyze_final
+python docs/final/fill_final.py
+bash docs/final/to_docx.sh
 ```
 
 - `experiments.final` runs X0–X4 and X7–X9 on all three builds × 5 repetitions and X5–X6 (security)
-  × 3, each repetition on a fresh cluster (about 3.5 hours). It can be interrupted and restarted:
+  × 3, each repetition on a fresh cluster (about 2.5 hours). It can be interrupted and restarted:
   repetitions that already have a `summary.json` are skipped. Options: experiment ids (`X2 X9`),
   `--builds endterm`, `--reps 1`, `--out <dir>`.
 - `experiments.soak_docker` runs the 900 s crash soak for `baseline` and `endterm` (about 35 min).
 - `experiments.analyze_final` writes `results/final/tables.md`, `report_data.json`,
-  `fig_timelines.png` and `fig_soak.png`.
+  `fig_timelines.png` and `fig_soak.png`; `docs/final/fill_final.py` puts those tables and numbers
+  into the report (`Final_Report.src.md` → `Final_Report.md`) and into the results section of this
+  README, and `to_docx.sh` builds the Word file.
+- Only the analysis, from the published data: the raw logs are packed in `results/final/raw/`;
+  unpack them with `tar -xzf results/final/raw/requests_all.tar.gz -C results/final` and
+  `tar -xzf results/final/raw/events_rep1.tar.gz -C results/final`, then run the last three
+  commands.
 - Keep the machine awake and do not run other Docker workloads meanwhile (the campaign uses fixed
   container names and ports). The environment of the published run is in
   `results/final/environment.json`.
@@ -125,13 +133,35 @@ python -m experiments.analyze_final
 | X9 | gray failure: one replica answers 50 % of requests with HTTP 500 while health checks stay green |
 
 <!--README_RESULTS-->
+## Results of the final campaign
+
+126 repetitions, each on a fresh cluster (0 harness retries): 8 fault experiments × 3 builds × 5 repetitions and 2 security experiments × 3, plus a 900 s crash soak per build. Means per run; full tables in `results/final/tables.md`, discussion in the final report.
+
+| Exp | Fault | Failed requests: baseline / ft / endterm | Orphan debits / double charges: baseline → endterm | PASS: baseline · ft · endterm |
+|---|---|---|---|---|
+| X0 | none (steady state) | 0 / 0 / 0 | 0 / 0 → 0 / 0 | 5/5 · 5/5 · 5/5 |
+| X1 | service instance crash | 305 / 0 / 0 | 0 / 0 → 0 / 0 | 0/5 · 5/5 · 5/5 |
+| X2 | database primary frozen | 249 / 0 / 0 | 16 / 44 → 0 / 0 | 0/5 · 5/5 · 5/5 |
+| X3 | slow bank | 166 / 0 / 0 | 0 / 107 → 0 / 0 | 0/5 · 5/5 · 5/5 |
+| X4 | 5× load spike | 2983 / 12 / 11 | 0 / 29 → 0 / 0 | 0/5 · 5/5 · 5/5 |
+| X7 | interrupted payments | 44 / 38 / 41 | 44 / 35 → 0 / 0 | 0/5 · 5/5 · 5/5 |
+| X8 | database primary partitioned | 460 / 0 / 0 | 148 / 78 → 0 / 0 | 0/5 · 5/5 · 5/5 |
+| X9 | gray failure | 508 / 41 / 48 | 0 / 0 → 0 / 0 | 5/5 · 5/5 · 5/5 |
+
+- Security (endterm): every probe refused in every run — X5 17/17, X6 10/10; data unchanged and the audit chain verified after each run.
+- Soak, 900 s with random crashes: system availability 0.6016 in the baseline (23 crashes) and 1.0000 in endterm (47 crashes); block-diagram prediction 0.5812 and 0.9998.
+- Service-level objectives: endterm meets all 9; the baseline misses SLO-2, SLO-3, SLO-5, SLO-6, SLO-8.
+- X9 passes when telemetry names the faulty replica, which works in every build; the failed requests show that only the replicated builds also limit the damage.
+- Cost (X0): 13 instead of 8 containers, +62 % memory, +36 % CPU, +6.4 ms median payment latency; no alert in a fault-free run.
+<!--/README_RESULTS-->
 
 ## Documents
 
-- Final report: `docs/final/Final_Report.docx` (source `Final_Report.md`); objectives
+- Final report: `docs/final/Final_Report.docx` (Markdown `Final_Report.md`, generated from the
+  template `Final_Report.src.md` and the measured data); objectives
   `docs/final/REQUIREMENTS_AND_SLOS.md`; fault model and FMEA `docs/final/FAULT_MODEL.md`; test plan
   `docs/final/TEST_PLAN.md`; threat model `docs/endterm/THREAT_MODEL.md`.
-- Build the report: `bash docs/final/to_docx.sh` (needs pandoc).
+- Build the report: `python docs/final/fill_final.py && bash docs/final/to_docx.sh` (needs pandoc).
 
 ## Midterm process mode (no Docker)
 
