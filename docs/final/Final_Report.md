@@ -54,7 +54,7 @@ observability, gray failure, fault injection, reliability engineering, service-l
 
 ## 1. Introduction, motivation, and system context
 
-The project grew over the semester. In Assignments 1 and 2 we analysed the incident log of a
+The project grew over the semester. In Assignments 1 and 2 I analysed the incident log of a
 synthetic university portal (96.25 % availability over a month, most of it lost to a database
 failover done by hand) and wrote retry and checkpoint logic for a payment batch. For the midterm I
 built the system itself, twice from one code base: a baseline with one copy of everything, and a
@@ -1172,9 +1172,9 @@ documentation*.\
 probes; Deployments; NetworkPolicies.\
 [22] Libraries and tools used: FastAPI, Uvicorn, Pydantic, httpx, PyJWT, prometheus_client,
 matplotlib, pytest, pandoc.\
-[23] M. Idrissov and A. Yeraliyev, Assignments 1 and 2 (reliability metrics, RBD, FMEA, FTA;
-software fault-tolerant design); M. Idrissov, Midterm report (October 2026) and Endterm report
-(November 2026), Fault Tolerance and Dependable Computing, AITU.
+[23] M. Idrissov, Assignments 1 and 2 (reliability metrics, RBD, FMEA, FTA; software
+fault-tolerant design), Midterm report (October 2026) and Endterm report (November 2026), Fault
+Tolerance and Dependable Computing, AITU.
 
 ## 13. Appendix
 
@@ -1270,8 +1270,8 @@ The midterm and endterm results remain in `results/` (`E*`, `soak_*`) and `resul
 
 ### E. Contribution and use of AI assistance
 
-This is an individual project (Mukan Idrissov). Assignments 1 and 2, on which it builds, were joint
-work with A. Yeraliyev [23].
+This is an individual project by Mukan Idrissov. It builds on Assignments 1 and 2 and on the midterm
+and endterm stages of the course [23].
 
 An AI coding assistant (Claude Code, Anthropic) was used throughout all three stages, under the
 author's direction: to write and refactor code and tests, to run the experiment campaigns, to
