@@ -17,6 +17,7 @@ import asyncio
 import json
 import statistics
 import time
+from collections import Counter
 from pathlib import Path
 
 import httpx
@@ -62,7 +63,58 @@ def detection_from_events(events, pred, t_inject):
     return round(min(hit) - t_inject, 3) if hit else None
 
 
-async def run_fault(exp: dict, cl: DockerCluster, rep: int) -> dict:
+def mechanism_counts(cl: DockerCluster, events: list[dict]) -> dict:
+    """How often each fault-tolerance mechanism acted during the run (final project,
+    section 7: retries, breaker activations, failovers, recovery actions). Gateway
+    counters come from Prometheus (fresh cluster, so totals = this run); the rest are
+    structured log events."""
+    ev = Counter(e["ev"] for e in events)
+    recovered = Counter(e.get("action") for e in events if e["ev"] == "RECOVERED")
+
+    def prom_total(metric: str) -> int | None:
+        try:
+            v = cl.prom_value(f"sum({metric})")
+        except Exception:
+            return None
+        return int(v) if v is not None else 0
+
+    return {
+        "gateway_retries": prom_total("ftuni_gateway_retries_total"),
+        "gateway_shed": prom_total("ftuni_gateway_shed_total"),
+        "gateway_stale_answers": prom_total("ftuni_gateway_degraded_total"),
+        "gateway_fast_fail": prom_total("ftuni_gateway_unavailable_total"),
+        "upstream_marked_down": ev["UPSTREAM_DOWN"],
+        "breaker_opened": sum(1 for e in events if e["ev"] == "BREAKER" and e.get("to") == "open"),
+        "bank_retries": ev["BANK_RETRY"],
+        "payments_queued": ev["PAYMENT_QUEUED"],
+        "recovered_roll_forward": recovered["roll_forward"],
+        "recovered_roll_back": recovered["roll_back"],
+        "compensations": ev["COMPENSATED"],
+        "duplicate_requests": ev["DUPLICATE_REQUEST"],
+        "db_failovers": ev["DB_FAILOVER"],
+        "db_client_switches": ev["DB_SWITCHED"],
+        "db_fenced_or_deposed": ev["FENCED"] + ev["DEPOSED"] + ev["STARTUP_DEPOSED"],
+        "db_resyncs": ev["RESYNCED"],
+        "monitor_down_events": ev["DOWN"],
+        "container_restarts": sum(cl.inspect(n)["RestartCount"] for n in cl.names),
+    }
+
+
+def resource_usage(cl: DockerCluster, start: float, end: float) -> dict:
+    """Average CPU (cores) and current resident memory of the application processes
+    (gateway, monitor, bank, database nodes, services) over the run."""
+    window = max(10, int(end - start))
+    try:
+        cpu = cl.prom_value(f'sum(rate(process_cpu_seconds_total{{job=~"ftuni|gateway"}}[{window}s]))')
+        rss = cl.prom_value('sum(process_resident_memory_bytes{job=~"ftuni|gateway"})')
+    except Exception:
+        cpu = rss = None
+    return {"cpu_cores": round(cpu, 3) if cpu is not None else None,
+            "rss_mb": round(rss / 2 ** 20, 1) if rss is not None else None,
+            "app_containers": len(cl.names)}
+
+
+async def run_fault(exp: dict, cl: DockerCluster, rep: int, results: Path = RESULTS) -> dict:
     cl.fresh()
     t_up = cl.up()
     origin = time.time()
@@ -103,7 +155,16 @@ async def run_fault(exp: dict, cl: DockerCluster, rep: int) -> dict:
         "inject": info,
     }
     out["core_p95_ms"] = await core_latency_p95(cl, origin, time.time())
-    outdir = RESULTS / exp["id"] / cl.mode / f"rep{rep}"
+    out["t_inject_rel"] = round(t_inject - origin, 3)
+    out["duration_s"] = exp["duration"]
+    out["mechanisms"] = mechanism_counts(cl, events)
+    out["resources"] = resource_usage(cl, origin, time.time())
+    out["alerts_detail"] = [
+        {"alertname": a.get("alertname"), "status": a.get("status"),
+         "labels": {k: v for k, v in (a.get("labels") or {}).items() if k in ("name", "service", "target")},
+         "t_rel_inject": round(a["received"] - t_inject, 3)}
+        for a in alerts if "received" in a]
+    outdir = results / exp["id"] / cl.mode / f"rep{rep}"
     outdir.mkdir(parents=True, exist_ok=True)
     save_csv(recs, outdir / "requests.csv")
     (outdir / "events.jsonl").write_text("\n".join(json.dumps(e) for e in events) + "\n")
@@ -217,7 +278,7 @@ FAULTS = {
 
 # ----------------------------------------------------------------- security experiments
 
-async def run_security(exp_id: str, cl: DockerCluster) -> dict:
+async def run_security(exp_id: str, cl: DockerCluster, results: Path = RESULTS, rep: int | None = None) -> dict:
     cl.fresh()
     cl.up()
     before = cl.checksum()
@@ -254,7 +315,8 @@ async def run_security(exp_id: str, cl: DockerCluster) -> dict:
         "duration_s": round(time.time() - t0, 1),
     }
     out["_pass"] = all_denied and data_unchanged and out["audit_chain_ok"]
-    outdir = RESULTS / exp_id / cl.mode
+    out["rep"] = rep
+    outdir = results / exp_id / cl.mode / (f"rep{rep}" if rep else "")
     outdir.mkdir(parents=True, exist_ok=True)
     (outdir / "summary.json").write_text(json.dumps(out, indent=1))
     return out

@@ -168,7 +168,9 @@ def make_app(inst: config.Instance, *,
         path = request.url.path
         if path == "/chaos" or (path.startswith("/health") and not ch.affect_health):
             return await call_next(request)
-        if ch.error_rate and random.random() < ch.error_rate:
+        # injected errors model a broken request handler (a gray failure); the metrics endpoint is
+        # a separate code path and keeps working, so the fault is visible only in request metrics
+        if ch.error_rate and path != "/metrics" and random.random() < ch.error_rate:
             return JSONResponse({"error": "injected failure"}, status_code=500)
         if ch.latency_ms and not ch.latency_after:
             await asyncio.sleep(ch.latency_ms / 1000)

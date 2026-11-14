@@ -40,6 +40,28 @@ MAX_AMOUNT = 5_000_000          # KZT; one semester of tuition is well below thi
 KEY_FORMAT = re.compile(r"^[A-Za-z0-9_-]{8,64}$")
 
 
+def recovery_action(status: str, debit_status: int | None, age_s: float) -> str:
+    """What the recovery worker does with a payment nobody is working on any more.
+
+    status       -- PENDING or QUEUED (the only rows the worker looks at)
+    debit_status -- the bank's answer to GET /debit/<key>: 200 = a debit exists, 404 = none,
+                    None = not asked (QUEUED rows) or no answer
+    age_s        -- seconds since the payment intent was created
+
+    QUEUED                                   -> "settle"       (call the bank now that it may be back)
+    PENDING and the bank has the debit       -> "roll_forward" (money moved: finish the bookkeeping)
+    PENDING, no debit, older than the expiry -> "roll_back"    (client is gone: never move money)
+    anything else                            -> "wait"
+    """
+    if status == "QUEUED":
+        return "settle"
+    if debit_status == 200:
+        return "roll_forward"
+    if debit_status == 404 and age_s > PENDING_EXPIRY:
+        return "roll_back"
+    return "wait"
+
+
 class PayReq(BaseModel):                 # midterm builds
     student_id: str
     amount: int
@@ -236,20 +258,23 @@ def create_app(inst: config.Instance) -> FastAPI:
 
     async def recover_one(row: dict) -> None:
         key = row["key"]
-        if row["status"] == "QUEUED":
+        r = None
+        if row["status"] != "QUEUED":            # a QUEUED payment never reached the bank
+            try:
+                r = await http().get(BANK + f"/debit/{key}", timeout=1.0)
+            except httpx.HTTPError:
+                return
+        action = recovery_action(row["status"], r.status_code if r is not None else None,
+                                 time.time() - row["created"])
+        if action == "settle":
             try:
                 await settle(key, "recovery_worker", None)   # roll forward once the bank answers
             except HTTPException:
                 pass
-            return
-        try:
-            r = await http().get(BANK + f"/debit/{key}", timeout=1.0)
-        except httpx.HTTPError:
-            return
-        if r.status_code == 200:
+        elif action == "roll_forward":
             if await complete(key, r.json()["ref"], "recovery_worker") == "COMPLETED":
                 log("RECOVERED", key=key, action="roll_forward")
-        elif r.status_code == 404 and time.time() - row["created"] > PENDING_EXPIRY:
+        elif action == "roll_back":
             res = await db().tx(("UPDATE payments SET status='FAILED', note='rolled back: no debit, client gone', "
                                  "updated=? WHERE key=? AND status='PENDING'", (time.time(), key)))
             if res[0]:
