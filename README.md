@@ -1,86 +1,152 @@
-# Fault-Tolerant University Information System
+# Resilient University Information System
 
-Midterm project for *Fault Tolerance and Dependable Computing* (AITU, 2026–2027).
+Course project for *Fault Tolerance and Dependable Computing* (AITU, 2026–2027), developed in
+three stages on one code base:
 
-A small university platform (student registration, tuition payments, transcripts,
-timetables) built twice from the same code: a **baseline** with one copy of
-everything and no protection, and a **fault-tolerant (FT)** build with replicas on
-two nodes, database replication with automatic failover, and software-level
-recovery mechanisms. Failure-injection scripts break both builds in the same way
-and measure what users see and whether the data stays correct.
+| Stage | What it added | Report | Git |
+|---|---|---|---|
+| Midterm | baseline vs fault-tolerant build (replicas, DB replication + failover, timeouts, retries, breakers, idempotency, checkpointing, rollback, degradation); 7 failure experiments; reliability analysis | `docs/Midterm_Report_FT_University.docx` | tag `midterm` |
+| Endterm | containers (Docker Compose), observability (Prometheus, Grafana, 12 alert rules, request IDs), 7 security controls, experiments X1–X8 | `docs/endterm/Endterm_Report.docx` | tag `endterm-submission` |
+| **Final** | SLOs, FMEA and single-point-of-failure analysis, reliability measured on containers (soak + RBD), steady-state overhead (X0) and gray-failure (X9) experiments, mechanism-activation counts, alert correctness, all experiments × 3 builds × 5 repetitions | **`docs/final/Final_Report.docx`** | branch `final` |
 
-## Quick start
+A small university platform — student registration, tuition payments, transcripts,
+timetables — runs as one container per instance behind a gateway. One `Policy` object
+(`ftuni/config.py`) selects one of three builds from the same code: `baseline` (one copy of
+everything, no protection), `ft` (the fault-tolerant build) and `endterm` (`ft` + security
+controls, the improved configuration). All data is synthetic.
 
-Python 3.10+ (tested on 3.11, Linux and macOS). No Docker needed.
+## Repository map
+
+```
+ftuni/                the system (one package; every container runs `python -m ftuni.run <instance>`)
+  services/           student, payment, records, timetable, bank
+  gateway.py          entry point: authn/authz, validation, rate limits, load balancing, retries, breakers, bulkheads, stale cache
+  dbnode.py, monitor.py, dbclient.py   replicated SQLite node, failover controller, client with failover
+  resilience.py, storage.py, security.py, audit.py, obs.py, config.py
+deploy/               compose generator, Prometheus rules, Alertmanager, Grafana dashboard-as-code, secret generator
+experiments/          workload, fault injection, consistency checks, campaigns, analysis
+  final.py            final campaign X0-X9      soak_docker.py   crash soak on containers
+  analyze_final.py    tables, alert correctness, reliability, SLO verdicts, figures
+  endterm.py          endterm campaign (reused by final.py)        security_tests.py, insider.py
+tests/                unit tests (58) and integration tests against a live cluster (10)
+docs/final/           final report, SLOs, fault model (FMEA), test plan, figure script
+docs/endterm/         endterm report, threat model (STRIDE), run instructions
+results/final/        final campaign: per-run summaries, aggregates, tables.md, report_data.json, figures, raw/
+results/endterm/      endterm campaign            results/E*_*, soak_*   midterm results
+```
+
+## Requirements
+
+- Docker Desktop (Compose v2). Tested on Docker 28.5 (Apple M4 Pro, VM with 12 vCPU, ~7.7 GiB).
+- Python 3.11+ on the host for the experiment tools:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+## Quick start (improved build)
+
+Secrets are generated locally once and are never committed (`deploy/secrets/` is git-ignored):
+
+```bash
+python deploy/gen_secrets.py
+docker build -t ftuni:endterm .
+FTUNI_MODE=endterm COMPOSE_PROFILES=replicas docker compose up -d
+docker compose ps --format 'table {{.Name}}\t{{.Status}}'
+```
+
+Then open Grafana at http://127.0.0.1:3000 (the "FT University - endterm" dashboard is the home
+page) and Prometheus at http://127.0.0.1:9090/alerts. The API is at http://127.0.0.1:8000:
+
+```bash
+export S1PW=$(python -c "import json;print(json.load(open('deploy/secrets/test_credentials.json'))['S0001'])")
+TOK=$(curl -s localhost:8000/auth/login -H 'content-type: application/json' -d "{\"username\":\"S0001\",\"password\":\"$S1PW\"}" | python -c "import sys,json;print(json.load(sys.stdin)['access_token'])")
+curl -s localhost:8000/students/S0001 -H "Authorization: Bearer $TOK"
+python -m experiments.demo_traffic
+```
+
+`demo_traffic` prints one line per second with successful and failed requests; Ctrl+C stops it and
+prints a summary.
+
+Other builds (for comparison):
+
+```bash
+FTUNI_MODE=ft COMPOSE_PROFILES=replicas docker compose up -d
+FTUNI_MODE=baseline docker compose up -d
+```
+
+Always stop with the `replicas` profile, otherwise node-B containers and the run volume survive:
+
+```bash
+COMPOSE_PROFILES=replicas docker compose down -v --remove-orphans
+```
+
+## Tests
+
+```bash
+python -m pytest -q tests
+```
+
+Without a running cluster this runs the 58 unit tests (the integration tests are skipped); with the
+`endterm` cluster up it also runs the 10 integration tests.
+
+## Reproducing the final results
+
+```bash
+python -m experiments.final
+python -m experiments.soak_docker
+python -m experiments.analyze_final
+```
+
+- `experiments.final` runs X0–X4 and X7–X9 on all three builds × 5 repetitions and X5–X6 (security)
+  × 3, each repetition on a fresh cluster (about 3.5 hours). It can be interrupted and restarted:
+  repetitions that already have a `summary.json` are skipped. Options: experiment ids (`X2 X9`),
+  `--builds endterm`, `--reps 1`, `--out <dir>`.
+- `experiments.soak_docker` runs the 900 s crash soak for `baseline` and `endterm` (about 35 min).
+- `experiments.analyze_final` writes `results/final/tables.md`, `report_data.json`,
+  `fig_timelines.png` and `fig_soak.png`.
+- Keep the machine awake and do not run other Docker workloads meanwhile (the campaign uses fixed
+  container names and ports). The environment of the published run is in
+  `results/final/environment.json`.
+
+| Experiment | Fault |
+|---|---|
+| X0 | none — steady state (overhead, false-positive alerts) |
+| X1 | `kill -9` inside `payment-a` (service instance failure) |
+| X2 | database primary frozen 12 s (`docker pause`) |
+| X3 | bank answers 6 s late for 15 s |
+| X4 | +180 timetable req/s for 15 s (load spike) |
+| X5 | 17 unauthorized / privilege-escalation probes, incl. a compromised container |
+| X6 | 10 malformed / abusive probes and a request flood |
+| X7 | 30 % of payments interrupted right after the bank debit, 15 s |
+| X8 | database primary disconnected from the data network 12 s (partition) |
+| X9 | gray failure: one replica answers 50 % of requests with HTTP 500 while health checks stay green |
+
+<!--README_RESULTS-->
+
+## Documents
+
+- Final report: `docs/final/Final_Report.docx` (source `Final_Report.md`); objectives
+  `docs/final/REQUIREMENTS_AND_SLOS.md`; fault model and FMEA `docs/final/FAULT_MODEL.md`; test plan
+  `docs/final/TEST_PLAN.md`; threat model `docs/endterm/THREAT_MODEL.md`.
+- Build the report: `bash docs/final/to_docx.sh` (needs pandoc).
+
+## Midterm process mode (no Docker)
+
+The midterm ran every instance as a plain process under a small supervisor; this still works:
 
 ```bash
 pip install -r requirements.txt
-
-python -m ftuni up --mode ft          # terminal 1: start the FT build (Ctrl+C stops everything)
-python -m experiments.demo db         # terminal 2: live demo, kills the database primary
-python -m ftuni status                # who is up, who is the DB primary
+python -m ftuni up --mode ft
+python -m experiments.demo db
+python -m experiments.run_experiments
+python -m experiments.soak --mode both
+python -m experiments.analyze
 ```
 
-Gateway: http://127.0.0.1:8000, e.g. `curl 127.0.0.1:8000/students/S0001`.
-
-Demo scenarios: `crash` (kill a service replica), `db` (kill the DB primary),
-`node` (power off node A), `bank` (bank answers after 6 s), `payment` (30% of
-payments die half-way), `load` (burst of timetable requests). Run the same demo
-against `--mode baseline` to see the difference.
-
-## Architecture
-
-```
-                 clients
-                    |
-              [ API gateway ]  load balancing, health checks, timeouts, retries,
-                    |          circuit breakers, load shedding, stale cache
-      +-------------+--------------+
-   node A                       node B
-   student-a  payment-a         student-b  payment-b
-   records-a  timetable-a       records-b  timetable-b
-   db-a (primary)  ----log---->  db-b (replica)
-                    |
-   monitor (health, DB failover)   supervisor (restarts crashed processes)
-   external bank (idempotent debits)   storage: disk1 + disk2 (RAID-1 style)
-```
-
-| Mechanism | Where |
-|---|---|
-| Service replication on two nodes, load balancing | `ftuni/gateway.py`, `ftuni/config.py` |
-| Health checks (active + passive), self-healing restarts | `gateway.py`, `monitor.py`, `supervisor.py` |
-| DB primary/replica, synchronous log shipping, failover with epochs (fencing) | `ftuni/dbnode.py`, `monitor.py`, `dbclient.py` |
-| Mirrored storage with SHA-256 checksums and self-repair (RAID-1/ECC idea) | `ftuni/storage.py` |
-| Timeouts, retry with exponential backoff + jitter, circuit breaker, bulkhead | `ftuni/resilience.py`, `gateway.py`, `services/payment.py` |
-| Idempotency keys, duplicate-request detection | `services/payment.py`, `dbnode.py` (tx_id), `services/bank.py` |
-| Checkpointing, roll-forward / roll-back recovery, compensation | `services/payment.py`, `services/records.py` (batch job) |
-| Graceful degradation (queued payments, stale timetable cache, shedding) | `gateway.py`, `services/payment.py` |
-
-The two builds differ only in `ftuni/config.py` (`BASELINE` vs `FT`).
-
-## Experiments
-
-```bash
-python -m experiments.run_experiments          # E1-E7 in both builds (~20 min)
-python -m experiments.soak --mode both         # 9-minute random-crash run per build
-python -m experiments.analyze                  # tables, reliability numbers, figures
-python -m pytest -q tests                      # unit tests
-```
-
-| ID | Fault |
-|---|---|
-| E1 | kill one application instance (student-a) |
-| E2 | kill the database primary |
-| E3 | bank answers after 6 s for 15 s (service-to-service timeout) |
-| E4 | node A down for 20 s (all its processes, incl. the DB primary) |
-| E5 | 30% of payments interrupted right after the bank debit, for 15 s |
-| E5b | transcript batch job killed half-way (checkpoint/resume) |
-| E6 | +150 timetable requests/s for 15 s (overload) |
-| E7 | 30 stored transcripts corrupted on disk (silent data corruption) |
-
-Raw results (every request, every event) are in `results/<experiment>_<build>/`.
-
-### Main results
+Midterm results (one run per build, process mode):
 
 | Exp | Baseline: failed user requests / data | FT: failed user requests / data |
 |---|---|---|
@@ -92,17 +158,3 @@ Raw results (every request, every event) are in `results/<experiment>_<build>/`.
 | E6 overload | 3154 / 3850, did not recover | 37 / 3850; 1664 stale-cache answers |
 | E5b batch killed | restarted from zero, 151 transcripts redone | resumed from checkpoint 150, 2 redone |
 | E7 corrupted files | 25 wrong GPAs served silently | 30/30 detected and repaired |
-
-Soak test (9 min, random crashes): baseline 61.2% availability (time), FT 99.82%; the FT build's only
-outage (1 s, 7 requests) was a near-simultaneous crash of both student replicas.
-
-## Layout
-
-```
-ftuni/            the system (one package, every process runs `python -m ftuni.run <instance>`)
-  services/       student, payment, records, timetable, bank
-experiments/      workload generator, fault injection, consistency checks, demo, analysis
-tests/            unit tests
-results/          measured data and figures
-run/              runtime data and logs (created on start, wiped on the next start)
-```
